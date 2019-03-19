@@ -1,0 +1,15 @@
+#Standard
+bin/
+gen/
+classes/
+build/
+
+#Gradle
+.gradle
+
+#Windows
+.DS_Store
+
+#Intellij / Android Studio
+*.iml
+/.idea/*
