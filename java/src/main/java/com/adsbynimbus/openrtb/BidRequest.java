@@ -36,8 +36,8 @@ public interface BidRequest {
                 public final Device device = (Device) values.get(DEVICE);
                 public final Format format = (Format) values.get(FORMAT);
                 public final User user = (User) values.get(USER);
-                public final int test = (int) (values.containsKey(TEST) ? values.get(TEST) : 0);
-                public final int tmax = (int) (values.containsKey(TIMEOUT) ? values.get(TIMEOUT) : 500);
+                public final Integer test = (Integer) values.get(TEST); // Server default 0
+                public final Integer tmax = (Integer) values.get(TIMEOUT); // Server default 500
                 public final Regs regs = (Regs) values.get(REGS);
                 public final Object ext = values.containsKey(API_KEY) || values.containsKey(SESSION_ID) ?
                         new Object() {

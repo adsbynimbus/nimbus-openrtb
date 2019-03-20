@@ -24,20 +24,20 @@ public interface Video extends BaseCreative {
         default Video build() {
             final Map values = getValues();
             return new Video() {
-                public final float bidfloor = (float) (values.containsKey(BID_FLOOR) ? values.get(BID_FLOOR) : 3f);
+                public final Float bidfloor = (Float) values.get(BID_FLOOR); // Server default 3
                 public final String[] mimes = (String[]) values.get(MIME_TYPES);
-                public final int minduration = (int) (values.containsKey(MIN_DURATION) ? values.get(MIN_DURATION) : 0);
-                public final int maxduration = (int) (values.containsKey(MAX_DURATION) ? values.get(MAX_DURATION) : 60);
+                public final Integer minduration = (int) values.get(MIN_DURATION); // Server default 0
+                public final Integer maxduration = (int) values.get(MAX_DURATION); // Server default 60
                 public final int[] protocols = (int[]) values.get(PROTOCOLS);
                 public final int w = (int) values.get(WIDTH);
                 public final int h = (int) values.get(HEIGHT);
-                public final int startdelay = (int) (values.containsKey(START_DELAY) ? values.get(START_DELAY) : 0);
-                public final Integer skip = (Integer) values.get(SKIP);
-                public final int skipmin = (int) (values.containsKey(SKIP_MIN) ? values.get(SKIP_MIN) : 0);
-                public final int skipafter = (int) (values.containsKey(SKIP_AFTER) ? values.get(SKIP_AFTER) : 0);
-                public final int minbitrate = (int) (values.containsKey(MIN_BITRATE) ? values.get(MIN_BITRATE) : 0);
-                public final int maxbitrate = (int) (values.containsKey(MAX_BITRATE) ? values.get(MAX_BITRATE) : 0);
-                public final Integer pos = (Integer) values.get(POSITION);
+                public final Integer startdelay = (Integer) values.get(START_DELAY); // Server default 0;
+                public final Integer skip = (Integer) values.get(SKIP); // optional
+                public final Integer skipmin = (Integer) values.get(SKIP_MIN); // Server default 0
+                public final Integer skipafter = (Integer) values.get(SKIP_AFTER); // Server default 0
+                public final Integer minbitrate = (Integer) values.get(MIN_BITRATE); // Server default 0
+                public final Integer maxbitrate = (Integer) values.get(MAX_BITRATE); // Server default 0
+                public final Integer pos = (Integer) values.get(POSITION); // Optional
                 public final int[] api = (int[]) values.get(SUPPORTED_APIS);
             };
         }

@@ -15,7 +15,7 @@ public interface Banner extends BaseCreative {
         default Banner build() {
             final Map values = getValues();
             return new Banner() {
-                public final float bidfloor = (float) (values.containsKey(BID_FLOOR) ? values.get(BID_FLOOR) : 2f);
+                public final Float bidfloor = (Float) values.get(BID_FLOOR); // Server default is 2.0
                 public final Format[] format = (Format[]) values.get(FORMAT);
                 public final Integer w = (Integer) values.get(WIDTH);
                 public final Integer h = (Integer) values.get(HEIGHT);
