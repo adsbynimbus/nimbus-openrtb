@@ -13,8 +13,6 @@ public interface App extends BasePublisher {
 
     interface Builder extends NimbusRTB.Builder {
 
-        Map<String, Object> getValues();
-
         default App build() {
             final Map values = getValues();
             return new App() {
