@@ -13,6 +13,11 @@ public interface Geo {
     String COUNTRY = "country";
     String CITY = "city";
 
+    // Location type
+    int GPS = 1;
+    int IP_LOOKUP = 2;
+    int USER_PROVIDED = 3;
+
     interface Builder extends NimbusRTB.Builder {
 
         default Geo build() {

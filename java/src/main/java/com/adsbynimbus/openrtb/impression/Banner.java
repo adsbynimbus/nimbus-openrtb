@@ -8,7 +8,13 @@ import static com.adsbynimbus.openrtb.impression.Format.FORMAT;
 import static com.adsbynimbus.openrtb.impression.Format.HEIGHT;
 import static com.adsbynimbus.openrtb.impression.Format.WIDTH;
 
-public interface Banner extends BaseCreative {
+public interface Banner extends Creative {
+
+    /* Supported APIS [See OpenRTB 2.5 Section 5.6] */
+    int VPAID_2 = 2;
+    int MRAID_1 = 3;
+    int MRAID_2 = 5;
+    int MRAID_3 = 6;
 
     interface Builder extends NimbusRTB.Builder {
 

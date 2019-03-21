@@ -1,36 +1,78 @@
 package com.adsbynimbus.openrtb.impression;
 
-import androidx.annotation.StringDef;
-import androidx.collection.ArrayMap;
+
+import android.util.Log;
+import android.util.SparseArray;
+import androidx.annotation.IntDef;
 
 import java.lang.annotation.Retention;
-import java.util.Map;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
-public class AndroidFormat extends ArrayMap<String, Object> implements Format {
+/**
+ * Android implementation of a Nimbus OpenRTB size
+ */
+public class AndroidFormat implements Format {
+
+    static final SparseArray<AndroidFormat> FORMATS = new SparseArray<>(10);
 
     @Retention(SOURCE)
-    @StringDef({WIDTH, HEIGHT})
-    public @interface Values {}
+    @IntDef({ })
+    public @interface FormatName { }
 
-    public static class Builder implements Format.Builder {
+    public final int w;
+    public final int h;
 
-        protected final AndroidFormat values = new AndroidFormat();
+    /**
+     * Constructor
+     *
+     * @param width  - width
+     * @param height - height
+     */
+    public AndroidFormat(int width, int height) {
+        this.w = width;
+        this.h = height;
+    }
 
-        @Override
-        public AndroidFormat build() {
-            return values;
+    /**
+     * Return the width. Marked with deprecated to discourage use over field access.
+     *
+     * @return "w" value
+     */
+    @Override
+    @Deprecated
+    public int getWidth() {
+        return w;
+    }
+
+    /**
+     * Return the height. Marked with deprecated to discourage use over field access.
+     *
+     * @return "h" value
+     */
+    @Override
+    @Deprecated
+    public int getHeight() {
+        return h;
+    }
+
+    /**
+     * Returns and {@link AndroidFormat} for the given {@link FormatName}
+     *
+     * @param size - {@link FormatName}
+     * @return {@link AndroidFormat}
+     */
+    public static AndroidFormat forSize(@FormatName int size) {
+        AndroidFormat format = FORMATS.get(size);
+        if (format == null) {
+            switch (size) {
+                // FIll this in later
+                default:
+                    Log.d(AndroidFormat.class.getName(),
+                            "Invalid format specified, this may result in no Ad being shown.");
+            }
+            FORMATS.put(size, format);
         }
-
-        @Override
-        public Map getValues() {
-            return values;
-        }
-
-        public Builder setValue(@Values String property, Object value) {
-            values.put(property, value);
-            return this;
-        }
+        return format;
     }
 }

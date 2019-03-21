@@ -11,6 +11,11 @@ public interface User {
     String YEAR_OF_BIRTH = "yob"; // Integer
     String GENDER = "gender";
 
+    // Gender Consts
+    String MALE = "M";
+    String FEMALE = "F";
+    String OTHER = "O";
+
     // Nimbus Extensions
     String CONSENT = "consent";
     String DID_CONSENT = "did_consent"; // int

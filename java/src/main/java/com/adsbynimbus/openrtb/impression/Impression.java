@@ -4,7 +4,7 @@ import com.adsbynimbus.openrtb.internal.NimbusRTB;
 
 import java.util.Map;
 
-import static com.adsbynimbus.openrtb.impression.BaseCreative.BID_FLOOR;
+import static com.adsbynimbus.openrtb.impression.Creative.BID_FLOOR;
 
 public interface Impression {
 

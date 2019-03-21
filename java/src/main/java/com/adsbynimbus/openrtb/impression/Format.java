@@ -12,6 +12,9 @@ public interface Format {
     String WIDTH = "w";
     String HEIGHT = "h";
 
+    int getWidth();
+    int getHeight();
+
     interface Builder extends NimbusRTB.Builder {
 
         default Format build() {
@@ -19,6 +22,16 @@ public interface Format {
             return new Format() {
                 public final int w = (int) values.get(WIDTH);
                 public final int h = (int) values.get(HEIGHT);
+
+                @Override
+                public int getWidth() {
+                    return w;
+                }
+
+                @Override
+                public int getHeight() {
+                    return h;
+                }
             };
         }
     }

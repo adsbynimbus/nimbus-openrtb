@@ -6,6 +6,9 @@ import java.util.Map;
 
 public interface App extends BasePublisher {
 
+    int FREE_APP = 0;
+    int PAID_APP = 1;
+
     String BUNDLE = "bundle";
     String STORE_URL = "storeurl";
     String PAID = "paid"; //Integer

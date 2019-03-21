@@ -1,6 +1,6 @@
 package com.adsbynimbus.openrtb.impression;
 
-interface BaseCreative {
+interface Creative {
 
     String BID_FLOOR = "bidfloor"; //float
     String POSITION = "pos"; // int
