@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb;
+package com.adsbynimbus.openrtb.impression;
 
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
@@ -7,21 +7,22 @@ import java.lang.annotation.Retention;
 import java.util.Map;
 
 import static com.adsbynimbus.openrtb.impression.Format.FORMAT;
+import static com.adsbynimbus.openrtb.impression.Format.HEIGHT;
+import static com.adsbynimbus.openrtb.impression.Format.WIDTH;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
-
-public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRequest {
+public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
 
     @Retention(SOURCE)
-    @StringDef({APP, DEVICE, FORMAT, USER, TEST, TIMEOUT, REGS, API_KEY, SESSION_ID})
+    @StringDef({BID_FLOOR, FORMAT, WIDTH, HEIGHT, POSITION, MIME_TYPES, SUPPORTED_APIS})
     public @interface Values {}
 
-    public static class Builder implements BidRequest.Builder {
+    public static class Builder implements Banner.Builder {
 
-        protected final AndroidBidRequest values = new AndroidBidRequest();
+        protected final AndroidBanner values = new AndroidBanner();
 
         @Override
-        public BidRequest build() {
+        public AndroidBanner build() {
             return values;
         }
 

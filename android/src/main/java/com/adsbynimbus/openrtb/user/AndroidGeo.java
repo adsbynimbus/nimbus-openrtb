@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb;
+package com.adsbynimbus.openrtb.user;
 
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
@@ -6,22 +6,20 @@ import androidx.collection.ArrayMap;
 import java.lang.annotation.Retention;
 import java.util.Map;
 
-import static com.adsbynimbus.openrtb.impression.Format.FORMAT;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
-
-public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRequest {
+public class AndroidGeo extends ArrayMap<String, Object> implements Geo {
 
     @Retention(SOURCE)
-    @StringDef({APP, DEVICE, FORMAT, USER, TEST, TIMEOUT, REGS, API_KEY, SESSION_ID})
+    @StringDef({LATITUDE, LONGITUDE, TYPE, ACCURACY, COUNTRY, CITY})
     public @interface Values {}
 
-    public static class Builder implements BidRequest.Builder {
+    public static class Builder implements Geo.Builder {
 
-        protected final AndroidBidRequest values = new AndroidBidRequest();
+        protected final AndroidGeo values = new AndroidGeo();
 
         @Override
-        public BidRequest build() {
+        public AndroidGeo build() {
             return values;
         }
 
