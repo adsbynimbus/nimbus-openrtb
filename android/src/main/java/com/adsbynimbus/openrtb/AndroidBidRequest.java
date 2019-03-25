@@ -65,7 +65,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
          * @return {@link Builder}
          */
         public Builder forImpression(@NonNull AndroidImpression impression) {
-            values.put(IMP, impression);
+            values.put(IMP, new AndroidImpression[]{impression});
             return this;
         }
 
