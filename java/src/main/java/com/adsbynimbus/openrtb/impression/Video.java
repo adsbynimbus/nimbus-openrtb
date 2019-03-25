@@ -7,8 +7,23 @@ import java.util.Map;
 import static com.adsbynimbus.openrtb.impression.Format.HEIGHT;
 import static com.adsbynimbus.openrtb.impression.Format.WIDTH;
 
-public interface Video extends BaseCreative {
+public interface Video extends Creative {
 
+    /* Protocols [See ORTB 2.5 Section 5.8] */
+    int VAST_2 = 2;
+    int VAST_3 = 3;
+    int VAST_2_WRAPPER = 5;
+    int VAST_3_WRAPPER = 6;
+
+    /* Playback methods [See ORTB 2.5 Section 5.10] */
+    int PAGE_LOAD_SOUND_ON = 1;
+    int PAGE_LOAD_SOUND_OFF = 2;
+    int CLICK_SOUND_ON = 3;
+    int MOUSE_OVER_SOUND_ON = 4;
+    int ENTER_VIEWPORT_SOUND_ON = 5;
+    int ENTER_VIEWPORT_SOUND_OFF = 6;
+
+    /* Property Names */
     String MIN_DURATION = "minduration"; // int default 0
     String MAX_DURATION = "maxduration"; // int default 60
     String PROTOCOLS = "protocols"; // int[]
@@ -18,6 +33,7 @@ public interface Video extends BaseCreative {
     String SKIP_AFTER = "skipafter"; //int default 0;
     String MIN_BITRATE = "minbitrate"; // int default 0;
     String MAX_BITRATE = "maxbitrate"; // int default 20000
+    String PLAYBACK_METHOD  = "playbackmethod"; // int default 2
 
     interface Builder extends NimbusRTB.Builder {
 
@@ -38,7 +54,7 @@ public interface Video extends BaseCreative {
                 public final Integer minbitrate = (Integer) values.get(MIN_BITRATE); // Server default 0
                 public final Integer maxbitrate = (Integer) values.get(MAX_BITRATE); // Server default 0
                 public final Integer pos = (Integer) values.get(POSITION); // Optional
-                public final int[] api = (int[]) values.get(SUPPORTED_APIS);
+                public final Integer playbackmethod = (Integer) values.get(PLAYBACK_METHOD); // Server default 2;
             };
         }
     }

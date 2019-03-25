@@ -6,6 +6,14 @@ import java.util.Map;
 
 public interface Device {
 
+    int UNKNOWN = 0;
+    int ETHERNET = 1;
+    int WIFI = 2;
+    int CELLULAR_UNKNOWN = 3;
+    int CELLULAR_2G = 4;
+    int CELLULAR_3G = 5;
+    int CELLULAR_4G = 6;
+
     String USER_AGENT = "ua";
     String GEO = "geo"; //GEO object
     String IP_ADDRESS = "ip";
