@@ -12,9 +12,8 @@ public interface User {
     String GENDER = "gender";
 
     // Gender Consts
-    String MALE = "M";
-    String FEMALE = "F";
-    String OTHER = "O";
+    String MALE = "Male";
+    String FEMALE = "Female";
 
     // Nimbus Extensions
     String CONSENT = "consent";

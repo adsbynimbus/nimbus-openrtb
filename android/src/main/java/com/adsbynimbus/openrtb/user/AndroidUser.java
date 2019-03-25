@@ -19,7 +19,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User {
     public @interface Values { }
 
     @Retention(SOURCE)
-    @StringDef({MALE, FEMALE, OTHER})
+    @StringDef({MALE, FEMALE})
     public @interface Gender { }
 
     public static class Builder implements User.Builder {
