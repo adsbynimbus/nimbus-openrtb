@@ -36,7 +36,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device {
 
         public Builder() {
             values = new AndroidDevice();
-            values.put(MAKE, Build.MANUFACTURER);
+            values.put(MAKE, ANDROID);
             values.put(MODEL, Build.MODEL);
             values.put(OS, ANDROID);
             values.put(OS_VERSION, Build.VERSION.RELEASE);
