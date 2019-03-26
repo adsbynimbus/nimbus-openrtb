@@ -17,7 +17,7 @@ public class AndroidFormat implements Format {
     static final SparseArray<AndroidFormat> FORMATS = new SparseArray<>(10);
 
     @Retention(SOURCE)
-    @IntDef({ })
+    @IntDef({BANNER_300_250})
     public @interface FormatName { }
 
     public final int w;
@@ -66,7 +66,9 @@ public class AndroidFormat implements Format {
         AndroidFormat format = FORMATS.get(size);
         if (format == null) {
             switch (size) {
-                // FIll this in later
+                case BANNER_300_250:
+                    format = new AndroidFormat(300, 250);
+                    break;
                 default:
                     Log.d(AndroidFormat.class.getName(),
                             "Invalid format specified, this may result in no Ad being shown.");

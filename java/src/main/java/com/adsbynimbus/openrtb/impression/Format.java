@@ -6,6 +6,9 @@ import java.util.Map;
 
 public interface Format {
 
+    //Share Format Names
+    int BANNER_300_250 = 0;
+
     //Share format parameter
     String FORMAT = "format";
 

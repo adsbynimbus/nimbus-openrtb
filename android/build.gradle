@@ -23,4 +23,5 @@ dependencies {
 
     implementation "androidx.annotation:annotation:${rootProject.ext.androidx.annotation}"
     implementation "androidx.collection:collection:${rootProject.ext.androidx.collection}"
+    implementation "androidx.core:core:${rootProject.ext.androidx.core}"
 }
