@@ -7,7 +7,13 @@ import java.util.Map;
 public interface Format {
 
     //Share Format Names
-    int BANNER_300_250 = 0;
+    int FULLSCREEN_PORT = 0;
+    int FULLSCREEN_LAND = 1;
+    int BANNER_300_50 = 2;
+    int BANNER_320_50 = 3;
+    int LETTERBOX = 4;
+    int HALF_SCREEN = 5;
+    int LEADERBOARD = 6;
 
     //Share format parameter
     String FORMAT = "format";
