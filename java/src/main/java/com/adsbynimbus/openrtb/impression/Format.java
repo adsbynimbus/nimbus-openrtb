@@ -7,8 +7,8 @@ import java.util.Map;
 public interface Format {
 
     //Share Format Names
-    int FULLSCREEN_PORT = 0;
-    int FULLSCREEN_LAND = 1;
+    int INTERSTITIAL_PORT = 0;
+    int INTERSTITIAL_LAND = 1;
     int BANNER_300_50 = 2;
     int BANNER_320_50 = 3;
     int LETTERBOX = 4;
