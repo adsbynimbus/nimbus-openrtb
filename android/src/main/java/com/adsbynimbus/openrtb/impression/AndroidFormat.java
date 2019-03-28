@@ -17,7 +17,7 @@ public class AndroidFormat implements Format {
     static final SparseArray<AndroidFormat> FORMATS = new SparseArray<>(10);
 
     @Retention(SOURCE)
-    @IntDef({BANNER_300_250})
+    @IntDef({INTERSTITIAL_PORT, INTERSTITIAL_LAND, BANNER_300_50, BANNER_320_50, LETTERBOX, HALF_SCREEN, LEADERBOARD})
     public @interface FormatName { }
 
     public final int w;
@@ -66,8 +66,26 @@ public class AndroidFormat implements Format {
         AndroidFormat format = FORMATS.get(size);
         if (format == null) {
             switch (size) {
-                case BANNER_300_250:
+                case INTERSTITIAL_PORT:
+                    format = new AndroidFormat(320,480);
+                    break;
+                case INTERSTITIAL_LAND:
+                    format = new AndroidFormat(480, 320);
+                    break;
+                case BANNER_300_50:
+                    format = new AndroidFormat(300, 50);
+                    break;
+                case BANNER_320_50:
+                    format = new AndroidFormat(320, 50);
+                    break;
+                case LETTERBOX:
                     format = new AndroidFormat(300, 250);
+                    break;
+                case HALF_SCREEN:
+                    format = new AndroidFormat(300, 600);
+                    break;
+                case LEADERBOARD:
+                    format = new AndroidFormat(728, 90);
                     break;
                 default:
                     Log.d(AndroidFormat.class.getName(),

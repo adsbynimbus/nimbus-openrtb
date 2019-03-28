@@ -5,6 +5,7 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
+import com.adsbynimbus.openrtb.impression.AndroidFormat.FormatName;
 
 import java.lang.annotation.Retention;
 import java.util.Map;
@@ -22,10 +23,6 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
     @Retention(SOURCE)
     @StringDef({BID_FLOOR, FORMAT, WIDTH, HEIGHT, POSITION, MIME_TYPES, SUPPORTED_APIS})
     public @interface Values { }
-
-    @Retention(SOURCE)
-    @IntDef({})
-    public @interface Formats { }
 
     @Retention(SOURCE)
     @IntDef({VPAID_2, MRAID_1, MRAID_2, MRAID_3})
@@ -68,7 +65,7 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
          * @param otherFormats    - An array of supported {@link Format}
          * @return {@link Builder}
          */
-        public Builder withFormats(@Formats int preferredFormat, @Formats int... otherFormats) {
+        public Builder withFormats(@FormatName int preferredFormat, @FormatName int... otherFormats) {
             if (otherFormats != null) {
                 final AndroidFormat[] formats = new AndroidFormat[otherFormats.length];
                 for (int i = 0; i < otherFormats.length; ++i) {
