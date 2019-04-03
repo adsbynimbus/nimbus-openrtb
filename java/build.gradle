@@ -4,3 +4,14 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies { }
+
+ext {
+    repoId = rootProject.ext.openrtb.repoId
+    groupId = rootProject.ext.openrtb.groupId
+    artifactVersion = rootProject.ext.openrtb.version
+    artifactId = 'openrtb-java'
+    artifactPath = "$buildDir/libs/" + project.name + "-" + artifactVersion + ".jar"
+}
+
+
+apply from: "${project.rootDir}/publish.gradle"

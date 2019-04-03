@@ -6,10 +6,9 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "0.1"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-proguard-rules.pro'
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -31,9 +30,22 @@ android {
 }
 
 dependencies {
-    api project(':openrtb-java')
+    api project(':openrtb-java') {
+        group = rootProject.ext.openrtb.groupId
+        version = rootProject.ext.openrtb.version
+    }
 
     implementation "androidx.annotation:annotation:${rootProject.ext.androidx.annotation}"
     implementation "androidx.collection:collection:${rootProject.ext.androidx.collection}"
     implementation "androidx.core:core:${rootProject.ext.androidx.core}"
 }
+
+ext {
+    repoId = rootProject.ext.openrtb.repoId
+    groupId = rootProject.ext.openrtb.groupId
+    artifactVersion = rootProject.ext.openrtb.version
+    artifactId = 'openrtb-android'
+    artifactPath = "$buildDir/outputs/aar/" + project.name + "-release.aar"
+}
+
+apply from: "${project.rootDir}/publish.gradle"
