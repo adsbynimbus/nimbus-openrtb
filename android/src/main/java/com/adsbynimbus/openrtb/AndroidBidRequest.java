@@ -36,7 +36,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
         protected final ArrayMap<String, Object> ext = new ArrayMap<>(2);
 
         @Override
-        public BidRequest build() {
+        public AndroidBidRequest build() {
             values.put(EXTENSION, ext);
             return values;
         }

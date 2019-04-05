@@ -21,7 +21,7 @@ public class AndroidRegs extends ArrayMap<String, Object> implements Regs {
         protected ArrayMap<String, Object> ext;
 
         @Override
-        public Regs build() {
+        public AndroidRegs build() {
             return values;
         }
 
