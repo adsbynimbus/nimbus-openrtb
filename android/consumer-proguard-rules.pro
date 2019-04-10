@@ -1,1 +1,3 @@
-# Add project specific ProGuard rules here.
+-keep,allowshrinking class com.adsbynimbus.openrtb.impression.AndroidFormat {
+    public *;
+}
