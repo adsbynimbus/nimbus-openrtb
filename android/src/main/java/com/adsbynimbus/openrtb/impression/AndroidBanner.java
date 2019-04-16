@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
 
+import com.adsbynimbus.openrtb.impression.AndroidImpression.Position;
+
 import java.lang.annotation.Retention;
 import java.util.Map;
 
@@ -33,7 +35,15 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
      */
     public static class Builder implements Banner.Builder {
 
-        protected final AndroidBanner values = new AndroidBanner();
+        protected final AndroidBanner values;
+
+        public Builder() {
+            values = new AndroidBanner();
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(POSITION, FULL_SCREEN);
+                values.put(BID_FLOOR, 2f);
+            }
+        }
 
         @Override
         public AndroidBanner build() {
@@ -59,9 +69,10 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
         }
 
         /**
-         * Set the requested formats of the ad.
+         * Set the requested formats of the ad. The item at index 0 is used for the W and H parameter of the request;
+         * the first 5 items in the array (indices 0 - 4) are prioritized by demand partners.
          *
-         * @param formats    - An array of supported {@link Format}
+         * @param formats    - An array of supported {@link AndroidFormat}
          * @return {@link Builder}
          */
         public Builder withFormats(@NonNull AndroidFormat... formats) {
@@ -74,12 +85,12 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
         }
 
         /**
-         * Set the position of the Ad Unit
+         * Set the position of the Ad Unit.
          *
          * @param position - position
          * @return {@link Builder}
          */
-        public Builder withPosition(int position) {
+        public Builder withPosition(@Position int position) {
             values.put(POSITION, position);
             return this;
         }
@@ -102,8 +113,13 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
          * @return {@link Builder}
          */
         public Builder withBidFloor(@FloatRange(from = 0) float bidFloor) {
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(BID_FLOOR, bidFloor);
+                return this;
+            }
+
             if (bidFloor >= 0) {
-                if (bidFloor != 2.0f) {
+                if ((int) bidFloor != 2) {
                     values.put(BID_FLOOR, bidFloor);
                 } else {
                     // Omit bidFloor == 2 (default)

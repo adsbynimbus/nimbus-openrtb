@@ -38,8 +38,7 @@ public class AndroidFormat implements Format {
      *
      * @return "w" value
      */
-    @Override
-    @Deprecated
+    @Override @Deprecated
     public int getWidth() {
         return w;
     }
@@ -49,8 +48,7 @@ public class AndroidFormat implements Format {
      *
      * @return "h" value
      */
-    @Override
-    @Deprecated
+    @Override @Deprecated
     public int getHeight() {
         return h;
     }

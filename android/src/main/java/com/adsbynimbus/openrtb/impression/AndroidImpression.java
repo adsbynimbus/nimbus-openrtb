@@ -2,6 +2,7 @@ package com.adsbynimbus.openrtb.impression;
 
 import android.util.Log;
 import androidx.annotation.FloatRange;
+import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
@@ -9,7 +10,7 @@ import androidx.collection.ArrayMap;
 import java.lang.annotation.Retention;
 import java.util.Map;
 
-import static com.adsbynimbus.openrtb.impression.Creative.BID_FLOOR;
+import static com.adsbynimbus.openrtb.internal.NimbusRTB.EXTENSION;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
@@ -21,15 +22,31 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
     @StringDef({BANNER, VIDEO, DISPLAY_MANAGER, DISPLAY_MANAGER_SERVER, INTERSTITIAL, BID_FLOOR, REQUIRE_HTTPS})
     public @interface Values { }
 
+    @Retention(SOURCE)
+    @IntDef({POSITION_UNKNOWN, ABOVE_THE_FOLD, BELOW_THE_FOLD, HEADER, FOOTER, SIDEBAR, FULL_SCREEN})
+    public @interface Position { }
+
     /**
      * Builder for {@link AndroidImpression}
      */
     public static class Builder implements Impression.Builder {
 
-        protected final AndroidImpression values = new AndroidImpression();
+        protected final AndroidImpression values;
+        protected ArrayMap<String, Object> ext;
+
+        public Builder() {
+            values = new AndroidImpression();
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(BID_FLOOR, 1f);
+            }
+            values.put(REQUIRE_HTTPS, 1);
+        }
 
         @Override
         public AndroidImpression build() {
+            if (ext != null) {
+                values.put(EXTENSION, ext);
+            }
             return values;
         }
 
@@ -79,8 +96,13 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
          * @return {@link Builder}
          */
         public Builder withBidFloor(@FloatRange(from = 0) float bidFloor) {
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(BID_FLOOR, bidFloor);
+                return this;
+            }
+
             if (bidFloor >= 0) {
-                if (bidFloor != 1.0f) {
+                if ((int) bidFloor != 1) {
                     values.put(BID_FLOOR, bidFloor);
                 } else {
                     // Omit bidFloor == 1 (default)
@@ -108,6 +130,20 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
          */
         public Builder allowInsecureImpression() {
             values.put(REQUIRE_HTTPS, 0);
+            return this;
+        }
+
+        /**
+         * Adds an extension object to allow for tracking by a publisher ad unit id
+         *
+         * @param publisherAdUnitIdentifier - Any unique {@link String}
+         * @return {@link Builder}
+         */
+        public Builder withPublisherAdUnitIndentifier(String publisherAdUnitIdentifier) {
+            if (ext == null) {
+                ext = new ArrayMap<>(1);
+            }
+            ext.put(EXTENSION_POSITION, publisherAdUnitIdentifier);
             return this;
         }
     }

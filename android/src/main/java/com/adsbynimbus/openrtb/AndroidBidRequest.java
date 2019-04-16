@@ -131,6 +131,11 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
          * @return {@link Builder}
          */
         public Builder withTimeout(@IntRange(from = 1) int timeout) {
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(TIMEOUT, timeout);
+                return this;
+            }
+
             if (timeout < 1) {
                 // Omit timeout < 1 (invalid)
                 Log.d(AndroidBidRequest.Builder.class.getName(), String.format(OMIT_FORMAT, TIMEOUT, '<', 1));

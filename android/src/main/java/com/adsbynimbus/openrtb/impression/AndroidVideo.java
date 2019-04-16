@@ -1,12 +1,15 @@
 package com.adsbynimbus.openrtb.impression;
 
 import android.util.Log;
+
 import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
+
+import com.adsbynimbus.openrtb.impression.AndroidImpression.Position;
 
 import java.lang.annotation.Retention;
 import java.util.Map;
@@ -21,8 +24,8 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidVideo extends ArrayMap<String, Object> implements Video {
 
     @Retention(SOURCE)
-    @StringDef({BID_FLOOR, MIME_TYPES, MIN_DURATION, MAX_DURATION, PROTOCOLS, WIDTH, HEIGHT, START_DELAY, SKIP,
-            SKIP_MIN, SKIP_AFTER, MIN_BITRATE, MAX_BITRATE, POSITION})
+    @StringDef({BID_FLOOR, MIME_TYPES, MIN_DURATION, MAX_DURATION, PROTOCOLS, WIDTH, HEIGHT,
+            START_DELAY, SKIP, SKIP_MIN, SKIP_AFTER, MIN_BITRATE, MAX_BITRATE, POSITION})
     public @interface Values { }
 
     @Retention(SOURCE)
@@ -39,7 +42,18 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video {
      */
     public static class Builder implements Video.Builder {
 
-        protected final AndroidVideo values = new AndroidVideo();
+        protected final AndroidVideo values;
+
+        public Builder() {
+            values = new AndroidVideo();
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(BID_FLOOR, 3f);
+                values.put(MIN_DURATION, 0);
+                values.put(MAX_DURATION, 60);
+                values.put(MIN_BITRATE, 0);
+                values.put(MAX_BITRATE, 20000);
+            }
+        }
 
         @Override
         public AndroidVideo build() {
@@ -69,7 +83,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video {
          * @param position - position
          * @return {@link AndroidBanner.Builder}
          */
-        public Builder withPosition(int position) {
+        public Builder withPosition(@Position int position) {
             values.put(POSITION, position);
             return this;
         }
@@ -86,22 +100,29 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video {
         }
 
         /**
-         * Set the bid floor. [Default: 2.0]
+         * Set the bid floor. [Default: 3.0]
          *
          * @param bidFloor - bid floor
          * @return {@link AndroidBanner.Builder}
          */
         public Builder withBidFloor(@FloatRange(from = 0) float bidFloor) {
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(BID_FLOOR, bidFloor);
+                return this;
+            }
+
             if (bidFloor >= 0) {
-                if (bidFloor != 2.0f) {
+                if ((int) bidFloor != 3) {
                     values.put(BID_FLOOR, bidFloor);
                 } else {
-                    // Omit bidFloor == 2 (default)
-                    Log.d(AndroidVideo.Builder.class.getName(), String.format(OMIT_FORMAT, BID_FLOOR, '=', 2));
+                    // Omit bidFloor == 3 (default)
+                    Log.d(AndroidVideo.Builder.class.getName(),
+                            String.format(OMIT_FORMAT, BID_FLOOR, '=', 3));
                 }
             } else {
                 //Omit bidFloor < 0 (invalid)
-                Log.d(AndroidVideo.Builder.class.getName(), String.format(OMIT_FORMAT, BID_FLOOR, '<', 0));
+                Log.d(AndroidVideo.Builder.class.getName(),
+                        String.format(OMIT_FORMAT, BID_FLOOR, '<', 0));
             }
             return this;
         }
@@ -114,23 +135,32 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video {
          * @return {@link Builder}
          */
         public Builder withDurationConstraint(@IntRange(from = 0) int minDuration,
-                                              @IntRange(from = 1) int maxDuration) {
+                @IntRange(from = 1) int maxDuration) {
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(MIN_DURATION, minDuration);
+                values.put(MAX_DURATION, maxDuration);
+                return this;
+            }
+
             if (minDuration > 0) {
                 values.put(MIN_DURATION, minDuration);
             } else {
                 // Omit minDuration < 0 (invalid) : Omit minDuration == 0 (default)
-                Log.d(AndroidVideo.Builder.class.getName(), String.format(OMIT_FORMAT, MIN_DURATION, '<' + '=', 0));
+                Log.d(AndroidVideo.Builder.class.getName(),
+                        String.format(OMIT_FORMAT, MIN_DURATION, '<' + '=', 0));
             }
             if (maxDuration > 0) {
                 if (maxDuration != 60) {
                     values.put(MAX_DURATION, maxDuration);
                 } else {
                     // Omit maxDuration == 60 (default)
-                    Log.d(AndroidVideo.Builder.class.getName(), String.format(OMIT_FORMAT, MAX_DURATION, '=', 60));
+                    Log.d(AndroidVideo.Builder.class.getName(),
+                            String.format(OMIT_FORMAT, MAX_DURATION, '=', 60));
                 }
             } else {
                 // Omit maxDuration < 1 (invalid)
-                Log.d(AndroidVideo.Builder.class.getName(), String.format(OMIT_FORMAT, MAX_DURATION, '<', 1));
+                Log.d(AndroidVideo.Builder.class.getName(),
+                        String.format(OMIT_FORMAT, MAX_DURATION, '<', 1));
             }
             return this;
         }
@@ -143,22 +173,31 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video {
          * @return {@link Builder}
          */
         public Builder withBitrateConstraint(@IntRange(from = 0) int minBitrate, int maxBitrate) {
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(MIN_BITRATE, minBitrate);
+                values.put(MAX_BITRATE, maxBitrate);
+                return this;
+            }
+
             if (minBitrate > 0) {
                 values.put(MIN_BITRATE, minBitrate);
             } else {
                 // Omit minBitrate < 0 (invalid) : Omit minBitrate == 0 (default)
-                Log.d(AndroidVideo.Builder.class.getName(), String.format(OMIT_FORMAT, MIN_BITRATE, '<' + '=', 0));
+                Log.d(AndroidVideo.Builder.class.getName(),
+                        String.format(OMIT_FORMAT, MIN_BITRATE, '<' + '=', 0));
             }
             if (maxBitrate > 0) {
                 if (maxBitrate != 20000) {
                     values.put(MAX_BITRATE, maxBitrate);
                 } else {
                     // Omit maxBitrate == 20000 (default)
-                    Log.d(AndroidVideo.Builder.class.getName(), String.format(OMIT_FORMAT, MAX_BITRATE, '=', 20000));
+                    Log.d(AndroidVideo.Builder.class.getName(),
+                            String.format(OMIT_FORMAT, MAX_BITRATE, '=', 20000));
                 }
             } else {
                 // Omit minBitrate < 1 (invalid)
-                Log.d(AndroidVideo.Builder.class.getName(), String.format(OMIT_FORMAT, MAX_BITRATE, '<', 1));
+                Log.d(AndroidVideo.Builder.class.getName(),
+                        String.format(OMIT_FORMAT, MAX_BITRATE, '<', 1));
             }
             return this;
         }
@@ -170,7 +209,8 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video {
          * @param height - device height in absolute pixel
          * @return {@link Builder}
          */
-        public Builder withDeviceSize(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
+        public Builder withDeviceSize(@IntRange(from = 0) int width,
+                @IntRange(from = 0) int height) {
             values.put(WIDTH, width);
             values.put(HEIGHT, height);
             return this;
@@ -194,19 +234,28 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video {
          * @param skipAfter - minimum duration video must be watched to skip
          * @return {@link Builder}
          */
-        public Builder withSkipEnabled(@IntRange(from = 0) int skipMin, @IntRange(from = 0) int skipAfter) {
+        public Builder withSkipEnabled(@IntRange(from = 0) int skipMin,
+                @IntRange(from = 0) int skipAfter) {
             values.put(SKIP, 1);
+            if (INCLUDE_DEFAULTS.get()) {
+                values.put(SKIP_MIN, skipMin);
+                values.put(SKIP_AFTER, skipAfter);
+                return this;
+            }
+
             if (skipMin > 0) {
                 values.put(SKIP_MIN, skipMin);
             } else {
                 // Omit skipMin < 0 (invalid) : Omit skipMin == 0 (default)
-                Log.d(AndroidVideo.class.getName(), String.format(OMIT_FORMAT, SKIP_MIN, '<' + '=', 0));
+                Log.d(AndroidVideo.class.getName(),
+                        String.format(OMIT_FORMAT, SKIP_MIN, '<' + '=', 0));
             }
             if (skipAfter > 0) {
                 values.put(SKIP_AFTER, skipAfter);
             } else {
                 // Omit skipAfter < 0 (invalid) : Omit skipAfter == 0 (default)
-                Log.d(AndroidVideo.class.getName(), String.format(OMIT_FORMAT, SKIP_AFTER, '<' + '=', 0));
+                Log.d(AndroidVideo.class.getName(),
+                        String.format(OMIT_FORMAT, SKIP_AFTER, '<' + '=', 0));
             }
             return this;
         }
@@ -222,7 +271,8 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video {
                 values.put(START_DELAY, startDelay);
             } else {
                 // Omit startDelay < 0 (invalid) : Omit startDelay == 0 (default)
-                Log.d(AndroidVideo.class.getName(), String.format(OMIT_FORMAT, START_DELAY, '<' + '=', 0));
+                Log.d(AndroidVideo.class.getName(),
+                        String.format(OMIT_FORMAT, START_DELAY, '<' + '=', 0));
             }
             return this;
         }
@@ -230,17 +280,13 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video {
         /**
          * Set the playback method.
          *
-         * @param playbackMethod - {@link PlaybackMethod} [PAGE_LOAD_SOUND_ON, PAGE_LOAD_SOUND_OFF, CLICK_SOUND_ON,
-         *                       MOUSE_OVER_SOUND_ON, ENTER_VIEWPORT_SOUND_OFF, ENTER_VIEWPORT_SOUND_ON]
+         * @param playbackMethods - {@link PlaybackMethod} [PAGE_LOAD_SOUND_ON, PAGE_LOAD_SOUND_OFF,
+         *                        CLICK_SOUND_ON, MOUSE_OVER_SOUND_ON, ENTER_VIEWPORT_SOUND_OFF,
+         *                        ENTER_VIEWPORT_SOUND_ON]
          * @return {@link Builder}
          */
-        public Builder withPlaybackMethod(@PlaybackMethod int playbackMethod) {
-            if (playbackMethod < 1 || playbackMethod > 6 || playbackMethod == 2) {
-                // Omit playbackMethod < 0 || > 6 (invalid) : Omit playbackMethod == 2 (default)
-                Log.d(AndroidVideo.class.getName(), String.format(OMIT_FORMAT, PLAYBACK_METHOD, '!' + '=', 13456));
-            } else {
-                values.put(PLAYBACK_METHOD, playbackMethod);
-            }
+        public Builder withPlaybackMethods(@PlaybackMethod int... playbackMethods) {
+            values.put(PLAYBACK_METHOD, playbackMethods);
             return this;
         }
     }

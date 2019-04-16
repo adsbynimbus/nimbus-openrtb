@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="video_mime_type_defaults">
+        <item>video/mp4</item>
+        <item>video/webm</item>
+        <item>video/3gpp</item>
+    </string-array>
+</resources>

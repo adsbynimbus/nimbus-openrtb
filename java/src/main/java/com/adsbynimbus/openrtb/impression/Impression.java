@@ -4,9 +4,7 @@ import com.adsbynimbus.openrtb.internal.NimbusRTB;
 
 import java.util.Map;
 
-import static com.adsbynimbus.openrtb.impression.Creative.BID_FLOOR;
-
-public interface Impression {
+public interface Impression extends Creative {
 
     String BANNER = "banner"; // Banner
     String VIDEO = "video"; // Video
@@ -14,6 +12,7 @@ public interface Impression {
     String DISPLAY_MANAGER_SERVER = "displaymanagerserver";
     String INTERSTITIAL = "instl"; //int (default 0; 0 = not interstitial, 1 = interstitial or full screen)
     String REQUIRE_HTTPS = "secure"; //int (default: 1, 0 = not secure, 1 = require https)
+    String EXTENSION_POSITION = "position";
 
     interface Builder extends NimbusRTB.Builder {
 
