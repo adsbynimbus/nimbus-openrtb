@@ -1,6 +1,5 @@
 package com.adsbynimbus.openrtb.impression;
 
-
 import android.util.Log;
 import android.util.SparseArray;
 import androidx.annotation.IntDef;
@@ -57,42 +56,45 @@ public class AndroidFormat implements Format {
     }
 
     /**
-     * Returns and {@link AndroidFormat} for the given {@link FormatName}
+     * Returns and {@link AndroidFormat[]} for the given {@link FormatName} arguments
      *
-     * @param size - {@link FormatName}
+     * @param sizes - {@link FormatName}
      * @return {@link AndroidFormat}
      */
-    public static AndroidFormat forSize(@FormatName int size) {
-        AndroidFormat format = FORMATS.get(size);
-        if (format == null) {
-            switch (size) {
-                case INTERSTITIAL_PORT:
-                    format = new AndroidFormat(320,480);
-                    break;
-                case INTERSTITIAL_LAND:
-                    format = new AndroidFormat(480, 320);
-                    break;
-                case BANNER_300_50:
-                    format = new AndroidFormat(300, 50);
-                    break;
-                case BANNER_320_50:
-                    format = new AndroidFormat(320, 50);
-                    break;
-                case LETTERBOX:
-                    format = new AndroidFormat(300, 250);
-                    break;
-                case HALF_SCREEN:
-                    format = new AndroidFormat(300, 600);
-                    break;
-                case LEADERBOARD:
-                    format = new AndroidFormat(728, 90);
-                    break;
-                default:
-                    Log.d(AndroidFormat.class.getName(),
-                            "Invalid format specified, this may result in no Ad being shown.");
+    public static AndroidFormat[] forSizes(@FormatName int... sizes) {
+        final AndroidFormat[] formats = new AndroidFormat[sizes.length];
+        for (int i = 0; i < formats.length; ++i) {
+            AndroidFormat format = FORMATS.get(sizes[i]);
+            if (format == null) {
+                switch (sizes[i]) {
+                    case INTERSTITIAL_PORT:
+                        format = new AndroidFormat(320, 480);
+                        break;
+                    case INTERSTITIAL_LAND:
+                        format = new AndroidFormat(480, 320);
+                        break;
+                    case BANNER_300_50:
+                        format = new AndroidFormat(300, 50);
+                        break;
+                    case BANNER_320_50:
+                        format = new AndroidFormat(320, 50);
+                        break;
+                    case LETTERBOX:
+                        format = new AndroidFormat(300, 250);
+                        break;
+                    case HALF_SCREEN:
+                        format = new AndroidFormat(300, 600);
+                        break;
+                    case LEADERBOARD:
+                        format = new AndroidFormat(728, 90);
+                        break;
+                    default:
+                        Log.d(AndroidFormat.class.getName(), "Invalid format specified, omitting.");
+                }
+                FORMATS.put(sizes[i], format);
             }
-            FORMATS.put(size, format);
+            formats[i] = format;
         }
-        return format;
+        return formats;
     }
 }

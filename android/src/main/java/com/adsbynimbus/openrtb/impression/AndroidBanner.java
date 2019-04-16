@@ -3,9 +3,9 @@ package com.adsbynimbus.openrtb.impression;
 import android.util.Log;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
-import com.adsbynimbus.openrtb.impression.AndroidFormat.FormatName;
 
 import java.lang.annotation.Retention;
 import java.util.Map;
@@ -59,23 +59,17 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
         }
 
         /**
-         * Set the requested formats of the ad
+         * Set the requested formats of the ad.
          *
-         * @param preferredFormat - {@link Format}
-         * @param otherFormats    - An array of supported {@link Format}
+         * @param formats    - An array of supported {@link Format}
          * @return {@link Builder}
          */
-        public Builder withFormats(@FormatName int preferredFormat, @FormatName int... otherFormats) {
-            if (otherFormats != null) {
-                final AndroidFormat[] formats = new AndroidFormat[otherFormats.length];
-                for (int i = 0; i < otherFormats.length; ++i) {
-                    formats[i] = AndroidFormat.forSize(i);
-                }
+        public Builder withFormats(@NonNull AndroidFormat... formats) {
+            if (formats.length > 0) {
                 values.put(FORMAT, formats);
+                values.put(WIDTH, formats[0].w);
+                values.put(HEIGHT, formats[0].h);
             }
-            final AndroidFormat mainFormat = AndroidFormat.forSize(preferredFormat);
-            values.put(WIDTH, mainFormat.w);
-            values.put(HEIGHT, mainFormat.h);
             return this;
         }
 

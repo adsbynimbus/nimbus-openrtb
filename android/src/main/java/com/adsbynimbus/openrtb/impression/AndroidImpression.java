@@ -83,7 +83,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
                 if (bidFloor != 1.0f) {
                     values.put(BID_FLOOR, bidFloor);
                 } else {
-                    // Omit bidFloor == 2 (default)
+                    // Omit bidFloor == 1 (default)
                     Log.d(AndroidImpression.Builder.class.getName(), String.format(OMIT_FORMAT, BID_FLOOR, '=', 1));
                 }
             } else {
