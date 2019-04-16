@@ -5,4 +5,78 @@
         <item>video/webm</item>
         <item>video/3gpp</item>
     </string-array>
+    <integer-array name="interstitial_size_defaults">
+        <!-- Interstitial Portrait -->
+        <item>320</item>
+        <item>480</item>
+        <!-- Interstitial Landscape -->
+        <item>480</item>
+        <item>320</item>
+        <!-- Letterbox -->
+        <item>300</item>
+        <item>250</item>
+
+        <!-- Extras -->
+        <item>1080</item>
+        <item>1920</item>
+
+        <item>640</item>
+        <item>1136</item>
+
+        <item>1024</item>
+        <item>768</item>
+
+        <!-- Half Screen -->
+        <item>300</item>
+        <item>600</item>
+
+        <!-- Extras -->
+        <item>320</item>
+        <item>320</item>
+
+        <item>300</item>
+        <item>400</item>
+
+        <item>400</item>
+        <item>400</item>
+
+        <item>320</item>
+        <item>568</item>
+
+        <item>375</item>
+        <item>667</item>
+
+        <item>300</item>
+        <item>450</item>
+
+        <item>240</item>
+        <item>400</item>
+
+        <item>336</item>
+        <item>280</item>
+
+        <item>960</item>
+        <item>640</item>
+
+        <item>640</item>
+        <item>960</item>
+
+        <item>600</item>
+        <item>500</item>
+
+        <item>768</item>
+        <item>1024</item>
+
+        <item>728</item>
+        <item>984</item>
+
+        <item>1536</item>
+        <item>2048</item>
+
+        <item>2048</item>
+        <item>1536</item>
+
+        <item>250</item>
+        <item>300</item>
+    </integer-array>
 </resources>

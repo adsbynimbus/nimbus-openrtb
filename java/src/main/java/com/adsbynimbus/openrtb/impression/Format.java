@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface Format {
 
-    //Share Format Names
+    //Ad Format Names
     int INTERSTITIAL_PORT = 0;
     int INTERSTITIAL_LAND = 1;
     int BANNER_300_50 = 2;
@@ -15,7 +15,7 @@ public interface Format {
     int HALF_SCREEN = 5;
     int LEADERBOARD = 6;
 
-    //Share format parameter
+    //Ad format parameter
     String FORMAT = "format";
 
     String WIDTH = "w";

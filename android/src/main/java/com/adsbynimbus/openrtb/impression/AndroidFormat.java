@@ -1,8 +1,11 @@
 package com.adsbynimbus.openrtb.impression;
 
+import android.content.Context;
 import android.util.Log;
 import android.util.SparseArray;
 import androidx.annotation.IntDef;
+
+import com.adsbynimbus.openrtb.R;
 
 import java.lang.annotation.Retention;
 
@@ -94,5 +97,24 @@ public class AndroidFormat implements Format {
             formats[i] = format;
         }
         return formats;
+    }
+
+    /**
+     * Helper methods to load default interstitial sizes from a resource file
+     *
+     * @param context - {@link Context}
+     * @return {@link AndroidFormat[]}
+     */
+    public static AndroidFormat[] loadDefaultInterstitialSizes(Context context) {
+        final int[] sizeArray = context.getResources().getIntArray(R.array.interstitial_size_defaults);
+        final AndroidFormat[] interstitialFormats = new AndroidFormat[sizeArray.length / 2];
+        for (int i = 0; i < interstitialFormats.length; ++i) {
+            interstitialFormats[i] = new AndroidFormat(sizeArray[i * 2], sizeArray[i * 2 + 1]);
+        }
+        FORMATS.put(INTERSTITIAL_PORT, interstitialFormats[0]);
+        FORMATS.put(INTERSTITIAL_LAND, interstitialFormats[1]);
+        FORMATS.put(LETTERBOX, interstitialFormats[2]);
+        FORMATS.put(HALF_SCREEN, interstitialFormats[6]);
+        return interstitialFormats;
     }
 }
