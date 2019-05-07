@@ -27,7 +27,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRequest {
 
     @Retention(SOURCE)
-    @StringDef({APP, DEVICE, FORMAT, USER, TEST, TIMEOUT, REGS, API_KEY, SESSION_ID})
+    @StringDef({APP, DEVICE, FORMAT, USER, TEST, TIMEOUT, REGS, BADV, API_KEY, SESSION_ID})
     public @interface Values { }
 
     public static class Builder implements BidRequest.Builder {
@@ -156,6 +156,17 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
          */
         public Builder withRegs(@NonNull AndroidRegs regs) {
             values.put(REGS, regs);
+            return this;
+        }
+
+        /**
+         * Sets a list of blocked advertisers by domains
+         *
+         * @param domains - {@link String...}
+         * @return {@link Builder}
+         */
+        public Builder withBlockedDomains(@NonNull String... domains) {
+            values.put(BADV, domains);
             return this;
         }
 

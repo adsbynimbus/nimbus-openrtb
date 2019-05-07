@@ -21,6 +21,7 @@ public interface BidRequest {
     String TEST = "test"; // int (default 0; 0 = Live, 1 = Test)
     String TIMEOUT = "tmax"; // int
     String REGS = "regs";
+    String BADV = "badv";
 
     //Extensions
     String API_KEY = "api_key";
@@ -39,6 +40,7 @@ public interface BidRequest {
                 public final Integer test = (Integer) values.get(TEST); // Server default 0
                 public final Integer tmax = (Integer) values.get(TIMEOUT); // Server default 500
                 public final Regs regs = (Regs) values.get(REGS);
+                public final String[] badv = (String[]) values.get(BADV);
                 public final Object ext = values.containsKey(API_KEY) || values.containsKey(SESSION_ID) ?
                         new Object() {
                             public final String api_key = (String) values.get(API_KEY);
