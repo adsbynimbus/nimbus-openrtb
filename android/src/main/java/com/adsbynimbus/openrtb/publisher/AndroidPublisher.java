@@ -92,5 +92,33 @@ public class AndroidPublisher extends ArrayMap<String, Object> implements Publis
             ext.put(FACEBOOK_APP_ID, facebookAppId);
             return this;
         }
+
+        /**
+         * Set the publisher domain
+         *
+         * @param googleId - {@link String}
+         * @return {@link Builder}
+         */
+        public Builder withGoogleId(@NonNull String googleId) {
+            if (ext == null) {
+                ext = new ArrayMap<>(1);
+            }
+            ext.put(GOOGLE_ID, googleId);
+            return this;
+        }
+
+        /**
+         * Set the publisher domain
+         *
+         * @param apsParams - {@link String}
+         * @return {@link Builder}
+         */
+        public Builder withApsParams(@NonNull Map<String, Object> apsParams) {
+            if (ext == null) {
+                ext = new ArrayMap<>(1);
+            }
+            ext.put(APS, apsParams);
+            return this;
+        }
     }
 }
