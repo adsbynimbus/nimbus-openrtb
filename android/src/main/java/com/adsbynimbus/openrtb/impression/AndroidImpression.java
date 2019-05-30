@@ -136,14 +136,43 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
         /**
          * Adds an extension object to allow for tracking by a publisher ad unit id
          *
-         * @param publisherAdUnitIdentifier - Any unique {@link String}
+         * @param adUnitIdentifier - Any unique {@link String}
          * @return {@link Builder}
          */
-        public Builder withPublisherAdUnitIndentifier(String publisherAdUnitIdentifier) {
+        public Builder withAdUnitIdentifier(String adUnitIdentifier) {
             if (ext == null) {
-                ext = new ArrayMap<>(1);
+                ext = new ArrayMap<>(3);
             }
-            ext.put(EXTENSION_POSITION, publisherAdUnitIdentifier);
+            ext.put(EXT_POSITION, adUnitIdentifier);
+            return this;
+        }
+
+
+        /**
+         * Set the Facebook App Id
+         *
+         * @param facebookAppId - {@link String}
+         * @return {@link Builder}
+         */
+        public Builder withFacebookAppId(@NonNull String facebookAppId) {
+            if (ext == null) {
+                ext = new ArrayMap<>(3);
+            }
+            ext.put(FACEBOOK_APP_ID, facebookAppId);
+            return this;
+        }
+
+        /**
+         * Set the APS params 
+         *
+         * @param apsParams - {@link String}
+         * @return {@link Builder}
+         */
+        public Builder withApsParams(@NonNull Map<String, Object> apsParams) {
+            if (ext == null) {
+                ext = new ArrayMap<>(3);
+            }
+            ext.put(APS, apsParams);
             return this;
         }
     }

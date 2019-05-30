@@ -7,25 +7,20 @@ import androidx.collection.ArrayMap;
 import java.lang.annotation.Retention;
 import java.util.Map;
 
-import static com.adsbynimbus.openrtb.internal.NimbusRTB.EXTENSION;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class AndroidPublisher extends ArrayMap<String, Object> implements Publisher {
 
     @Retention(SOURCE)
-    @StringDef({NAME, DOMAIN, CONTENT_CATEGORIES, FACEBOOK_APP_ID})
+    @StringDef({NAME, DOMAIN, CONTENT_CATEGORIES})
     public @interface Values { }
 
     public static class Builder implements Publisher.Builder {
 
         protected final AndroidPublisher values = new AndroidPublisher();
-        protected ArrayMap<String, Object> ext;
 
         @Override
         public AndroidPublisher build() {
-            if (ext != null) {
-                values.put(EXTENSION, ext);
-            }
             return values;
         }
 
@@ -76,48 +71,6 @@ public class AndroidPublisher extends ArrayMap<String, Object> implements Publis
          */
         public Builder withDomain(@NonNull String domain) {
             values.put(DOMAIN, domain);
-            return this;
-        }
-
-        /**
-         * Set the publisher domain
-         *
-         * @param facebookAppId - {@link String}
-         * @return {@link Builder}
-         */
-        public Builder withFacebookAppId(@NonNull String facebookAppId) {
-            if (ext == null) {
-                ext = new ArrayMap<>(1);
-            }
-            ext.put(FACEBOOK_APP_ID, facebookAppId);
-            return this;
-        }
-
-        /**
-         * Set the publisher domain
-         *
-         * @param googleId - {@link String}
-         * @return {@link Builder}
-         */
-        public Builder withGoogleId(@NonNull String googleId) {
-            if (ext == null) {
-                ext = new ArrayMap<>(1);
-            }
-            ext.put(GOOGLE_ID, googleId);
-            return this;
-        }
-
-        /**
-         * Set the publisher domain
-         *
-         * @param apsParams - {@link String}
-         * @return {@link Builder}
-         */
-        public Builder withApsParams(@NonNull Map<String, Object> apsParams) {
-            if (ext == null) {
-                ext = new ArrayMap<>(1);
-            }
-            ext.put(APS, apsParams);
             return this;
         }
     }

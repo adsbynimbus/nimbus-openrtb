@@ -8,6 +8,9 @@ import androidx.collection.ArrayMap;
 import java.lang.annotation.Retention;
 import java.util.Map;
 
+import static com.adsbynimbus.openrtb.publisher.Publisher.CONTENT_CATEGORIES;
+import static com.adsbynimbus.openrtb.publisher.Publisher.DOMAIN;
+import static com.adsbynimbus.openrtb.publisher.Publisher.NAME;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class AndroidApp extends ArrayMap<String, Object> implements App {

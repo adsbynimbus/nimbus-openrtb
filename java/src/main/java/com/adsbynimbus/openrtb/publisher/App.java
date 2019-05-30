@@ -4,7 +4,11 @@ import com.adsbynimbus.openrtb.internal.NimbusRTB;
 
 import java.util.Map;
 
-public interface App extends BasePublisher {
+import static com.adsbynimbus.openrtb.publisher.Publisher.CONTENT_CATEGORIES;
+import static com.adsbynimbus.openrtb.publisher.Publisher.DOMAIN;
+import static com.adsbynimbus.openrtb.publisher.Publisher.NAME;
+
+public interface App {
 
     int FREE_APP = 0;
     int PAID_APP = 1;

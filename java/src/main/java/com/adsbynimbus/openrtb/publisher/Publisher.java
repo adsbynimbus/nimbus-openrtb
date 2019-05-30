@@ -4,12 +4,11 @@ import com.adsbynimbus.openrtb.internal.NimbusRTB;
 
 import java.util.Map;
 
-public interface Publisher extends BasePublisher {
+public interface Publisher {
 
-    // Extensions
-    String FACEBOOK_APP_ID = "facebook_app_id";
-    String GOOGLE_ID = "google_id";
-    String APS = "aps";
+    String NAME = "name";
+    String DOMAIN = "domain";
+    String CONTENT_CATEGORIES = "cat"; // String[]
 
     interface Builder extends NimbusRTB.Builder {
 
@@ -19,12 +18,6 @@ public interface Publisher extends BasePublisher {
                 public final String name = (String) values.get(NAME);
                 public final String domain = (String) values.get(DOMAIN);
                 public final String[] cat = (String[]) values.get(CONTENT_CATEGORIES);
-                public final Object ext = values.containsKey(FACEBOOK_APP_ID) || values.containsKey(GOOGLE_ID) ||
-                        values.containsKey(APS) ? new Object() {
-                    public final String facebook_app_id = (String) values.get(FACEBOOK_APP_ID);
-                    public final String google_id = (String) values.get(GOOGLE_ID);
-                    public final Object aps = values.get(APS);
-                } : null;
             };
         }
     }
