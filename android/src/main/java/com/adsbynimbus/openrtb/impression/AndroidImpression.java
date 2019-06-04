@@ -31,28 +31,44 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      */
     public static class Builder implements Impression.Builder {
 
+        protected final String publisherAdUnitId;
         protected final AndroidImpression values;
-        protected ArrayMap<String, Object> ext;
+        protected final ArrayMap<String, Object> ext;
 
-        public Builder() {
-            values = new AndroidImpression();
+        /**
+         * Constructor
+         *
+         * @param publisherAdUnitId - {@link String} publisher ad unit identifier
+         */
+        public Builder(@NonNull String publisherAdUnitId) {
+            this.publisherAdUnitId = publisherAdUnitId;
+            this.values = new AndroidImpression();
+            this.ext = new ArrayMap<>(3);
             if (INCLUDE_DEFAULTS.get()) {
                 values.put(BID_FLOOR, 1f);
             }
             values.put(REQUIRE_HTTPS, 1);
+            ext.put(EXT_POSITION, publisherAdUnitId);
         }
 
         @Override
         public AndroidImpression build() {
-            if (ext != null) {
-                values.put(EXTENSION, ext);
-            }
+            values.put(EXTENSION, ext);
             return values;
         }
 
         @Override
         public Map<String, Object> getValues() {
             return values;
+        }
+
+        /**
+         * Return the publisherAdUnitId passed to the constructor
+         *
+         * @return {@link String}
+         */
+        public String getPublisherAdUnitId() {
+            return publisherAdUnitId;
         }
 
         /**
@@ -134,30 +150,12 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
         }
 
         /**
-         * Adds an extension object to allow for tracking by a publisher ad unit id
-         *
-         * @param adUnitIdentifier - Any unique {@link String}
-         * @return {@link Builder}
-         */
-        public Builder withAdUnitIdentifier(String adUnitIdentifier) {
-            if (ext == null) {
-                ext = new ArrayMap<>(3);
-            }
-            ext.put(EXT_POSITION, adUnitIdentifier);
-            return this;
-        }
-
-
-        /**
          * Set the Facebook App Id
          *
          * @param facebookAppId - {@link String}
          * @return {@link Builder}
          */
         public Builder withFacebookAppId(@NonNull String facebookAppId) {
-            if (ext == null) {
-                ext = new ArrayMap<>(3);
-            }
             ext.put(FACEBOOK_APP_ID, facebookAppId);
             return this;
         }
@@ -168,10 +166,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
          * @param apsParams - {@link String}
          * @return {@link Builder}
          */
-        public Builder withApsParams(@NonNull Map<String, Object> apsParams) {
-            if (ext == null) {
-                ext = new ArrayMap<>(3);
-            }
+        public Builder withApsParams(@NonNull Map apsParams) {
             ext.put(APS, apsParams);
             return this;
         }
