@@ -12,8 +12,11 @@ import com.adsbynimbus.openrtb.impression.AndroidImpression.Position;
 import java.lang.annotation.Retention;
 import java.util.Map;
 
+import static com.adsbynimbus.openrtb.impression.Format.BANNER_300_50;
+import static com.adsbynimbus.openrtb.impression.Format.BANNER_320_50;
 import static com.adsbynimbus.openrtb.impression.Format.FORMAT;
 import static com.adsbynimbus.openrtb.impression.Format.HEIGHT;
+import static com.adsbynimbus.openrtb.impression.Format.LEADERBOARD;
 import static com.adsbynimbus.openrtb.impression.Format.WIDTH;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
@@ -29,6 +32,10 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
     @Retention(SOURCE)
     @IntDef({VPAID_2, MRAID_1, MRAID_2, MRAID_3})
     public @interface SupportedApis { }
+
+    @Retention(SOURCE)
+    @IntDef({BANNER_300_50, BANNER_320_50, LEADERBOARD})
+    public @interface BannerSize { }
 
     /**
      * Builder for {@link AndroidBanner}
@@ -77,7 +84,9 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
          */
         public Builder withFormats(@NonNull AndroidFormat... formats) {
             if (formats.length > 0) {
-                values.put(FORMAT, formats);
+                if (formats.length > 1) {
+                    values.put(FORMAT, formats);
+                }
                 values.put(WIDTH, formats[0].w);
                 values.put(HEIGHT, formats[0].h);
             }
