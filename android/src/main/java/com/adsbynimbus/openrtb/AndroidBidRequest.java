@@ -162,7 +162,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
         /**
          * Sets a list of blocked advertisers by domains
          *
-         * @param domains - {@link String...}
+         * @param domains - {@link String}...
          * @return {@link Builder}
          */
         public Builder withBlockedDomains(@NonNull String... domains) {
