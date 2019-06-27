@@ -8,6 +8,7 @@ import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
 
 import java.lang.annotation.Retention;
+import java.util.List;
 import java.util.Map;
 
 import static com.adsbynimbus.openrtb.internal.NimbusRTB.EXTENSION;
@@ -166,7 +167,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
          * @param apsParams - {@link String}
          * @return {@link Builder}
          */
-        public Builder withApsParams(@NonNull Map apsParams) {
+        public Builder withApsParams(@NonNull List apsParams) {
             ext.put(APS, apsParams);
             return this;
         }
