@@ -1,6 +1,7 @@
 package com.adsbynimbus.openrtb.impression;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.Log;
 import android.util.SparseArray;
 import androidx.annotation.IntDef;
@@ -115,6 +116,11 @@ public class AndroidFormat implements Format {
         FORMATS.put(INTERSTITIAL_LAND, interstitialFormats[1]);
         FORMATS.put(LETTERBOX, interstitialFormats[2]);
         FORMATS.put(HALF_SCREEN, interstitialFormats[6]);
+        if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            final AndroidFormat portrait = interstitialFormats[0];
+            interstitialFormats[0] = interstitialFormats[1];
+            interstitialFormats[1] = portrait;
+        }
         return interstitialFormats;
     }
 }
