@@ -32,7 +32,11 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      */
     public static class Builder implements Impression.Builder {
 
-        protected final String publisherAdUnitId;
+        /* The following fields are used internally and should not be accessed */
+        public transient boolean video;
+        public transient boolean interstitial;
+        public transient AndroidFormat[] displayFormats;
+
         protected final AndroidImpression values;
         protected final ArrayMap<String, Object> ext;
 
@@ -42,7 +46,9 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
          * @param publisherAdUnitId - {@link String} publisher ad unit identifier
          */
         public Builder(@NonNull String publisherAdUnitId) {
-            this.publisherAdUnitId = publisherAdUnitId;
+            this.video = false;
+            this.interstitial = false;
+            this.displayFormats = null;
             this.values = new AndroidImpression();
             this.ext = new ArrayMap<>(3);
             if (INCLUDE_DEFAULTS.get()) {
@@ -61,15 +67,6 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
         @Override
         public Map<String, Object> getValues() {
             return values;
-        }
-
-        /**
-         * Return the publisherAdUnitId passed to the constructor
-         *
-         * @return {@link String}
-         */
-        public String getPublisherAdUnitId() {
-            return publisherAdUnitId;
         }
 
         /**
@@ -102,6 +99,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
          * @return {@link Builder}
          */
         public Builder includeVideo(@NonNull AndroidVideo video) {
+            this.video = true;
             values.put(VIDEO, video);
             return this;
         }
@@ -137,6 +135,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
          * @return {@link Builder}
          */
         public Builder asFullscreenOrInterstitial() {
+            this.interstitial = true;
             values.put(INTERSTITIAL, 1);
             return this;
         }
