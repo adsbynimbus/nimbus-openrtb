@@ -1,10 +1,12 @@
 package com.adsbynimbus.openrtb;
 
 import android.util.Log;
+
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
+
 import com.adsbynimbus.openrtb.impression.AndroidFormat;
 import com.adsbynimbus.openrtb.impression.AndroidImpression;
 import com.adsbynimbus.openrtb.impression.Impression;
@@ -12,6 +14,7 @@ import com.adsbynimbus.openrtb.publisher.AndroidApp;
 import com.adsbynimbus.openrtb.publisher.App;
 import com.adsbynimbus.openrtb.user.AndroidDevice;
 import com.adsbynimbus.openrtb.user.AndroidRegs;
+import com.adsbynimbus.openrtb.user.AndroidSource;
 import com.adsbynimbus.openrtb.user.AndroidUser;
 import com.adsbynimbus.openrtb.user.Device;
 import com.adsbynimbus.openrtb.user.Regs;
@@ -22,11 +25,10 @@ import java.util.Map;
 
 import static com.adsbynimbus.openrtb.impression.Format.FORMAT;
 import static com.adsbynimbus.openrtb.internal.NimbusRTB.EXTENSION;
-import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRequest {
 
-    @Retention(SOURCE)
+    @Retention(java.lang.annotation.RetentionPolicy.SOURCE)
     @StringDef({APP, DEVICE, FORMAT, USER, TEST, TIMEOUT, REGS, BADV, API_KEY, SESSION_ID})
     public @interface Values { }
 
@@ -156,6 +158,17 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
          */
         public Builder withRegs(@NonNull AndroidRegs regs) {
             values.put(REGS, regs);
+            return this;
+        }
+
+        /**
+         * Sets the {@link AndroidSource} object
+         *
+         * @param source - {@link AndroidSource}
+         * @return {@link Builder}
+         */
+        public Builder withSource(@NonNull AndroidSource source) {
+            values.put(SOURCE, source);
             return this;
         }
 

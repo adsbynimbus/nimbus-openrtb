@@ -30,7 +30,7 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
     public @interface Values { }
 
     @Retention(SOURCE)
-    @IntDef({VPAID_2, MRAID_1, MRAID_2, MRAID_3})
+    @IntDef({VPAID_2, MRAID_1, MRAID_2, MRAID_3, OMID})
     public @interface SupportedApis { }
 
     @Retention(SOURCE)

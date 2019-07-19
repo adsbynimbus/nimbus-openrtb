@@ -6,6 +6,7 @@ import com.adsbynimbus.openrtb.internal.NimbusRTB;
 import com.adsbynimbus.openrtb.publisher.App;
 import com.adsbynimbus.openrtb.user.Device;
 import com.adsbynimbus.openrtb.user.Regs;
+import com.adsbynimbus.openrtb.user.Source;
 import com.adsbynimbus.openrtb.user.User;
 
 import java.util.Map;
@@ -21,6 +22,7 @@ public interface BidRequest {
     String TEST = "test"; // int (default 0; 0 = Live, 1 = Test)
     String TIMEOUT = "tmax"; // int
     String REGS = "regs";
+    String SOURCE = "source";
     String BADV = "badv";
 
     //Extensions
@@ -40,6 +42,7 @@ public interface BidRequest {
                 public final Integer test = (Integer) values.get(TEST); // Server default 0
                 public final Integer tmax = (Integer) values.get(TIMEOUT); // Server default 500
                 public final Regs regs = (Regs) values.get(REGS);
+                public final Source source = (Source) values.get(SOURCE);
                 public final String[] badv = (String[]) values.get(BADV);
                 public final Object ext = values.containsKey(API_KEY) || values.containsKey(SESSION_ID) ?
                         new Object() {

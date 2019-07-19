@@ -16,4 +16,7 @@ interface Creative {
     int FOOTER = 5;
     int SIDEBAR = 6;
     int FULL_SCREEN = 7;
+
+    //Share API version
+    int OMID = 7;
 }
