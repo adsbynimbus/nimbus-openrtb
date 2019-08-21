@@ -15,18 +15,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    buildTypes {
-        release {
-            postprocessing {
-                removeUnusedCode true
-                removeUnusedResources false
-                obfuscate true
-                optimizeCode false
-                proguardFiles "${project.rootDir}/library-proguard-rules.pro"
-            }
-        }
-    }
 }
 
 dependencies {

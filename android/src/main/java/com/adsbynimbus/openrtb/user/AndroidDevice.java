@@ -20,7 +20,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class AndroidDevice extends ArrayMap<String, Object> implements Device {
 
-    static final String ANDROID = "android";
+    public static final String ANDROID = "android";
 
     @Retention(SOURCE)
     @StringDef({USER_AGENT, GEO, IP_ADDRESS, DEVICE_TYPE, MAKE, MODEL, OS, OS_VERSION, CONNECTION_TYPE, ADVERTISING_ID})
