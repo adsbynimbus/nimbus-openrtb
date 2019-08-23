@@ -25,8 +25,43 @@ func (d *Data) IsNil() bool {
 	return d == nil
 }
 
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (d *Data) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "id":
+		return dec.String(&d.ID)
+
+	case "name":
+		return dec.String(&d.Name)
+
+	case "segment":
+		var aSlice = Segments{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			d.Segment = []Segment(aSlice)
+		}
+		return err
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (d *Data) NKeys() int { return 0 }
+
 // Datas ...
 type Datas []Data
+
+// UnmarshalJSONArray ...
+func (s *Datas) UnmarshalJSONArray(dec *gojay.Decoder) error {
+	var value = Data{}
+	if err := dec.Object(&value); err != nil {
+		return err
+	}
+	*s = append(*s, value)
+	return nil
+}
 
 // MarshalJSONArray ...
 func (s Datas) MarshalJSONArray(enc *gojay.Encoder) {

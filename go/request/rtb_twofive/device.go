@@ -48,3 +48,67 @@ func (d *Device) MarshalJSONObject(enc *gojay.Encoder) {
 func (d *Device) IsNil() bool {
 	return d == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (d *Device) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "ua":
+		return dec.String(&d.Ua)
+
+	case "geo":
+		var geo Geo
+		err := dec.Object(&geo)
+		if err == nil {
+			d.Geo = &geo
+		}
+		return err
+
+	case "dnt":
+		return dec.Int(&d.Dnt)
+
+	case "lmt":
+		return dec.Int(&d.Lmt)
+
+	case "ip":
+		return dec.String(&d.IP)
+
+	case "devicetype":
+		return dec.Int(&d.DeviceType)
+
+	case "make":
+		return dec.String(&d.Make)
+
+	case "model":
+		return dec.String(&d.Model)
+
+	case "os":
+		return dec.String(&d.OS)
+
+	case "osv":
+		return dec.String(&d.OSV)
+
+	case "h":
+		return dec.Int(&d.H)
+
+	case "w":
+		return dec.Int(&d.W)
+
+	case "language":
+		return dec.String(&d.Language)
+
+	case "carrier":
+		return dec.String(&d.Carrier)
+
+	case "connectiontype":
+		return dec.Int(&d.ConnectionType)
+
+	case "ifa":
+		return dec.String(&d.Ifa)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (d *Device) NKeys() int { return 0 }

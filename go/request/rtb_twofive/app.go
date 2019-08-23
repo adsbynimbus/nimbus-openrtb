@@ -41,3 +41,63 @@ func (a *App) MarshalJSONObject(enc *gojay.Encoder) {
 func (a *App) IsNil() bool {
 	return a == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (a *App) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "name":
+		return dec.String(&a.Name)
+
+	case "bundle":
+		return dec.String(&a.Bundle)
+
+	case "domain":
+		return dec.String(&a.Domain)
+
+	case "storeurl":
+		return dec.String(&a.StoreURL)
+
+	case "cat":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			a.Cat = []string(aSlice)
+		}
+		return err
+
+	case "sectioncat":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			a.SectionCat = []string(aSlice)
+		}
+		return err
+
+	case "pagecat":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			a.PageCat = []string(aSlice)
+		}
+		return err
+
+	case "ver":
+		return dec.String(&a.Ver)
+
+	case "privacypolicy":
+		return dec.Int(&a.PrivacyPolicy)
+
+	case "paid":
+		return dec.Int(&a.Paid)
+
+	case "publisher":
+		err := dec.Object(&a.Publisher)
+		return err
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (a *App) NKeys() int { return 0 }

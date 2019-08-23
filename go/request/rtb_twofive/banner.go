@@ -40,8 +40,71 @@ func (b *Banner) IsNil() bool {
 	return b == nil
 }
 
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (b *Banner) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+
+	case "bidfloor":
+		var value float64
+		err := dec.Float64(&value)
+		if err == nil {
+			b.BidFloor = &value
+		}
+		return err
+
+	case "format":
+		var aSlice = Formats{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			b.Format = []Format(aSlice)
+		}
+		return err
+
+	case "battr":
+		var aSlice = Ints{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			b.BAttr = []int(aSlice)
+		}
+		return err
+
+	case "w":
+		return dec.Int(&b.W)
+
+	case "h":
+		return dec.Int(&b.H)
+
+	case "pos":
+		return dec.Int(&b.Pos)
+
+	case "api":
+		var aSlice = Ints{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			b.API = []int(aSlice)
+		}
+		return err
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (b *Banner) NKeys() int { return 0 }
+
 // Banners ...
 type Banners []Banner
+
+// UnmarshalJSONArray ...
+func (s *Banners) UnmarshalJSONArray(dec *gojay.Decoder) error {
+	var value = Banner{}
+	if err := dec.Object(&value); err != nil {
+		return err
+	}
+	*s = append(*s, value)
+	return nil
+}
 
 // MarshalJSONArray ...
 func (s Banners) MarshalJSONArray(enc *gojay.Encoder) {

@@ -6,8 +6,18 @@ import (
 	"github.com/francoispqt/gojay"
 )
 
-// Ints is an alias of []int
+// Ints ...
 type Ints []int
+
+// UnmarshalJSONArray decodes JSON array elements into slice
+func (a *Ints) UnmarshalJSONArray(dec *gojay.Decoder) error {
+	var value int
+	if err := dec.Int(&value); err != nil {
+		return err
+	}
+	*a = append(*a, value)
+	return nil
+}
 
 // MarshalJSONArray encodes arrays into JSON
 func (a Ints) MarshalJSONArray(enc *gojay.Encoder) {
@@ -21,8 +31,18 @@ func (a Ints) IsNil() bool {
 	return len(a) == 0
 }
 
-// Strings is an alias of []string
+// Strings ...
 type Strings []string
+
+// UnmarshalJSONArray decodes JSON array elements into slice
+func (a *Strings) UnmarshalJSONArray(dec *gojay.Decoder) error {
+	var value string
+	if err := dec.String(&value); err != nil {
+		return err
+	}
+	*a = append(*a, value)
+	return nil
+}
 
 // MarshalJSONArray encodes arrays into JSON
 func (a Strings) MarshalJSONArray(enc *gojay.Encoder) {

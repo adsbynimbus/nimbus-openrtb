@@ -27,6 +27,20 @@ func (s *Source) IsNil() bool {
 	return s == nil
 }
 
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (s *Source) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "ext":
+		return dec.Object(&s.Ext)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (s *Source) NKeys() int { return 0 }
+
 // MarshalJSONObject implements MarshalerJSONObject
 func (s *SourceExt) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.StringKeyOmitEmpty("omidpn", s.Omidpn)
@@ -37,3 +51,20 @@ func (s *SourceExt) MarshalJSONObject(enc *gojay.Encoder) {
 func (s *SourceExt) IsNil() bool {
 	return s == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (s *SourceExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "omidpn":
+		return dec.String(&s.Omidpn)
+
+	case "omidpv":
+		return dec.String(&s.Omidpv)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (s *SourceExt) NKeys() int { return 0 }

@@ -26,6 +26,28 @@ func (r *Regs) IsNil() bool {
 	return r == nil
 }
 
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (r *Regs) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "coppa":
+		return dec.Int(&r.Coppa)
+
+	case "ext":
+		var regsExt RegsExt
+		err := dec.Object(&regsExt)
+		if err == nil {
+			r.Ext = &regsExt
+		}
+		return err
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (r *Regs) NKeys() int { return 0 }
+
 // MarshalJSONObject implements MarshalerJSONObject
 func (e *RegsExt) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.IntKey("gdpr", e.GDPR)
@@ -35,3 +57,17 @@ func (e *RegsExt) MarshalJSONObject(enc *gojay.Encoder) {
 func (e *RegsExt) IsNil() bool {
 	return e == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (e *RegsExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "gdpr":
+		return dec.Int(&e.GDPR)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (e *RegsExt) NKeys() int { return 0 }

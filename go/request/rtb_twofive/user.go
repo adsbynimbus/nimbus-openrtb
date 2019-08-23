@@ -42,6 +42,51 @@ func (u *User) IsNil() bool {
 	return u == nil
 }
 
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (u *User) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "age":
+		return dec.Int(&u.Age)
+
+	case "buyeruid":
+		return dec.String(&u.BuyerUID)
+
+	case "yob":
+		return dec.Int(&u.YOB)
+
+	case "gender":
+		return dec.String(&u.Gender)
+
+	case "keywords":
+		return dec.String(&u.Keywords)
+
+	case "custom_data":
+		return dec.String(&u.CustomData)
+
+	case "data":
+		var aSlice = Datas{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			u.Data = []Data(aSlice)
+		}
+		return err
+
+	case "ext":
+		var userExt UserExt
+		err := dec.Object(&userExt)
+		if err == nil {
+			u.Ext = &userExt
+		}
+		return err
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (u *User) NKeys() int { return 0 }
+
 // MarshalJSONObject implements MarshalerJSONObject
 func (e *UserExt) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.IntKeyOmitEmpty("age", e.Age)
@@ -53,3 +98,23 @@ func (e *UserExt) MarshalJSONObject(enc *gojay.Encoder) {
 func (e *UserExt) IsNil() bool {
 	return e == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (e *UserExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "age":
+		return dec.Int(&e.Age)
+
+	case "consent":
+		return dec.String(&e.Consent)
+
+	case "did_consent":
+		return dec.Int(&e.DidConsent)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (e *UserExt) NKeys() int { return 0 }

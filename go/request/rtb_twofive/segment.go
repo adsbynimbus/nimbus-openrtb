@@ -14,6 +14,16 @@ type Segment struct {
 // Segments ...
 type Segments []Segment
 
+// UnmarshalJSONArray ...
+func (s *Segments) UnmarshalJSONArray(dec *gojay.Decoder) error {
+	var value = Segment{}
+	if err := dec.Object(&value); err != nil {
+		return err
+	}
+	*s = append(*s, value)
+	return nil
+}
+
 // MarshalJSONArray ...
 func (s Segments) MarshalJSONArray(enc *gojay.Encoder) {
 	for i := range s {
@@ -37,3 +47,23 @@ func (s *Segment) MarshalJSONObject(enc *gojay.Encoder) {
 func (s *Segment) IsNil() bool {
 	return s == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (s *Segment) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "id":
+		return dec.String(&s.ID)
+
+	case "name":
+		return dec.String(&s.Name)
+
+	case "value":
+		return dec.String(&s.Value)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (s *Segment) NKeys() int { return 0 }

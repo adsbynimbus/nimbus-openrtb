@@ -36,8 +36,85 @@ func (s *APS) IsNil() bool {
 	return s == nil
 }
 
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (s *APS) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "amzn_b":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			s.AmznB = []string(aSlice)
+		}
+		return err
+
+	case "amzn_vid":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			s.AmznVid = []string(aSlice)
+		}
+		return err
+
+	case "amzn_h":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			s.AmznH = []string(aSlice)
+		}
+		return err
+
+	case "amznp":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			s.Amznp = []string(aSlice)
+		}
+		return err
+
+	case "amznrdr":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			s.Amznrdr = []string(aSlice)
+		}
+		return err
+
+	case "amznslots":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			s.Amznslots = []string(aSlice)
+		}
+		return err
+
+	case "dc":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			s.Dc = []string(aSlice)
+		}
+		return err
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (s *APS) NKeys() int { return 0 }
+
 // APSs ...
 type APSs []APS
+
+// UnmarshalJSONArray ...
+func (s *APSs) UnmarshalJSONArray(dec *gojay.Decoder) error {
+	var value = APS{}
+	if err := dec.Object(&value); err != nil {
+		return err
+	}
+	*s = append(*s, value)
+	return nil
+}
 
 // MarshalJSONArray ...
 func (s APSs) MarshalJSONArray(enc *gojay.Encoder) {

@@ -59,3 +59,95 @@ func (v *Video) MarshalJSONObject(enc *gojay.Encoder) {
 func (v *Video) IsNil() bool {
 	return v == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (v *Video) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "bidfloor":
+		var value float64
+		err := dec.Float64(&value)
+		if err == nil {
+			v.BidFloor = &value
+		}
+		return err
+
+	case "mimes":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			v.Mimes = []string(aSlice)
+		}
+		return err
+
+	case "minduration":
+		return dec.Int(&v.Minduration)
+
+	case "maxduration":
+		return dec.Int(&v.Maxduration)
+
+	case "protocols":
+		var aSlice = Ints{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			v.Protocols = []int(aSlice)
+		}
+		return err
+
+	case "w":
+		return dec.Int(&v.W)
+
+	case "h":
+		return dec.Int(&v.H)
+
+	case "startdelay":
+		return dec.Int(&v.StartDelay)
+
+	case "placement":
+		return dec.Int(&v.Placement)
+
+	case "linearity":
+		return dec.Int(&v.Linearity)
+
+	case "playbackmethod":
+		var aSlice = Ints{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			v.Playbackmethod = []int(aSlice)
+		}
+		return err
+
+	case "skip":
+		return dec.Int(&v.Skip)
+
+	case "Delivery":
+		var aSlice = Ints{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			v.Delivery = []int(aSlice)
+		}
+		return err
+
+	case "pos":
+		return dec.Int(&v.Pos)
+
+	case "api":
+		var aSlice = Ints{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			v.API = []int(aSlice)
+		}
+		return err
+
+	case "minbitrate":
+		return dec.Int(&v.MinBitRate)
+
+	case "maxbitrate":
+		return dec.Int(&v.MaxBitRate)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (v *Video) NKeys() int { return 0 }

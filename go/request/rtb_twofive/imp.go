@@ -33,7 +33,7 @@ func (i *Imp) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.IntKey("instl", i.Instl)
 	enc.Float64Key("bidfloor", i.BidFloor)
 	if i.Secure != nil {
-		enc.IntKeyOmitEmpty("secure", *i.Secure)
+		enc.IntKey("secure", *i.Secure)
 	}
 	enc.ObjectKeyOmitEmpty("ext", i.Ext)
 }
@@ -42,6 +42,61 @@ func (i *Imp) MarshalJSONObject(enc *gojay.Encoder) {
 func (i *Imp) IsNil() bool {
 	return i == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (i *Imp) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "id":
+		return dec.String(&i.ID)
+
+	case "banner":
+		var value = &Banner{}
+		err := dec.Object(value)
+		if err == nil {
+			i.Banner = value
+		}
+
+		return err
+
+	case "video":
+		var value = &Video{}
+		err := dec.Object(value)
+		if err == nil {
+			i.Video = value
+		}
+
+		return err
+
+	case "instl":
+		return dec.Int(&i.Instl)
+
+	case "bidfloor":
+		return dec.Float64(&i.BidFloor)
+
+	case "secure":
+		var value int
+		err := dec.Int(&value)
+		if err == nil {
+			i.Secure = &value
+		}
+		return err
+
+	case "ext":
+		var value = &ImpExt{}
+		err := dec.Object(value)
+		if err == nil {
+			i.Ext = value
+		}
+
+		return err
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (i *Imp) NKeys() int { return 0 }
 
 // MarshalJSONObject implements MarshalerJSONObject
 func (e *ImpExt) MarshalJSONObject(enc *gojay.Encoder) {
@@ -57,8 +112,46 @@ func (e *ImpExt) IsNil() bool {
 	return e == nil
 }
 
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (e *ImpExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "aps":
+		var aSlice = APSs{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			e.APS = []APS(aSlice)
+		}
+		return err
+
+	case "facebook_app_id":
+		return dec.String(&e.FacebookAppID)
+
+	case "position":
+		return dec.String(&e.Position)
+
+	case "viewability":
+		return dec.Int(&e.Viewability)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (e *ImpExt) NKeys() int { return 0 }
+
 // Imps ...
 type Imps []Imp
+
+// UnmarshalJSONArray ...
+func (s *Imps) UnmarshalJSONArray(dec *gojay.Decoder) error {
+	var value = Imp{}
+	if err := dec.Object(&value); err != nil {
+		return err
+	}
+	*s = append(*s, value)
+	return nil
+}
 
 // MarshalJSONArray ...
 func (s Imps) MarshalJSONArray(enc *gojay.Encoder) {

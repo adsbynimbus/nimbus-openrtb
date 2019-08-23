@@ -33,3 +33,38 @@ func (g *Geo) MarshalJSONObject(enc *gojay.Encoder) {
 func (g *Geo) IsNil() bool {
 	return g == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (g *Geo) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "lat":
+		return dec.Float64(&g.Lat)
+
+	case "lon":
+		return dec.Float64(&g.Lon)
+
+	case "type":
+		return dec.Int(&g.Type)
+
+	case "ipservice":
+		return dec.Int(&g.IPService)
+
+	case "country":
+		return dec.String(&g.Country)
+
+	case "city":
+		return dec.String(&g.City)
+
+	case "metro":
+		return dec.String(&g.Metro)
+
+	case "state":
+		return dec.String(&g.State)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (g *Geo) NKeys() int { return 0 }

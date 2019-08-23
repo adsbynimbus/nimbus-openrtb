@@ -22,3 +22,28 @@ func (p *Publisher) MarshalJSONObject(enc *gojay.Encoder) {
 func (p *Publisher) IsNil() bool {
 	return p == nil
 }
+
+// UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+func (p *Publisher) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+
+	switch k {
+	case "name":
+		return dec.String(&p.Name)
+
+	case "cat":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			p.Cat = []string(aSlice)
+		}
+		return err
+
+	case "domain":
+		return dec.String(&p.Domain)
+
+	}
+	return nil
+}
+
+// NKeys returns the number of keys to unmarshal
+func (p *Publisher) NKeys() int { return 0 }
