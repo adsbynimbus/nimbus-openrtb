@@ -33,7 +33,7 @@ func (i *Imp) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.IntKey("instl", i.Instl)
 	enc.Float64Key("bidfloor", i.BidFloor)
 	if i.Secure != nil {
-		enc.IntKey("secure", *i.Secure)
+		enc.IntKeyOmitEmpty("secure", *i.Secure)
 	}
 	enc.ObjectKeyOmitEmpty("ext", i.Ext)
 }

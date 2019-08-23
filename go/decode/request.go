@@ -1,4 +1,4 @@
-package responseutil
+package decode
 
 import (
 	"compress/flate"
@@ -10,13 +10,9 @@ import (
 	"github.com/francoispqt/gojay"
 )
 
-const (
-	gzipHeader    = "gzip"
-	deflateHeader = "deflate"
-)
-
-// ResponseBodyToStruct takes the response from Nimbus and unmarshals is
-func ResponseBodyToStruct(res *http.Response, v interface{}) error {
+// RequestToStruct takes the a request generically, checks the Content-Encoding
+// and unmarshals the object to the provided data structure
+func RequestToStruct(res *http.Request, v interface{}) error {
 	var reader io.ReadCloser
 	var err error
 	switch res.Header.Get("Content-Encoding") {
