@@ -19,7 +19,7 @@ type SourceExt struct {
 
 // MarshalJSONObject implements MarshalerJSONObject
 func (s *Source) MarshalJSONObject(enc *gojay.Encoder) {
-	enc.ObjectKey("ext", &s.Ext)
+	enc.ObjectKeyNullEmpty("ext", &s.Ext)
 }
 
 // IsNil checks if instance is nil
