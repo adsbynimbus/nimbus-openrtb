@@ -12,94 +12,145 @@
 
 ## <a name="pkg-index">Index</a>
 * [Constants](#pkg-constants)
+* [func FloatPointer(f float64) *float64](#FloatPointer)
+* [func IntPointer(i int) *int](#IntPointer)
 * [type APS](#APS)
   * [func (s *APS) IsNil() bool](#APS.IsNil)
   * [func (s *APS) MarshalJSONObject(enc *gojay.Encoder)](#APS.MarshalJSONObject)
+  * [func (s *APS) NKeys() int](#APS.NKeys)
+  * [func (a *APS) UnmarshalJSON(b []byte) error](#APS.UnmarshalJSON)
+  * [func (s *APS) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#APS.UnmarshalJSONObject)
 * [type APSs](#APSs)
   * [func (s APSs) IsNil() bool](#APSs.IsNil)
   * [func (s APSs) MarshalJSONArray(enc *gojay.Encoder)](#APSs.MarshalJSONArray)
+  * [func (s *APSs) UnmarshalJSONArray(dec *gojay.Decoder) error](#APSs.UnmarshalJSONArray)
 * [type App](#App)
   * [func (a *App) IsNil() bool](#App.IsNil)
   * [func (a *App) MarshalJSONObject(enc *gojay.Encoder)](#App.MarshalJSONObject)
+  * [func (a *App) NKeys() int](#App.NKeys)
+  * [func (a *App) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#App.UnmarshalJSONObject)
 * [type Banner](#Banner)
   * [func (b *Banner) IsNil() bool](#Banner.IsNil)
   * [func (b *Banner) MarshalJSONObject(enc *gojay.Encoder)](#Banner.MarshalJSONObject)
+  * [func (b *Banner) NKeys() int](#Banner.NKeys)
+  * [func (b *Banner) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Banner.UnmarshalJSONObject)
 * [type Banners](#Banners)
   * [func (s Banners) IsNil() bool](#Banners.IsNil)
   * [func (s Banners) MarshalJSONArray(enc *gojay.Encoder)](#Banners.MarshalJSONArray)
+  * [func (s *Banners) UnmarshalJSONArray(dec *gojay.Decoder) error](#Banners.UnmarshalJSONArray)
 * [type Data](#Data)
   * [func (d *Data) IsNil() bool](#Data.IsNil)
   * [func (d *Data) MarshalJSONObject(enc *gojay.Encoder)](#Data.MarshalJSONObject)
+  * [func (d *Data) NKeys() int](#Data.NKeys)
+  * [func (d *Data) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Data.UnmarshalJSONObject)
 * [type Datas](#Datas)
   * [func (s Datas) IsNil() bool](#Datas.IsNil)
   * [func (s Datas) MarshalJSONArray(enc *gojay.Encoder)](#Datas.MarshalJSONArray)
+  * [func (s *Datas) UnmarshalJSONArray(dec *gojay.Decoder) error](#Datas.UnmarshalJSONArray)
 * [type Device](#Device)
   * [func (d *Device) IsNil() bool](#Device.IsNil)
   * [func (d *Device) MarshalJSONObject(enc *gojay.Encoder)](#Device.MarshalJSONObject)
+  * [func (d *Device) NKeys() int](#Device.NKeys)
+  * [func (d *Device) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Device.UnmarshalJSONObject)
 * [type Format](#Format)
   * [func (f *Format) IsNil() bool](#Format.IsNil)
   * [func (f *Format) MarshalJSONObject(enc *gojay.Encoder)](#Format.MarshalJSONObject)
+  * [func (f *Format) NKeys() int](#Format.NKeys)
+  * [func (f *Format) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Format.UnmarshalJSONObject)
 * [type Formats](#Formats)
   * [func (s Formats) IsNil() bool](#Formats.IsNil)
   * [func (s Formats) MarshalJSONArray(enc *gojay.Encoder)](#Formats.MarshalJSONArray)
+  * [func (s *Formats) UnmarshalJSONArray(dec *gojay.Decoder) error](#Formats.UnmarshalJSONArray)
 * [type Geo](#Geo)
   * [func (g *Geo) IsNil() bool](#Geo.IsNil)
   * [func (g *Geo) MarshalJSONObject(enc *gojay.Encoder)](#Geo.MarshalJSONObject)
+  * [func (g *Geo) NKeys() int](#Geo.NKeys)
+  * [func (g *Geo) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Geo.UnmarshalJSONObject)
 * [type Imp](#Imp)
   * [func (i *Imp) IsNil() bool](#Imp.IsNil)
   * [func (i *Imp) MarshalJSONObject(enc *gojay.Encoder)](#Imp.MarshalJSONObject)
+  * [func (i *Imp) NKeys() int](#Imp.NKeys)
+  * [func (i *Imp) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Imp.UnmarshalJSONObject)
 * [type ImpExt](#ImpExt)
   * [func (e *ImpExt) IsNil() bool](#ImpExt.IsNil)
   * [func (e *ImpExt) MarshalJSONObject(enc *gojay.Encoder)](#ImpExt.MarshalJSONObject)
+  * [func (e *ImpExt) NKeys() int](#ImpExt.NKeys)
+  * [func (e *ImpExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#ImpExt.UnmarshalJSONObject)
 * [type Imps](#Imps)
   * [func (s Imps) IsNil() bool](#Imps.IsNil)
   * [func (s Imps) MarshalJSONArray(enc *gojay.Encoder)](#Imps.MarshalJSONArray)
+  * [func (s *Imps) UnmarshalJSONArray(dec *gojay.Decoder) error](#Imps.UnmarshalJSONArray)
 * [type Ints](#Ints)
   * [func (a Ints) IsNil() bool](#Ints.IsNil)
   * [func (a Ints) MarshalJSONArray(enc *gojay.Encoder)](#Ints.MarshalJSONArray)
+  * [func (a *Ints) UnmarshalJSONArray(dec *gojay.Decoder) error](#Ints.UnmarshalJSONArray)
 * [type Publisher](#Publisher)
   * [func (p *Publisher) IsNil() bool](#Publisher.IsNil)
   * [func (p *Publisher) MarshalJSONObject(enc *gojay.Encoder)](#Publisher.MarshalJSONObject)
+  * [func (p *Publisher) NKeys() int](#Publisher.NKeys)
+  * [func (p *Publisher) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Publisher.UnmarshalJSONObject)
 * [type Regs](#Regs)
   * [func (r *Regs) IsNil() bool](#Regs.IsNil)
   * [func (r *Regs) MarshalJSONObject(enc *gojay.Encoder)](#Regs.MarshalJSONObject)
+  * [func (r *Regs) NKeys() int](#Regs.NKeys)
+  * [func (r *Regs) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Regs.UnmarshalJSONObject)
 * [type RegsExt](#RegsExt)
   * [func (e *RegsExt) IsNil() bool](#RegsExt.IsNil)
   * [func (e *RegsExt) MarshalJSONObject(enc *gojay.Encoder)](#RegsExt.MarshalJSONObject)
+  * [func (e *RegsExt) NKeys() int](#RegsExt.NKeys)
+  * [func (e *RegsExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#RegsExt.UnmarshalJSONObject)
 * [type Request](#Request)
   * [func (r *Request) IsNil() bool](#Request.IsNil)
   * [func (r *Request) MarshalJSONObject(enc *gojay.Encoder)](#Request.MarshalJSONObject)
+  * [func (r *Request) NKeys() int](#Request.NKeys)
+  * [func (r *Request) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Request.UnmarshalJSONObject)
 * [type RequestExt](#RequestExt)
   * [func (e *RequestExt) IsNil() bool](#RequestExt.IsNil)
   * [func (e *RequestExt) MarshalJSONObject(enc *gojay.Encoder)](#RequestExt.MarshalJSONObject)
+  * [func (e *RequestExt) NKeys() int](#RequestExt.NKeys)
+  * [func (e *RequestExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#RequestExt.UnmarshalJSONObject)
 * [type Segment](#Segment)
   * [func (s *Segment) IsNil() bool](#Segment.IsNil)
   * [func (s *Segment) MarshalJSONObject(enc *gojay.Encoder)](#Segment.MarshalJSONObject)
+  * [func (s *Segment) NKeys() int](#Segment.NKeys)
+  * [func (s *Segment) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Segment.UnmarshalJSONObject)
 * [type Segments](#Segments)
   * [func (s Segments) IsNil() bool](#Segments.IsNil)
   * [func (s Segments) MarshalJSONArray(enc *gojay.Encoder)](#Segments.MarshalJSONArray)
+  * [func (s *Segments) UnmarshalJSONArray(dec *gojay.Decoder) error](#Segments.UnmarshalJSONArray)
 * [type Source](#Source)
   * [func (s *Source) IsNil() bool](#Source.IsNil)
   * [func (s *Source) MarshalJSONObject(enc *gojay.Encoder)](#Source.MarshalJSONObject)
+  * [func (s *Source) NKeys() int](#Source.NKeys)
+  * [func (s *Source) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Source.UnmarshalJSONObject)
 * [type SourceExt](#SourceExt)
   * [func (s *SourceExt) IsNil() bool](#SourceExt.IsNil)
   * [func (s *SourceExt) MarshalJSONObject(enc *gojay.Encoder)](#SourceExt.MarshalJSONObject)
+  * [func (s *SourceExt) NKeys() int](#SourceExt.NKeys)
+  * [func (s *SourceExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#SourceExt.UnmarshalJSONObject)
 * [type Strings](#Strings)
   * [func (a Strings) IsNil() bool](#Strings.IsNil)
   * [func (a Strings) MarshalJSONArray(enc *gojay.Encoder)](#Strings.MarshalJSONArray)
+  * [func (a *Strings) UnmarshalJSONArray(dec *gojay.Decoder) error](#Strings.UnmarshalJSONArray)
 * [type User](#User)
   * [func (u *User) IsNil() bool](#User.IsNil)
   * [func (u *User) MarshalJSONObject(enc *gojay.Encoder)](#User.MarshalJSONObject)
+  * [func (u *User) NKeys() int](#User.NKeys)
+  * [func (u *User) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#User.UnmarshalJSONObject)
 * [type UserExt](#UserExt)
   * [func (e *UserExt) IsNil() bool](#UserExt.IsNil)
   * [func (e *UserExt) MarshalJSONObject(enc *gojay.Encoder)](#UserExt.MarshalJSONObject)
+  * [func (e *UserExt) NKeys() int](#UserExt.NKeys)
+  * [func (e *UserExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#UserExt.UnmarshalJSONObject)
 * [type Video](#Video)
   * [func (v *Video) IsNil() bool](#Video.IsNil)
   * [func (v *Video) MarshalJSONObject(enc *gojay.Encoder)](#Video.MarshalJSONObject)
+  * [func (v *Video) NKeys() int](#Video.NKeys)
+  * [func (v *Video) UnmarshalJSONObject(dec *gojay.Decoder, k string) error](#Video.UnmarshalJSONObject)
 
 
 #### <a name="pkg-files">Package files</a>
-[app.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/app.go) [aps.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps.go) [banner.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/banner.go) [data.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/data.go) [device.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/device.go) [format.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/format.go) [geo.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/geo.go) [imp.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/imp.go) [primitives.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives.go) [publisher.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/publisher.go) [regs.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/regs.go) [request.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/request.go) [segment.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/segment.go) [source.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/source.go) [user.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/user.go) [video.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/video.go) 
+[app.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/app.go) [aps.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps.go) [aps_custom_unmarshaller.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps_custom_unmarshaller.go) [banner.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/banner.go) [data.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/data.go) [device.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/device.go) [format.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/format.go) [geo.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/geo.go) [imp.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/imp.go) [primitives-to-references.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives-to-references.go) [primitives.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives.go) [publisher.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/publisher.go) [regs.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/regs.go) [request.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/request.go) [segment.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/segment.go) [source.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/source.go) [user.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/user.go) [video.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/video.go) 
 
 
 ## <a name="pkg-constants">Constants</a>
@@ -114,6 +165,22 @@ const (
 ```
 Header required in RTB requests
 
+
+
+
+## <a name="FloatPointer">func</a> [FloatPointer](/src/target/primitives-to-references.go?s=90:127#L4)
+``` go
+func FloatPointer(f float64) *float64
+```
+FloatPointer is a utility function to return a reference of a float64
+
+
+
+## <a name="IntPointer">func</a> [IntPointer](/src/target/primitives-to-references.go?s=211:238#L9)
+``` go
+func IntPointer(i int) *int
+```
+IntPointer is a utility function to return a reference of a int
 
 
 
@@ -159,7 +226,34 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="APSs">type</a> [APSs](/src/target/aps.go?s=1246:1261#L40)
+### <a name="APS.NKeys">func</a> (\*APS) [NKeys](/src/target/aps.go?s=2534:2559#L104)
+``` go
+func (s *APS) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="APS.UnmarshalJSON">func</a> (\*APS) [UnmarshalJSON](/src/target/aps_custom_unmarshaller.go?s=259:302#L12)
+``` go
+func (a *APS) UnmarshalJSON(b []byte) error
+```
+UnmarshalJSON handles mixed content from APS SDK, this silently fails so that Nimbus's auctions are uneffected if APS changes the data structures underneath
+
+
+
+
+### <a name="APS.UnmarshalJSONObject">func</a> (\*APS) [UnmarshalJSONObject](/src/target/aps.go?s=1298:1367#L40)
+``` go
+func (s *APS) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="APSs">type</a> [APSs](/src/target/aps.go?s=2586:2601#L107)
 ``` go
 type APSs []APS
 ```
@@ -174,7 +268,7 @@ APSs ...
 
 
 
-### <a name="APSs.IsNil">func</a> (APSs) [IsNil](/src/target/aps.go?s=1399:1425#L50)
+### <a name="APSs.IsNil">func</a> (APSs) [IsNil](/src/target/aps.go?s=2945:2971#L127)
 ``` go
 func (s APSs) IsNil() bool
 ```
@@ -183,7 +277,7 @@ IsNil ...
 
 
 
-### <a name="APSs.MarshalJSONArray">func</a> (APSs) [MarshalJSONArray](/src/target/aps.go?s=1287:1337#L43)
+### <a name="APSs.MarshalJSONArray">func</a> (APSs) [MarshalJSONArray](/src/target/aps.go?s=2833:2883#L120)
 ``` go
 func (s APSs) MarshalJSONArray(enc *gojay.Encoder)
 ```
@@ -192,7 +286,16 @@ MarshalJSONArray ...
 
 
 
-## <a name="App">type</a> [App](/src/target/app.go?s=354:1206#L8)
+### <a name="APSs.UnmarshalJSONArray">func</a> (\*APSs) [UnmarshalJSONArray](/src/target/aps.go?s=2629:2688#L110)
+``` go
+func (s *APSs) UnmarshalJSONArray(dec *gojay.Decoder) error
+```
+UnmarshalJSONArray ...
+
+
+
+
+## <a name="App">type</a> [App](/src/target/app.go?s=354:1228#L8)
 ``` go
 type App struct {
     Name          string    `json:"name"                 valid:"required"`
@@ -203,8 +306,8 @@ type App struct {
     SectionCat    []string  `json:"sectioncat,omitempty" valid:"optional"`
     PageCat       []string  `json:"pagecat,omitempty"    valid:"optional"`
     Ver           string    `json:"ver,omitempty"        valid:"optional"`
-    PrivacyPolicy int       `json:"privacypolicy"        valid:"optional"` // no policy 0 policy 1
-    Paid          int       `json:"paid"                 valid:"optional"` // free 0 paid 1
+    PrivacyPolicy int       `json:"privacypolicy"        valid:"range(0|1),optional"` // no policy 0 policy 1
+    Paid          int       `json:"paid"                 valid:"range(0|1),optional"` // free 0 paid 1
     Publisher     Publisher `json:"publisher"            valid:"required"`
 }
 ```
@@ -221,7 +324,7 @@ minimum, it is useful to provide an App ID or bundle, but this is not strictly r
 
 
 
-### <a name="App.IsNil">func</a> (\*App) [IsNil](/src/target/app.go?s=1903:1929#L41)
+### <a name="App.IsNil">func</a> (\*App) [IsNil](/src/target/app.go?s=1925:1951#L41)
 ``` go
 func (a *App) IsNil() bool
 ```
@@ -230,11 +333,29 @@ IsNil checks if instance is nil
 
 
 
-### <a name="App.MarshalJSONObject">func</a> (\*App) [MarshalJSONObject](/src/target/app.go?s=1260:1311#L23)
+### <a name="App.MarshalJSONObject">func</a> (\*App) [MarshalJSONObject](/src/target/app.go?s=1282:1333#L23)
 ``` go
 func (a *App) MarshalJSONObject(enc *gojay.Encoder)
 ```
 MarshalJSONObject implements MarshalerJSONObject
+
+
+
+
+### <a name="App.NKeys">func</a> (\*App) [NKeys](/src/target/app.go?s=3060:3085#L103)
+``` go
+func (a *App) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="App.UnmarshalJSONObject">func</a> (\*App) [UnmarshalJSONObject](/src/target/app.go?s=2038:2107#L46)
+``` go
+func (a *App) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
@@ -284,7 +405,25 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="Banners">type</a> [Banners](/src/target/banner.go?s=1896:1917#L44)
+### <a name="Banner.NKeys">func</a> (\*Banner) [NKeys](/src/target/banner.go?s=2781:2809#L94)
+``` go
+func (b *Banner) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Banner.UnmarshalJSONObject">func</a> (\*Banner) [UnmarshalJSONObject](/src/target/banner.go?s=1945:2017#L44)
+``` go
+func (b *Banner) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="Banners">type</a> [Banners](/src/target/banner.go?s=2839:2860#L97)
 ``` go
 type Banners []Banner
 ```
@@ -299,7 +438,7 @@ Banners ...
 
 
 
-### <a name="Banners.IsNil">func</a> (Banners) [IsNil](/src/target/banner.go?s=2058:2087#L54)
+### <a name="Banners.IsNil">func</a> (Banners) [IsNil](/src/target/banner.go?s=3213:3242#L117)
 ``` go
 func (s Banners) IsNil() bool
 ```
@@ -308,11 +447,20 @@ IsNil ...
 
 
 
-### <a name="Banners.MarshalJSONArray">func</a> (Banners) [MarshalJSONArray](/src/target/banner.go?s=1943:1996#L47)
+### <a name="Banners.MarshalJSONArray">func</a> (Banners) [MarshalJSONArray](/src/target/banner.go?s=3098:3151#L110)
 ``` go
 func (s Banners) MarshalJSONArray(enc *gojay.Encoder)
 ```
 MarshalJSONArray ...
+
+
+
+
+### <a name="Banners.UnmarshalJSONArray">func</a> (\*Banners) [UnmarshalJSONArray](/src/target/banner.go?s=2888:2950#L100)
+``` go
+func (s *Banners) UnmarshalJSONArray(dec *gojay.Decoder) error
+```
+UnmarshalJSONArray ...
 
 
 
@@ -357,7 +505,25 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="Datas">type</a> [Datas](/src/target/data.go?s=1022:1039#L29)
+### <a name="Data.NKeys">func</a> (\*Data) [NKeys](/src/target/data.go?s=1469:1495#L51)
+``` go
+func (d *Data) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Data.UnmarshalJSONObject">func</a> (\*Data) [UnmarshalJSONObject](/src/target/data.go?s=1073:1143#L29)
+``` go
+func (d *Data) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="Datas">type</a> [Datas](/src/target/data.go?s=1523:1540#L54)
 ``` go
 type Datas []Data
 ```
@@ -372,7 +538,7 @@ Datas ...
 
 
 
-### <a name="Datas.IsNil">func</a> (Datas) [IsNil](/src/target/data.go?s=1178:1205#L39)
+### <a name="Datas.IsNil">func</a> (Datas) [IsNil](/src/target/data.go?s=1887:1914#L74)
 ``` go
 func (s Datas) IsNil() bool
 ```
@@ -381,11 +547,20 @@ IsNil ...
 
 
 
-### <a name="Datas.MarshalJSONArray">func</a> (Datas) [MarshalJSONArray](/src/target/data.go?s=1065:1116#L32)
+### <a name="Datas.MarshalJSONArray">func</a> (Datas) [MarshalJSONArray](/src/target/data.go?s=1774:1825#L67)
 ``` go
 func (s Datas) MarshalJSONArray(enc *gojay.Encoder)
 ```
 MarshalJSONArray ...
+
+
+
+
+### <a name="Datas.UnmarshalJSONArray">func</a> (\*Datas) [UnmarshalJSONArray](/src/target/data.go?s=1568:1628#L57)
+``` go
+func (s *Datas) UnmarshalJSONArray(dec *gojay.Decoder) error
+```
+UnmarshalJSONArray ...
 
 
 
@@ -442,6 +617,24 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
+### <a name="Device.NKeys">func</a> (\*Device) [NKeys](/src/target/device.go?s=3531:3559#L114)
+``` go
+func (d *Device) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Device.UnmarshalJSONObject">func</a> (\*Device) [UnmarshalJSONObject](/src/target/device.go?s=2613:2685#L53)
+``` go
+func (d *Device) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
 ## <a name="Format">type</a> [Format](/src/target/format.go?s=256:358#L7)
 ``` go
 type Format struct {
@@ -461,7 +654,7 @@ These are typically used in an array for an impression where multiple sizes are 
 
 
 
-### <a name="Format.IsNil">func</a> (\*Format) [IsNil](/src/target/format.go?s=551:580#L19)
+### <a name="Format.IsNil">func</a> (\*Format) [IsNil](/src/target/format.go?s=569:598#L19)
 ``` go
 func (f *Format) IsNil() bool
 ```
@@ -479,7 +672,25 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="Formats">type</a> [Formats](/src/target/format.go?s=618:639#L24)
+### <a name="Format.NKeys">func</a> (\*Format) [NKeys](/src/target/format.go?s=910:938#L38)
+``` go
+func (f *Format) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Format.UnmarshalJSONObject">func</a> (\*Format) [UnmarshalJSONObject](/src/target/format.go?s=685:757#L24)
+``` go
+func (f *Format) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="Formats">type</a> [Formats](/src/target/format.go?s=968:989#L41)
 ``` go
 type Formats []Format
 ```
@@ -494,7 +705,7 @@ Formats ...
 
 
 
-### <a name="Formats.IsNil">func</a> (Formats) [IsNil](/src/target/format.go?s=780:809#L34)
+### <a name="Formats.IsNil">func</a> (Formats) [IsNil](/src/target/format.go?s=1342:1371#L61)
 ``` go
 func (s Formats) IsNil() bool
 ```
@@ -503,11 +714,20 @@ IsNil ...
 
 
 
-### <a name="Formats.MarshalJSONArray">func</a> (Formats) [MarshalJSONArray](/src/target/format.go?s=665:718#L27)
+### <a name="Formats.MarshalJSONArray">func</a> (Formats) [MarshalJSONArray](/src/target/format.go?s=1227:1280#L54)
 ``` go
 func (s Formats) MarshalJSONArray(enc *gojay.Encoder)
 ```
 MarshalJSONArray ...
+
+
+
+
+### <a name="Formats.UnmarshalJSONArray">func</a> (\*Formats) [UnmarshalJSONArray](/src/target/format.go?s=1017:1079#L44)
+``` go
+func (s *Formats) UnmarshalJSONArray(dec *gojay.Decoder) error
+```
+UnmarshalJSONArray ...
 
 
 
@@ -557,7 +777,25 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="Imp">type</a> [Imp](/src/target/imp.go?s=364:961#L10)
+### <a name="Geo.NKeys">func</a> (\*Geo) [NKeys](/src/target/geo.go?s=2289:2314#L70)
+``` go
+func (g *Geo) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Geo.UnmarshalJSONObject">func</a> (\*Geo) [UnmarshalJSONObject](/src/target/geo.go?s=1773:1842#L38)
+``` go
+func (g *Geo) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="Imp">type</a> [Imp](/src/target/imp.go?s=364:972#L10)
 ``` go
 type Imp struct {
     ID       string  `json:"id,omitempty"                   valid:"optional"`
@@ -565,7 +803,7 @@ type Imp struct {
     Video    *Video  `json:"video,omitempty"                valid:"optional"`
     Instl    int     `json:"instl"                          valid:"range(0|1),optional"` // 0 = not interstitial, 1 = interstitial
     BidFloor float64 `json:"bidfloor"                       valid:"optional"`
-    Secure   *int    `json:"secure"                         valid:"optional"`
+    Secure   *int    `json:"secure"                         valid:"range(0|1),optional"`
     Ext      *ImpExt `json:"ext,omitempty"                  valid:"optional"`
 }
 ```
@@ -582,7 +820,7 @@ a given page. Each Imp object has a required ID so that bids can reference them 
 
 
 
-### <a name="Imp.IsNil">func</a> (\*Imp) [IsNil](/src/target/imp.go?s=1888:1914#L42)
+### <a name="Imp.IsNil">func</a> (\*Imp) [IsNil](/src/target/imp.go?s=1899:1925#L42)
 ``` go
 func (i *Imp) IsNil() bool
 ```
@@ -591,7 +829,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="Imp.MarshalJSONObject">func</a> (\*Imp) [MarshalJSONObject](/src/target/imp.go?s=1507:1558#L29)
+### <a name="Imp.MarshalJSONObject">func</a> (\*Imp) [MarshalJSONObject](/src/target/imp.go?s=1518:1569#L29)
 ``` go
 func (i *Imp) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -600,7 +838,25 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="ImpExt">type</a> [ImpExt](/src/target/imp.go?s=977:1453#L21)
+### <a name="Imp.NKeys">func</a> (\*Imp) [NKeys](/src/target/imp.go?s=2777:2802#L99)
+``` go
+func (i *Imp) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Imp.UnmarshalJSONObject">func</a> (\*Imp) [UnmarshalJSONObject](/src/target/imp.go?s=2012:2081#L47)
+``` go
+func (i *Imp) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="ImpExt">type</a> [ImpExt](/src/target/imp.go?s=988:1464#L21)
 ``` go
 type ImpExt struct {
     APS           []APS  `json:"aps,omitempty"             valid:"optional"`
@@ -620,7 +876,7 @@ ImpExt ...
 
 
 
-### <a name="ImpExt.IsNil">func</a> (\*ImpExt) [IsNil](/src/target/imp.go?s=2311:2340#L56)
+### <a name="ImpExt.IsNil">func</a> (\*ImpExt) [IsNil](/src/target/imp.go?s=3191:3220#L111)
 ``` go
 func (e *ImpExt) IsNil() bool
 ```
@@ -629,7 +885,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="ImpExt.MarshalJSONObject">func</a> (\*ImpExt) [MarshalJSONObject](/src/target/imp.go?s=1989:2043#L47)
+### <a name="ImpExt.MarshalJSONObject">func</a> (\*ImpExt) [MarshalJSONObject](/src/target/imp.go?s=2869:2923#L102)
 ``` go
 func (e *ImpExt) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -638,7 +894,25 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="Imps">type</a> [Imps](/src/target/imp.go?s=2375:2390#L61)
+### <a name="ImpExt.NKeys">func</a> (\*ImpExt) [NKeys](/src/target/imp.go?s=3776:3804#L141)
+``` go
+func (e *ImpExt) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="ImpExt.UnmarshalJSONObject">func</a> (\*ImpExt) [UnmarshalJSONObject](/src/target/imp.go?s=3307:3379#L116)
+``` go
+func (e *ImpExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="Imps">type</a> [Imps](/src/target/imp.go?s=3831:3846#L144)
 ``` go
 type Imps []Imp
 ```
@@ -653,7 +927,7 @@ Imps ...
 
 
 
-### <a name="Imps.IsNil">func</a> (Imps) [IsNil](/src/target/imp.go?s=2528:2554#L71)
+### <a name="Imps.IsNil">func</a> (Imps) [IsNil](/src/target/imp.go?s=4190:4216#L164)
 ``` go
 func (s Imps) IsNil() bool
 ```
@@ -662,7 +936,7 @@ IsNil ...
 
 
 
-### <a name="Imps.MarshalJSONArray">func</a> (Imps) [MarshalJSONArray](/src/target/imp.go?s=2416:2466#L64)
+### <a name="Imps.MarshalJSONArray">func</a> (Imps) [MarshalJSONArray](/src/target/imp.go?s=4078:4128#L157)
 ``` go
 func (s Imps) MarshalJSONArray(enc *gojay.Encoder)
 ```
@@ -671,11 +945,20 @@ MarshalJSONArray ...
 
 
 
-## <a name="Ints">type</a> [Ints](/src/target/primitives.go?s=135:150#L10)
+### <a name="Imps.UnmarshalJSONArray">func</a> (\*Imps) [UnmarshalJSONArray](/src/target/imp.go?s=3874:3933#L147)
+``` go
+func (s *Imps) UnmarshalJSONArray(dec *gojay.Decoder) error
+```
+UnmarshalJSONArray ...
+
+
+
+
+## <a name="Ints">type</a> [Ints](/src/target/primitives.go?s=118:133#L10)
 ``` go
 type Ints []int
 ```
-Ints is an alias of []int
+Ints ...
 
 
 
@@ -686,7 +969,7 @@ Ints is an alias of []int
 
 
 
-### <a name="Ints.IsNil">func</a> (Ints) [IsNil](/src/target/primitives.go?s=330:356#L20)
+### <a name="Ints.IsNil">func</a> (Ints) [IsNil](/src/target/primitives.go?s=547:573#L30)
 ``` go
 func (a Ints) IsNil() bool
 ```
@@ -695,11 +978,20 @@ IsNil checks if array is nil
 
 
 
-### <a name="Ints.MarshalJSONArray">func</a> (Ints) [MarshalJSONArray](/src/target/primitives.go?s=197:247#L13)
+### <a name="Ints.MarshalJSONArray">func</a> (Ints) [MarshalJSONArray](/src/target/primitives.go?s=414:464#L23)
 ``` go
 func (a Ints) MarshalJSONArray(enc *gojay.Encoder)
 ```
 MarshalJSONArray encodes arrays into JSON
+
+
+
+
+### <a name="Ints.UnmarshalJSONArray">func</a> (\*Ints) [UnmarshalJSONArray](/src/target/primitives.go?s=196:255#L13)
+``` go
+func (a *Ints) UnmarshalJSONArray(dec *gojay.Decoder) error
+```
+UnmarshalJSONArray decodes JSON array elements into slice
 
 
 
@@ -742,10 +1034,28 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="Regs">type</a> [Regs](/src/target/regs.go?s=363:479#L8)
+### <a name="Publisher.NKeys">func</a> (\*Publisher) [NKeys](/src/target/publisher.go?s=1219:1250#L49)
+``` go
+func (p *Publisher) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Publisher.UnmarshalJSONObject">func</a> (\*Publisher) [UnmarshalJSONObject](/src/target/publisher.go?s=820:895#L27)
+``` go
+func (p *Publisher) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="Regs">type</a> [Regs](/src/target/regs.go?s=363:490#L8)
 ``` go
 type Regs struct {
-    Coppa int      `json:"coppa" valid:"optional"`
+    Coppa int      `json:"coppa" valid:"range(0|1),optional"`
     Ext   *RegsExt `json:"ext"   valid:"optional"`
 }
 ```
@@ -762,7 +1072,7 @@ regulations for the United States Childrenâ€™s Online Privacy Protection Act (â€
 
 
 
-### <a name="Regs.IsNil">func</a> (\*Regs) [IsNil](/src/target/regs.go?s=791:818#L25)
+### <a name="Regs.IsNil">func</a> (\*Regs) [IsNil](/src/target/regs.go?s=813:840#L25)
 ``` go
 func (r *Regs) IsNil() bool
 ```
@@ -771,7 +1081,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="Regs.MarshalJSONObject">func</a> (\*Regs) [MarshalJSONObject](/src/target/regs.go?s=630:682#L19)
+### <a name="Regs.MarshalJSONObject">func</a> (\*Regs) [MarshalJSONObject](/src/target/regs.go?s=652:704#L19)
 ``` go
 func (r *Regs) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -780,10 +1090,28 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="RegsExt">type</a> [RegsExt](/src/target/regs.go?s=512:576#L14)
+### <a name="Regs.NKeys">func</a> (\*Regs) [NKeys](/src/target/regs.go?s=1244:1270#L49)
+``` go
+func (r *Regs) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Regs.UnmarshalJSONObject">func</a> (\*Regs) [UnmarshalJSONObject](/src/target/regs.go?s=927:997#L30)
+``` go
+func (r *Regs) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="RegsExt">type</a> [RegsExt](/src/target/regs.go?s=523:598#L14)
 ``` go
 type RegsExt struct {
-    GDPR int `json:"gdpr" valid:"optional"`
+    GDPR int `json:"gdpr" valid:"range(0|1),optional"`
 }
 ```
 RegsExt being used for GDPR
@@ -797,7 +1125,7 @@ RegsExt being used for GDPR
 
 
 
-### <a name="RegsExt.IsNil">func</a> (\*RegsExt) [IsNil](/src/target/regs.go?s=1017:1047#L35)
+### <a name="RegsExt.IsNil">func</a> (\*RegsExt) [IsNil](/src/target/regs.go?s=1461:1491#L57)
 ``` go
 func (e *RegsExt) IsNil() bool
 ```
@@ -806,7 +1134,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="RegsExt.MarshalJSONObject">func</a> (\*RegsExt) [MarshalJSONObject](/src/target/regs.go?s=893:948#L30)
+### <a name="RegsExt.MarshalJSONObject">func</a> (\*RegsExt) [MarshalJSONObject](/src/target/regs.go?s=1337:1392#L52)
 ``` go
 func (e *RegsExt) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -815,15 +1143,33 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="Request">type</a> [Request](/src/target/request.go?s=241:1366#L15)
+### <a name="RegsExt.NKeys">func</a> (\*RegsExt) [NKeys](/src/target/regs.go?s=1775:1804#L73)
+``` go
+func (e *RegsExt) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="RegsExt.UnmarshalJSONObject">func</a> (\*RegsExt) [UnmarshalJSONObject](/src/target/regs.go?s=1578:1651#L62)
+``` go
+func (e *RegsExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="Request">type</a> [Request](/src/target/request.go?s=241:1377#L15)
 ``` go
 type Request struct {
     Imp    []Imp      `json:"imp"               valid:"required"`
     App    App        `json:"app"               valid:"required"`
     Device Device     `json:"device"            valid:"required"`
-    Format *Format    `json:"format,omitempty"  valid:"required"` // this is not part of the spec, adding this here for convience allows h and width to be passed without the video/banner object to backwards support the GET
-    User   User       `json:"user"              valid:"optional"`
-    Test   int        `json:"test,omitempty"    valid:"optional"`
+    Format *Format    `json:"format"            valid:"required"` // this is not part of the spec, adding this here for convience allows h and width to be passed without the video/banner object to backwards support the GET
+    User   User       `json:"user,omitempty"    valid:"optional"`
+    Test   int        `json:"test,omitempty"    valid:"range(0|1),optional"`
     WSeat  []string   `json:"wseat,omitempty"   valid:"optional"`
     BSeat  []string   `json:"bseat,omitempty"   valid:"optional"`
     Wlang  []string   `json:"wlang,omitempty"   valid:"optional"`
@@ -831,7 +1177,7 @@ type Request struct {
     BAdv   []string   `json:"badv,omitempty"    valid:"optional"`
     BApp   []string   `json:"bapp,omitempty"    valid:"optional"`
     Source Source     `json:"source,omitempty"  valid:"optional"`
-    Regs   Regs       `json:"regs"              valid:"optional"`
+    Regs   Regs       `json:"regs,omitempty"    valid:"optional"`
     Ext    RequestExt `json:"ext,omitempty"     valid:"required"`
 }
 ```
@@ -846,7 +1192,7 @@ Request openRTB 2.5 spec
 
 
 
-### <a name="Request.IsNil">func</a> (\*Request) [IsNil](/src/target/request.go?s=2557:2587#L66)
+### <a name="Request.IsNil">func</a> (\*Request) [IsNil](/src/target/request.go?s=2577:2607#L66)
 ``` go
 func (r *Request) IsNil() bool
 ```
@@ -855,7 +1201,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="Request.MarshalJSONObject">func</a> (\*Request) [MarshalJSONObject](/src/target/request.go?s=1654:1709#L40)
+### <a name="Request.MarshalJSONObject">func</a> (\*Request) [MarshalJSONObject](/src/target/request.go?s=1665:1720#L40)
 ``` go
 func (r *Request) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -864,7 +1210,25 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="RequestExt">type</a> [RequestExt](/src/target/request.go?s=1435:1600#L34)
+### <a name="Request.NKeys">func</a> (\*Request) [NKeys](/src/target/request.go?s=4423:4452#L178)
+``` go
+func (r *Request) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Request.UnmarshalJSONObject">func</a> (\*Request) [UnmarshalJSONObject](/src/target/request.go?s=2694:2767#L71)
+``` go
+func (r *Request) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="RequestExt">type</a> [RequestExt](/src/target/request.go?s=1446:1611#L34)
 ``` go
 type RequestExt struct {
     APIKey    string `json:"api_key,omitempty"     valid:"uuidv4,required"`
@@ -882,7 +1246,7 @@ RequestExt used to communicate the publishers api key to nimbus
 
 
 
-### <a name="RequestExt.IsNil">func</a> (\*RequestExt) [IsNil](/src/target/request.go?s=2857:2890#L77)
+### <a name="RequestExt.IsNil">func</a> (\*RequestExt) [IsNil](/src/target/request.go?s=4714:4747#L187)
 ``` go
 func (e *RequestExt) IsNil() bool
 ```
@@ -891,11 +1255,29 @@ IsNil checks if instance is nil
 
 
 
-### <a name="RequestExt.MarshalJSONObject">func</a> (\*RequestExt) [MarshalJSONObject](/src/target/request.go?s=2662:2720#L71)
+### <a name="RequestExt.MarshalJSONObject">func</a> (\*RequestExt) [MarshalJSONObject](/src/target/request.go?s=4519:4577#L181)
 ``` go
 func (e *RequestExt) MarshalJSONObject(enc *gojay.Encoder)
 ```
 MarshalJSONObject implements MarshalerJSONObject
+
+
+
+
+### <a name="RequestExt.NKeys">func</a> (\*RequestExt) [NKeys](/src/target/request.go?s=5097:5129#L206)
+``` go
+func (e *RequestExt) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="RequestExt.UnmarshalJSONObject">func</a> (\*RequestExt) [UnmarshalJSONObject](/src/target/request.go?s=4834:4910#L192)
+``` go
+func (e *RequestExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
@@ -921,7 +1303,7 @@ names and value options must be published by the exchange a priori to its bidder
 
 
 
-### <a name="Segment.IsNil">func</a> (\*Segment) [IsNil](/src/target/segment.go?s=1046:1076#L37)
+### <a name="Segment.IsNil">func</a> (\*Segment) [IsNil](/src/target/segment.go?s=1260:1290#L47)
 ``` go
 func (s *Segment) IsNil() bool
 ```
@@ -930,11 +1312,29 @@ IsNil checks if instance is nil
 
 
 
-### <a name="Segment.MarshalJSONObject">func</a> (\*Segment) [MarshalJSONObject](/src/target/segment.go?s=832:887#L30)
+### <a name="Segment.MarshalJSONObject">func</a> (\*Segment) [MarshalJSONObject](/src/target/segment.go?s=1046:1101#L40)
 ``` go
 func (s *Segment) MarshalJSONObject(enc *gojay.Encoder)
 ```
 MarshalJSONObject implements MarshalerJSONObject
+
+
+
+
+### <a name="Segment.NKeys">func</a> (\*Segment) [NKeys](/src/target/segment.go?s=1663:1692#L69)
+``` go
+func (s *Segment) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Segment.UnmarshalJSONObject">func</a> (\*Segment) [UnmarshalJSONObject](/src/target/segment.go?s=1377:1450#L52)
+``` go
+func (s *Segment) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
@@ -954,7 +1354,7 @@ Segments ...
 
 
 
-### <a name="Segments.IsNil">func</a> (Segments) [IsNil](/src/target/segment.go?s=724:754#L25)
+### <a name="Segments.IsNil">func</a> (Segments) [IsNil](/src/target/segment.go?s=938:968#L35)
 ``` go
 func (s Segments) IsNil() bool
 ```
@@ -963,11 +1363,20 @@ IsNil ...
 
 
 
-### <a name="Segments.MarshalJSONArray">func</a> (Segments) [MarshalJSONArray](/src/target/segment.go?s=608:662#L18)
+### <a name="Segments.MarshalJSONArray">func</a> (Segments) [MarshalJSONArray](/src/target/segment.go?s=822:876#L28)
 ``` go
 func (s Segments) MarshalJSONArray(enc *gojay.Encoder)
 ```
 MarshalJSONArray ...
+
+
+
+
+### <a name="Segments.UnmarshalJSONArray">func</a> (\*Segments) [UnmarshalJSONArray](/src/target/segment.go?s=610:673#L18)
+``` go
+func (s *Segments) UnmarshalJSONArray(dec *gojay.Decoder) error
+```
+UnmarshalJSONArray ...
 
 
 
@@ -1011,6 +1420,24 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
+### <a name="Source.NKeys">func</a> (\*Source) [NKeys](/src/target/source.go?s=1496:1524#L42)
+``` go
+func (s *Source) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Source.UnmarshalJSONObject">func</a> (\*Source) [UnmarshalJSONObject](/src/target/source.go?s=1299:1371#L31)
+``` go
+func (s *Source) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
 ## <a name="SourceExt">type</a> [SourceExt](/src/target/source.go?s=710:1004#L15)
 ``` go
 type SourceExt struct {
@@ -1029,7 +1456,7 @@ SourceExt also for OM SDK extensions to be passed to demand
 
 
 
-### <a name="SourceExt.IsNil">func</a> (\*SourceExt) [IsNil](/src/target/source.go?s=1473:1505#L37)
+### <a name="SourceExt.IsNil">func</a> (\*SourceExt) [IsNil](/src/target/source.go?s=1777:1809#L51)
 ``` go
 func (s *SourceExt) IsNil() bool
 ```
@@ -1038,7 +1465,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="SourceExt.MarshalJSONObject">func</a> (\*SourceExt) [MarshalJSONObject](/src/target/source.go?s=1287:1344#L31)
+### <a name="SourceExt.MarshalJSONObject">func</a> (\*SourceExt) [MarshalJSONObject](/src/target/source.go?s=1591:1648#L45)
 ``` go
 func (s *SourceExt) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -1047,11 +1474,29 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="Strings">type</a> [Strings](/src/target/primitives.go?s=417:438#L25)
+### <a name="SourceExt.NKeys">func</a> (\*SourceExt) [NKeys](/src/target/source.go?s=2150:2181#L70)
+``` go
+func (s *SourceExt) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="SourceExt.UnmarshalJSONObject">func</a> (\*SourceExt) [UnmarshalJSONObject](/src/target/source.go?s=1896:1971#L56)
+``` go
+func (s *SourceExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="Strings">type</a> [Strings](/src/target/primitives.go?s=614:635#L35)
 ``` go
 type Strings []string
 ```
-Strings is an alias of []string
+Strings ...
 
 
 
@@ -1062,7 +1507,7 @@ Strings is an alias of []string
 
 
 
-### <a name="Strings.IsNil">func</a> (Strings) [IsNil](/src/target/primitives.go?s=624:653#L35)
+### <a name="Strings.IsNil">func</a> (Strings) [IsNil](/src/target/primitives.go?s=1064:1093#L55)
 ``` go
 func (a Strings) IsNil() bool
 ```
@@ -1071,11 +1516,20 @@ IsNil checks if array is nil
 
 
 
-### <a name="Strings.MarshalJSONArray">func</a> (Strings) [MarshalJSONArray](/src/target/primitives.go?s=485:538#L28)
+### <a name="Strings.MarshalJSONArray">func</a> (Strings) [MarshalJSONArray](/src/target/primitives.go?s=925:978#L48)
 ``` go
 func (a Strings) MarshalJSONArray(enc *gojay.Encoder)
 ```
 MarshalJSONArray encodes arrays into JSON
+
+
+
+
+### <a name="Strings.UnmarshalJSONArray">func</a> (\*Strings) [UnmarshalJSONArray](/src/target/primitives.go?s=698:760#L38)
+``` go
+func (a *Strings) UnmarshalJSONArray(dec *gojay.Decoder) error
+```
+UnmarshalJSONArray decodes JSON array elements into slice
 
 
 
@@ -1107,7 +1561,7 @@ frequency capping and retargeting.
 
 
 
-### <a name="User.IsNil">func</a> (\*User) [IsNil](/src/target/user.go?s=1835:1862#L41)
+### <a name="User.IsNil">func</a> (\*User) [IsNil](/src/target/user.go?s=2060:2087#L41)
 ``` go
 func (u *User) IsNil() bool
 ```
@@ -1116,7 +1570,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="User.MarshalJSONObject">func</a> (\*User) [MarshalJSONObject](/src/target/user.go?s=1368:1420#L28)
+### <a name="User.MarshalJSONObject">func</a> (\*User) [MarshalJSONObject](/src/target/user.go?s=1593:1645#L28)
 ``` go
 func (u *User) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -1125,12 +1579,30 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-## <a name="UserExt">type</a> [UserExt](/src/target/user.go?s=1027:1314#L21)
+### <a name="User.NKeys">func</a> (\*User) [NKeys](/src/target/user.go?s=2882:2908#L88)
+``` go
+func (u *User) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="User.UnmarshalJSONObject">func</a> (\*User) [UnmarshalJSONObject](/src/target/user.go?s=2174:2244#L46)
+``` go
+func (u *User) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
+
+
+
+
+## <a name="UserExt">type</a> [UserExt](/src/target/user.go?s=1027:1539#L21)
 ``` go
 type UserExt struct {
-    Age        int    `json:"age,omitempty"         valid:"_"` // age used incase year of birth can't be passed and age can
-    Consent    string `json:"consent,omitempty"     valid:"base64rawstring,optional"`
-    DidConsent int    `json:"did_consent,omitempty" valid:"-"`
+    Age        int    `json:"age,omitempty"         valid:"optional"`                 // age used incase year of birth can't be passed and age can
+    Consent    string `json:"consent,omitempty"     valid:"base64rawstring,optional"` // if a publisher has their own cpm they can supply thier own GDPR consent string
+    DidConsent int    `json:"did_consent,omitempty" valid:"range(0|1),optional"`      // Allows a publisher to let Nimbus know thier user has consent to thier data use policy for ads
 }
 ```
 UserExt being used for GDPR
@@ -1144,7 +1616,7 @@ UserExt being used for GDPR
 
 
 
-### <a name="UserExt.IsNil">func</a> (\*UserExt) [IsNil](/src/target/user.go?s=2164:2194#L53)
+### <a name="UserExt.IsNil">func</a> (\*UserExt) [IsNil](/src/target/user.go?s=3202:3232#L98)
 ``` go
 func (e *UserExt) IsNil() bool
 ```
@@ -1153,11 +1625,29 @@ IsNil checks if instance is nil
 
 
 
-### <a name="UserExt.MarshalJSONObject">func</a> (\*UserExt) [MarshalJSONObject](/src/target/user.go?s=1937:1992#L46)
+### <a name="UserExt.MarshalJSONObject">func</a> (\*UserExt) [MarshalJSONObject](/src/target/user.go?s=2975:3030#L91)
 ``` go
 func (e *UserExt) MarshalJSONObject(enc *gojay.Encoder)
 ```
 MarshalJSONObject implements MarshalerJSONObject
+
+
+
+
+### <a name="UserExt.NKeys">func</a> (\*UserExt) [NKeys](/src/target/user.go?s=3618:3647#L120)
+``` go
+func (e *UserExt) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="UserExt.UnmarshalJSONObject">func</a> (\*UserExt) [UnmarshalJSONObject](/src/target/user.go?s=3319:3392#L103)
+``` go
+func (e *UserExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
@@ -1213,6 +1703,24 @@ IsNil checks if instance is nil
 func (v *Video) MarshalJSONObject(enc *gojay.Encoder)
 ```
 MarshalJSONObject implements MarshalerJSONObject
+
+
+
+
+### <a name="Video.NKeys">func</a> (\*Video) [NKeys](/src/target/video.go?s=5662:5689#L153)
+``` go
+func (v *Video) NKeys() int
+```
+NKeys returns the number of keys to unmarshal
+
+
+
+
+### <a name="Video.UnmarshalJSONObject">func</a> (\*Video) [UnmarshalJSONObject](/src/target/video.go?s=4092:4163#L64)
+``` go
+func (v *Video) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
+```
+UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 

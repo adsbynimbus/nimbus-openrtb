@@ -5,7 +5,6 @@
 
 * [Overview](#pkg-overview)
 * [Index](#pkg-index)
-* [Subdirectories](#pkg-subdirectories)
 
 ## <a name="pkg-overview">Overview</a>
 
