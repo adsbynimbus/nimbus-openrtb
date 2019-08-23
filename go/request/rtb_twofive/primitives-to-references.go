@@ -1,4 +1,4 @@
-package requestutil
+package twofive
 
 // FloatPointer is a utility function to return a reference of a float64
 func FloatPointer(f float64) *float64 {

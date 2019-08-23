@@ -1,4 +1,4 @@
-package requestutil
+package client
 
 import "github.com/marcsantiago/govalidator"
 

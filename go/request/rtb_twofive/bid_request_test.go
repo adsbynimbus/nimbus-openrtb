@@ -9,7 +9,6 @@ import (
 	"github.com/francoispqt/gojay"
 	"github.com/google/go-cmp/cmp"
 	"github.com/marcsantiago/govalidator"
-	"github.com/timehop/nimbus-openrtb/go/request/requestutil"
 )
 
 func TestValidateBidRequest(t *testing.T) {
@@ -62,7 +61,7 @@ func TestValidateBidRequest(t *testing.T) {
 				Imp: []Imp{
 					Imp{
 						Banner: &Banner{
-							BidFloor: requestutil.FloatPointer(2.00),
+							BidFloor: FloatPointer(2.00),
 							H:        480,
 							W:        320,
 							Pos:      7,
@@ -74,7 +73,7 @@ func TestValidateBidRequest(t *testing.T) {
 							BAttr: []int{1, 2},
 						},
 						Video: &Video{
-							BidFloor:    requestutil.FloatPointer(3.00),
+							BidFloor:    FloatPointer(3.00),
 							Mimes:       []string{"foo", "bar"},
 							MinBitRate:  1,
 							MaxBitRate:  200000,
@@ -87,7 +86,7 @@ func TestValidateBidRequest(t *testing.T) {
 						},
 						Instl:    1,
 						BidFloor: 1.00,
-						Secure:   requestutil.IntPointer(1),
+						Secure:   IntPointer(1),
 						Ext: &ImpExt{
 							APS: []APS{
 								APS{
@@ -151,7 +150,7 @@ func TestValidateBidRequest(t *testing.T) {
 				Imp: []Imp{
 					Imp{
 						Banner: &Banner{
-							BidFloor: requestutil.FloatPointer(2.00),
+							BidFloor: FloatPointer(2.00),
 							Pos:      7,
 							Format: []Format{
 								Format{H: 1, W: 2},
@@ -161,7 +160,7 @@ func TestValidateBidRequest(t *testing.T) {
 							BAttr: []int{1, 2},
 						},
 						Video: &Video{
-							BidFloor:    requestutil.FloatPointer(3.00),
+							BidFloor:    FloatPointer(3.00),
 							Mimes:       []string{"foo", "bar"},
 							MinBitRate:  1,
 							MaxBitRate:  200000,
@@ -174,7 +173,7 @@ func TestValidateBidRequest(t *testing.T) {
 						},
 						Instl:    1,
 						BidFloor: 1.00,
-						Secure:   requestutil.IntPointer(1),
+						Secure:   IntPointer(1),
 						Ext: &ImpExt{
 							APS: []APS{
 								APS{
@@ -262,7 +261,7 @@ func TestBidRequestMarshaling(t *testing.T) {
 				Imp: []Imp{
 					Imp{
 						Banner: &Banner{
-							BidFloor: requestutil.FloatPointer(2.00),
+							BidFloor: FloatPointer(2.00),
 							H:        480,
 							W:        320,
 							Pos:      7,
@@ -274,7 +273,7 @@ func TestBidRequestMarshaling(t *testing.T) {
 							BAttr: []int{1, 2},
 						},
 						Video: &Video{
-							BidFloor:    requestutil.FloatPointer(3.00),
+							BidFloor:    FloatPointer(3.00),
 							Mimes:       []string{"foo", "bar"},
 							MinBitRate:  1,
 							MaxBitRate:  200000,
@@ -287,7 +286,7 @@ func TestBidRequestMarshaling(t *testing.T) {
 						},
 						Instl:    1,
 						BidFloor: 1.00,
-						Secure:   requestutil.IntPointer(1),
+						Secure:   IntPointer(1),
 						Ext: &ImpExt{
 							APS: []APS{
 								APS{
@@ -383,7 +382,7 @@ func BenchmarkMarshalSTDJSON(b *testing.B) {
 					Minduration: 100,
 					Maxduration: 20000,
 				},
-				Secure: requestutil.IntPointer(1),
+				Secure: IntPointer(1),
 			},
 		},
 		App: App{
@@ -449,7 +448,7 @@ func BenchmarkMarshalGoJayJSON(b *testing.B) {
 					Minduration: 100,
 					Maxduration: 20000,
 				},
-				Secure: requestutil.IntPointer(1),
+				Secure: IntPointer(1),
 			},
 		},
 		App: App{
