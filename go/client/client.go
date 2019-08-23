@@ -19,7 +19,6 @@ var (
 
 // Nimbus interface defines a series of POST request helper methods to communicate s2s
 type Nimbus interface {
-	NewNimbusClient(endpoint string, options ...func(*Driver)) *Driver
 	PostNimbus(body io.Reader) (*http.Response, error)
 	PostNimbusWithContext(ctx context.Context, body io.Reader) (*http.Response, error)
 	PostNimbusTwoFiveRequest(r twofive.Request) (*http.Response, error)
