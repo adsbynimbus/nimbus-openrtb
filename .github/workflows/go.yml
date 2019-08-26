@@ -3,13 +3,9 @@ on:
   push:
     branches:
     - 'go/*'
-    paths:
-    - '**/go.yml'
   pull_request:
     branches:
     - 'go/*'
-    paths:
-    - '**/go.yml'
     
 jobs:
 
