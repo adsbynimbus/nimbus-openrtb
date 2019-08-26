@@ -35,6 +35,6 @@ jobs:
 
     - name: Run Test
       env:
-      - LOAD_MAXMIND_FROM_FILE: "true"
-      - MAXMIND_FILE: "/tmp/GeoLite2-City.mmdb.gz"
+        LOAD_MAXMIND_FROM_FILE: "true"
+        MAXMIND_FILE: "/tmp/GeoLite2-City.mmdb.gz"
       run: go test ./... -race -cover -v -short
