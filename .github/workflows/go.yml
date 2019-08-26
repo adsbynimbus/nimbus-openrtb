@@ -3,6 +3,7 @@ on:
   push:
     branches:
     - master
+    - 'go/*'
   pull_request:
     branches:
     - 'go/*'
