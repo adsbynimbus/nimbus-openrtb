@@ -71,6 +71,7 @@ func (d Driver) PostNimbus(body io.Reader) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 	req.Header.Set("x-openrtb-version", "2.5")
 	return d.Client.Do(req)
 }
@@ -83,6 +84,7 @@ func (d Driver) PostNimbusWithContext(ctx context.Context, body io.Reader) (*htt
 		return nil, err
 	}
 	req = req.WithContext(ctx)
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 	req.Header.Set("x-openrtb-version", "2.5")
 	return d.Client.Do(req)
 }
@@ -98,6 +100,7 @@ func (d Driver) PostNimbusTwoFiveRequest(r twofive.Request) (*http.Response, err
 	if err != nil {
 		return nil, err
 	}
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 	req.Header.Set("x-openrtb-version", "2.5")
 	return d.Client.Do(req)
 }
@@ -115,6 +118,7 @@ func (d Driver) PostNimbusTwoFiveRequestWithContext(ctx context.Context, r twofi
 		return nil, err
 	}
 	req = req.WithContext(ctx)
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 	req.Header.Set("x-openrtb-version", "2.5")
 	return d.Client.Do(req)
 }
