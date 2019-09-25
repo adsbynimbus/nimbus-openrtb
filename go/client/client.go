@@ -32,6 +32,7 @@ type Driver struct {
 }
 
 // WithHeaders allows the caller to mutate and add headers to the new out going Nimbus request
+// this is required to be called if the client is using the Nimbus SDK
 func WithHeaders(headers http.Header) func(*http.Request) {
 	return func(r *http.Request) {
 		if headers != nil {
