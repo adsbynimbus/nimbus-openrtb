@@ -34,7 +34,9 @@ type Driver struct {
 // WithHeaders allows the caller to mutate and add headers to the new out going Nimbus request
 func WithHeaders(headers http.Header) func(*http.Request) {
 	return func(r *http.Request) {
-		r.Header = headers
+		if headers != nil {
+			r.Header = headers
+		}
 	}
 }
 

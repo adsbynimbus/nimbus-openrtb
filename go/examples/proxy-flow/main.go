@@ -69,7 +69,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 	defer cancel()
 
-	res, err := driver.PostNimbusTwoFiveRequestWithContext(ctx, request, client.WithHeaders(incomingRequest.Header))
+	res, err := driver.PostNimbusTwoFiveRequestWithContext(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}
