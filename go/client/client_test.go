@@ -56,13 +56,14 @@ func TestPostNimbus(t *testing.T) {
 		}
 
 	})
-	httpClient, _ := testingHTTPClient(h)
 
-	clientOptional := func(d *Driver) {
-		// check the endpoints every 20 minutes
-		d.Client = httpClient
+	httpClient, close := testingHTTPClient(h)
+	defer close()
+
+	defaultClient = &Driver{
+		Client:   httpClient,
+		Endpoint: "http://foobar.com",
 	}
-	nc := NewNimbusDriver("http://foobar.com", clientOptional)
 
 	tests := []struct {
 		name         string
@@ -104,7 +105,7 @@ func TestPostNimbus(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			body := fmt.Sprintf(`{"value": %d}`, tt.value)
-			res, err := nc.PostNimbus(strings.NewReader(body))
+			res, err := defaultClient.PostNimbus(strings.NewReader(body))
 			if err != nil {
 				t.Fatalf("PostNimbus failed: %v", err)
 			}
@@ -120,6 +121,48 @@ func TestPostNimbus(t *testing.T) {
 }
 
 func TestPostNimbusWithContext(t *testing.T) {
+	h := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		var tr testRequest
+		err := json.NewDecoder(r.Body).Decode(&tr)
+		if err != nil {
+			t.Fatalf("NewDecoder failed to decode %v", err)
+		}
+		defer r.Body.Close()
+
+		switch {
+		case tr.Value < 10:
+			w.Write([]byte("good"))
+			return
+		case tr.Value > 10 && tr.Value < 25:
+			w.Write([]byte("good"))
+			return
+		case tr.Value > 25 && tr.Value < 50:
+			w.Write([]byte("good"))
+			return
+		case tr.Value > 50 && tr.Value < 75:
+			w.Write([]byte("bad"))
+			return
+		case tr.Value > 75 && tr.Value < 100:
+			w.Write([]byte("bad"))
+			return
+		case tr.Value == 300:
+			time.Sleep(time.Second * 3)
+			w.Write([]byte("won't be written"))
+			return
+		default:
+			w.Write([]byte("unknown"))
+			return
+		}
+
+	})
+
+	httpClient, close := testingHTTPClient(h)
+	defer close()
+
+	defaultClient = &Driver{
+		Client:   httpClient,
+		Endpoint: "http://foobar.com",
+	}
 
 	tests := []struct {
 		name         string
@@ -642,6 +685,38 @@ func TestPostNimbusTwoFiveRequestWithContext(t *testing.T) {
 				t.Fatalf("PostNimbusTwoFiveRequestWithContext expected status code %d got: %d", tt.statusCode, res.StatusCode)
 			}
 
+		})
+	}
+}
+
+func TestWithHeaders(t *testing.T) {
+	type args struct {
+		headers http.Header
+		key     string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "should add headers just fine",
+			args: args{
+				headers: http.Header(map[string][]string{"nimbus-sdkv": []string{"bar"}}),
+				key:     "nimbus-sdkv",
+			},
+			want: "bar",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			req, _ := http.NewRequest(http.MethodPost, "", nil)
+			option := WithHeaders(tt.args.headers)
+			option(req)
+			// https://golang.org/pkg/net/textproto/#MIMEHeader.Get
+			if got := req.Header[tt.args.key]; got[0] != tt.want {
+				t.Errorf("WithHeaders() = %v, want %v", got, tt.want)
+			}
 		})
 	}
 }

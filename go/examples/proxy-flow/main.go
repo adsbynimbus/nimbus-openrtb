@@ -15,7 +15,7 @@ import (
 
 	"github.com/timehop/nimbus-openrtb/go/client"
 	"github.com/timehop/nimbus-openrtb/go/decode"
-	"github.com/timehop/nimbus-openrtb/go/request/rtb_twofive"
+	twofive "github.com/timehop/nimbus-openrtb/go/request/rtb_twofive"
 	"github.com/timehop/nimbus-openrtb/go/response"
 )
 
