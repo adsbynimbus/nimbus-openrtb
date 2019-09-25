@@ -15,7 +15,7 @@ import (
 
 	"github.com/timehop/nimbus-openrtb/go/client"
 	"github.com/timehop/nimbus-openrtb/go/decode"
-	"github.com/timehop/nimbus-openrtb/go/request/rtb_twofive"
+	twofive "github.com/timehop/nimbus-openrtb/go/request/rtb_twofive"
 	"github.com/timehop/nimbus-openrtb/go/response"
 )
 
@@ -69,7 +69,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 	defer cancel()
 
-	res, err := driver.PostNimbusTwoFiveRequestWithContext(ctx, request)
+	res, err := driver.PostNimbusTwoFiveRequestWithContext(ctx, request, client.WithHeaders(incomingRequest.Header))
 	if err != nil {
 		log.Fatal(err)
 	}
