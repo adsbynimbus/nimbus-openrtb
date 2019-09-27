@@ -16,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidApp extends ArrayMap<String, Object> implements App {
 
     @Retention(SOURCE)
-    @StringDef({NAME, DOMAIN, CONTENT_CATEGORIES, BUNDLE, STORE_URL, PAID, PUBLISHER})
+    @StringDef({NAME, DOMAIN, CONTENT_CATEGORIES, BUNDLE, STORE_URL, PAID, PUBLISHER, VERSION})
     public @interface Values { }
 
     @Retention(SOURCE)

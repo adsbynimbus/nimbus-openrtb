@@ -17,6 +17,7 @@ public interface App {
     String STORE_URL = "storeurl";
     String PAID = "paid"; //Integer
     String PUBLISHER = "publisher";
+    String VERSION = "ver";
 
     interface Builder extends NimbusRTB.Builder {
 
@@ -28,6 +29,7 @@ public interface App {
                 public final String domain = (String) values.get(DOMAIN);
                 public final String storeurl = (String) values.get(STORE_URL);
                 public final String[] cat = (String[]) values.get(CONTENT_CATEGORIES);
+                public final String ver = (String) values.get(VERSION);
                 public final Integer paid = (Integer) values.get(PAID);
                 public final String publisher = (String) values.get(PUBLISHER);
             };
