@@ -714,7 +714,7 @@ func TestWithHeaders(t *testing.T) {
 			option := WithHeaders(tt.args.headers)
 			option(req)
 			// https://golang.org/pkg/net/textproto/#MIMEHeader.Get
-			if got := req.Header[tt.args.key]; got[0] != tt.want {
+			if got, ok := req.Header[tt.args.key]; !ok || (got[0] != tt.want) {
 				t.Errorf("WithHeaders() = %v, want %v", got, tt.want)
 			}
 		})

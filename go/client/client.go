@@ -31,12 +31,30 @@ type Driver struct {
 	Endpoint string
 }
 
+type nonCanonicalHeader map[string][]string
+
+func (n nonCanonicalHeader) Get(key string) string {
+	if val, ok := n[key]; ok {
+		if len(val) > 0 {
+			return val[0]
+		}
+	}
+	return ""
+}
+
 // WithHeaders allows the caller to mutate and add headers to the new out going Nimbus request
 // this is required to be called if the client is using the Nimbus SDK
 func WithHeaders(headers http.Header) func(*http.Request) {
 	return func(r *http.Request) {
 		if headers != nil {
-			r.Header = headers
+			const sdkVersionHeader = "nimbus-sdkv"
+			// https://golang.org/pkg/net/textproto/#MIMEHeader.Get
+			// non canonical headers have to be manually retrieved
+			version := nonCanonicalHeader(headers).Get(sdkVersionHeader)
+			if len(version) > 0 {
+				r.Header = make(http.Header)
+				r.Header[sdkVersionHeader] = []string{version}
+			}
 		}
 	}
 }
