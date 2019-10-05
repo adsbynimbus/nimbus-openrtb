@@ -101,7 +101,84 @@ func TestResponseToStruct(t *testing.T) {
 					t.Errorf("ResponseToStruct() got = %s, want %s", got, tt.want)
 				}
 			}
+		})
+	}
+}
 
+func TestResponseToBytes(t *testing.T) {
+	// gzipped response
+	var b bytes.Buffer
+	gzipw := gzip.NewWriter(&b)
+	gzipw.Write(jsonResponseTestBody)
+	gzipw.Close()
+
+	header := make(http.Header)
+	header.Add("Content-Encoding", gzipHeader)
+
+	// flated response, which is gzip without the error handling
+	var b2 bytes.Buffer
+	flatew, _ := flate.NewWriter(&b2, flate.BestSpeed)
+	flatew.Write(jsonResponseTestBody)
+	flatew.Close()
+
+	header2 := make(http.Header)
+	header2.Add("Content-Encoding", deflateHeader)
+
+	type args struct {
+		res *http.Response
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    []byte
+		wantErr bool
+	}{
+		{
+			name: "should decode the body when the content-encoding header is set and gzip",
+			args: args{
+				&http.Response{
+					Header: header,
+					Body:   ioutil.NopCloser(bytes.NewReader(b.Bytes())),
+				},
+			},
+			want:    jsonResponseTestBody,
+			wantErr: false,
+		},
+		{
+			name: "should decode the body when the content-encoding header is set and flate",
+			args: args{
+				&http.Response{
+					Header: header2,
+					Body:   ioutil.NopCloser(bytes.NewReader(b2.Bytes())),
+				},
+			},
+			want:    jsonResponseTestBody,
+			wantErr: false,
+		},
+		{
+			name: "should decode the body when the content-encoding unset",
+			args: args{
+				&http.Response{
+					Body: ioutil.NopCloser(bytes.NewReader(jsonResponseTestBody)),
+				},
+			},
+			want:    jsonResponseTestBody,
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ResponseToBytes(tt.args.res)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("ResponseToBytes() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+
+			if !tt.wantErr {
+				if !cmp.Equal(got, tt.want) {
+					t.Errorf("ResponseToBytes() got = %s, want %s", got, tt.want)
+				}
+			}
 		})
 	}
 }
