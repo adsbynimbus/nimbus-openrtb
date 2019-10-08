@@ -1,12 +1,16 @@
 package com.adsbynimbus.openrtb.impression;
 
-import com.adsbynimbus.openrtb.internal.NimbusRTB;
-
-import java.util.Map;
-
-import static com.adsbynimbus.openrtb.impression.Format.HEIGHT;
-import static com.adsbynimbus.openrtb.impression.Format.WIDTH;
-
+/**
+ * This object represents an in-stream video impression. Many of the fields are non-essential for minimally
+ * viable transactions, but are included to offer fine control when needed. Video in OpenRTB generally
+ * assumes compliance with the VAST standard. As such, the notion of companion ads is supported by
+ * optionally including an array of Banner objects (refer to the Banner object in Section 3.2.6) that define
+ * these companion ads.
+ * The presence of a Video as a subordinate of the Imp object indicates that this impression is offered as a
+ * video type impression. At the publisher’s discretion, that same impression may also be offered as
+ * banner, audio, and/or native by also including as Imp subordinates objects of those types. However,
+ * any given bid for the impression must conform to one of the offered types.
+ */
 public interface Video extends Creative {
 
     /* Protocols [See ORTB 2.5 Section 5.8] */
@@ -35,27 +39,31 @@ public interface Video extends Creative {
     String MAX_BITRATE = "maxbitrate"; // int default 20000
     String PLAYBACK_METHOD  = "playbackmethod"; // int default 2
 
-    interface Builder extends NimbusRTB.Builder {
+    /**
+     * Builder for constructing a {@link Video} object
+     */
+    interface Builder {
 
-        default Video build() {
-            final Map values = getValues();
-            return new Video() {
-                public final Float bidfloor = (Float) values.get(BID_FLOOR); // Server default 3
-                public final String[] mimes = (String[]) values.get(MIME_TYPES);
-                public final Integer minduration = (int) values.get(MIN_DURATION); // Server default 0
-                public final Integer maxduration = (int) values.get(MAX_DURATION); // Server default 60
-                public final int[] protocols = (int[]) values.get(PROTOCOLS);
-                public final int w = (int) values.get(WIDTH);
-                public final int h = (int) values.get(HEIGHT);
-                public final Integer startdelay = (Integer) values.get(START_DELAY); // Server default 0;
-                public final Integer skip = (Integer) values.get(SKIP); // optional
-                public final Integer skipmin = (Integer) values.get(SKIP_MIN); // Server default 0
-                public final Integer skipafter = (Integer) values.get(SKIP_AFTER); // Server default 0
-                public final Integer minbitrate = (Integer) values.get(MIN_BITRATE); // Server default 0
-                public final Integer maxbitrate = (Integer) values.get(MAX_BITRATE); // Server default 0
-                public final Integer pos = (Integer) values.get(POSITION); // Optional
-                public final Integer playbackmethod = (Integer) values.get(PLAYBACK_METHOD); // Server default 2;
-            };
-        }
+    }
+
+    /**
+     * Definition of {@link Video} with all public mutable fields
+     */
+    class MutableVideo implements Video {
+        public Float bidfloor; // Server default 3
+        public String[] mimes;
+        public Integer minduration; // Server default 0
+        public Integer maxduration; // Server default 60
+        public int[] protocols;
+        public int w;
+        public int h;
+        public Integer startdelay; // Server default 0;
+        public Integer skip; // optional
+        public Integer skipmin; // Server default 0
+        public Integer skipafter; // Server default 0
+        public Integer minbitrate; // Server default 0
+        public Integer maxbitrate; // Server default 0
+        public Integer pos; // Optional
+        public Integer playbackmethod; // Server default 2;
     }
 }

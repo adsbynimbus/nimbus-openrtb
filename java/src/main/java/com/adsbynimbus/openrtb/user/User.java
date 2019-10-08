@@ -1,9 +1,11 @@
 package com.adsbynimbus.openrtb.user;
 
-import com.adsbynimbus.openrtb.internal.NimbusRTB;
-
-import java.util.Map;
-
+/**
+ * This object contains information known or derived about the human user of the device (i.e., the
+ * audience for advertising). The user id is an exchange artifact and may be subject to rotation or other
+ * privacy policies. However, this user ID must be stable long enough to serve reasonably as the basis for
+ * frequency capping and retargeting.
+ */
 public interface User {
 
     String AGE = "age"; // Integer
@@ -15,26 +17,37 @@ public interface User {
     String MALE = "Male";
     String FEMALE = "Female";
 
-    // Nimbus Extensions
-    String CONSENT = "consent";
-    String DID_CONSENT = "did_consent"; // int
+    /**
+     * User 'ext' object used by Nimbus
+     */
+    interface Extension {
+        String CONSENT = "consent";
+        String DID_CONSENT = "did_consent"; // int
+    }
 
-    interface Builder extends NimbusRTB.Builder {
+    /**
+     * Builder for constructing a {@link User} object
+     */
+    interface Builder {
 
-        default User build() {
-            final Map values = getValues();
-            return new User() {
-                public final Integer age = (Integer) values.get(AGE);
-                public final String buyeruid = (String) values.get(BUYER_UID);
-                public final Integer yob = (Integer) values.get(YEAR_OF_BIRTH);
-                public final String gender = (String) values.get(GENDER);
-                public final Object ext =
-                        values.containsKey(CONSENT) || values.containsKey(DID_CONSENT) ? new Object() {
-                            public final String consent = (String) values.get(CONSENT);
-                            public final int did_consent =
-                                    (int) (values.containsKey(DID_CONSENT) ? values.get(DID_CONSENT) : 0);
-                        } : null;
-            };
-        }
+    }
+
+    /**
+     * Definition of {@link User} with all public mutable fields
+     */
+    class MutableUser implements User {
+        public Integer age;
+        public String buyeruid;
+        public Integer yob;
+        public String gender;
+        public Extension ext;
+    }
+
+    /**
+     * Definition of {@link User.Extension} with all public mutable fields
+     */
+    class MutableExtension implements Extension {
+        public String consent;
+        public int did_consent;
     }
 }

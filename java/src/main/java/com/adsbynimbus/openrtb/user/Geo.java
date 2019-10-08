@@ -1,9 +1,13 @@
 package com.adsbynimbus.openrtb.user;
 
-import com.adsbynimbus.openrtb.internal.NimbusRTB;
-
-import java.util.Map;
-
+/**
+ * This object encapsulates various methods for specifying a geographic location. When subordinate to a
+ * Device object, it indicates the location of the device which can also be interpreted as the user’s current
+ * location. When subordinate to a User object, it indicates the location of the user’s home base (i.e., not
+ * necessarily their current location).
+ * The lat/lon attributes should only be passed if they conform to the accuracy depicted in the type
+ * attribute. For example, the centroid of a geographic region such as postal code should not be passed.
+ */
 public interface Geo {
 
     String LATITUDE = "lat"; // Float
@@ -18,18 +22,22 @@ public interface Geo {
     int IP_LOOKUP = 2;
     int USER_PROVIDED = 3;
 
-    interface Builder extends NimbusRTB.Builder {
+    /**
+     * Builder for constructing a {@link Geo} object
+     */
+    interface Builder {
 
-        default Geo build() {
-            final Map values = getValues();
-            return new Geo() {
-                public final Float lat = (Float) values.get(LATITUDE);
-                public final Float lon = (Float) values.get(LONGITUDE);
-                public final Integer type = (Integer) values.get(TYPE);
-                public final Integer accuracy = (Integer) values.get(ACCURACY);
-                public final String country = (String) values.get(COUNTRY);
-                public final String city = (String) values.get(CITY);
-            };
-        }
+    }
+
+    /**
+     * Definition of {@link Geo} with all public mutable fields
+     */
+    class MutableGeo implements Geo {
+        public Float lat;
+        public Float lon;
+        public Integer type;
+        public Integer accuracy;
+        public String country;
+        public String city;
     }
 }

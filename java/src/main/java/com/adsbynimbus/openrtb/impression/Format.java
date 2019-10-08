@@ -1,9 +1,10 @@
 package com.adsbynimbus.openrtb.impression;
 
-import com.adsbynimbus.openrtb.internal.NimbusRTB;
-
-import java.util.Map;
-
+/**
+ * This object represents an allowed size (i.e., height and width combination) or Flex Ad parameters for a
+ * banner impression. These are typically used in an array where multiple sizes are permitted. It is
+ * recommended that either the w/h pair or the wratio/hratio/wmin set (i.e., for Flex Ads) be specified.
+ */
 public interface Format {
 
     //Ad Format Names
@@ -21,27 +22,18 @@ public interface Format {
     String WIDTH = "w";
     String HEIGHT = "h";
 
-    int getWidth();
-    int getHeight();
+    /**
+     * Builder for constructing a {@link Format} object
+     */
+    interface Builder {
 
-    interface Builder extends NimbusRTB.Builder {
+    }
 
-        default Format build() {
-            final Map values = getValues();
-            return new Format() {
-                public final int w = (int) values.get(WIDTH);
-                public final int h = (int) values.get(HEIGHT);
-
-                @Override
-                public int getWidth() {
-                    return w;
-                }
-
-                @Override
-                public int getHeight() {
-                    return h;
-                }
-            };
-        }
+    /**
+     * Definition of {@link Format} with all public mutable fields
+     */
+    class MutableFormat implements Format {
+        public int w;
+        public int h;
     }
 }

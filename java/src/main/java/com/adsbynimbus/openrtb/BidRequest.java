@@ -2,17 +2,21 @@ package com.adsbynimbus.openrtb;
 
 import com.adsbynimbus.openrtb.impression.Format;
 import com.adsbynimbus.openrtb.impression.Impression;
-import com.adsbynimbus.openrtb.internal.NimbusRTB;
 import com.adsbynimbus.openrtb.publisher.App;
 import com.adsbynimbus.openrtb.user.Device;
 import com.adsbynimbus.openrtb.user.Regs;
 import com.adsbynimbus.openrtb.user.Source;
 import com.adsbynimbus.openrtb.user.User;
 
-import java.util.Map;
-
-import static com.adsbynimbus.openrtb.impression.Format.FORMAT;
-
+/**
+ * The top-level bid request object contains a globally unique bid request or auction ID. This id attribute is
+ * required as is at least one impression object (Section 3.2.4). Other attributes in this top-level object
+ * establish rules and restrictions that apply to all impressions being offered.
+ * There are also several subordinate objects that provide detailed data to potential buyers. Among these
+ * are the Site and App objects, which describe the type of published media in which the impression(s)
+ * appear. These objects are highly recommended, but only one applies to a given bid request depending
+ * on whether the media is browser-based web content or a non-browser application, respectively.
+ */
 public interface BidRequest {
 
     String IMP = "imp"; // Impression[] (only size 1 valid)
@@ -25,31 +29,45 @@ public interface BidRequest {
     String SOURCE = "source";
     String BADV = "badv";
 
-    //Extensions
-    String API_KEY = "api_key";
-    String SESSION_ID = "session_id";
+    String EXTENSION = "ext";
 
-    interface Builder extends NimbusRTB.Builder {
+    /**
+     * BidRequest 'ext' object used by Nimbus
+     */
+    interface Extension {
+        String API_KEY = "api_key";
+        String SESSION_ID = "session_id";
+    }
 
-        default BidRequest build() {
-            final Map values = getValues();
-            return new BidRequest() {
-                public final Impression[] imp = (Impression[]) values.get(IMP);
-                public final App app = (App) values.get(APP);
-                public final Device device = (Device) values.get(DEVICE);
-                public final Format format = (Format) values.get(FORMAT);
-                public final User user = (User) values.get(USER);
-                public final Integer test = (Integer) values.get(TEST); // Server default 0
-                public final Integer tmax = (Integer) values.get(TIMEOUT); // Server default 500
-                public final Regs regs = (Regs) values.get(REGS);
-                public final Source source = (Source) values.get(SOURCE);
-                public final String[] badv = (String[]) values.get(BADV);
-                public final Object ext = values.containsKey(API_KEY) || values.containsKey(SESSION_ID) ?
-                        new Object() {
-                            public final String api_key = (String) values.get(API_KEY);
-                            public final String session_id = (String) values.get(SESSION_ID);
-                        } : null;
-            };
-        }
+    /**
+     * Builder for constructing a {@link BidRequest} object
+     */
+    interface Builder {
+
+    }
+
+    /**
+     * Definition of {@link BidRequest} with all public mutable fields
+     */
+    class MutableBidRequest implements BidRequest {
+        public Impression[] imp;
+        public App app;
+        public Device device;
+        public Format format;
+        public User user;
+        public Integer test;
+        public Integer tmax;
+        public Regs regs;
+        public Source source;
+        public String[] badv;
+        public Extension ext;
+    }
+
+    /**
+     * Definition of {@link BidRequest.Extension} with all public mutable fields
+     */
+    class MutableExtension implements Extension {
+        public String api_key;
+        public String session_id;
     }
 }

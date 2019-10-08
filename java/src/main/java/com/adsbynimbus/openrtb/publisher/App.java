@@ -1,13 +1,10 @@
 package com.adsbynimbus.openrtb.publisher;
 
-import com.adsbynimbus.openrtb.internal.NimbusRTB;
-
-import java.util.Map;
-
-import static com.adsbynimbus.openrtb.publisher.Publisher.CONTENT_CATEGORIES;
-import static com.adsbynimbus.openrtb.publisher.Publisher.DOMAIN;
-import static com.adsbynimbus.openrtb.publisher.Publisher.NAME;
-
+/**
+ * This object should be included if the ad supported content is a non-browser application (typically in
+ * mobile) as opposed to a website. A bid request must not contain both an App and a Site object. At a
+ * minimum, it is useful to provide an App ID or bundle, but this is not strictly required.
+ */
 public interface App {
 
     int FREE_APP = 0;
@@ -19,20 +16,24 @@ public interface App {
     String PUBLISHER = "publisher";
     String VERSION = "ver";
 
-    interface Builder extends NimbusRTB.Builder {
+    /**
+     * Builder for constructing a {@link App} object
+     */
+    interface Builder {
 
-        default App build() {
-            final Map values = getValues();
-            return new App() {
-                public final String name = (String) values.get(NAME);
-                public final String bundle = (String) values.get(BUNDLE);
-                public final String domain = (String) values.get(DOMAIN);
-                public final String storeurl = (String) values.get(STORE_URL);
-                public final String[] cat = (String[]) values.get(CONTENT_CATEGORIES);
-                public final String ver = (String) values.get(VERSION);
-                public final Integer paid = (Integer) values.get(PAID);
-                public final String publisher = (String) values.get(PUBLISHER);
-            };
-        }
+    }
+
+    /**
+     * Definition of {@link App} with all public mutable fields
+     */
+    class MutableApp implements App {
+        public String name;
+        public String bundle;
+        public String domain;
+        public String storeurl;
+        public String[] cat;
+        public String ver;
+        public Integer paid;
+        public String publisher;
     }
 }

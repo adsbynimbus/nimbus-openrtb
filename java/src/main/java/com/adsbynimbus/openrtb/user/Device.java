@@ -1,9 +1,10 @@
 package com.adsbynimbus.openrtb.user;
 
-import com.adsbynimbus.openrtb.internal.NimbusRTB;
-
-import java.util.Map;
-
+/**
+ * This object provides information pertaining to the device through which the user is interacting. Device
+ * information includes its hardware, platform, location, and carrier data. The device can refer to a mobile
+ * handset, a desktop computer, set top box, or other digital device.
+ */
 public interface Device {
 
     int UNKNOWN = 0;
@@ -25,22 +26,26 @@ public interface Device {
     String CONNECTION_TYPE = "connectiontype"; //Integer
     String ADVERTISING_ID = "ifa";
 
-    interface Builder extends NimbusRTB.Builder {
+    /**
+     * Builder for constructing a {@link Device} object
+     */
+    interface Builder {
 
-        default Device build() {
-            final Map values = getValues();
-            return new Device() {
-                public final String ua = (String) values.get(USER_AGENT);
-                public final Geo geo = (Geo) values.get(GEO);
-                public final String ip = (String) values.get(IP_ADDRESS);
-                public final Integer devicetype = (Integer) values.get(DEVICE_TYPE);
-                public final String make = (String) values.get(MAKE);
-                public final String model = (String) values.get(MODEL);
-                public final String os = (String) values.get(OS);
-                public final String osv = (String) values.get(OS_VERSION);
-                public final Integer connectiontype = (Integer) values.get(CONNECTION_TYPE);
-                public final String ifa = (String) values.get(ADVERTISING_ID);
-            };
-        }
+    }
+
+    /**
+     * Definition of {@link Device} with all public mutable fields
+     */
+    class MutableDevice implements Device {
+        public String ua;
+        public Geo geo;
+        public String ip;
+        public Integer devicetype;
+        public String make;
+        public String model;
+        public String os;
+        public String osv;
+        public Integer connectiontype;
+        public String ifa;
     }
 }

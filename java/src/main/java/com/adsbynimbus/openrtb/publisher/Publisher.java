@@ -1,24 +1,28 @@
 package com.adsbynimbus.openrtb.publisher;
 
-import com.adsbynimbus.openrtb.internal.NimbusRTB;
-
-import java.util.Map;
-
+/**
+ * This object describes the publisher of the media in which the ad will be displayed. The publisher is
+ * typically the seller in an OpenRTB transaction.
+ */
 public interface Publisher {
 
     String NAME = "name";
     String DOMAIN = "domain";
     String CONTENT_CATEGORIES = "cat"; // String[]
 
-    interface Builder extends NimbusRTB.Builder {
+    /**
+     * Builder for constructing a {@link Publisher} object
+     */
+    interface Builder {
 
-        default Publisher build() {
-            final Map values = getValues();
-            return new Publisher() {
-                public final String name = (String) values.get(NAME);
-                public final String domain = (String) values.get(DOMAIN);
-                public final String[] cat = (String[]) values.get(CONTENT_CATEGORIES);
-            };
-        }
+    }
+
+    /**
+     * Definition of {@link Publisher} with all public mutable fields
+     */
+    class MutablePublisher implements Publisher {
+        public String name;
+        public String domain;
+        public String[] cat;
     }
 }

@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.impression;
 
+/**
+ * Defines constants shared between children of the {@link Impression} object
+ */
 interface Creative {
 
     String BID_FLOOR = "bidfloor"; //float
