@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidUser extends ArrayMap<String, Object> implements User {
 
     @Retention(SOURCE)
-    @StringDef({AGE, YEAR_OF_BIRTH, BUYER_ID, GENDER, CONSENT, DID_CONSENT})
+    @StringDef({AGE, YEAR_OF_BIRTH, BUYER_UID, GENDER, CONSENT, DID_CONSENT})
     public @interface Values { }
 
     @Retention(SOURCE)
@@ -70,7 +70,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User {
          * @return {@link Builder}
          */
         public Builder withBuyerId(@NonNull String buyerId) {
-            values.put(BUYER_ID, buyerId);
+            values.put(BUYER_UID, buyerId);
             return this;
         }
 

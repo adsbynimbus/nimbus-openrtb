@@ -7,7 +7,7 @@ import java.util.Map;
 public interface User {
 
     String AGE = "age"; // Integer
-    String BUYER_ID = "buyerid";
+    String BUYER_UID = "buyeruid";
     String YEAR_OF_BIRTH = "yob"; // Integer
     String GENDER = "gender";
 
@@ -25,7 +25,7 @@ public interface User {
             final Map values = getValues();
             return new User() {
                 public final Integer age = (Integer) values.get(AGE);
-                public final String buyerid = (String) values.get(BUYER_ID);
+                public final String buyeruid = (String) values.get(BUYER_UID);
                 public final Integer yob = (Integer) values.get(YEAR_OF_BIRTH);
                 public final String gender = (String) values.get(GENDER);
                 public final Object ext =
