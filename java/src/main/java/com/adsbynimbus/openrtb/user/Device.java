@@ -31,6 +31,45 @@ public interface Device {
      */
     interface Builder {
 
+        /**
+         * Sets the user agent
+         *
+         * @param userAgent
+         * @return this builder instance
+         */
+        Builder withUserAgent(String userAgent);
+
+        /**
+         * With {@link Geo} information
+         *
+         * @param geo
+         * @return this builder instance
+         */
+        Builder withGeo(Geo geo);
+
+        /**
+         * Set the IP address of the device. This can be omitted as Nimbus will infer it from the request context.
+         *
+         * @param ipAddress
+         * @return this builder instance
+         */
+        Builder withIpAddress(String ipAddress);
+
+        /**
+         * Set the connection type type
+         *
+         * @param connectionType
+         * @return {@link Builder}
+         */
+        Builder withConnectionType(int connectionType);
+
+        /**
+         * Set the advertising id
+         *
+         * @param advertisingId
+         * @return this builder instance
+         */
+        Builder withAdvertisingId(String advertisingId);
     }
 
     /**

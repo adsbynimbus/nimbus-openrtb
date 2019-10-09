@@ -15,6 +15,29 @@ public interface Publisher {
      */
     interface Builder {
 
+        /**
+         * Set categories
+         *
+         * @param categories
+         * @return this builder instance
+         */
+        Builder withCategories(String... categories);
+
+        /**
+         * Set the publisher name
+         *
+         * @param name
+         * @return this builder instance
+         */
+        Builder withName(String name);
+
+        /**
+         * Set the publisher domain
+         *
+         * @param domain
+         * @return this builder instance
+         */
+         Builder withDomain(String domain);
     }
 
     /**

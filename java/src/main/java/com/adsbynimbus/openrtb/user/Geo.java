@@ -13,7 +13,7 @@ public interface Geo {
     String LATITUDE = "lat"; // Float
     String LONGITUDE = "lon"; // Float (optional)
     String TYPE = "type"; // Integer
-    String ACCURACY =  "accuracy"; // Integer
+    String ACCURACY = "accuracy"; // Integer
     String COUNTRY = "country";
     String CITY = "city";
 
@@ -27,6 +27,53 @@ public interface Geo {
      */
     interface Builder {
 
+        /**
+         * Set the latitude and accuracy
+         *
+         * @param latitude
+         * @return this builder instance
+         */
+        Builder forLatitude(float latitude);
+
+        /**
+         * Set the country
+         *
+         * @param countryCode
+         * @return this builder instance
+         */
+        Builder forCountry(String countryCode);
+
+        /**
+         * Set the longitude
+         *
+         * @param longitude
+         * @return this builder instance
+         */
+        public Builder withLongitude(float longitude);
+
+        /**
+         * Set the accuracy of the location data as reported by the device
+         *
+         * @param accuracy - int
+         * @return this builder instance
+         */
+        Builder withAccuracy(int accuracy);
+
+        /**
+         * Set the location type
+         *
+         * @param locationType
+         * @return this builder instance
+         */
+        Builder withLocationType(int locationType);
+
+        /**
+         * Set the city
+         *
+         * @param city - {@link String}
+         * @return this builder instance
+         */
+        Builder withCity(String city);
     }
 
     /**

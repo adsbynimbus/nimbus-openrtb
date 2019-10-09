@@ -30,6 +30,53 @@ public interface User {
      */
     interface Builder {
 
+        /**
+         * Set the age of the user
+         *
+         * @param age
+         * @return this builder instance
+         */
+        Builder withAge(int age);
+
+        /**
+         * Set the buyer id. If using Facebook this is the bidder token
+         *
+         * @param buyerUid
+         * @return this builder instance
+         */
+        Builder withBuyerUid(String buyerUid);
+
+        /**
+         * Set the age of the user
+         *
+         * @param yob year of birth
+         * @return this builder instance
+         */
+        Builder withYearOfBirth(int yob);
+
+        /**
+         * Sets the gender of the user
+         *
+         * @param gender [M, F, or O]
+         * @return this builder instance
+         */
+        Builder withGender(String gender);
+
+        /**
+         * Adds the IAB consent string to the request
+         *
+         * @param consentString
+         * @return this builder instance
+         */
+        Builder withIABConsentString(String consentString);
+
+        /**
+         * Adds the IAB consent string to the request
+         *
+         * @param didConsent boolean: true if gave consent [Default: false]
+         * @return this builder instance
+         */
+        Builder withGDPRConsent(boolean didConsent);
     }
 
     /**

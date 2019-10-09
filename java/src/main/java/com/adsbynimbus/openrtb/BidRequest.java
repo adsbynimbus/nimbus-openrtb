@@ -44,6 +44,101 @@ public interface BidRequest {
      */
     interface Builder {
 
+        /**
+         * Set the {@link Impression} object
+         *
+         * @param impressions
+         * @return this builder instance
+         */
+        Builder forImpressions(Impression... impressions);
+
+        /**
+         * Set the {@link App} object
+         *
+         * @param app
+         * @return this builder instance
+         */
+        Builder forApp(App app);
+
+        /**
+         * Set the {@link Device} object
+         *
+         * @param device
+         * @return this builder instance
+         */
+        Builder forDevice(Device device);
+
+        /**
+         * Set the device size
+         *
+         * @param width int width
+         * @param height int height
+         * @return this builder instance
+         */
+        Builder forDeviceSize(int width, int height);
+
+        /**
+         * Set the {@link User} object
+         *
+         * @param user
+         * @return this builder instance
+         */
+        Builder withUser(User user);
+
+        /**
+         * Mark this request as a test
+         *
+         * @return {@link Builder}
+         */
+        Builder withTestFlag();
+
+        /**
+         * Set the timeout of the request.
+         *
+         * @param timeout int [Default: 500]
+         * @return this builder instance
+         */
+        Builder withTimeout(int timeout);
+
+        /**
+         * Sets the {@link Regs} object
+         *
+         * @param regs
+         * @return this builder instance
+         */
+        Builder withRegs(Regs regs);
+
+        /**
+         * Sets the {@link Source} object
+         *
+         * @param source
+         * @return this builder instance
+         */
+        Builder withSource(Source source);
+
+        /**
+         * Sets a list of blocked advertisers by domains
+         *
+         * @param domains
+         * @return this builder instance
+         */
+         Builder withBlockedDomains(String... domains);
+
+        /**
+         * Sets the Nimbus API key
+         *
+         * @param apiKey
+         * @return this builder instance
+         */
+        Builder withApiKey(String apiKey);
+
+        /**
+         * Sets the Nimbus session id
+         *
+         * @param sessionId
+         * @return this builder instance
+         */
+        Builder withSessionId(String sessionId);
     }
 
     /**

@@ -20,6 +20,14 @@ public interface Source {
      */
     interface Builder {
 
+        /**
+         * Set the OM SDK information for a measurement enabled app
+         *
+         * @param partnerName should match the partner name field from OM
+         * @param sdkVersion OM SDK version
+         * @return this builder instance
+         */
+        Builder withOMSdkEnabled(String partnerName, String sdkVersion);
     }
 
     /**

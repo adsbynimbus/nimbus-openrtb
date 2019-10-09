@@ -1,6 +1,6 @@
 package com.adsbynimbus.openrtb.impression;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * This object describes an ad placement or impression being auctioned. A single bid request can include
@@ -35,6 +35,59 @@ public interface Impression extends Creative {
      */
     interface Builder  {
 
+        /**
+         * Include a {@link Banner} in the impression auction
+         *
+         * @param banner
+         * @return this builder instance
+         */
+        Builder includeBanner(Banner banner);
+
+        /**
+         * Include a {@link Video} in the impression auction
+         *
+         * @param video
+         * @return this builder instance
+         */
+        Builder includeVideo(Video video);
+
+        /**
+         * Set the bid floor. [Default: 1.00]
+         *
+         * @param bidFloor
+         * @return this builder instance
+         */
+        Builder withBidFloor(float bidFloor);
+
+        /**
+         * Request an interstitial impression
+         *
+         * @return this builder instance
+         */
+        Builder asInterstitial();
+
+        /**
+         * Allows an impression to send back assets over HTTP.
+         *
+         * @return this builder instance
+         */
+        Builder allowHttp();
+
+        /**
+         * Set the Facebook App Id
+         *
+         * @param facebookAppId
+         * @return this builder instance
+         */
+        Builder withFacebookAppId(String facebookAppId);
+
+        /**
+         * Set the APS params
+         *
+         * @param apsParams
+         * @return this builder instance
+         */
+        Builder withApsParams(List apsParams);
     }
 
     /**
@@ -57,6 +110,6 @@ public interface Impression extends Creative {
     class MutableExtension implements Extension {
         public String position;
         public String facebook_app_id;
-        public Map aps;
+        public List aps;
     }
 }

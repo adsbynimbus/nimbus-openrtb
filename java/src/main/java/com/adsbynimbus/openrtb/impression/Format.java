@@ -23,13 +23,6 @@ public interface Format {
     String HEIGHT = "h";
 
     /**
-     * Builder for constructing a {@link Format} object
-     */
-    interface Builder {
-
-    }
-
-    /**
      * Definition of {@link Format} with all public mutable fields
      */
     class MutableFormat implements Format {

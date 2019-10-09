@@ -1,9 +1,5 @@
 package com.adsbynimbus.openrtb.impression;
 
-import static com.adsbynimbus.openrtb.impression.Format.FORMAT;
-import static com.adsbynimbus.openrtb.impression.Format.HEIGHT;
-import static com.adsbynimbus.openrtb.impression.Format.WIDTH;
-
 /**
  * This object represents the most general type of impression. Although the term “banner” may have very
  * specific meaning in other contexts, here it can be many things including a simple static image, an
@@ -28,6 +24,45 @@ public interface Banner extends Creative {
      */
     interface Builder {
 
+        /**
+         * Set the requested formats of the ad.
+         *
+         * @param formats
+         * @return this builder instance
+         */
+        Builder withFormats(Format... formats);
+
+        /**
+         * Set the position of the Ad Unit.
+         *
+         * @param position
+         * @return this builder instance
+         */
+        Builder withPosition(int position);
+
+        /**
+         * Set the requested mimeTypes. Server default is "text/html"
+         *
+         * @param mimeTypes
+         * @return this builder instance
+         */
+        Builder withMimes(String... mimeTypes);
+
+        /**
+         * Set the bid floor. [Default 2.0]
+         *
+         * @param bidFloor
+         * @return this builder instance
+         */
+         Builder withBidFloor(float bidFloor);
+
+        /**
+         * Set the supported creative types
+         *
+         * @param apis [VPAID_2, MRAID_1, MRAID_2, MRAID_3]
+         * @return this builder instance
+         */
+        Builder withSupportedApis(int...apis);
     }
 
     /**

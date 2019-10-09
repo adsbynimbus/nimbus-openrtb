@@ -21,6 +21,61 @@ public interface App {
      */
     interface Builder {
 
+        /**
+         * Set the name of the app
+         *
+         * @param name
+         * @return this builder instance
+         */
+        Builder withName(String name);
+
+        /**
+         * Set the bundle id
+         *
+         * @param bundleId
+         * @return this builder instance
+         */
+        Builder withBundleId(String bundleId);
+
+        /**
+         * Set the domain name of the app
+         *
+         * @param domain
+         * @return this builder instance
+         */
+        Builder withDomain(String domain);
+
+        /**
+         * Set the app store url
+         *
+         * @param storeUrl
+         * @return this builder instance
+         */
+        Builder withStoreUrl(String storeUrl);
+
+        /**
+         * Set categories
+         *
+         * @param categories
+         * @return this builder instance
+         */
+        Builder withCategories(String... categories);
+
+        /**
+         * Set if the app is paid or not
+         *
+         * @param appCost
+         * @return this builder instance
+         */
+        Builder withAppCost(int appCost);
+
+        /**
+         * Set the {@link Publisher}
+         *
+         * @param publisher
+         * @return this builder instance
+         */
+        Builder withPublisher(Publisher publisher);
     }
 
     /**

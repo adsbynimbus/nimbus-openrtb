@@ -18,6 +18,21 @@ public interface Regs {
      */
     interface Builder {
 
+        /**
+         * Set the COPPA to true
+         *
+         * @param isCOPPA true if is coppa
+         * @return this builder instance
+         */
+        Builder setCOPPA(boolean isCOPPA);
+
+        /**
+         * Set the GDPR consent flag
+         *
+         * @param didConsent true if did consent
+         * @return this builder instance
+         */
+        Builder withGDPRConsent(boolean didConsent);
     }
 
     /**

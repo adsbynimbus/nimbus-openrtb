@@ -37,13 +37,98 @@ public interface Video extends Creative {
     String SKIP_AFTER = "skipafter"; //int default 0;
     String MIN_BITRATE = "minbitrate"; // int default 0;
     String MAX_BITRATE = "maxbitrate"; // int default 20000
-    String PLAYBACK_METHOD  = "playbackmethod"; // int default 2
+    String PLAYBACK_METHOD = "playbackmethod"; // int default 2
 
     /**
      * Builder for constructing a {@link Video} object
      */
     interface Builder {
 
+        /**
+         * Set the position of the Ad Unit
+         *
+         * @param position
+         * @return this builder instance
+         */
+        Builder withPosition(int position);
+
+        /**
+         * Set the requested mimeTypes. [Default: "video/mp4"]
+         *
+         * @param mimeTypes
+         * @return this builder instance
+         */
+        Builder withMimes(String... mimeTypes);
+
+        /**
+         * Set the bid floor. [Default: 3.0]
+         *
+         * @param bidFloor bid floor [Default: 3.0]
+         * @return this builder instance
+         */
+        Builder withBidFloor(float bidFloor);
+
+        /**
+         * Set a duration constraint for a {@link Video} impression
+         *
+         * @param minDuration [Default: 0]
+         * @param maxDuration [Default: 60]
+         * @return this builder instance
+         */
+        Builder withDurationConstraint(int minDuration, int maxDuration);
+
+        /**
+         * Set a bitrate constraint for a {@link Video} impression
+         *
+         * @param minBitrate [Default: 0]
+         * @param maxBitrate [Default: 20000]
+         * @return this builder instance
+         */
+        Builder withBitrateConstraint(int minBitrate, int maxBitrate);
+
+        /**
+         * Set the device width and height
+         *
+         * @param width  device width in absolute pixels
+         * @param height device height in absolute pixels
+         * @return {@link Builder}
+         */
+        Builder withDeviceSize(int width, int height);
+
+        /**
+         * Set the supported protocols
+         *
+         * @param protocols [VAST_2, VAST_2_WRAPPER, VAST_3, VAST_3_WRAPPER]
+         * @return this builder instance
+         */
+        Builder withProtocols(int... protocols);
+
+        /**
+         * Set if the video asset is skippable. Not calling this function assumes it is not skippable
+         *
+         * @param skipMin   - minimum duration in seconds of video length before skip is enabled
+         * @param skipAfter - minimum duration video must be watched to skip
+         * @return this builder instance
+         */
+        Builder withSkipEnabled(int skipMin, int skipAfter);
+
+        /**
+         * Set video start delay
+         *
+         * @param startDelay [Default: 0]
+         * @return this builder instance
+         */
+        Builder withStartDelay(int startDelay);
+
+        /**
+         * Set the playback method.
+         *
+         * @param playbackMethods [PAGE_LOAD_SOUND_ON, PAGE_LOAD_SOUND_OFF,
+         *                        CLICK_SOUND_ON, MOUSE_OVER_SOUND_ON, ENTER_VIEWPORT_SOUND_OFF,
+         *                        ENTER_VIEWPORT_SOUND_ON]
+         * @return this builder instance
+         */
+        Builder withPlaybackMethods(int... playbackMethods);
     }
 
     /**
