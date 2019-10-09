@@ -19,7 +19,8 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidApp extends ArrayMap<String, Object> implements App, App.Builder {
 
     @Retention(SOURCE)
-    @StringDef({NAME, DOMAIN, CONTENT_CATEGORIES, BUNDLE, STORE_URL, PAID, PUBLISHER, VERSION})
+    @StringDef({NAME, DOMAIN, CONTENT_CATEGORIES, BUNDLE, STORE_URL, PAGE_CATEGORIES, PAID, PRIVACY_POLICY, PUBLISHER,
+        SECTION_CATEGORIES, VERSION})
     public @interface Values { }
 
     @Retention(SOURCE)
@@ -97,7 +98,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withCategories(String... categories) {
+    public Builder withContentCategories(String... categories) {
         put(CONTENT_CATEGORIES, categories);
         return this;
     }
@@ -123,6 +124,54 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
     @Override
     public Builder withPublisher(@NonNull Publisher publisher) {
         put(PUBLISHER, publisher);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param pageCategories {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withPageCategories(String... pageCategories) {
+        put(PAGE_CATEGORIES, pageCategories);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param sectionCategories {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withSectionCategories(String... sectionCategories) {
+        put(SECTION_CATEGORIES, sectionCategories);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param privacyPolicy {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withPrivacyPolicy(int privacyPolicy) {
+        put(PRIVACY_POLICY, privacyPolicy);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param version {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withVersion(String version) {
+        put(VERSION, version);
         return this;
     }
 }

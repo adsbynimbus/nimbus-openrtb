@@ -17,6 +17,8 @@ import androidx.core.content.ContextCompat;
 import java.lang.annotation.Retention;
 
 import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
+import static com.adsbynimbus.openrtb.impression.Format.HEIGHT;
+import static com.adsbynimbus.openrtb.impression.Format.WIDTH;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
@@ -27,7 +29,8 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
     public static final String ANDROID = "android";
 
     @Retention(SOURCE)
-    @StringDef({USER_AGENT, GEO, IP_ADDRESS, DEVICE_TYPE, MAKE, MODEL, OS, OS_VERSION, CONNECTION_TYPE, ADVERTISING_ID})
+    @StringDef({USER_AGENT, GEO, IP_ADDRESS, DEVICE_TYPE, MAKE, MODEL, OS, OS_VERSION, CONNECTION_TYPE, ADVERTISING_ID,
+        LIMIT_AD_TRACKING, DO_NOT_TRACK, CARRIER, LANGUAGE, WIDTH, HEIGHT})
     public @interface Values { }
 
     @Retention(SOURCE)
@@ -84,14 +87,63 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
     }
 
     /**
-     * Set the {@link Connection} type
+     * {@inheritDoc}
      *
-     * @param connectionType - {@link Connection}
-     * @return {@link Builder}
+     * @param connectionType {@inheritDoc}
+     * @return {@inheritDoc}
      */
     @Override
     public Builder withConnectionType(@Connection int connectionType) {
         put(CONNECTION_TYPE, connectionType);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withLimitedAdTracking() {
+        put(LIMIT_AD_TRACKING, 1);
+        put(DO_NOT_TRACK, 1);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param width {@inheritDoc}
+     * @param height {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withPhysicalDeviceSize(int width, int height) {
+        put(WIDTH, width);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param language {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withLanguage(String language) {
+        put(LANGUAGE, language);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param carrier {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withCarrier(String carrier) {
+        put(CARRIER, carrier);
         return this;
     }
 
@@ -163,14 +215,62 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
     }
 
     /**
-     * Set the advertising id
+     * {@inheritDoc}
      *
-     * @param advertisingId - {@link String}
-     * @return {@link Builder}
+     * @param advertisingId {@inheritDoc}
+     * @return {@inheritDoc}
      */
     @Override
     public Builder withAdvertisingId(@NonNull String advertisingId) {
         put(ADVERTISING_ID, advertisingId);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param make {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withManufacturer(String make) {
+        put(MAKE, make);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param model {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withModelName(String model) {
+        put(MODEL, model);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param os {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withOsName(String os) {
+        put(OS, os);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param osVersion {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withOsVersion(String osVersion) {
+        put(OS_VERSION, osVersion);
         return this;
     }
 }

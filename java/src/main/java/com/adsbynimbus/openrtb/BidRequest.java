@@ -29,6 +29,7 @@ public interface BidRequest {
     String SOURCE = "source";
     String BADV = "badv";
 
+    String ID = "id";
     String EXTENSION = "ext";
 
     /**

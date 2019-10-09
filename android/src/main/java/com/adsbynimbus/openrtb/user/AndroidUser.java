@@ -38,6 +38,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @param age {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withAge(@IntRange(from = 0) int age) {
         put(AGE, age);
         return this;
@@ -49,6 +50,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @param buyerUid {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withBuyerUid(@NonNull String buyerUid) {
         put(BUYER_UID, buyerUid);
         return this;
@@ -60,6 +62,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @param yob {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withYearOfBirth(@IntRange(from = 0) int yob) {
         put(YEAR_OF_BIRTH, yob);
         return this;
@@ -71,6 +74,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @param gender {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withGender(@Gender String gender) {
         put(GENDER, gender);
         return this;
@@ -82,6 +86,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @param consentString {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withIABConsentString(@NonNull String consentString) {
         ext.put(Extension.CONSENT, consentString);
         return this;
@@ -93,6 +98,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @param didConsent {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withGDPRConsent(boolean didConsent) {
         ext.put(Extension.DID_CONSENT, didConsent ? 1 : 0);
         return this;

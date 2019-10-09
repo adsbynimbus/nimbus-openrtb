@@ -42,6 +42,7 @@ public class AndroidSource extends ArrayMap<String, Object> implements Source, S
      * @param partnerName {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public AndroidSource.Builder withOMSdkEnabled(@NonNull String partnerName, @NonNull String sdkVersion) {
         ext.put(Extension.OM_PARTNER_NAME, partnerName);
         ext.put(Extension.OM_SDK_VERSION, sdkVersion);

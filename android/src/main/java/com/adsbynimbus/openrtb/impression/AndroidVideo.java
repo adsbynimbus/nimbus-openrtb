@@ -22,9 +22,21 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidVideo extends ArrayMap<String, Object> implements Video, Video.Builder {
 
     @Retention(SOURCE)
-    @StringDef({BID_FLOOR, MIME_TYPES, MIN_DURATION, MAX_DURATION, PROTOCOLS, WIDTH, HEIGHT,
-        START_DELAY, SKIP, SKIP_MIN, SKIP_AFTER, MIN_BITRATE, MAX_BITRATE, POSITION, PLAYBACK_METHOD})
+    @StringDef({API, BID_FLOOR, DELIVERY, LINEARITY, MIME_TYPES, MIN_DURATION, MAX_DURATION, PLACEMENT, PROTOCOLS,
+        WIDTH, HEIGHT, START_DELAY, SKIP, SKIP_MIN, SKIP_AFTER, MIN_BITRATE, MAX_BITRATE, POSITION, PLAYBACK_METHOD})
     public @interface Values { }
+
+    @Retention(SOURCE)
+    @IntDef({STREAMING, PROGRESSIVE, DOWNLOAD})
+    public @interface DeliveryMethod { }
+
+    @Retention(SOURCE)
+    @IntDef({LINEAR, NON_LINEAR})
+    public @interface Linearity { }
+
+    @Retention(SOURCE)
+    @IntDef({IN_STREAM, IN_BANNER, IN_ARTICLE, IN_FEED, INTERSTITIAL_SLIDER_FLOATING})
+    public @interface Placement { }
 
     @Retention(SOURCE)
     @IntDef({VAST_2, VAST_2_WRAPPER, VAST_3, VAST_3_WRAPPER})
@@ -34,6 +46,10 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
     @IntDef({PAGE_LOAD_SOUND_ON, PAGE_LOAD_SOUND_OFF, CLICK_SOUND_ON, MOUSE_OVER_SOUND_ON,
         ENTER_VIEWPORT_SOUND_OFF, ENTER_VIEWPORT_SOUND_ON})
     public @interface PlaybackMethod { }
+
+    @Retention(SOURCE)
+    @IntDef({VPAID_1, VPAID_2, MRAID_1, ORMMA, MRAID_2, MRAID_3})
+    public @interface Apis { }
 
     @Nullable @Override
     public Object put(@Values String key, Object value) {
@@ -165,6 +181,54 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      */
     public Builder withPlaybackMethods(@PlaybackMethod int... playbackMethods) {
         put(PLAYBACK_METHOD, playbackMethods);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param placement {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withPlacement(@Placement int placement) {
+        put(PLACEMENT, placement);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param linearity {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withLinearity(@Linearity int linearity) {
+        put(LINEARITY, linearity);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param deliveryMethod {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withDeliveryMethod(@DeliveryMethod int... deliveryMethod) {
+        put(DELIVERY, deliveryMethod);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param apis {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withApis(int... apis) {
+        put(API, apis);
         return this;
     }
 }

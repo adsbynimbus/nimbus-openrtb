@@ -25,7 +25,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidBanner extends ArrayMap<String, Object> implements Banner, Banner.Builder {
 
     @Retention(SOURCE)
-    @StringDef({BID_FLOOR, FORMAT, WIDTH, HEIGHT, POSITION, MIME_TYPES, SUPPORTED_APIS})
+    @StringDef({BID_FLOOR, BLOCKED_ATTRIBUTES, FORMAT, WIDTH, HEIGHT, POSITION, MIME_TYPES, API})
     public @interface Values { }
 
     @Retention(SOURCE)
@@ -35,6 +35,13 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner, B
     @Retention(SOURCE)
     @IntDef({BANNER_300_50, BANNER_320_50, LEADERBOARD})
     public @interface BannerSize { }
+
+    @Retention(SOURCE)
+    @IntDef({AUDIO_AD_AUTO_PLAY, AUDIO_AD_USER_INITIATED, EXPANDABLE_AUTOMATIC, EXPANDABLE_USER_CLICK,
+        EXPANDABLE_USER_ROLLOVER, BANNER_VIDEO_AUTO_PLAY, BANNER_VIDEO_USER_INITIATED, HAS_POPUP,
+        PROVOCATIVE_OR_SUGGESTIVE, EXTREME_ANIMATION, SURVEYS, TEXT_ONLY, USER_INTERACTIVE_AND_GAMES,
+        DIALOG_OR_ALERT_STYLE, HAS_VOLUME_TOGGLE, HAS_SKIP_BUTTON, ADOBE_FLASH})
+    public @interface CreativeAttributes { }
 
     @Nullable @Override
     public Object put(@Values String key, Object value) {
@@ -80,18 +87,6 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner, B
     /**
      * {@inheritDoc}
      *
-     * @param mimeTypes {@inheritDoc}
-     * @return {@inheritDoc}
-     */
-    @Override
-    public Builder withMimes(String... mimeTypes) {
-        put(MIME_TYPES, mimeTypes);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
      * @param bidFloor {@inheritDoc}
      * @return {@inheritDoc}
      */
@@ -109,7 +104,19 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner, B
      */
     @Override
     public Builder withSupportedApis(@SupportedApis int... apis) {
-        put(SUPPORTED_APIS, apis);
+        put(API, apis);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param attributes {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withBlockedAttributes(@CreativeAttributes int... attributes) {
+        put(BLOCKED_ATTRIBUTES, attributes);
         return this;
     }
 }

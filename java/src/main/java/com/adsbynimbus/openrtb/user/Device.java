@@ -16,13 +16,17 @@ public interface Device {
     int CELLULAR_4G = 6;
 
     String USER_AGENT = "ua";
-    String GEO = "geo"; //GEO object
+    String GEO = "geo"; // geo object
+    String DO_NOT_TRACK = "dnt";
+    String LIMIT_AD_TRACKING = "lmt";
     String IP_ADDRESS = "ip";
     String DEVICE_TYPE = "devicetype";
     String MAKE = "make";
     String MODEL = "model";
     String OS = "os";
     String OS_VERSION = "osv";
+    String LANGUAGE = "language";
+    String CARRIER = "carrier";
     String CONNECTION_TYPE = "connectiontype"; //Integer
     String ADVERTISING_ID = "ifa";
 
@@ -30,6 +34,22 @@ public interface Device {
      * Builder for constructing a {@link Device} object
      */
     interface Builder {
+
+        /**
+         * Sets the limit ad tracking and do not track flags
+         *
+         * @return this builder instance
+         */
+        Builder withLimitedAdTracking();
+
+        /**
+         * Set the physical device size of the screen
+         *
+         * @param width physical width of the screen in pixels
+         * @param height physical height of the screen in pixels
+         * @return this builder instance
+         */
+        Builder withPhysicalDeviceSize(int width, int height);
 
         /**
          * Sets the user agent
@@ -56,10 +76,26 @@ public interface Device {
         Builder withIpAddress(String ipAddress);
 
         /**
+         * Sets the device language
+         *
+         * @param language
+         * @return this builder instance
+         */
+        Builder withLanguage(String language);
+
+        /**
+         * Sets the device carrier
+         *
+         * @param carrier
+         * @return this builder instance
+         */
+        Builder withCarrier(String carrier);
+
+        /**
          * Set the connection type type
          *
          * @param connectionType
-         * @return {@link Builder}
+         * @return this builder instance
          */
         Builder withConnectionType(int connectionType);
 
@@ -70,6 +106,38 @@ public interface Device {
          * @return this builder instance
          */
         Builder withAdvertisingId(String advertisingId);
+
+        /**
+         * Set the device manufacturer name
+         *
+         * @param make
+         * @return this builder instance
+         */
+        Builder withManufacturer(String make);
+
+        /**
+         * Set the device model name
+         *
+         * @param model
+         * @return this builder instance
+         */
+        Builder withModelName(String model);
+
+        /**
+         * Set the operating system name
+         *
+         * @param os
+         * @return this builder instance
+         */
+        Builder withOsName(String os);
+
+        /**
+         * Set the operating system version
+         *
+         * @param osVersion
+         * @return this builder instance
+         */
+        Builder withOsVersion(String osVersion);
     }
 
     /**
@@ -78,12 +146,18 @@ public interface Device {
     class MutableDevice implements Device {
         public String ua;
         public Geo geo;
+        public int dnt;
+        public int lmt;
         public String ip;
         public Integer devicetype;
         public String make;
         public String model;
         public String os;
         public String osv;
+        public int h;
+        public int w;
+        public String language;
+        public String carrier;
         public Integer connectiontype;
         public String ifa;
     }

@@ -15,13 +15,12 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidGeo extends ArrayMap<String, Object> implements Geo, Geo.Builder {
 
     @Retention(SOURCE)
-    @StringDef({LATITUDE, LONGITUDE, TYPE, ACCURACY, COUNTRY, CITY})
+    @StringDef({LATITUDE, LONGITUDE, TYPE, ACCURACY, COUNTRY, CITY, METRO, STATE})
     public @interface Values { }
 
     @Retention(SOURCE)
     @IntDef({GPS, IP_LOOKUP, USER_PROVIDED})
     public @interface LocationType { }
-
 
     /**
      * {@inheritDoc}
@@ -29,7 +28,8 @@ public class AndroidGeo extends ArrayMap<String, Object> implements Geo, Geo.Bui
      * @param latitude {@inheritDoc}
      * @return {@inheritDoc}
      */
-    public Builder forLatitude(float latitude) {
+    @Override
+    public Builder withLatitude(float latitude) {
         put(LATITUDE, latitude);
         return this;
     }
@@ -40,7 +40,8 @@ public class AndroidGeo extends ArrayMap<String, Object> implements Geo, Geo.Bui
      * @param countryCode {@inheritDoc}
      * @return {@inheritDoc}
      */
-    public Builder forCountry(@NonNull String countryCode) {
+    @Override
+    public Builder withCountry(@NonNull String countryCode) {
         put(COUNTRY, countryCode);
         return this;
     }
@@ -51,6 +52,7 @@ public class AndroidGeo extends ArrayMap<String, Object> implements Geo, Geo.Bui
      * @param longitude {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withLongitude(float longitude) {
         put(LONGITUDE, longitude);
         return this;
@@ -62,6 +64,7 @@ public class AndroidGeo extends ArrayMap<String, Object> implements Geo, Geo.Bui
      * @param accuracy {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withAccuracy(int accuracy) {
         put(ACCURACY, accuracy);
         return this;
@@ -73,6 +76,7 @@ public class AndroidGeo extends ArrayMap<String, Object> implements Geo, Geo.Bui
      * @param locationType {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withLocationType(@LocationType int locationType) {
         put(TYPE, locationType);
         return this;
@@ -84,8 +88,33 @@ public class AndroidGeo extends ArrayMap<String, Object> implements Geo, Geo.Bui
      * @param city {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withCity(@NonNull String city) {
         put(CITY, city);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param metro {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withMetro(String metro) {
+        put(METRO, metro);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param state {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withState(String state) {
+        put(STATE, state);
         return this;
     }
 }

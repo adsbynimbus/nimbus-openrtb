@@ -13,11 +13,7 @@ package com.adsbynimbus.openrtb.impression;
  */
 public interface Banner extends Creative {
 
-    /* Supported APIS [See OpenRTB 2.5 Section 5.6] */
-    int VPAID_2 = 2;
-    int MRAID_1 = 3;
-    int MRAID_2 = 5;
-    int MRAID_3 = 6;
+    String BLOCKED_ATTRIBUTES = "battr";
 
     /**
      * Builder for constructing a {@link Banner} object
@@ -50,14 +46,6 @@ public interface Banner extends Creative {
         Builder withPosition(int position);
 
         /**
-         * Set the requested mimeTypes. Server default is "text/html"
-         *
-         * @param mimeTypes
-         * @return this builder instance
-         */
-        Builder withMimes(String... mimeTypes);
-
-        /**
          * Set the bid floor. [Default 2.0]
          *
          * @param bidFloor
@@ -72,6 +60,14 @@ public interface Banner extends Creative {
          * @return this builder instance
          */
         Builder withSupportedApis(int...apis);
+
+        /**
+         * Set blocked creative attributes
+         *
+         * @param attributes
+         * @return this builder instance
+         */
+        Builder withBlockedAttributes(int... attributes);
     }
 
     /**
@@ -83,7 +79,6 @@ public interface Banner extends Creative {
         public Integer w;
         public Integer h;
         public Integer pos;
-        public String[] mimes;
         public int[] api;
     }
 }

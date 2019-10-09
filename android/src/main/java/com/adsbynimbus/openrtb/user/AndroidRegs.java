@@ -45,6 +45,7 @@ public class AndroidRegs extends ArrayMap<String, Object> implements Regs, Regs.
      * @param didConsent {@inheritDoc}
      * @return {@inheritDoc}
      */
+    @Override
     public Builder withGDPRConsent(boolean didConsent) {
         ext.put(Extension.GDPR_CONSENT, didConsent ? 1 : 0);
         return this;

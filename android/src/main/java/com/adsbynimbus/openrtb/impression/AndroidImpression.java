@@ -10,6 +10,7 @@ import java.lang.annotation.Retention;
 import java.util.List;
 
 import static com.adsbynimbus.openrtb.BidRequest.EXTENSION;
+import static com.adsbynimbus.openrtb.BidRequest.ID;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
@@ -18,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidImpression extends ArrayMap<String, Object> implements Impression, Impression.Builder {
 
     @Retention(SOURCE)
-    @StringDef({BANNER, VIDEO, DISPLAY_MANAGER, DISPLAY_MANAGER_SERVER, INTERSTITIAL, BID_FLOOR, REQUIRE_HTTPS})
+    @StringDef({ID, BANNER, VIDEO, INTERSTITIAL, BID_FLOOR, REQUIRE_HTTPS})
     public @interface Values { }
 
     @Retention(SOURCE)
@@ -48,6 +49,17 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
         put(EXTENSION, ext);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param id {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withId(String id) {
+        put(ID, id);
+        return this;
+    }
 
     /**
      * {@inheritDoc}

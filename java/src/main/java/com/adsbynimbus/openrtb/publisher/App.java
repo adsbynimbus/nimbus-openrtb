@@ -12,8 +12,11 @@ public interface App {
 
     String BUNDLE = "bundle";
     String STORE_URL = "storeurl";
+    String PAGE_CATEGORIES = "pagecat";
     String PAID = "paid"; //Integer
+    String PRIVACY_POLICY = "privacypolicy";
     String PUBLISHER = "publisher";
+    String SECTION_CATEGORIES = "sectioncat";
     String VERSION = "ver";
 
     /**
@@ -54,12 +57,12 @@ public interface App {
         Builder withStoreUrl(String storeUrl);
 
         /**
-         * Set categories
+         * Set content categories
          *
          * @param categories
          * @return this builder instance
          */
-        Builder withCategories(String... categories);
+        Builder withContentCategories(String... categories);
 
         /**
          * Set if the app is paid or not
@@ -76,6 +79,38 @@ public interface App {
          * @return this builder instance
          */
         Builder withPublisher(Publisher publisher);
+
+        /**
+         * Set page categories
+         *
+         * @param pageCategories
+         * @return this builder instance
+         */
+        Builder withPageCategories(String... pageCategories);
+
+        /**
+         * Set section categories
+         *
+         * @param sectionCategories
+         * @return this builder instance
+         */
+        Builder withSectionCategories(String... sectionCategories);
+
+        /**
+         * Include privacy policy information
+         *
+         * @param privacyPolicy 0: no policy; 1: policy
+         * @return this builder instance
+         */
+        Builder withPrivacyPolicy(int privacyPolicy);
+
+        /**
+         * Include the app version
+         *
+         * @param version
+         * @return this builder instance
+         */
+        Builder withVersion(String version);
     }
 
     /**
@@ -87,7 +122,10 @@ public interface App {
         public String domain;
         public String storeurl;
         public String[] cat;
+        public String[] sectioncat;
+        public String[] pagecat;
         public String ver;
+        public Integer privacypolicy;
         public Integer paid;
         public String publisher;
     }

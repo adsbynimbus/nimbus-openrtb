@@ -15,8 +15,6 @@ public interface Impression extends Creative {
 
     String BANNER = "banner"; // Banner
     String VIDEO = "video"; // Video
-    String DISPLAY_MANAGER = "displaymanager";
-    String DISPLAY_MANAGER_SERVER = "displaymanagerserver";
     String INTERSTITIAL = "instl"; //int (default 0; 0 = not interstitial, 1 = interstitial or full screen)
     String REQUIRE_HTTPS = "secure"; //int (default: 1, 0 = not secure, 1 = require https)
 
@@ -34,6 +32,14 @@ public interface Impression extends Creative {
      * Builder for constructing a {@link Impression} object
      */
     interface Builder  {
+
+        /**
+         * Set the id of the impression
+         *
+         * @param id an optional identifier
+         * @return this builder instance
+         */
+        Builder withId(String id);
 
         /**
          * Include a {@link Banner} in the impression auction
@@ -94,10 +100,9 @@ public interface Impression extends Creative {
      * Definition of {@link Impression} with all public mutable fields
      */
     class MutableImpression implements Impression {
+        public String id;
         public Banner banner;
         public Video video;
-        public String displaymanager;
-        public String displaymanagerserver;
         public Integer instl; // Server default 0
         public Float bidfloor; // Server default 1.0
         public Integer secure; // Server default 1
