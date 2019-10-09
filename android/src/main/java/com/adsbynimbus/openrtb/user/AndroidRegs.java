@@ -1,74 +1,52 @@
 package com.adsbynimbus.openrtb.user;
 
-import android.util.Log;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
 
 import java.lang.annotation.Retention;
-import java.util.Map;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
-public class AndroidRegs extends ArrayMap<String, Object> implements Regs {
+/**
+ * {@link ArrayMap} implementation of {@link Regs} for convenient building and serialization
+ */
+public class AndroidRegs extends ArrayMap<String, Object> implements Regs, Regs.Builder {
 
     @Retention(SOURCE)
-    @StringDef({COPPA, GDPR_CONSENT})
+    @StringDef({COPPA, Extension.GDPR_CONSENT})
     public @interface Values { }
 
-    public static class Builder implements Regs.Builder {
+    public final ArrayMap<String, Object> ext = new ArrayMap<>(1);
 
-        protected final AndroidRegs values = new AndroidRegs();
-        protected ArrayMap<String, Object> ext;
-
-        @Override
-        public AndroidRegs build() {
-            return values;
+    @Nullable @Override
+    public Object put(@Values String key, Object value) {
+        if (Extension.GDPR_CONSENT.equals(key)) {
+            return ext.put(key, value);
         }
+        return super.put(key, value);
+    }
 
-        @Override
-        public Map<String, Object> getValues() {
-            return values;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param isCOPPA {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder setCOPPA(boolean isCOPPA) {
+        put(COPPA, isCOPPA ? 1 : 0);
+        return this;
+    }
 
-        /**
-         * Manually set a value on the builder object
-         *
-         * @param property - {@link Values}
-         * @param value    - {@link Object}
-         * @return {@link Builder}
-         */
-        public Builder setValue(@Values String property, Object value) {
-            values.put(property, value);
-            return this;
-        }
-
-        /**
-         * Set the COPPA to true
-         *
-         * @return {@link Builder}
-         */
-        public Builder forCOPPA() {
-            values.put(COPPA, 1);
-            return this;
-        }
-
-        /**
-         * Set the GDPR consent flag
-         *
-         * @param didConsent - boolean: true if did consent
-         * @return {@link Builder}
-         */
-        public Builder withGDPRConsent(boolean didConsent) {
-            if (didConsent) {
-                if (ext == null) {
-                    ext = new ArrayMap<>(1);
-                }
-                ext.put(GDPR_CONSENT, 1);
-            } else {
-                // Omit gdpr_consent = 0 (default)
-                Log.d(AndroidRegs.Builder.class.getName(), String.format(OMIT_FORMAT, GDPR_CONSENT, '=', 0));
-            }
-            return this;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param didConsent {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    public Builder withGDPRConsent(boolean didConsent) {
+        ext.put(Extension.GDPR_CONSENT, didConsent ? 1 : 0);
+        return this;
     }
 }

@@ -6,11 +6,13 @@ import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
 
 import java.lang.annotation.Retention;
-import java.util.Map;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
-public class AndroidGeo extends ArrayMap<String, Object> implements Geo {
+/**
+ * {@link ArrayMap} implementation of {@link Geo} for convenient building and serialization
+ */
+public class AndroidGeo extends ArrayMap<String, Object> implements Geo, Geo.Builder {
 
     @Retention(SOURCE)
     @StringDef({LATITUDE, LONGITUDE, TYPE, ACCURACY, COUNTRY, CITY})
@@ -20,96 +22,70 @@ public class AndroidGeo extends ArrayMap<String, Object> implements Geo {
     @IntDef({GPS, IP_LOOKUP, USER_PROVIDED})
     public @interface LocationType { }
 
-    public static class Builder implements Geo.Builder {
 
-        protected final AndroidGeo values = new AndroidGeo();
+    /**
+     * {@inheritDoc}
+     *
+     * @param latitude {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    public Builder forLatitude(float latitude) {
+        put(LATITUDE, latitude);
+        return this;
+    }
 
-        @Override
-        public AndroidGeo build() {
-            return values;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param countryCode {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    public Builder forCountry(@NonNull String countryCode) {
+        put(COUNTRY, countryCode);
+        return this;
+    }
 
-        @Override
-        public Map<String, Object> getValues() {
-            return values;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param longitude {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    public Builder withLongitude(float longitude) {
+        put(LONGITUDE, longitude);
+        return this;
+    }
 
-        /**
-         * Manually set a value on the builder object
-         *
-         * @param property - {@link Values}
-         * @param value    - {@link Object}
-         * @return {@link Builder}
-         */
-        public Builder setValue(@Values String property, Object value) {
-            values.put(property, value);
-            return this;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param accuracy {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    public Builder withAccuracy(int accuracy) {
+        put(ACCURACY, accuracy);
+        return this;
+    }
 
-        /**
-         * Set the latitude and accuracy
-         *
-         * @param latitude - float
-         * @return {@link Builder}
-         */
-        public Builder forLatitude(float latitude) {
-            values.put(LATITUDE, latitude);
-            return this;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param locationType {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    public Builder withLocationType(@LocationType int locationType) {
+        put(TYPE, locationType);
+        return this;
+    }
 
-        /**
-         * Set the country
-         *
-         * @param countryCode - {@link String}
-         * @return {@link Builder}
-         */
-        public Builder forCountry(@NonNull String countryCode) {
-            values.put(COUNTRY, countryCode);
-            return this;
-        }
-
-        /**
-         * Set the longitude
-         *
-         * @param longitude - float
-         * @return {@link Builder}
-         */
-        public Builder withLongitude(float longitude) {
-            values.put(LONGITUDE, longitude);
-            return this;
-        }
-
-        /**
-         * Set the accuracy of the location data as reported by the device
-         *
-         * @param accuracy - int
-         * @return {@link Builder}
-         */
-        public Builder withAccuracy(int accuracy) {
-            values.put(ACCURACY, accuracy);
-            return this;
-        }
-
-        /**
-         * Set the location type
-         *
-         * @param locationType - {@link LocationType} [GPS, IP_LOOKUP, USER_PROVIDED]
-         * @return {@link Builder}
-         */
-        public Builder withLocationType(@LocationType int locationType) {
-            values.put(TYPE, locationType);
-            return this;
-        }
-
-        /**
-         * Set the city
-         *
-         * @param city - {@link String}
-         * @return {@link Builder}
-         */
-        public Builder withCity(@NonNull String city) {
-            values.put(CITY, city);
-            return this;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param city {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    public Builder withCity(@NonNull String city) {
+        put(CITY, city);
+        return this;
     }
 }

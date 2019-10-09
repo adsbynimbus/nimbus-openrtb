@@ -1,63 +1,50 @@
 package com.adsbynimbus.openrtb.user;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
 
 import java.lang.annotation.Retention;
-import java.util.Map;
 
+import static com.adsbynimbus.openrtb.BidRequest.EXTENSION;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
-public class AndroidSource extends ArrayMap<String, Object> implements Source {
+/**
+ * {@link ArrayMap} implementation of {@link Source} for convenient building and serialization
+ */
+public class AndroidSource extends ArrayMap<String, Object> implements Source, Source.Builder {
 
     @Retention(SOURCE)
-    @StringDef({OM_PARTNER_NAME, OM_SDK_VERSION})
+    @StringDef({EXTENSION, Extension.OM_PARTNER_NAME, Extension.OM_SDK_VERSION})
     public @interface Values { }
 
-    public static class Builder implements Source.Builder {
+    public final ArrayMap<String, Object> ext = new ArrayMap<>(2);
 
-        protected final AndroidSource values = new AndroidSource();
-        protected ArrayMap<String, Object> ext;
-
-        @Override
-        public AndroidSource build() {
-            return values;
+    @Nullable @Override
+    public Object put(@Values String key, Object value) {
+        if (Extension.OM_PARTNER_NAME.equals(key) || Extension.OM_SDK_VERSION.equals(key)) {
+            return ext.put(key, value);
         }
+        return super.put(key, value);
+    }
 
-        @Override
-        public Map<String, Object> getValues() {
-            return values;
+    public AndroidSource build() {
+        if (!ext.isEmpty()) {
+            put(EXTENSION, ext);
         }
+        return this;
+    }
 
-        /**
-         * Manually set a value on the builder object
-         *
-         * @param property - {@link AndroidRegs.Values}
-         * @param value    - {@link Object}
-         * @return {@link AndroidRegs.Builder}
-         */
-        public AndroidSource.Builder setValue(@AndroidRegs.Values String property, Object value) {
-            values.put(property, value);
-            return this;
-        }
-
-        /**
-         * Set the OM SDK information for a measurement enabled app
-         *
-         * @param partnerName - String: should match the partner name field from OM
-         * @return {@link AndroidSource.Builder}
-         */
-        public AndroidSource.Builder withOMSdkEnabled(@NonNull String partnerName,
-                @NonNull String sdkVersion) {
-            if (ext == null) {
-                ext = new ArrayMap<>(2);
-            }
-            ext.put(OM_PARTNER_NAME, partnerName);
-            ext.put(OM_SDK_VERSION, sdkVersion);
-            return this;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param partnerName {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    public AndroidSource.Builder withOMSdkEnabled(@NonNull String partnerName, @NonNull String sdkVersion) {
+        ext.put(Extension.OM_PARTNER_NAME, partnerName);
+        ext.put(Extension.OM_SDK_VERSION, sdkVersion);
+        return this;
     }
 }

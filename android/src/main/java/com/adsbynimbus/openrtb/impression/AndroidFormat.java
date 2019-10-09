@@ -13,7 +13,7 @@ import java.lang.annotation.Retention;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * Android implementation of a Nimbus OpenRTB size
+ * Android implementation of {@link Format}
  */
 public class AndroidFormat implements Format {
 
@@ -35,26 +35,6 @@ public class AndroidFormat implements Format {
     public AndroidFormat(int width, int height) {
         this.w = width;
         this.h = height;
-    }
-
-    /**
-     * Return the width. Marked with deprecated to discourage use over field access.
-     *
-     * @return "w" value
-     */
-    @Override @Deprecated
-    public int getWidth() {
-        return w;
-    }
-
-    /**
-     * Return the height. Marked with deprecated to discourage use over field access.
-     *
-     * @return "h" value
-     */
-    @Override @Deprecated
-    public int getHeight() {
-        return h;
     }
 
     /**

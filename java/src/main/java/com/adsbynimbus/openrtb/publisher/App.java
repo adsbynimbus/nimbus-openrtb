@@ -32,10 +32,10 @@ public interface App {
         /**
          * Set the bundle id
          *
-         * @param bundleId
+         * @param bundle
          * @return this builder instance
          */
-        Builder withBundleId(String bundleId);
+        Builder withBundle(String bundle);
 
         /**
          * Set the domain name of the app

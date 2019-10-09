@@ -1,16 +1,15 @@
 package com.adsbynimbus.openrtb.impression;
 
-import android.util.Log;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
 
 import com.adsbynimbus.openrtb.impression.AndroidImpression.Position;
 
 import java.lang.annotation.Retention;
-import java.util.Map;
 
 import static com.adsbynimbus.openrtb.impression.Format.BANNER_300_50;
 import static com.adsbynimbus.openrtb.impression.Format.BANNER_320_50;
@@ -21,9 +20,9 @@ import static com.adsbynimbus.openrtb.impression.Format.WIDTH;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * Android implementation of a Nimbus OpenRTB {@link Banner} impression
+ * {@link ArrayMap} implementation of {@link Banner} for convenient building and serialization
  */
-public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
+public class AndroidBanner extends ArrayMap<String, Object> implements Banner, Banner.Builder {
 
     @Retention(SOURCE)
     @StringDef({BID_FLOOR, FORMAT, WIDTH, HEIGHT, POSITION, MIME_TYPES, SUPPORTED_APIS})
@@ -37,119 +36,80 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner {
     @IntDef({BANNER_300_50, BANNER_320_50, LEADERBOARD})
     public @interface BannerSize { }
 
+    @Nullable @Override
+    public Object put(@Values String key, Object value) {
+        return super.put(key, value);
+    }
+
     /**
-     * Builder for {@link AndroidBanner}
+     * {@inheritDoc}
+     *
+     * @param formats {@inheritDoc}
+     * @return {@inheritDoc}
      */
-    public static class Builder implements Banner.Builder {
+    @Override
+    public Builder withFormats(@NonNull Format... formats) {
+        put(FORMAT, formats);
+        return this;
+    }
 
-        protected final AndroidBanner values;
+    /**
+     * {@inheritDoc}
+     *
+     * @param width {@inheritDoc}
+     * @param height {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withDeviceIndependentSize(int width, int height) {
+        return null;
+    }
 
-        public Builder() {
-            values = new AndroidBanner();
-            if (INCLUDE_DEFAULTS.get()) {
-                values.put(POSITION, FULL_SCREEN);
-                values.put(BID_FLOOR, 2f);
-            }
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param position {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withPosition(@Position int position) {
+        put(POSITION, position);
+        return this;
+    }
 
-        @Override
-        public AndroidBanner build() {
-            return values;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param mimeTypes {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withMimes(String... mimeTypes) {
+        put(MIME_TYPES, mimeTypes);
+        return this;
+    }
 
-        @Override
-        public Map<String, Object> getValues() {
-            return values;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param bidFloor {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withBidFloor(@FloatRange(from = 0) float bidFloor) {
+        put(BID_FLOOR, bidFloor);
+        return this;
+    }
 
-        /**
-         * Manually set a value on the builder object
-         *
-         * @param property - {@link Values}
-         * @param value - {@link Object}
-         *
-         * @return {@link Builder}
-         */
-        public Builder setValue(@Values String property, Object value) {
-            values.put(property, value);
-            return this;
-        }
-
-        /**
-         * Set the requested formats of the ad. The item at index 0 is used for the W and H parameter of the request;
-         * the first 5 items in the array (indices 0 - 4) are prioritized by demand partners.
-         *
-         * @param formats    - An array of supported {@link AndroidFormat}
-         * @return {@link Builder}
-         */
-        public Builder withFormats(@NonNull AndroidFormat... formats) {
-            if (formats.length > 0) {
-                if (formats.length > 1) {
-                    values.put(FORMAT, formats);
-                }
-                values.put(WIDTH, formats[0].w);
-                values.put(HEIGHT, formats[0].h);
-            }
-            return this;
-        }
-
-        /**
-         * Set the position of the Ad Unit.
-         *
-         * @param position - position
-         * @return {@link Builder}
-         */
-        public Builder withPosition(@Position int position) {
-            values.put(POSITION, position);
-            return this;
-        }
-
-        /**
-         * Set the requested mimeTypes. Server default is "text/html"
-         *
-         * @param mimeTypes - {@link String[]}
-         * @return {@link Builder}
-         */
-        public Builder withMimes(String... mimeTypes) {
-            values.put(MIME_TYPES, mimeTypes);
-            return this;
-        }
-
-        /**
-         * Set the bid floor. [Default 2.0]
-         *
-         * @param bidFloor - bid floor
-         * @return {@link Builder}
-         */
-        public Builder withBidFloor(@FloatRange(from = 0) float bidFloor) {
-            if (INCLUDE_DEFAULTS.get()) {
-                values.put(BID_FLOOR, bidFloor);
-                return this;
-            }
-
-            if (bidFloor >= 0) {
-                if ((int) bidFloor != 2) {
-                    values.put(BID_FLOOR, bidFloor);
-                } else {
-                    // Omit bidFloor == 2 (default)
-                    Log.d(AndroidBanner.Builder.class.getName(), String.format(OMIT_FORMAT, BID_FLOOR, '=', 2));
-                }
-            } else {
-                //Omit bidFloor < 0 (invalid)
-                Log.d(AndroidBanner.Builder.class.getName(), String.format(OMIT_FORMAT, BID_FLOOR, '<', 0));
-            }
-            return this;
-        }
-
-        /**
-         * Set the supported creative types
-         *
-         * @param apis - {@link SupportedApis} [VPAID_2, MRAID_1, MRAID_2, MRAID_3]
-         * @return {@link Builder}
-         */
-        public Builder withSupportedApis(@SupportedApis int...apis) {
-            values.put(SUPPORTED_APIS, apis);
-            return this;
-        }
+    /**
+     * {@inheritDoc}
+     *
+     * @param apis {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withSupportedApis(@SupportedApis int... apis) {
+        put(SUPPORTED_APIS, apis);
+        return this;
     }
 }

@@ -33,6 +33,15 @@ public interface Banner extends Creative {
         Builder withFormats(Format... formats);
 
         /**
+         * Set the device size in pixels independent of density
+         *
+         * @param width
+         * @param height
+         * @return this builder instance
+         */
+        Builder withDeviceIndependentSize(int width, int height);
+
+        /**
          * Set the position of the Ad Unit.
          *
          * @param position
