@@ -22,7 +22,6 @@ type ImpExt struct {
 	APS           []APS  `json:"aps,omitempty"             valid:"optional"`
 	FacebookAppID string `json:"facebook_app_id,omitempty" valid:"optional"` // needed for pubs that have FB hybrid SDK solution in thier stack
 	Position      string `json:"position,omitempty"        valid:"required"` // flexible optional field for publishers to track on ad position performance
-	Viewability   int    `json:"viewability,omitempty"     valid:"range(0|100),optional"`
 }
 
 // MarshalJSONObject implements MarshalerJSONObject
@@ -104,7 +103,6 @@ func (e *ImpExt) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.ArrayKeyOmitEmpty("aps", aPSSlice)
 	enc.StringKeyOmitEmpty("facebook_app_id", e.FacebookAppID)
 	enc.StringKeyOmitEmpty("position", e.Position)
-	enc.IntKeyOmitEmpty("viewability", e.Viewability)
 }
 
 // IsNil checks if instance is nil
@@ -129,9 +127,6 @@ func (e *ImpExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	case "position":
 		return dec.String(&e.Position)
-
-	case "viewability":
-		return dec.Int(&e.Viewability)
 
 	}
 	return nil
