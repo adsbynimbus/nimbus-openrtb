@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb.targeting.user;
+package com.adsbynimbus.openrtb.targeting;
 
 /**
  * This object contains any legal, governmental, or industry regulations that apply to the request. The

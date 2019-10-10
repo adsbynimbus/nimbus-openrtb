@@ -11,9 +11,9 @@ import static com.adsbynimbus.openrtb.BidRequest.EXTENSION;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * {@link ArrayMap} implementation of {@link com.adsbynimbus.openrtb.targeting.user.User} for convenient building and serialization
+ * {@link ArrayMap} implementation of {@link User} for convenient building and serialization
  */
-public class AndroidUser extends ArrayMap<String, Object> implements com.adsbynimbus.openrtb.targeting.user.User, User.Builder {
+public class AndroidUser extends ArrayMap<String, Object> implements User, User.Builder {
 
     @Retention(SOURCE)
     @StringDef({AGE, YEAR_OF_BIRTH, BUYER_UID, GENDER, Extension.CONSENT, Extension.DID_CONSENT})

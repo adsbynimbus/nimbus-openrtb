@@ -6,10 +6,6 @@ package com.adsbynimbus.openrtb.targeting.distribution;
  */
 public interface Publisher {
 
-    String NAME = "name";
-    String DOMAIN = "domain";
-    String CONTENT_CATEGORIES = "cat"; // String[]
-
     /**
      * Builder for constructing a {@link Publisher} object
      */

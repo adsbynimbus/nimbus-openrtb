@@ -1,19 +1,19 @@
-package com.adsbynimbus.openrtb.targeting.user;
+package com.adsbynimbus.openrtb.targeting;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
 
-import com.adsbynimbus.openrtb.targeting.user.Regs;
+import com.adsbynimbus.openrtb.targeting.Regs;
 
 import java.lang.annotation.Retention;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * {@link ArrayMap} implementation of {@link com.adsbynimbus.openrtb.targeting.user.Regs} for convenient building and serialization
+ * {@link ArrayMap} implementation of {@link Regs} for convenient building and serialization
  */
-public class AndroidRegs extends ArrayMap<String, Object> implements com.adsbynimbus.openrtb.targeting.user.Regs, Regs.Builder {
+public class AndroidRegs extends ArrayMap<String, Object> implements Regs, Regs.Builder {
 
     @Retention(SOURCE)
     @StringDef({COPPA, Extension.GDPR_CONSENT})

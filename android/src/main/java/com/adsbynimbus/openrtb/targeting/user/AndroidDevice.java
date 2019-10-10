@@ -22,9 +22,9 @@ import static com.adsbynimbus.openrtb.impression.Format.WIDTH;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * {@link ArrayMap} implementation of {@link com.adsbynimbus.openrtb.targeting.user.Device} for convenient building and serialization
+ * {@link ArrayMap} implementation of {@link Device} for convenient building and serialization
  */
-public class AndroidDevice extends ArrayMap<String, Object> implements com.adsbynimbus.openrtb.targeting.user.Device, Device.Builder {
+public class AndroidDevice extends ArrayMap<String, Object> implements Device, Device.Builder {
 
     public static final String ANDROID = "android";
 

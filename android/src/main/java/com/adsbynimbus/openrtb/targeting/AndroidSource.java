@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb.targeting.user;
+package com.adsbynimbus.openrtb.targeting;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,9 +11,9 @@ import static com.adsbynimbus.openrtb.BidRequest.EXTENSION;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * {@link ArrayMap} implementation of {@link com.adsbynimbus.openrtb.targeting.user.Source} for convenient building and serialization
+ * {@link ArrayMap} implementation of {@link Source} for convenient building and serialization
  */
-public class AndroidSource extends ArrayMap<String, Object> implements com.adsbynimbus.openrtb.targeting.user.Source, Source.Builder {
+public class AndroidSource extends ArrayMap<String, Object> implements Source, Source.Builder {
 
     @Retention(SOURCE)
     @StringDef({EXTENSION, Extension.OM_PARTNER_NAME, Extension.OM_SDK_VERSION})

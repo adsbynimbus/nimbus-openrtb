@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.targeting.distribution;
 
+import com.adsbynimbus.openrtb.targeting.Data;
+
 /**
  * This object should be included if the ad supported content is a non-browser application (typically in
  * mobile) as opposed to a website. A bid request must not contain both an App and a Site object. At a
@@ -10,6 +12,9 @@ public interface App {
     int FREE_APP = 0;
     int PAID_APP = 1;
 
+    String NAME = Data.NAME;
+    String DOMAIN = "domain";
+    String CONTENT_CATEGORIES = "cat"; // String[]
     String BUNDLE = "bundle";
     String STORE_URL = "storeurl";
     String PAGE_CATEGORIES = "pagecat";

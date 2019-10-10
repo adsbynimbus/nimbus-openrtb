@@ -12,9 +12,9 @@ import java.lang.annotation.Retention;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * {@link ArrayMap} implementation of {@link com.adsbynimbus.openrtb.targeting.user.Geo} for convenient building and serialization
+ * {@link ArrayMap} implementation of {@link Geo} for convenient building and serialization
  */
-public class AndroidGeo extends ArrayMap<String, Object> implements com.adsbynimbus.openrtb.targeting.user.Geo, Geo.Builder {
+public class AndroidGeo extends ArrayMap<String, Object> implements Geo, Geo.Builder {
 
     @Retention(SOURCE)
     @StringDef({LATITUDE, LONGITUDE, TYPE, ACCURACY, COUNTRY, CITY, METRO, STATE})

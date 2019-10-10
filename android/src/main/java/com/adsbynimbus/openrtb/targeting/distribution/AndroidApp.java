@@ -16,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidApp extends ArrayMap<String, Object> implements App, App.Builder {
 
     @Retention(SOURCE)
-    @StringDef({Publisher.NAME, Publisher.DOMAIN, Publisher.CONTENT_CATEGORIES, BUNDLE, STORE_URL, PAGE_CATEGORIES, PAID, PRIVACY_POLICY, PUBLISHER,
+    @StringDef({NAME, DOMAIN, CONTENT_CATEGORIES, BUNDLE, STORE_URL, PAGE_CATEGORIES, PAID, PRIVACY_POLICY, PUBLISHER,
         SECTION_CATEGORIES, VERSION})
     public @interface Values { }
 
@@ -27,9 +27,9 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
     public AndroidApp build() {
         if (!containsKey(PUBLISHER)) {
             final AndroidPublisher publisher = new AndroidPublisher();
-            publisher.put(Publisher.NAME, get(Publisher.NAME));
-            publisher.put(Publisher.DOMAIN, get(Publisher.DOMAIN));
-            publisher.put(Publisher.CONTENT_CATEGORIES, get(Publisher.CONTENT_CATEGORIES));
+            publisher.put(NAME, get(NAME));
+            publisher.put(DOMAIN, get(DOMAIN));
+            publisher.put(CONTENT_CATEGORIES, get(CONTENT_CATEGORIES));
             put(PUBLISHER, publisher);
         }
         return this;
@@ -48,7 +48,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      */
     @Override
     public Builder withName(String name) {
-        put(Publisher.NAME, name);
+        put(NAME, name);
         return this;
     }
 
@@ -72,7 +72,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      */
     @Override
     public Builder withDomain(String domain) {
-        put(Publisher.DOMAIN, domain);
+        put(DOMAIN, domain);
         return this;
     }
 
@@ -96,7 +96,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      */
     @Override
     public Builder withContentCategories(String... categories) {
-        put(Publisher.CONTENT_CATEGORIES, categories);
+        put(CONTENT_CATEGORIES, categories);
         return this;
     }
 

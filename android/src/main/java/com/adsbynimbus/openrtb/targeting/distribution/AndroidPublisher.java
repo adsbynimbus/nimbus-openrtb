@@ -7,12 +7,15 @@ import androidx.collection.ArrayMap;
 
 import java.lang.annotation.Retention;
 
+import static com.adsbynimbus.openrtb.targeting.distribution.App.CONTENT_CATEGORIES;
+import static com.adsbynimbus.openrtb.targeting.distribution.App.DOMAIN;
+import static com.adsbynimbus.openrtb.targeting.distribution.App.NAME;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * {@link ArrayMap} implementation of {@link com.adsbynimbus.openrtb.targeting.distribution.Publisher} for convenient building and serialization
+ * {@link ArrayMap} implementation of {@link Publisher} for convenient building and serialization
  */
-public class AndroidPublisher extends ArrayMap<String, Object> implements com.adsbynimbus.openrtb.targeting.distribution.Publisher, Publisher.Builder {
+public class AndroidPublisher extends ArrayMap<String, Object> implements Publisher, Publisher.Builder {
 
     @Retention(SOURCE)
     @StringDef({NAME, DOMAIN, CONTENT_CATEGORIES})

@@ -10,8 +10,8 @@ import com.adsbynimbus.openrtb.impression.AndroidFormat;
 import com.adsbynimbus.openrtb.impression.Impression;
 import com.adsbynimbus.openrtb.targeting.distribution.App;
 import com.adsbynimbus.openrtb.targeting.user.Device;
-import com.adsbynimbus.openrtb.targeting.user.Regs;
-import com.adsbynimbus.openrtb.targeting.user.Source;
+import com.adsbynimbus.openrtb.targeting.Regs;
+import com.adsbynimbus.openrtb.targeting.Source;
 import com.adsbynimbus.openrtb.targeting.user.User;
 
 import java.lang.annotation.Retention;
