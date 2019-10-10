@@ -19,7 +19,6 @@ type User struct {
 
 // UserExt being used for GDPR
 type UserExt struct {
-	Age        int    `json:"age,omitempty"         valid:"optional"`                 // age used incase year of birth can't be passed and age can
 	Consent    string `json:"consent,omitempty"     valid:"base64rawstring,optional"` // if a publisher has their own cpm they can supply thier own GDPR consent string
 	DidConsent int    `json:"did_consent,omitempty" valid:"range(0|1),optional"`      // Allows a publisher to let Nimbus know thier user has consent to thier data use policy for ads
 }
@@ -89,7 +88,6 @@ func (u *User) NKeys() int { return 0 }
 
 // MarshalJSONObject implements MarshalerJSONObject
 func (e *UserExt) MarshalJSONObject(enc *gojay.Encoder) {
-	enc.IntKeyOmitEmpty("age", e.Age)
 	enc.StringKeyOmitEmpty("consent", e.Consent)
 	enc.IntKeyOmitEmpty("did_consent", e.DidConsent)
 }
@@ -103,8 +101,6 @@ func (e *UserExt) IsNil() bool {
 func (e *UserExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	switch k {
-	case "age":
-		return dec.Int(&e.Age)
 
 	case "consent":
 		return dec.String(&e.Consent)

@@ -862,7 +862,6 @@ type ImpExt struct {
     APS           []APS  `json:"aps,omitempty"             valid:"optional"`
     FacebookAppID string `json:"facebook_app_id,omitempty" valid:"optional"` // needed for pubs that have FB hybrid SDK solution in thier stack
     Position      string `json:"position,omitempty"        valid:"required"` // flexible optional field for publishers to track on ad position performance
-    Viewability   int    `json:"viewability,omitempty"     valid:"range(0|100),optional"`
 }
 ```
 ImpExt ...
@@ -1600,7 +1599,6 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 ## <a name="UserExt">type</a> [UserExt](/src/target/user.go?s=1027:1539#L21)
 ``` go
 type UserExt struct {
-    Age        int    `json:"age,omitempty"         valid:"optional"`                 // age used incase year of birth can't be passed and age can
     Consent    string `json:"consent,omitempty"     valid:"base64rawstring,optional"` // if a publisher has their own cpm they can supply thier own GDPR consent string
     DidConsent int    `json:"did_consent,omitempty" valid:"range(0|1),optional"`      // Allows a publisher to let Nimbus know thier user has consent to thier data use policy for ads
 }
@@ -1667,7 +1665,7 @@ type Video struct {
     Linearity      int      `json:"linearity,omitempty"      valid:"range(1|2),optional"`            // 1,2 -> linear, non linear
     Playbackmethod []int    `json:"playbackmethod,omitempty" valid:"inintarr(1|2|3|4|5|6),optional"` // 1,2,3,4,5,6 - > Initiates on Page Load with Sound On, Initiates on Page Load with Sound Off by Default, Initiates on Click with Sound On, Initiates on Mouse-Over with Sound On, Initiates on Entering Viewport with Sound On, Initiates on Entering Viewport with Sound Off by Default
     Skip           int      `json:"skip"                     valid:"range(0|1),optional"`            // 0 no 1 yes
-    Delivery       []int    `json:"Delivery,omitempty"       valid:"range(0|3),optional"`            // 0,1,2,3 -> Unknown, Professionally Produced, Prosumer, User Generated (UGC)
+    Delivery       []int    `json:"delivery,omitempty"       valid:"range(0|3),optional"`            // 0,1,2,3 -> Unknown, Professionally Produced, Prosumer, User Generated (UGC)
     Pos            int      `json:"pos,omitempty"            valid:"range(0|7),optional"`            // 0,1,2,3,4,5,6,7 -> Unknown,Above the Fold,DEPRECATED - May or may not be initially visible depending on screen size/resolution.,Below the Fold,Header,Footer,Sidebar,Full Screen
     API            []int    `json:"api,omitempty"            valid:"inintarr(1|2|3|4|5|6),optional"`
     MinBitRate     int      `json:"minbitrate,omitempty"     valid:"optional"`

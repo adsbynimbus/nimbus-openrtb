@@ -20,7 +20,7 @@ type Video struct {
 	Linearity      int      `json:"linearity,omitempty"      valid:"range(1|2),optional"`            // 1,2 -> linear, non linear
 	Playbackmethod []int    `json:"playbackmethod,omitempty" valid:"inintarr(1|2|3|4|5|6),optional"` // 1,2,3,4,5,6 - > Initiates on Page Load with Sound On, Initiates on Page Load with Sound Off by Default, Initiates on Click with Sound On, Initiates on Mouse-Over with Sound On, Initiates on Entering Viewport with Sound On, Initiates on Entering Viewport with Sound Off by Default
 	Skip           int      `json:"skip"                     valid:"range(0|1),optional"`            // 0 no 1 yes
-	Delivery       []int    `json:"Delivery,omitempty"       valid:"range(0|3),optional"`            // 0,1,2,3 -> Unknown, Professionally Produced, Prosumer, User Generated (UGC)
+	Delivery       []int    `json:"delivery,omitempty"       valid:"range(0|3),optional"`            // 0,1,2,3 -> Unknown, Professionally Produced, Prosumer, User Generated (UGC)
 	Pos            int      `json:"pos,omitempty"            valid:"range(0|7),optional"`            // 0,1,2,3,4,5,6,7 -> Unknown,Above the Fold,DEPRECATED - May or may not be initially visible depending on screen size/resolution.,Below the Fold,Header,Footer,Sidebar,Full Screen
 	API            []int    `json:"api,omitempty"            valid:"inintarr(1|2|3|4|5|6),optional"`
 	MinBitRate     int      `json:"minbitrate,omitempty"     valid:"optional"`
