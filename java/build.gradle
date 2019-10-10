@@ -1,14 +1,17 @@
-apply plugin: 'java-library'
-
-dependencies { }
-
-ext {
-    repoId = rootProject.ext.openrtb.repoId
-    groupId = rootProject.ext.openrtb.groupId
-    artifactVersion = rootProject.ext.openrtb.version
-    artifactId = 'openrtb-java'
-    artifactPath = "$buildDir/libs/" + project.name + "-" + artifactVersion + ".jar"
+plugins {
+    id 'java-library'
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            "$project.name"(MavenPublication) {
+                from components.java
 
-apply from: "${project.rootDir}/publish.gradle"
+                groupId = "$group_id"
+                artifactId = project.name
+                version = project.version
+            }
+        }
+    }
+}

@@ -1,11 +1,14 @@
-apply plugin: 'com.android.library'
+plugins {
+    id "com.android.library"
+}
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion "$target_sdk" as int
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion "$min_sdk" as int
+        targetSdkVersion "$target_sdk" as int
+        versionName project.version
         consumerProguardFiles 'consumer-proguard-rules.pro'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -18,22 +21,23 @@ android {
 }
 
 dependencies {
-    api project(':openrtb-java') {
-        group = rootProject.ext.openrtb.groupId
-        version = rootProject.ext.openrtb.version
+    api project(':java')
+
+    implementation "androidx.annotation:annotation:$androidx"
+    implementation "androidx.collection:collection:$androidx"
+    implementation "androidx.core:core:$androidx"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            "$project.name"(MavenPublication) {
+                from components.release
+
+                groupId = "$group_id"
+                artifactId = project.name
+                version = project.version
+            }
+        }
     }
-
-    implementation "androidx.annotation:annotation:${rootProject.ext.androidx.annotation}"
-    implementation "androidx.collection:collection:${rootProject.ext.androidx.collection}"
-    implementation "androidx.core:core:${rootProject.ext.androidx.core}"
 }
-
-ext {
-    repoId = rootProject.ext.openrtb.repoId
-    groupId = rootProject.ext.openrtb.groupId
-    artifactVersion = rootProject.ext.openrtb.version
-    artifactId = 'openrtb-android'
-    artifactPath = "$buildDir/outputs/aar/" + project.name + "-release.aar"
-}
-
-apply from: "${project.rootDir}/publish.gradle"

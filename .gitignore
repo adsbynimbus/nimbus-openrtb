@@ -13,3 +13,6 @@ build/
 #Intellij / Android Studio
 *.iml
 /.idea/*
+
+#Android
+local.properties

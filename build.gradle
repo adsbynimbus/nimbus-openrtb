@@ -1,0 +1,40 @@
+plugins {
+    id "com.jfrog.bintray" apply false
+}
+
+subprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    apply plugin: "maven-publish"
+    apply plugin: "com.jfrog.bintray"
+
+    version = System.getenv("TAG_NAME") ?: 'development'
+
+    afterEvaluate {
+
+        bintray {
+            user System.getenv("BINTRAY_USER") ?: System.getProperty('bintray.user')
+            key System.getenv("BINTRAY_API_KEY") ?: System.getProperty('bintray.apikey')
+            // Default: false. Whether to run this as dry-run, without deploying
+            publications = ["$project.name"]
+            dryRun = true
+            // Default: false. Whether to override version artifacts already published
+            override = System.getenv('GITHUB_WORKFLOW') != null
+            // Default: false. Whether version should be auto published after an upload
+            publish = false
+            pkg {
+                repo = "$repo_id" // the name of the repository you created on Bintray
+                name = project.name // the name of the package you created inside it
+                userOrg = "$org"
+                version {
+                    name = project.version
+                    released = new Date()
+                    vcsTag = project.version
+                }
+            }
+        }
+    }
+}
