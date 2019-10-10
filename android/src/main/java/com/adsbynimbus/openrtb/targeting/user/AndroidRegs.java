@@ -1,0 +1,55 @@
+package com.adsbynimbus.openrtb.targeting.user;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.StringDef;
+import androidx.collection.ArrayMap;
+
+import com.adsbynimbus.openrtb.targeting.user.Regs;
+
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.SOURCE;
+
+/**
+ * {@link ArrayMap} implementation of {@link com.adsbynimbus.openrtb.targeting.user.Regs} for convenient building and serialization
+ */
+public class AndroidRegs extends ArrayMap<String, Object> implements com.adsbynimbus.openrtb.targeting.user.Regs, Regs.Builder {
+
+    @Retention(SOURCE)
+    @StringDef({COPPA, Extension.GDPR_CONSENT})
+    public @interface Values { }
+
+    public final ArrayMap<String, Object> ext = new ArrayMap<>(1);
+
+    @Nullable @Override
+    public Object put(@Values String key, Object value) {
+        if (Extension.GDPR_CONSENT.equals(key)) {
+            return ext.put(key, value);
+        }
+        return super.put(key, value);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param isCOPPA {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder setCOPPA(boolean isCOPPA) {
+        put(COPPA, isCOPPA ? 1 : 0);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param didConsent {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder withGDPRConsent(boolean didConsent) {
+        ext.put(Extension.GDPR_CONSENT, didConsent ? 1 : 0);
+        return this;
+    }
+}

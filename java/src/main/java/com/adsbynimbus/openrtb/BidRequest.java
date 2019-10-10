@@ -2,11 +2,11 @@ package com.adsbynimbus.openrtb;
 
 import com.adsbynimbus.openrtb.impression.Format;
 import com.adsbynimbus.openrtb.impression.Impression;
-import com.adsbynimbus.openrtb.publisher.App;
-import com.adsbynimbus.openrtb.user.Device;
-import com.adsbynimbus.openrtb.user.Regs;
-import com.adsbynimbus.openrtb.user.Source;
-import com.adsbynimbus.openrtb.user.User;
+import com.adsbynimbus.openrtb.targeting.distribution.App;
+import com.adsbynimbus.openrtb.targeting.user.Device;
+import com.adsbynimbus.openrtb.targeting.user.Regs;
+import com.adsbynimbus.openrtb.targeting.user.Source;
+import com.adsbynimbus.openrtb.targeting.user.User;
 
 /**
  * The top-level bid request object contains a globally unique bid request or auction ID. This id attribute is
