@@ -28,13 +28,11 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
         Extension.API_KEY, Extension.SESSION_ID})
     public @interface Values { }
 
-    public final ArrayMap<String, Object> ext = new ArrayMap<>(2);
+    public final ArrayMap<String, Object> ext;
 
-    public AndroidBidRequest build() {
-        if (!ext.isEmpty()) {
-            put(EXTENSION, ext);
-        }
-        return this;
+    public AndroidBidRequest() {
+        ext = new ArrayMap<>(2);
+        put(EXTENSION, ext);
     }
 
     @Nullable @Override

@@ -4,10 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
 
-import com.adsbynimbus.openrtb.targeting.Regs;
-
 import java.lang.annotation.Retention;
 
+import static com.adsbynimbus.openrtb.BidRequest.EXTENSION;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
@@ -16,14 +15,15 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidRegs extends ArrayMap<String, Object> implements Regs, Regs.Builder {
 
     @Retention(SOURCE)
-    @StringDef({COPPA, Extension.GDPR_CONSENT})
+    @StringDef({COPPA, EXTENSION, Extension.GDPR_CONSENT})
     public @interface Values { }
 
-    public final ArrayMap<String, Object> ext = new ArrayMap<>(1);
+    protected final ArrayMap<String, Object> ext = new ArrayMap<>(1);
 
     @Nullable @Override
     public Object put(@Values String key, Object value) {
         if (Extension.GDPR_CONSENT.equals(key)) {
+            put(EXTENSION, ext);
             return ext.put(key, value);
         }
         return super.put(key, value);
@@ -50,6 +50,7 @@ public class AndroidRegs extends ArrayMap<String, Object> implements Regs, Regs.
     @Override
     public Builder withGDPRConsent(boolean didConsent) {
         ext.put(Extension.GDPR_CONSENT, didConsent ? 1 : 0);
+        put(EXTENSION, ext);
         return this;
     }
 }

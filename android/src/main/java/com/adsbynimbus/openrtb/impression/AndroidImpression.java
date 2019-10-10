@@ -26,12 +26,6 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
     @IntDef({POSITION_UNKNOWN, ABOVE_THE_FOLD, BELOW_THE_FOLD, HEADER, FOOTER, SIDEBAR, FULL_SCREEN})
     public @interface Position { }
 
-
-    /* The following fields are used internally and should not be accessed */
-    public transient boolean video;
-    public transient boolean interstitial;
-    public transient AndroidFormat[] displayFormats;
-
     public final ArrayMap<String, Object> ext;
 
     /**
@@ -40,13 +34,10 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      * @param publisherAdUnitId publisher ad unit identifier
      */
     public AndroidImpression(@NonNull String publisherAdUnitId) {
-        this.video = false;
-        this.interstitial = false;
-        this.displayFormats = null;
         this.ext = new ArrayMap<>(3);
-        put(REQUIRE_HTTPS, 1);
         ext.put(Extension.POSITION, publisherAdUnitId);
         put(EXTENSION, ext);
+        put(REQUIRE_HTTPS, 1);
     }
 
     /**
@@ -81,7 +72,6 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      */
     @Override
     public Builder includeVideo(@NonNull Video video) {
-        this.video = true;
         put(VIDEO, video);
         return this;
     }
@@ -105,7 +95,6 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      */
     @Override
     public Builder asInterstitial() {
-        this.interstitial = true;
         put(INTERSTITIAL, 1);
         return this;
     }

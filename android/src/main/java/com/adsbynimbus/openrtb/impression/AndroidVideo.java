@@ -227,7 +227,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withApis(int... apis) {
+    public Builder withApis(@Apis int... apis) {
         put(API, apis);
         return this;
     }

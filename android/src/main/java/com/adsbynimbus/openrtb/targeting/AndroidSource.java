@@ -24,16 +24,10 @@ public class AndroidSource extends ArrayMap<String, Object> implements Source, S
     @Nullable @Override
     public Object put(@Values String key, Object value) {
         if (Extension.OM_PARTNER_NAME.equals(key) || Extension.OM_SDK_VERSION.equals(key)) {
+            put(EXTENSION, ext);
             return ext.put(key, value);
         }
         return super.put(key, value);
-    }
-
-    public AndroidSource build() {
-        if (!ext.isEmpty()) {
-            put(EXTENSION, ext);
-        }
-        return this;
     }
 
     /**
@@ -46,6 +40,7 @@ public class AndroidSource extends ArrayMap<String, Object> implements Source, S
     public AndroidSource.Builder withOMSdkEnabled(@NonNull String partnerName, @NonNull String sdkVersion) {
         ext.put(Extension.OM_PARTNER_NAME, partnerName);
         ext.put(Extension.OM_SDK_VERSION, sdkVersion);
+        put(EXTENSION, ext);
         return this;
     }
 }

@@ -24,17 +24,6 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
     @IntDef({FREE_APP, PAID_APP})
     public @interface AppCost { }
 
-    public AndroidApp build() {
-        if (!containsKey(PUBLISHER)) {
-            final AndroidPublisher publisher = new AndroidPublisher();
-            publisher.put(NAME, get(NAME));
-            publisher.put(DOMAIN, get(DOMAIN));
-            publisher.put(CONTENT_CATEGORIES, get(CONTENT_CATEGORIES));
-            put(PUBLISHER, publisher);
-        }
-        return this;
-    }
-
     @Nullable @Override
     public Object put(@Values String key, Object value) {
         return super.put(key, value);
