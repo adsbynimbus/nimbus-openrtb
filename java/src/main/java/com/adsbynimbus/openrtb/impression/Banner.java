@@ -1,7 +1,7 @@
 package com.adsbynimbus.openrtb.impression;
 
 /**
- * This object represents the most general type of impression. Although the term “banner” may have very
+ * This object represents the most general type of impression. Although the term "banner" may have very
  * specific meaning in other contexts, here it can be many things including a simple static image, an
  * expandable ad unit, or even in-banner video (refer to the Video object in Section 3.2.7 for the more
  * generalized and full featured video ad units). An array of Banner objects can also appear within the

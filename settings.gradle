@@ -1,0 +1,20 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        jcenter()
+        google()
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "com.android.library") {
+                useModule("com.android.tools.build:gradle:${agp}")
+            } else if (requested.id.id == 'com.jfrog.bintray') {
+                useVersion("$bintray")
+            }
+        }
+    }
+}
+
+rootProject.name = 'nimbus-openrtb'
+
+include 'android', 'java'

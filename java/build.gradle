@@ -1,14 +1,18 @@
-apply plugin: 'java-library'
-
-dependencies { }
-
-ext {
-    repoId = rootProject.ext.openrtb.repoId
-    groupId = rootProject.ext.openrtb.groupId
-    artifactVersion = rootProject.ext.openrtb.version
-    artifactId = 'openrtb-java'
-    artifactPath = "$buildDir/libs/" + project.name + "-" + artifactVersion + ".jar"
+plugins {
+    id 'java-library'
 }
 
+tasks.named("sourcesJar").configure {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allJava
+}
 
-apply from: "${project.rootDir}/publish.gradle"
+afterEvaluate {
+    publishing {
+        publications {
+            bintray(MavenPublication) {
+                from components.java
+            }
+        }
+    }
+}

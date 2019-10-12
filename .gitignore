@@ -1,15 +1,18 @@
-#Standard
+# Standard
 bin/
 gen/
 classes/
 build/
 
-#Gradle
+# Gradle
 .gradle
 
-#Windows
+# Windows
 .DS_Store
 
-#Intellij / Android Studio
+# Intellij / Android Studio
 *.iml
 /.idea/*
+
+# Android
+local.properties
