@@ -29,10 +29,29 @@ dependencies {
 }
 
 afterEvaluate {
+    tasks.register("javadoc", Javadoc) {
+        source += android.sourceSets.main.java.sourceFiles
+        source += project(':java').layout.files('src/main/java')
+        classpath += files(android.getBootClasspath().join(File.pathSeparator))
+        classpath += configurations.releaseCompileClasspath
+        exclude '**/BuildConfig.java'
+        exclude '**/R.java'
+        inputs.files(javaPreCompileRelease)
+        outputs.dir(destinationDir)
+    }
+
+    tasks.register("sourcesJar", Jar) {
+        archiveClassifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
     publishing {
         publications {
             "$project.name"(MavenPublication) {
                 from components.release
+
+                artifact sourcesJar
+                artifact javadocJar
 
                 groupId = "$group_id"
                 artifactId = project.name

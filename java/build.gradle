@@ -3,10 +3,18 @@ plugins {
 }
 
 afterEvaluate {
+    tasks.register("sourcesJar", Jar) {
+        archiveClassifier = 'sources'
+        from sourceSets.main.allJava
+    }
+
     publishing {
         publications {
             "$project.name"(MavenPublication) {
                 from components.java
+
+                artifact sourcesJar
+                artifact javadocJar
 
                 groupId = "$group_id"
                 artifactId = project.name
