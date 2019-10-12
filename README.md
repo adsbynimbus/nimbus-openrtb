@@ -6,7 +6,7 @@ Platform specific implementations of Nimbus OpenRTB Request and Response models
 
 ### Supported Platforms
 
-- [Android](android)
+- [![Android](https://github.com/timehop/nimbus-openrtb/workflows/Android/badge.svg)](android)
 - [![Go](https://github.com/timehop/nimbus-openrtb/workflows/Go/badge.svg)](go)
 - [Java](java)
 - [S2S](https://github.com/timehop/nimbus-openrtb/wiki/Nimbus-S2S-Documentation)
