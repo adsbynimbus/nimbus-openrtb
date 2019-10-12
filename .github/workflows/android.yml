@@ -1,0 +1,34 @@
+name: Android
+
+on:
+  push:
+    paths:
+      - 'android/**'
+      - 'java/**'
+      - '.github/workflows/android*'
+      - '*.gradle'
+      - 'gradle.properties'
+
+  release:
+    types: [published, prereleased]
+
+jobs:
+
+  build:
+    name: Build, test, and optionally publish Android OpenRTB to Bintray
+    runs-on: ubuntu-latest
+    env:
+      TAG_NAME: ${{ github.ref }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Build
+        run: gradle build
+
+      - name: Publish
+        if: success() && github.event_name == 'release'
+        env:
+          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+          BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
+        run: gradle publish

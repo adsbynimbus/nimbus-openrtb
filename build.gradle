@@ -11,20 +11,20 @@ subprojects {
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
 
-    version = System.getenv("TAG_NAME") ?: 'development'
+    //The income TAG_NAME from github actions will be in the format 'refs/tags/...'
+    version = (System.getenv("TAG_NAME") ?: 'development').split('/').last()
 
     afterEvaluate {
-
         bintray {
             user System.getenv("BINTRAY_USER") ?: System.getProperty('bintray.user')
             key System.getenv("BINTRAY_API_KEY") ?: System.getProperty('bintray.apikey')
             // Default: false. Whether to run this as dry-run, without deploying
             publications = ["$project.name"]
-            dryRun = true
+            dryRun = System.getenv('GITHUB_WORKFLOW') == null
             // Default: false. Whether to override version artifacts already published
             override = System.getenv('GITHUB_WORKFLOW') != null
             // Default: false. Whether version should be auto published after an upload
-            publish = false
+            publish = true
             pkg {
                 repo = "$repo_id" // the name of the repository you created on Bintray
                 name = project.name // the name of the package you created inside it
@@ -35,6 +35,15 @@ subprojects {
                     vcsTag = project.version
                 }
             }
+        }
+
+        project.tasks.named("bintrayUpload").configure {
+            it.dependsOn tasks.named("build")
+            it.dependsOn tasks.matching({ it.name.startsWith('generatePomFile') })
+        }
+
+        tasks.named("publish").configure {
+            it.dependsOn tasks.named("bintrayUpload")
         }
     }
 }
