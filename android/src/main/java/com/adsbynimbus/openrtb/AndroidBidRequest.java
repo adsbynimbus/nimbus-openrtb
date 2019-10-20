@@ -46,12 +46,12 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
     /**
      * {@inheritDoc}
      *
-     * @param impressions {@inheritDoc}
+     * @param impression {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder forImpressions(@NonNull Impression... impressions) {
-        put(IMP, impressions);
+    public Builder impression(@NonNull Impression impression) {
+        put(IMP, impression);
         return this;
     }
 
@@ -62,7 +62,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder forApp(@NonNull App app) {
+    public Builder app(@NonNull App app) {
         put(APP, app);
         return this;
     }
@@ -74,7 +74,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder forDevice(@NonNull Device device) {
+    public Builder device(@NonNull Device device) {
         put(DEVICE, device);
         return this;
     }
@@ -87,7 +87,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder forDeviceSize(int width, int height) {
+    public Builder deviceSize(int width, int height) {
         put(FORMAT, new AndroidFormat(width, height));
         return this;
     }
@@ -99,7 +99,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withUser(@NonNull User user) {
+    public Builder user(@NonNull User user) {
         put(USER, user);
         return this;
     }
@@ -107,10 +107,11 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
     /**
      * {@inheritDoc}
      *
+     * @param enabled {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withTestFlag() {
+    public Builder test(boolean enabled) {
         put(TEST, 1);
         return this;
     }
@@ -122,7 +123,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withTimeout(@IntRange(from = 1) int timeout) {
+    public Builder timeout(@IntRange(from = 1) int timeout) {
         put(TIMEOUT, timeout);
         return this;
     }
@@ -134,7 +135,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withRegs(@NonNull Regs regs) {
+    public Builder regs(@NonNull Regs regs) {
         put(REGS, regs);
         return this;
     }
@@ -146,7 +147,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withSource(@NonNull Source source) {
+    public Builder source(@NonNull Source source) {
         put(SOURCE, source);
         return this;
     }
@@ -158,7 +159,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withBlockedDomains(@NonNull String... domains) {
+    public Builder blockedDomains(@NonNull String... domains) {
         put(BADV, domains);
         return this;
     }
@@ -170,7 +171,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withApiKey(@NonNull String apiKey) {
+    public Builder apiKey(@NonNull String apiKey) {
         ext.put(Extension.API_KEY, apiKey);
         return this;
     }
@@ -182,7 +183,7 @@ public class AndroidBidRequest extends ArrayMap<String, Object> implements BidRe
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withSessionId(@NonNull String sessionId) {
+    public Builder sessionId(@NonNull String sessionId) {
         ext.put(Extension.SESSION_ID, sessionId);
         return this;
     }

@@ -30,92 +30,92 @@ public interface App {
     interface Builder {
 
         /**
-         * Set the name of the app
+         * Set the name of this app
          *
          * @param name
          * @return this builder instance
          */
-        Builder withName(String name);
+        Builder name(String name);
 
         /**
-         * Set the bundle id
+         * Set the bundle id of this app.
          *
-         * @param bundle
+         * @param bundle the bundle id
          * @return this builder instance
          */
-        Builder withBundle(String bundle);
+        Builder bundle(String bundle);
 
         /**
-         * Set the domain name of the app
+         * Set the domain name of this app
          *
          * @param domain
          * @return this builder instance
          */
-        Builder withDomain(String domain);
+        Builder domain(String domain);
 
         /**
-         * Set the app store url
+         * Set this app store url
          *
          * @param storeUrl
          * @return this builder instance
          */
-        Builder withStoreUrl(String storeUrl);
+        Builder storeUrl(String storeUrl);
 
         /**
          * Set content categories
          *
-         * @param categories
+         * @param cat
          * @return this builder instance
          */
-        Builder withContentCategories(String... categories);
+        Builder categories(String... cat);
 
         /**
-         * Set if the app is paid or not
-         *
-         * @param appCost
-         * @return this builder instance
-         */
-        Builder withAppCost(int appCost);
-
-        /**
-         * Set the {@link Publisher}
-         *
-         * @param publisher
-         * @return this builder instance
-         */
-        Builder withPublisher(Publisher publisher);
-
-        /**
-         * Set page categories
+         * Set the page categories of this app
          *
          * @param pageCategories
          * @return this builder instance
          */
-        Builder withPageCategories(String... pageCategories);
+        Builder pageCategories(String... pageCategories);
 
         /**
-         * Set section categories
+         * Set section categories of this app
          *
          * @param sectionCategories
          * @return this builder instance
          */
-        Builder withSectionCategories(String... sectionCategories);
+        Builder sectionCategories(String... sectionCategories);
 
         /**
-         * Include privacy policy information
-         *
-         * @param privacyPolicy 0: no policy; 1: policy
-         * @return this builder instance
-         */
-        Builder withPrivacyPolicy(int privacyPolicy);
-
-        /**
-         * Include the app version
+         * Set the version of this app
          *
          * @param version
          * @return this builder instance
          */
-        Builder withVersion(String version);
+        Builder version(String version);
+
+        /**
+         * Set to true if this app has a privacy policy associated with it
+         *
+         * @param privacyPolicy 0: no policy; 1: policy
+         * @return this builder instance
+         */
+        Builder privacyPolicy(boolean privacyPolicy);
+
+        /**
+         * Set to true if this app is a paid app
+         *
+         * @param paid true if this app is a paid app, false otherwise
+         * @return this builder instance
+         */
+        Builder paid(boolean paid);
+
+        /**
+         * Set the Publisher of this app
+         *
+         * @param publisher
+         * @return this builder instance
+         */
+        Builder publisher(Publisher publisher);
     }
 
     /**

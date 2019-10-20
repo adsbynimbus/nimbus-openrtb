@@ -25,7 +25,7 @@ public interface Data {
          * @param id any string
          * @return this builder instance
          */
-        Builder withId(String id);
+        Builder id(String id);
 
         /**
          * Set the optional name of the data object
@@ -33,7 +33,7 @@ public interface Data {
          * @param name any string
          * @return this builder instance
          */
-        Builder withName(String name);
+        Builder name(String name);
 
         /**
          * Set segmenting data
@@ -41,7 +41,7 @@ public interface Data {
          * @param segments array of segments
          * @return this builder instance
          */
-        Builder withSegments(Segment... segments);
+        Builder segments(Segment... segments);
     }
 
     /**

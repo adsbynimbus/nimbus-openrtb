@@ -33,7 +33,7 @@ public class AndroidPublisher extends ArrayMap<String, Object> implements Publis
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withCategories(String... categories) {
+    public Builder categories(String... categories) {
         put(CONTENT_CATEGORIES, categories);
         return this;
     }
@@ -45,7 +45,7 @@ public class AndroidPublisher extends ArrayMap<String, Object> implements Publis
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withName(@NonNull String name) {
+    public Builder name(@NonNull String name) {
         put(NAME, name);
         return this;
     }
@@ -57,7 +57,7 @@ public class AndroidPublisher extends ArrayMap<String, Object> implements Publis
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withDomain(@NonNull String domain) {
+    public Builder domain(@NonNull String domain) {
         put(DOMAIN, domain);
         return this;
     }

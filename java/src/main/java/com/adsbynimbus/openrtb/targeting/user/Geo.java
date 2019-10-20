@@ -30,12 +30,12 @@ public interface Geo {
     interface Builder {
 
         /**
-         * Set the latitude and accuracy
+         * Set the latitude of this Geo object
          *
          * @param latitude
          * @return this builder instance
          */
-        Builder withLatitude(float latitude);
+        Builder latitude(float latitude);
 
         /**
          * Set the country
@@ -43,7 +43,7 @@ public interface Geo {
          * @param countryCode
          * @return this builder instance
          */
-        Builder withCountry(String countryCode);
+        Builder country(String countryCode);
 
         /**
          * Set the longitude
@@ -51,7 +51,7 @@ public interface Geo {
          * @param longitude
          * @return this builder instance
          */
-        public Builder withLongitude(float longitude);
+        public Builder longitude(float longitude);
 
         /**
          * Set the accuracy of the location data as reported by the device
@@ -59,7 +59,7 @@ public interface Geo {
          * @param accuracy
          * @return this builder instance
          */
-        Builder withAccuracy(int accuracy);
+        Builder accuracy(int accuracy);
 
         /**
          * Set the location type
@@ -67,7 +67,7 @@ public interface Geo {
          * @param locationType
          * @return this builder instance
          */
-        Builder withLocationType(int locationType);
+        Builder locationType(int locationType);
 
         /**
          * Set the city
@@ -75,7 +75,7 @@ public interface Geo {
          * @param city
          * @return this builder instance
          */
-        Builder withCity(String city);
+        Builder city(String city);
 
         /**
          * Set the metro
@@ -83,7 +83,7 @@ public interface Geo {
          * @param metro
          * @return this builder instance
          */
-        Builder withMetro(String metro);
+        Builder metro(String metro);
 
         /**
          * Set the state
@@ -91,7 +91,7 @@ public interface Geo {
          * @param state
          * @return this builder instance
          */
-        Builder withState(String state);
+        Builder state(String state);
     }
 
     /**

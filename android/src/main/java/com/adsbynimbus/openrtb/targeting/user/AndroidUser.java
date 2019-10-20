@@ -6,6 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 import androidx.collection.ArrayMap;
 
+import com.adsbynimbus.openrtb.targeting.Data;
+
 import java.lang.annotation.Retention;
 
 import static com.adsbynimbus.openrtb.BidRequest.EXTENSION;
@@ -17,7 +19,8 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidUser extends ArrayMap<String, Object> implements User, User.Builder {
 
     @Retention(SOURCE)
-    @StringDef({AGE, YEAR_OF_BIRTH, BUYER_UID, GENDER, EXTENSION, Extension.CONSENT, Extension.DID_CONSENT})
+    @StringDef({AGE, YEAR_OF_BIRTH, BUYER_UID, GENDER, KEYWORDS, CUSTOM_DATA, DATA, EXTENSION,
+            Extension.CONSENT, Extension.DID_CONSENT})
     public @interface Values { }
 
     @Retention(SOURCE)
@@ -42,7 +45,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withAge(@IntRange(from = 0) int age) {
+    public Builder age(@IntRange(from = 0) int age) {
         put(AGE, age);
         return this;
     }
@@ -54,7 +57,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withBuyerUid(@NonNull String buyerUid) {
+    public Builder buyerUid(@NonNull String buyerUid) {
         put(BUYER_UID, buyerUid);
         return this;
     }
@@ -66,7 +69,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withYearOfBirth(@IntRange(from = 0) int yob) {
+    public Builder yearOfBirth(@IntRange(from = 0) int yob) {
         put(YEAR_OF_BIRTH, yob);
         return this;
     }
@@ -78,9 +81,45 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withGender(@Gender String gender) {
+    public Builder gender(@Gender String gender) {
         put(GENDER, gender);
         return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param keywords {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder keywords(String keywords) {
+        put(KEYWORDS, keywords);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param customData {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder customData(String customData) {
+        put(CUSTOM_DATA, customData);
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param data {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Builder data(Data... data) {
+        put(DATA, data);
+        return null;
     }
 
     /**
@@ -90,7 +129,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withIABConsentString(@NonNull String consentString) {
+    public Builder gdprConsentString(@NonNull String consentString) {
         ext.put(Extension.CONSENT, consentString);
         put(EXTENSION, ext);
         return this;
@@ -103,7 +142,7 @@ public class AndroidUser extends ArrayMap<String, Object> implements User, User.
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withGDPRConsent(boolean didConsent) {
+    public Builder gdprDidConsent(boolean didConsent) {
         ext.put(Extension.DID_CONSENT, didConsent ? 1 : 0);
         put(EXTENSION, ext);
         return this;

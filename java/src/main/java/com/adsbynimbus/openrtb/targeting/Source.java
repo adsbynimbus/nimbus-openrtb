@@ -27,7 +27,7 @@ public interface Source {
          * @param sdkVersion OM SDK version
          * @return this builder instance
          */
-        Builder withOMSdkEnabled(String partnerName, String sdkVersion);
+        Builder omSdk(String partnerName, String sdkVersion);
     }
 
     /**

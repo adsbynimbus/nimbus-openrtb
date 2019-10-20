@@ -29,7 +29,7 @@ public class AndroidData extends ArrayMap<String, Object> implements Data, Data.
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withId(String id) {
+    public Builder id(String id) {
         put(ID, id);
         return this;
     }
@@ -41,7 +41,7 @@ public class AndroidData extends ArrayMap<String, Object> implements Data, Data.
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withName(String name) {
+    public Builder name(String name) {
         put(NAME, name);
         return this;
     }
@@ -53,7 +53,7 @@ public class AndroidData extends ArrayMap<String, Object> implements Data, Data.
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withSegments(Segment... segments) {
+    public Builder segments(Segment... segments) {
         put(SEGMENT, segments);
         return this;
     }

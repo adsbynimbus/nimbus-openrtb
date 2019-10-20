@@ -46,52 +46,53 @@ public interface BidRequest {
     interface Builder {
 
         /**
-         * Set the {@link Impression} object
+         * Add an impression to this request
          *
-         * @param impressions
+         * @param impression
          * @return this builder instance
          */
-        Builder forImpressions(Impression... impressions);
+        Builder impression(Impression impression);
 
         /**
-         * Set the {@link App} object
+         * Set the app details for this request
          *
          * @param app
          * @return this builder instance
          */
-        Builder forApp(App app);
+        Builder app(App app);
 
         /**
-         * Set the {@link Device} object
+         * Set the {@link Device} details of this request
          *
          * @param device
          * @return this builder instance
          */
-        Builder forDevice(Device device);
+        Builder device(Device device);
 
         /**
-         * Set the device size
+         * Set the device size of this request in absolutel pixels
          *
-         * @param width int width
-         * @param height int height
+         * @param width width of the device in pixels
+         * @param height height of the device in pixels
          * @return this builder instance
          */
-        Builder forDeviceSize(int width, int height);
+        Builder deviceSize(int width, int height);
 
         /**
-         * Set the {@link User} object
+         * Set the {@link User} details of this request
          *
          * @param user
          * @return this builder instance
          */
-        Builder withUser(User user);
+        Builder user(User user);
 
         /**
          * Mark this request as a test
          *
+         * @param enabled true if test mode is enabled, default is false
          * @return {@link Builder}
          */
-        Builder withTestFlag();
+        Builder test(boolean enabled);
 
         /**
          * Set the timeout of the request.
@@ -99,7 +100,7 @@ public interface BidRequest {
          * @param timeout int [Default: 500]
          * @return this builder instance
          */
-        Builder withTimeout(int timeout);
+        Builder timeout(int timeout);
 
         /**
          * Sets the {@link Regs} object
@@ -107,7 +108,7 @@ public interface BidRequest {
          * @param regs
          * @return this builder instance
          */
-        Builder withRegs(Regs regs);
+        Builder regs(Regs regs);
 
         /**
          * Sets the {@link Source} object
@@ -115,7 +116,7 @@ public interface BidRequest {
          * @param source
          * @return this builder instance
          */
-        Builder withSource(Source source);
+        Builder source(Source source);
 
         /**
          * Sets a list of blocked advertisers by domains
@@ -123,7 +124,7 @@ public interface BidRequest {
          * @param domains
          * @return this builder instance
          */
-         Builder withBlockedDomains(String... domains);
+         Builder blockedDomains(String... domains);
 
         /**
          * Sets the Nimbus API key
@@ -131,7 +132,7 @@ public interface BidRequest {
          * @param apiKey
          * @return this builder instance
          */
-        Builder withApiKey(String apiKey);
+        Builder apiKey(String apiKey);
 
         /**
          * Sets the Nimbus session id
@@ -139,7 +140,7 @@ public interface BidRequest {
          * @param sessionId
          * @return this builder instance
          */
-        Builder withSessionId(String sessionId);
+        Builder sessionId(String sessionId);
     }
 
     /**

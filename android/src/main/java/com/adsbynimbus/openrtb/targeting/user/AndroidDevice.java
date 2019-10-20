@@ -57,7 +57,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withUserAgent(@NonNull String userAgent) {
+    public Builder userAgent(@NonNull String userAgent) {
         put(USER_AGENT, userAgent);
         return this;
     }
@@ -69,7 +69,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withGeo(@NonNull Geo geo) {
+    public Builder geo(@NonNull Geo geo) {
         put(GEO, geo);
         return this;
     }
@@ -81,7 +81,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withIpAddress(@NonNull String ipAddress) {
+    public Builder ipAddress(@NonNull String ipAddress) {
         put(IP_ADDRESS, ipAddress);
         return this;
     }
@@ -93,7 +93,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withConnectionType(@Connection int connectionType) {
+    public Builder connectionType(@Connection int connectionType) {
         put(CONNECTION_TYPE, connectionType);
         return this;
     }
@@ -101,10 +101,11 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
     /**
      * {@inheritDoc}
      *
+     * @param lat {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withLimitedAdTracking() {
+    public Builder limitedAdTracking(boolean lat) {
         put(LIMIT_AD_TRACKING, 1);
         put(DO_NOT_TRACK, 1);
         return this;
@@ -118,7 +119,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withPhysicalDeviceSize(int width, int height) {
+    public Builder size(int width, int height) {
         put(WIDTH, width);
         return this;
     }
@@ -130,7 +131,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withLanguage(String language) {
+    public Builder language(String language) {
         put(LANGUAGE, language);
         return this;
     }
@@ -142,7 +143,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withCarrier(String carrier) {
+    public Builder carrier(String carrier) {
         put(CARRIER, carrier);
         return this;
     }
@@ -217,12 +218,12 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
     /**
      * {@inheritDoc}
      *
-     * @param advertisingId {@inheritDoc}
+     * @param ifa {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withAdvertisingId(@NonNull String advertisingId) {
-        put(ADVERTISING_ID, advertisingId);
+    public Builder advertisingId(@NonNull String ifa) {
+        put(ADVERTISING_ID, ifa);
         return this;
     }
 
@@ -233,7 +234,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withManufacturer(String make) {
+    public Builder manufacturer(String make) {
         put(MAKE, make);
         return this;
     }
@@ -245,7 +246,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withModelName(String model) {
+    public Builder model(String model) {
         put(MODEL, model);
         return this;
     }
@@ -257,7 +258,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withOsName(String os) {
+    public Builder osName(String os) {
         put(OS, os);
         return this;
     }
@@ -269,7 +270,7 @@ public class AndroidDevice extends ArrayMap<String, Object> implements Device, D
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withOsVersion(String osVersion) {
+    public Builder osVersion(String osVersion) {
         put(OS_VERSION, osVersion);
         return this;
     }

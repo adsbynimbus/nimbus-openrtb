@@ -19,7 +19,7 @@ public interface Segment {
          * @param id any string
          * @return this builder instance
          */
-        Builder withId(String id);
+        Builder id(String id);
 
         /**
          * Set the name of the segment
@@ -27,7 +27,7 @@ public interface Segment {
          * @param name any string
          * @return this builder instance
          */
-        Builder withName(String name);
+        Builder name(String name);
 
         /**
          * Set the value of the segment
@@ -35,7 +35,7 @@ public interface Segment {
          * @param value any string
          * @return this builder instance
          */
-        Builder withValue(String value);
+        Builder value(String value);
     }
 
     /**

@@ -69,7 +69,7 @@ public interface Video extends Creative {
          * @param position
          * @return this builder instance
          */
-        Builder withPosition(int position);
+        Builder position(int position);
 
         /**
          * Set the requested mimeTypes. [Default: "video/mp4"]
@@ -77,50 +77,50 @@ public interface Video extends Creative {
          * @param mimeTypes
          * @return this builder instance
          */
-        Builder withMimes(String... mimeTypes);
+        Builder mimes(String... mimeTypes);
 
         /**
-         * Set the bid floor. [Default: 3.0]
+         * Set the bid floor for this video impression [Default: 3.0]
          *
          * @param bidFloor bid floor [Default: 3.0]
          * @return this builder instance
          */
-        Builder withBidFloor(float bidFloor);
+        Builder bidFloor(float bidFloor);
 
         /**
-         * Set a duration constraint for a {@link Video} impression
+         * Set a duration constraint for this video impression
          *
          * @param minDuration [Default: 0]
          * @param maxDuration [Default: 60]
          * @return this builder instance
          */
-        Builder withDurationConstraint(int minDuration, int maxDuration);
+        Builder duration(int minDuration, int maxDuration);
 
         /**
-         * Set a bitrate constraint for a {@link Video} impression
+         * Set a bitrate constraint for this video impression
          *
          * @param minBitrate [Default: 0]
          * @param maxBitrate [Default: 20000]
          * @return this builder instance
          */
-        Builder withBitrateConstraint(int minBitrate, int maxBitrate);
+        Builder bitrate(int minBitrate, int maxBitrate);
 
         /**
-         * Set the device width and height
+         * Set the video player width and height
          *
-         * @param width  device width in absolute pixels
-         * @param height device height in absolute pixels
+         * @param width width of the video player in density independent pixels
+         * @param height height of the video player in density independent pixels
          * @return {@link Builder}
          */
-        Builder withDeviceSize(int width, int height);
+        Builder playerSize(int width, int height);
 
         /**
-         * Set the supported protocols
+         * Set the supported protocols of this video impression
          *
          * @param protocols [VAST_2, VAST_2_WRAPPER, VAST_3, VAST_3_WRAPPER]
          * @return this builder instance
          */
-        Builder withProtocols(int... protocols);
+        Builder protocols(int... protocols);
 
         /**
          * Set if the video asset is skippable. Not calling this function assumes it is not skippable
@@ -129,33 +129,33 @@ public interface Video extends Creative {
          * @param skipAfter - minimum duration video must be watched to skip
          * @return this builder instance
          */
-        Builder withSkipEnabled(int skipMin, int skipAfter);
+        Builder skipEnabled(int skipMin, int skipAfter);
 
         /**
-         * Set video start delay
+         * Set the start delay of this video impression
          *
          * @param startDelay [Default: 0]
          * @return this builder instance
          */
-        Builder withStartDelay(int startDelay);
+        Builder startDelay(int startDelay);
 
         /**
-         * Set the playback method.
+         * Set the playback method of this video impression
          *
          * @param playbackMethods [PAGE_LOAD_SOUND_ON, PAGE_LOAD_SOUND_OFF,
          *                        CLICK_SOUND_ON, MOUSE_OVER_SOUND_ON, ENTER_VIEWPORT_SOUND_OFF,
          *                        ENTER_VIEWPORT_SOUND_ON]
          * @return this builder instance
          */
-        Builder withPlaybackMethods(int... playbackMethods);
+        Builder playbackMethods(int... playbackMethods);
 
         /**
-         * Set the placement of the ad
+         * Set the placement type of this video impression
          *
          * @param placement [IN_STREAM, IN_BANNER, IN_ARTICLE, IN_FEED, INTERSTITIAL_SLIDER_FLOATING]
          * @return this builder instance
          */
-        Builder withPlacement(int placement);
+        Builder placement(int placement);
 
         /**
          * Set the linearity of the video request
@@ -163,7 +163,7 @@ public interface Video extends Creative {
          * @param linearity 1: linear; 2: non linear
          * @return this builder instance
          */
-        Builder withLinearity(int linearity);
+        Builder linearity(int linearity);
 
         /**
          * Set the desired content delivery method
@@ -171,7 +171,7 @@ public interface Video extends Creative {
          * @param deliveryMethod 1: streaming; 2: progressive; 3: download
          * @return this builder instance
          */
-        Builder withDeliveryMethod(int... deliveryMethod);
+        Builder deliveryMethod(int... deliveryMethod);
 
         /**
          * Set the requested api values
@@ -179,7 +179,7 @@ public interface Video extends Creative {
          * @param apis 1: vpaid 1; 2: vpaid 2; 3: mraid 1; 4: ormma; 5: mraid 2; 6: mraid 3
          * @return this builder instance
          */
-        Builder withApis(int... apis);
+        Builder apis(int... apis);
     }
 
     /**

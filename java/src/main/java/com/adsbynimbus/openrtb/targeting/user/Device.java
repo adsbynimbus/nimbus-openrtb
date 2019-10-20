@@ -38,9 +38,10 @@ public interface Device {
         /**
          * Sets the limit ad tracking and do not track flags
          *
+         * @param lat true if limited ad tracking is enabled for this device
          * @return this builder instance
          */
-        Builder withLimitedAdTracking();
+        Builder limitedAdTracking(boolean lat);
 
         /**
          * Set the physical device size of the screen
@@ -49,23 +50,23 @@ public interface Device {
          * @param height physical height of the screen in pixels
          * @return this builder instance
          */
-        Builder withPhysicalDeviceSize(int width, int height);
+        Builder size(int width, int height);
 
         /**
-         * Sets the user agent
+         * Sets the user agent of this device
          *
          * @param userAgent
          * @return this builder instance
          */
-        Builder withUserAgent(String userAgent);
+        Builder userAgent(String userAgent);
 
         /**
-         * With {@link com.adsbynimbus.openrtb.targeting.user.Geo} information
+         * With {@link Geo} information
          *
          * @param geo
          * @return this builder instance
          */
-        Builder withGeo(com.adsbynimbus.openrtb.targeting.user.Geo geo);
+        Builder geo(Geo geo);
 
         /**
          * Set the IP address of the device. This can be omitted as Nimbus will infer it from the request context.
@@ -73,7 +74,7 @@ public interface Device {
          * @param ipAddress
          * @return this builder instance
          */
-        Builder withIpAddress(String ipAddress);
+        Builder ipAddress(String ipAddress);
 
         /**
          * Sets the device language
@@ -81,7 +82,7 @@ public interface Device {
          * @param language
          * @return this builder instance
          */
-        Builder withLanguage(String language);
+        Builder language(String language);
 
         /**
          * Sets the device carrier
@@ -89,7 +90,7 @@ public interface Device {
          * @param carrier
          * @return this builder instance
          */
-        Builder withCarrier(String carrier);
+        Builder carrier(String carrier);
 
         /**
          * Set the connection type type
@@ -97,47 +98,47 @@ public interface Device {
          * @param connectionType
          * @return this builder instance
          */
-        Builder withConnectionType(int connectionType);
+        Builder connectionType(int connectionType);
 
         /**
          * Set the advertising id
          *
-         * @param advertisingId
+         * @param ifa the advertising id as returned by the device's operating system
          * @return this builder instance
          */
-        Builder withAdvertisingId(String advertisingId);
+        Builder advertisingId(String ifa);
 
         /**
-         * Set the device manufacturer name
+         * Set manufacturer name of this device
          *
          * @param make
          * @return this builder instance
          */
-        Builder withManufacturer(String make);
+        Builder manufacturer(String make);
 
         /**
-         * Set the device model name
+         * Set model name of this device
          *
          * @param model
          * @return this builder instance
          */
-        Builder withModelName(String model);
+        Builder model(String model);
 
         /**
-         * Set the operating system name
+         * Set the operating system name of this device
          *
          * @param os
          * @return this builder instance
          */
-        Builder withOsName(String os);
+        Builder osName(String os);
 
         /**
-         * Set the operating system version
+         * Set the operating system version of this device
          *
          * @param osVersion
          * @return this builder instance
          */
-        Builder withOsVersion(String osVersion);
+        Builder osVersion(String osVersion);
     }
 
     /**

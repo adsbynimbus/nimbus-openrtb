@@ -20,10 +20,6 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
         SECTION_CATEGORIES, VERSION})
     public @interface Values { }
 
-    @Retention(SOURCE)
-    @IntDef({FREE_APP, PAID_APP})
-    public @interface AppCost { }
-
     @Nullable @Override
     public Object put(@Values String key, Object value) {
         return super.put(key, value);
@@ -36,7 +32,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withName(String name) {
+    public Builder name(String name) {
         put(NAME, name);
         return this;
     }
@@ -48,7 +44,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withBundle(String bundle) {
+    public Builder bundle(String bundle) {
         put(BUNDLE, bundle);
         return this;
     }
@@ -60,7 +56,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withDomain(String domain) {
+    public Builder domain(String domain) {
         put(DOMAIN, domain);
         return this;
     }
@@ -72,7 +68,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withStoreUrl(String storeUrl) {
+    public Builder storeUrl(String storeUrl) {
         put(STORE_URL, storeUrl);
         return this;
     }
@@ -84,7 +80,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withContentCategories(String... categories) {
+    public Builder categories(String... categories) {
         put(CONTENT_CATEGORIES, categories);
         return this;
     }
@@ -92,12 +88,12 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
     /**
      * {@inheritDoc}
      *
-     * @param appCost {@inheritDoc}
+     * @param paid {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withAppCost(@AppCost int appCost) {
-        put(PAID, appCost);
+    public Builder paid(boolean paid) {
+        put(PAID, paid ? PAID_APP : FREE_APP);
         return this;
     }
 
@@ -108,7 +104,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withPublisher(@NonNull Publisher publisher) {
+    public Builder publisher(@NonNull Publisher publisher) {
         put(PUBLISHER, publisher);
         return this;
     }
@@ -120,7 +116,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withPageCategories(String... pageCategories) {
+    public Builder pageCategories(String... pageCategories) {
         put(PAGE_CATEGORIES, pageCategories);
         return this;
     }
@@ -132,7 +128,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withSectionCategories(String... sectionCategories) {
+    public Builder sectionCategories(String... sectionCategories) {
         put(SECTION_CATEGORIES, sectionCategories);
         return this;
     }
@@ -144,7 +140,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withPrivacyPolicy(int privacyPolicy) {
+    public Builder privacyPolicy(boolean privacyPolicy) {
         put(PRIVACY_POLICY, privacyPolicy);
         return this;
     }
@@ -156,7 +152,7 @@ public class AndroidApp extends ArrayMap<String, Object> implements App, App.Bui
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withVersion(String version) {
+    public Builder version(String version) {
         put(VERSION, version);
         return this;
     }

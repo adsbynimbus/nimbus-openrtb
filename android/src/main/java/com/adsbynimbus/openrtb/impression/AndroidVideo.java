@@ -63,7 +63,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withPosition(@Position int position) {
+    public Builder position(@Position int position) {
         put(POSITION, position);
         return this;
     }
@@ -75,7 +75,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withMimes(@NonNull String... mimeTypes) {
+    public Builder mimes(@NonNull String... mimeTypes) {
         put(MIME_TYPES, mimeTypes);
         return this;
     }
@@ -87,7 +87,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withBidFloor(@FloatRange(from = 0) float bidFloor) {
+    public Builder bidFloor(@FloatRange(from = 0) float bidFloor) {
         put(BID_FLOOR, bidFloor);
         return this;
     }
@@ -100,7 +100,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withDurationConstraint(@IntRange(from = 0) int minDuration, @IntRange(from = 1) int maxDuration) {
+    public Builder duration(@IntRange(from = 0) int minDuration, @IntRange(from = 1) int maxDuration) {
         put(MIN_DURATION, minDuration);
         put(MAX_DURATION, maxDuration);
         return this;
@@ -114,7 +114,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withBitrateConstraint(@IntRange(from = 0) int minBitrate, int maxBitrate) {
+    public Builder bitrate(@IntRange(from = 0) int minBitrate, int maxBitrate) {
         put(MIN_BITRATE, minBitrate);
         put(MAX_BITRATE, maxBitrate);
         return this;
@@ -128,7 +128,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withDeviceSize(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
+    public Builder playerSize(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
         put(WIDTH, width);
         put(HEIGHT, height);
         return this;
@@ -141,7 +141,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withProtocols(@NonNull @Protocols int... protocols) {
+    public Builder protocols(@NonNull @Protocols int... protocols) {
         put(PROTOCOLS, protocols);
         return this;
     }
@@ -154,7 +154,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withSkipEnabled(@IntRange(from = 0) int skipMin, @IntRange(from = 0) int skipAfter) {
+    public Builder skipEnabled(@IntRange(from = 0) int skipMin, @IntRange(from = 0) int skipAfter) {
         put(SKIP, 1);
         put(SKIP_MIN, skipMin);
         put(SKIP_AFTER, skipAfter);
@@ -168,7 +168,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withStartDelay(@IntRange(from = 0) int startDelay) {
+    public Builder startDelay(@IntRange(from = 0) int startDelay) {
         put(START_DELAY, startDelay);
         return this;
     }
@@ -179,7 +179,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @param playbackMethods {@inheritDoc}
      * @return {@inheritDoc}
      */
-    public Builder withPlaybackMethods(@PlaybackMethod int... playbackMethods) {
+    public Builder playbackMethods(@PlaybackMethod int... playbackMethods) {
         put(PLAYBACK_METHOD, playbackMethods);
         return this;
     }
@@ -191,7 +191,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withPlacement(@Placement int placement) {
+    public Builder placement(@Placement int placement) {
         put(PLACEMENT, placement);
         return this;
     }
@@ -203,7 +203,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withLinearity(@Linearity int linearity) {
+    public Builder linearity(@Linearity int linearity) {
         put(LINEARITY, linearity);
         return this;
     }
@@ -215,7 +215,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withDeliveryMethod(@DeliveryMethod int... deliveryMethod) {
+    public Builder deliveryMethod(@DeliveryMethod int... deliveryMethod) {
         put(DELIVERY, deliveryMethod);
         return this;
     }
@@ -227,7 +227,7 @@ public class AndroidVideo extends ArrayMap<String, Object> implements Video, Vid
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withApis(@Apis int... apis) {
+    public Builder apis(@Apis int... apis) {
         put(API, apis);
         return this;
     }

@@ -12,28 +12,28 @@ public interface Publisher {
     interface Builder {
 
         /**
-         * Set categories
+         * Set the IAB categories of this publisher
          *
          * @param categories
          * @return this builder instance
          */
-        Builder withCategories(String... categories);
+        Builder categories(String... categories);
 
         /**
-         * Set the publisher name
+         * Set the name of this publisher
          *
          * @param name
          * @return this builder instance
          */
-        Builder withName(String name);
+        Builder name(String name);
 
         /**
-         * Set the publisher domain
+         * Set the domain of this publisher
          *
          * @param domain
          * @return this builder instance
          */
-         Builder withDomain(String domain);
+         Builder domain(String domain);
     }
 
     /**

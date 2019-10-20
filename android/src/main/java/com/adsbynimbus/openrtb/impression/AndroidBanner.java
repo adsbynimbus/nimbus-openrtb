@@ -51,12 +51,12 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner, B
     /**
      * {@inheritDoc}
      *
-     * @param formats {@inheritDoc}
+     * @param format {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withFormats(@NonNull Format... formats) {
-        put(FORMAT, formats);
+    public Builder format(@NonNull Format... format) {
+        put(FORMAT, format);
         return this;
     }
 
@@ -68,8 +68,10 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner, B
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withDeviceIndependentSize(int width, int height) {
-        return null;
+    public Builder size(int width, int height) {
+        put(WIDTH, width);
+        put(HEIGHT, height);
+        return this;
     }
 
     /**
@@ -79,7 +81,7 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner, B
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withPosition(@Position int position) {
+    public Builder position(@Position int position) {
         put(POSITION, position);
         return this;
     }
@@ -91,7 +93,7 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner, B
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withBidFloor(@FloatRange(from = 0) float bidFloor) {
+    public Builder bidFloor(@FloatRange(from = 0) float bidFloor) {
         put(BID_FLOOR, bidFloor);
         return this;
     }
@@ -103,7 +105,7 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner, B
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withSupportedApis(@SupportedApis int... apis) {
+    public Builder apis(@SupportedApis int... apis) {
         put(API, apis);
         return this;
     }
@@ -111,12 +113,12 @@ public class AndroidBanner extends ArrayMap<String, Object> implements Banner, B
     /**
      * {@inheritDoc}
      *
-     * @param attributes {@inheritDoc}
+     * @param battr {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withBlockedAttributes(@CreativeAttributes int... attributes) {
-        put(BLOCKED_ATTRIBUTES, attributes);
+    public Builder blockedAttributes(@CreativeAttributes int... battr) {
+        put(BLOCKED_ATTRIBUTES, battr);
         return this;
     }
 }

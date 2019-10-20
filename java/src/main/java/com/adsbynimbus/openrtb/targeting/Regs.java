@@ -10,7 +10,7 @@ public interface Regs {
     String COPPA = "coppa"; // int: 0 = no, 1 = yes
 
     interface Extension {
-        String GDPR_CONSENT = "gdpr"; // int: 0 = no, 1 = yes
+        String GDPR = "gdpr"; // int: 0 = no, 1 = yes
     }
 
     /**
@@ -19,20 +19,20 @@ public interface Regs {
     interface Builder {
 
         /**
-         * Set the COPPA to true
+         * Set to true if COPPA applies to this request
          *
-         * @param isCOPPA true if is coppa
+         * @param coppa true if COPPA applies to this request. Default is false
          * @return this builder instance
          */
-        Builder setCOPPA(boolean isCOPPA);
+        Builder coppa(boolean coppa);
 
         /**
-         * Set the GDPR consent flag
+         * Set to true if GDPR applies to this request
          *
-         * @param didConsent true if did consent
+         * @param gdpr true if GDPR applies to this request. Default is false
          * @return this builder instance
          */
-        Builder withGDPRConsent(boolean didConsent);
+        Builder gdpr(boolean gdpr);
     }
 
     /**

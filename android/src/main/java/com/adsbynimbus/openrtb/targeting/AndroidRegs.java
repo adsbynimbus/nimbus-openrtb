@@ -15,14 +15,14 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidRegs extends ArrayMap<String, Object> implements Regs, Regs.Builder {
 
     @Retention(SOURCE)
-    @StringDef({COPPA, EXTENSION, Extension.GDPR_CONSENT})
+    @StringDef({COPPA, EXTENSION, Extension.GDPR})
     public @interface Values { }
 
     protected final ArrayMap<String, Object> ext = new ArrayMap<>(1);
 
     @Nullable @Override
     public Object put(@Values String key, Object value) {
-        if (Extension.GDPR_CONSENT.equals(key)) {
+        if (Extension.GDPR.equals(key)) {
             put(EXTENSION, ext);
             return ext.put(key, value);
         }
@@ -32,24 +32,24 @@ public class AndroidRegs extends ArrayMap<String, Object> implements Regs, Regs.
     /**
      * {@inheritDoc}
      *
-     * @param isCOPPA {@inheritDoc}
+     * @param coppa {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder setCOPPA(boolean isCOPPA) {
-        put(COPPA, isCOPPA ? 1 : 0);
+    public Builder coppa(boolean coppa) {
+        put(COPPA, coppa ? 1 : 0);
         return this;
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param didConsent {@inheritDoc}
+     * @param gdpr {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withGDPRConsent(boolean didConsent) {
-        ext.put(Extension.GDPR_CONSENT, didConsent ? 1 : 0);
+    public Builder gdpr(boolean gdpr) {
+        ext.put(Extension.GDPR, gdpr ? 1 : 0);
         put(EXTENSION, ext);
         return this;
     }

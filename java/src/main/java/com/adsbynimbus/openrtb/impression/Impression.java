@@ -16,7 +16,7 @@ public interface Impression extends Creative {
     String BANNER = "banner"; // Banner
     String VIDEO = "video"; // Video
     String INTERSTITIAL = "instl"; //int (default 0; 0 = not interstitial, 1 = interstitial or full screen)
-    String REQUIRE_HTTPS = "secure"; //int (default: 1, 0 = not secure, 1 = require https)
+    String SECURE = "secure"; //int (default: 1, 0 = not secure, 1 = require https)
 
     /**
      * Impression 'ext' object used by Nimbus
@@ -39,23 +39,23 @@ public interface Impression extends Creative {
          * @param id an optional identifier
          * @return this builder instance
          */
-        Builder withId(String id);
+        Builder id(String id);
 
         /**
-         * Include a {@link Banner} in the impression auction
+         * Include a banner in the auction for this impression
          *
-         * @param banner
+         * @param banner a configured banner object
          * @return this builder instance
          */
-        Builder includeBanner(Banner banner);
+        Builder banner(Banner banner);
 
         /**
-         * Include a {@link Video} in the impression auction
+         * Include a video in the auction for this impression
          *
-         * @param video
+         * @param video a configured video object
          * @return this builder instance
          */
-        Builder includeVideo(Video video);
+        Builder video(Video video);
 
         /**
          * Set the bid floor. [Default: 1.00]
@@ -63,37 +63,39 @@ public interface Impression extends Creative {
          * @param bidFloor
          * @return this builder instance
          */
-        Builder withBidFloor(float bidFloor);
+        Builder bidFloor(float bidFloor);
 
         /**
-         * Request an interstitial impression
+         * Set to true if this placement is an interstitial
          *
+         * @param instl true if this placement is an interstitial
          * @return this builder instance
          */
-        Builder asInterstitial();
+        Builder interstitial(boolean instl);
 
         /**
-         * Allows an impression to send back assets over HTTP.
+         * Set to true if this impression must be served over HTTPS, false to allow HTTP and HTTPS. Default is true
          *
+         * @param secure true if this impression must be served over HTTPS, false to allow HTTP and HTTPS
          * @return this builder instance
          */
-        Builder allowHttp();
+        Builder secure(boolean secure);
 
         /**
-         * Set the Facebook App Id
+         * Set the Facebook App id of this impression
          *
          * @param facebookAppId
          * @return this builder instance
          */
-        Builder withFacebookAppId(String facebookAppId);
+        Builder facebookAppId(String facebookAppId);
 
         /**
-         * Set the APS params
+         * Set the APS params for this impression
          *
          * @param apsParams
          * @return this builder instance
          */
-        Builder withApsParams(List apsParams);
+        Builder apsParams(List apsParams);
     }
 
     /**

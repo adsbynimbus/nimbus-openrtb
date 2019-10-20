@@ -19,14 +19,14 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 public class AndroidImpression extends ArrayMap<String, Object> implements Impression, Impression.Builder {
 
     @Retention(SOURCE)
-    @StringDef({ID, BANNER, VIDEO, INTERSTITIAL, BID_FLOOR, REQUIRE_HTTPS})
+    @StringDef({ID, BANNER, VIDEO, INTERSTITIAL, BID_FLOOR, SECURE})
     public @interface Values { }
 
     @Retention(SOURCE)
     @IntDef({POSITION_UNKNOWN, ABOVE_THE_FOLD, BELOW_THE_FOLD, HEADER, FOOTER, SIDEBAR, FULL_SCREEN})
     public @interface Position { }
 
-    public final ArrayMap<String, Object> ext;
+    public final transient ArrayMap<String, Object> ext;
 
     /**
      * Constructor
@@ -37,7 +37,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
         this.ext = new ArrayMap<>(3);
         ext.put(Extension.POSITION, publisherAdUnitId);
         put(EXTENSION, ext);
-        put(REQUIRE_HTTPS, 1);
+        put(SECURE, 1);
     }
 
     /**
@@ -47,7 +47,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withId(String id) {
+    public Builder id(String id) {
         put(ID, id);
         return this;
     }
@@ -59,7 +59,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      * @return {@inheritDoc}
      */
     @Override
-    public Builder includeBanner(@NonNull Banner banner) {
+    public Builder banner(@NonNull Banner banner) {
         put(BANNER, banner);
         return this;
     }
@@ -71,7 +71,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      * @return {@inheritDoc}
      */
     @Override
-    public Builder includeVideo(@NonNull Video video) {
+    public Builder video(@NonNull Video video) {
         put(VIDEO, video);
         return this;
     }
@@ -83,7 +83,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withBidFloor(@FloatRange(from = 0) float bidFloor) {
+    public Builder bidFloor(@FloatRange(from = 0) float bidFloor) {
         put(BID_FLOOR, bidFloor);
         return this;
     }
@@ -91,21 +91,24 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
     /**
      * {@inheritDoc}
      *
+     * @param instl {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder asInterstitial() {
-        put(INTERSTITIAL, 1);
+    public Builder interstitial(boolean instl) {
+        put(INTERSTITIAL, instl ? 1 : 0);
         return this;
     }
 
     /**
      * {@inheritDoc}
      *
+     * @param secure {@inheritDoc}
      * @return {@inheritDoc}
      */
     @Override
-    public Builder allowHttp() {
+    public Builder secure(boolean secure) {
+        put(SECURE, secure);
         return null;
     }
 
@@ -116,7 +119,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withFacebookAppId(@NonNull String facebookAppId) {
+    public Builder facebookAppId(@NonNull String facebookAppId) {
         ext.put(Extension.FACEBOOK_APP_ID, facebookAppId);
         return this;
     }
@@ -128,7 +131,7 @@ public class AndroidImpression extends ArrayMap<String, Object> implements Impre
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withApsParams(@NonNull List apsParams) {
+    public Builder apsParams(@NonNull List apsParams) {
         ext.put(Extension.APS, apsParams);
         return this;
     }

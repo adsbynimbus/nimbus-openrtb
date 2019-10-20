@@ -31,7 +31,7 @@ public class AndroidSegment extends ArrayMap<String, Object> implements Segment,
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withId(String id) {
+    public Builder id(String id) {
         put(ID, id);
         return this;
     }
@@ -43,7 +43,7 @@ public class AndroidSegment extends ArrayMap<String, Object> implements Segment,
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withName(String name) {
+    public Builder name(String name) {
         put(NAME, name);
         return this;
     }
@@ -55,7 +55,7 @@ public class AndroidSegment extends ArrayMap<String, Object> implements Segment,
      * @return {@inheritDoc}
      */
     @Override
-    public Builder withValue(String value) {
+    public Builder value(String value) {
         put(VALUE, value);
         return this;
     }
