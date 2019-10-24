@@ -8,16 +8,20 @@ import com.adsbynimbus.openrtb.BidRequest;
  * third parties as specified by the id field. A bid request can mix data objects from multiple providers.
  * The specific data providers in use should be published by the exchange a priori to its bidders.
  */
-public interface Data {
+public class Data {
 
-    String ID = BidRequest.ID;
-    String NAME = "name";
-    String SEGMENT = "segment";
+    public static final String ID = BidRequest.ID;
+    public static final String NAME = "name";
+    public static final String SEGMENT = "segment";
+
+    public String id;
+    public String name;
+    public Segment[] segment;
 
     /**
      * Builder for constructing a {@link Data} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Set the optional id of the data object
@@ -42,14 +46,5 @@ public interface Data {
          * @return this builder instance
          */
         Builder segments(Segment... segments);
-    }
-
-    /**
-     * Definition of {@link Data} with all public mutable fields
-     */
-    class MutableData implements Data {
-        public String id;
-        public String name;
-        public Segment[] segment;
     }
 }

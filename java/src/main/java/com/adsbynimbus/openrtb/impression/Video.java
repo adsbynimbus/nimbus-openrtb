@@ -11,57 +11,77 @@ package com.adsbynimbus.openrtb.impression;
  * banner, audio, and/or native by also including as Imp subordinates objects of those types. However,
  * any given bid for the impression must conform to one of the offered types.
  */
-public interface Video extends Creative {
+public class Video extends Creative {
 
     /* Protocols [See ORTB 2.5 Section 5.8] */
-    int VAST_2 = 2;
-    int VAST_3 = 3;
-    int VAST_2_WRAPPER = 5;
-    int VAST_3_WRAPPER = 6;
+    public static final int VAST_2 = 2;
+    public static final int VAST_3 = 3;
+    public static final int VAST_2_WRAPPER = 5;
+    public static final int VAST_3_WRAPPER = 6;
 
     /* Placements [See ORTB 2.5 Section 5.9] */
-    int IN_STREAM = 1;
-    int IN_BANNER = 2;
-    int IN_ARTICLE = 3;
-    int IN_FEED = 4;
-    int INTERSTITIAL_SLIDER_FLOATING = 5;
+    public static final int IN_STREAM = 1;
+    public static final int IN_BANNER = 2;
+    public static final int IN_ARTICLE = 3;
+    public static final int IN_FEED = 4;
+    public static final int INTERSTITIAL_SLIDER_FLOATING = 5;
 
     /* Playback methods [See ORTB 2.5 Section 5.10] */
-    int PAGE_LOAD_SOUND_ON = 1;
-    int PAGE_LOAD_SOUND_OFF = 2;
-    int CLICK_SOUND_ON = 3;
-    int MOUSE_OVER_SOUND_ON = 4;
-    int ENTER_VIEWPORT_SOUND_ON = 5;
-    int ENTER_VIEWPORT_SOUND_OFF = 6;
+    public static final int PAGE_LOAD_SOUND_ON = 1;
+    public static final int PAGE_LOAD_SOUND_OFF = 2;
+    public static final int CLICK_SOUND_ON = 3;
+    public static final int MOUSE_OVER_SOUND_ON = 4;
+    public static final int ENTER_VIEWPORT_SOUND_ON = 5;
+    public static final int ENTER_VIEWPORT_SOUND_OFF = 6;
 
     /* Linearity */
-    int LINEAR = 1;
-    int NON_LINEAR = 2;
+    public static final int LINEAR = 1;
+    public static final int NON_LINEAR = 2;
 
     /* Content Delivery [See ORTB 2.5 Section 5.10] */
-    int STREAMING = 1;
-    int PROGRESSIVE = 2;
-    int DOWNLOAD = 3;
+    public static final int STREAMING = 1;
+    public static final int PROGRESSIVE = 2;
+    public static final int DOWNLOAD = 3;
 
     /* Property Names */
-    String DELIVERY = "delivery";
-    String LINEARITY = "linearity"; // int 1: linear; 2: non linear
-    String MIN_DURATION = "minduration"; // int default 0
-    String MAX_DURATION = "maxduration"; // int default 60
-    String PROTOCOLS = "protocols"; // int[]
-    String PLACEMENT = "placement";
-    String START_DELAY = "startdelay"; // int default 0
-    String SKIP = "skip"; // int (0 = no, 1 = can skip)
-    String SKIP_MIN = "skipmin"; //int default 0;
-    String SKIP_AFTER = "skipafter"; //int default 0;
-    String MIN_BITRATE = "minbitrate"; // int default 0;
-    String MAX_BITRATE = "maxbitrate"; // int default 20000
-    String PLAYBACK_METHOD = "playbackmethod"; // int default 2
+    public static final String DELIVERY = "delivery";
+    public static final String LINEARITY = "linearity"; // int 1: linear; 2: non linear
+    public static final String MIN_DURATION = "minduration"; // int default 0
+    public static final String MAX_DURATION = "maxduration"; // int default 60
+    public static final String PROTOCOLS = "protocols"; // int[]
+    public static final String PLACEMENT = "placement";
+    public static final String START_DELAY = "startdelay"; // int default 0
+    public static final String SKIP = "skip"; // int (0 = no, 1 = can skip)
+    public static final String SKIP_MIN = "skipmin"; //int default 0;
+    public static final String SKIP_AFTER = "skipafter"; //int default 0;
+    public static final String MIN_BITRATE = "minbitrate"; // int default 0;
+    public static final String MAX_BITRATE = "maxbitrate"; // int default 20000
+    public static final String PLAYBACK_METHOD = "playbackmethod"; // int default 2
+
+    public Float bidfloor; // Server default 3
+    public String[] mimes;
+    public Integer minduration; // Server default 0
+    public Integer maxduration; // Server default 60
+    public int[] protocols;
+    public int w;
+    public int h;
+    public Integer startdelay; // Server default 0;
+    public Integer placement;
+    public Integer linearity;
+    public Integer skip; // optional
+    public int[] delivery;
+    public Integer skipmin; // Server default 0
+    public Integer skipafter; // Server default 0
+    public Integer minbitrate; // Server default 0
+    public Integer maxbitrate; // Server default 0
+    public Integer pos; // Optional
+    public Integer playbackmethod; // Server default 2;
+    public int[] api;
 
     /**
      * Builder for constructing a {@link Video} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Set the position of the Ad Unit
@@ -180,30 +200,5 @@ public interface Video extends Creative {
          * @return this builder instance
          */
         Builder apis(int... apis);
-    }
-
-    /**
-     * Definition of {@link Video} with all public mutable fields
-     */
-    class MutableVideo implements Video {
-        public Float bidfloor; // Server default 3
-        public String[] mimes;
-        public Integer minduration; // Server default 0
-        public Integer maxduration; // Server default 60
-        public int[] protocols;
-        public int w;
-        public int h;
-        public Integer startdelay; // Server default 0;
-        public Integer placement;
-        public Integer linearity;
-        public Integer skip; // optional
-        public int[] delivery;
-        public Integer skipmin; // Server default 0
-        public Integer skipafter; // Server default 0
-        public Integer minbitrate; // Server default 0
-        public Integer maxbitrate; // Server default 0
-        public Integer pos; // Optional
-        public Integer playbackmethod; // Server default 2;
-        public int[] api;
     }
 }

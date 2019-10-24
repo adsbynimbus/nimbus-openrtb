@@ -8,26 +8,35 @@ package com.adsbynimbus.openrtb.targeting.user;
  * The lat/lon attributes should only be passed if they conform to the accuracy depicted in the type
  * attribute. For example, the centroid of a geographic region such as postal code should not be passed.
  */
-public interface Geo {
+public class Geo {
 
-    String LATITUDE = "lat"; // Float
-    String LONGITUDE = "lon"; // Float (optional)
-    String TYPE = "type"; // Integer
-    String ACCURACY = "accuracy"; // Integer
-    String COUNTRY = "country";
-    String CITY = "city";
-    String METRO = "metro";
-    String STATE = "state";
+    public static final String LATITUDE = "lat"; // Float
+    public static final String LONGITUDE = "lon"; // Float (optional)
+    public static final String TYPE = "type"; // Integer
+    public static final String ACCURACY = "accuracy"; // Integer
+    public static final String COUNTRY = "country";
+    public static final String CITY = "city";
+    public static final String METRO = "metro";
+    public static final String STATE = "state";
 
     // Location type
-    int GPS = 1;
-    int IP_LOOKUP = 2;
-    int USER_PROVIDED = 3;
+    public static final int GPS = 1;
+    public static final int IP_LOOKUP = 2;
+    public static final int USER_PROVIDED = 3;
+
+    public Float lat;
+    public Float lon;
+    public Integer type;
+    public Integer accuracy;
+    public String country;
+    public String city;
+    public String metro;
+    public String state;
 
     /**
      * Builder for constructing a {@link Geo} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Set the latitude of this Geo object
@@ -51,7 +60,7 @@ public interface Geo {
          * @param longitude
          * @return this builder instance
          */
-        public Builder longitude(float longitude);
+        Builder longitude(float longitude);
 
         /**
          * Set the accuracy of the location data as reported by the device
@@ -92,19 +101,5 @@ public interface Geo {
          * @return this builder instance
          */
         Builder state(String state);
-    }
-
-    /**
-     * Definition of {@link Geo} with all public mutable fields
-     */
-    class MutableGeo implements Geo {
-        public Float lat;
-        public Float lon;
-        public Integer type;
-        public Integer accuracy;
-        public String country;
-        public String city;
-        public String metro;
-        public String state;
     }
 }

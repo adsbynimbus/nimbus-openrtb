@@ -4,12 +4,16 @@ package com.adsbynimbus.openrtb.targeting.distribution;
  * This object describes the publisher of the media in which the ad will be displayed. The publisher is
  * typically the seller in an OpenRTB transaction.
  */
-public interface Publisher {
+public class Publisher {
+
+    public String name;
+    public String domain;
+    public String[] cat;
 
     /**
      * Builder for constructing a {@link Publisher} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Set the IAB categories of this publisher
@@ -34,14 +38,5 @@ public interface Publisher {
          * @return this builder instance
          */
          Builder domain(String domain);
-    }
-
-    /**
-     * Definition of {@link Publisher} with all public mutable fields
-     */
-    class MutablePublisher implements Publisher {
-        public String name;
-        public String domain;
-        public String[] cat;
     }
 }

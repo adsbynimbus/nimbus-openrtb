@@ -5,14 +5,18 @@ package com.adsbynimbus.openrtb.targeting;
  * object is a collection of such values from a given data provider. The specific segment names and value
  * options must be published by the exchange a priori to its bidders.
  */
-public interface Segment {
+public class Segment {
 
-    String VALUE = "value";
+    public static final String VALUE = "value";
+
+    public String id;
+    public String name;
+    public String value;
 
     /**
      * Builder for constructing a {@link Segment} object
      */
-    interface Builder {
+    public interface Builder {
         /**
          * Set the id of the segment object
          *
@@ -36,14 +40,5 @@ public interface Segment {
          * @return this builder instance
          */
         Builder value(String value);
-    }
-
-    /**
-     * Definition of {@link Segment} with all public mutable fields
-     */
-    class MutableSegment implements Segment {
-        public String id;
-        public String name;
-        public String value;
     }
 }

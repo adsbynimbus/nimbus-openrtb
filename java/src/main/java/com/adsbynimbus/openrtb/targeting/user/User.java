@@ -8,33 +8,44 @@ import com.adsbynimbus.openrtb.targeting.Data;
  * privacy policies. However, this user ID must be stable long enough to serve reasonably as the basis for
  * frequency capping and retargeting.
  */
-public interface User {
+public class User {
 
-    String AGE = "age"; // Integer
-    String BUYER_UID = "buyeruid";
-    String YEAR_OF_BIRTH = "yob"; // Integer
-    String GENDER = "gender";
-    String KEYWORDS = "keywords";
-    String CUSTOM_DATA = "custom_data";
-    String DATA = "data";
-
+    public static final String AGE = "age"; // Integer
+    public static final String BUYER_UID = "buyeruid";
+    public static final String YEAR_OF_BIRTH = "yob"; // Integer
+    public static final String GENDER = "gender";
+    public static final String KEYWORDS = "keywords";
+    public static final String CUSTOM_DATA = "custom_data";
+    public static final String DATA = "data";
 
     // Gender Consts
-    String MALE = "Male";
-    String FEMALE = "Female";
+    public static final String MALE = "Male";
+    public static final String FEMALE = "Female";
+
+    public Integer age;
+    public String buyeruid;
+    public Integer yob;
+    public String gender;
+    public String keywords;
+    public String custom_data;
+    public Data[] data;
+    public Extension ext;
 
     /**
      * User 'ext' object used by Nimbus
      */
-    interface Extension {
-        String CONSENT = "consent";
-        String DID_CONSENT = "did_consent"; // int
+    public static class Extension {
+        public static final String CONSENT = "consent";
+        public static final String DID_CONSENT = "did_consent"; // int
+
+        public String consent;
+        public int did_consent;
     }
 
     /**
      * Builder for constructing a {@link User} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Set the age of the user
@@ -71,15 +82,15 @@ public interface User {
         /**
          * Sets the keywords associated with this user
          *
-         * @param keywords a comma delimited string of keywords
+         * @param keywords a comma delimited String of keywords
          * @return this builder instance
          */
         Builder keywords(String keywords);
 
         /**
-         * Set a string of custom data to be sent to Nimbus for this user
+         * Set a String of custom data to be sent to Nimbus for this user
          *
-         * @param customData a string representing some custom data
+         * @param customData a String representing some custom data
          * @return this builder instance
          */
         Builder customData(String customData);
@@ -93,12 +104,12 @@ public interface User {
         Builder data(Data... data);
 
         /**
-         * Adds a publisher provided GDPR consent string to this User to be sent with a request
+         * Adds a publisher provided GDPR consent String to this User to be sent with a request
          *
-         * @param consentString publisher provided GDPR consent string
+         * @param consent publisher provided GDPR consent String
          * @return this builder instance
          */
-        Builder gdprConsentString(String consentString);
+        Builder gdprConsentString(String consent);
 
         /**
          * Set to true if the user has consented to the publisher's data policy
@@ -107,27 +118,5 @@ public interface User {
          * @return this builder instance
          */
         Builder gdprDidConsent(boolean didConsent);
-    }
-
-    /**
-     * Definition of {@link User} with all public mutable fields
-     */
-    class MutableUser implements User {
-        public Integer age;
-        public String buyeruid;
-        public Integer yob;
-        public String gender;
-        public String keywords;
-        public String custom_data;
-        public Data[] data;
-        public Extension ext;
-    }
-
-    /**
-     * Definition of {@link User.Extension} with all public mutable fields
-     */
-    class MutableExtension implements Extension {
-        public String consent;
-        public int did_consent;
     }
 }

@@ -17,33 +17,48 @@ import com.adsbynimbus.openrtb.targeting.user.User;
  * appear. These objects are highly recommended, but only one applies to a given bid request depending
  * on whether the media is browser-based web content or a non-browser application, respectively.
  */
-public interface BidRequest {
+public class BidRequest {
 
-    String IMP = "imp"; // Impression[] (only size 1 valid)
-    String APP = "app"; // App
-    String DEVICE = "device"; // Device
-    String USER = "user"; // User
-    String TEST = "test"; // int (default 0; 0 = Live, 1 = Test)
-    String TIMEOUT = "tmax"; // int
-    String REGS = "regs";
-    String SOURCE = "source";
-    String BADV = "badv";
+    public static final String IMP = "imp"; // Impression[] (only size 1 valid)
+    public static final String APP = "app"; // App
+    public static final String DEVICE = "device"; // Device
+    public static final String USER = "user"; // User
+    public static final String TEST = "test"; // int (default 0; 0 = Live, 1 = Test)
+    public static final String TIMEOUT = "tmax"; // int
+    public static final String REGS = "regs";
+    public static final String SOURCE = "source";
+    public static final String BADV = "badv";
 
-    String ID = "id";
-    String EXTENSION = "ext";
+    public Impression[] imp;
+    public App app;
+    public Device device;
+    public Format format;
+    public User user;
+    public Integer test;
+    public Integer tmax;
+    public Regs regs;
+    public Source source;
+    public String[] badv;
+    public Extension ext;
+
+    public static final String ID = "id";
+    public static final String EXTENSION = "ext";
 
     /**
      * BidRequest 'ext' object used by Nimbus
      */
-    interface Extension {
-        String API_KEY = "api_key";
-        String SESSION_ID = "session_id";
+    public static class Extension {
+        public static final String API_KEY = "api_key";
+        public static final String SESSION_ID = "session_id";
+
+        public String api_key;
+        public String session_id;
     }
 
     /**
      * Builder for constructing a {@link BidRequest} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Add an impression to this request
@@ -70,7 +85,7 @@ public interface BidRequest {
         Builder device(Device device);
 
         /**
-         * Set the device size of this request in absolutel pixels
+         * Set the device size of this request in absolute pixels
          *
          * @param width width of the device in pixels
          * @param height height of the device in pixels
@@ -141,30 +156,5 @@ public interface BidRequest {
          * @return this builder instance
          */
         Builder sessionId(String sessionId);
-    }
-
-    /**
-     * Definition of {@link BidRequest} with all public mutable fields
-     */
-    class MutableBidRequest implements BidRequest {
-        public Impression[] imp;
-        public App app;
-        public Device device;
-        public Format format;
-        public User user;
-        public Integer test;
-        public Integer tmax;
-        public Regs regs;
-        public Source source;
-        public String[] badv;
-        public Extension ext;
-    }
-
-    /**
-     * Definition of {@link BidRequest.Extension} with all public mutable fields
-     */
-    class MutableExtension implements Extension {
-        public String api_key;
-        public String session_id;
     }
 }

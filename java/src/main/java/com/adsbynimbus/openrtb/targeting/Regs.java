@@ -5,18 +5,23 @@ package com.adsbynimbus.openrtb.targeting;
  * coppa flag signals whether or not the request falls under the United States Federal Trade Commission’s
  * regulations for the United States Children’s Online Privacy Protection Act ("COPPA").
  */
-public interface Regs {
+public class Regs {
 
-    String COPPA = "coppa"; // int: 0 = no, 1 = yes
+    public static final String COPPA = "coppa"; // int: 0 = no, 1 = yes
 
-    interface Extension {
-        String GDPR = "gdpr"; // int: 0 = no, 1 = yes
+    public int coppa;
+    public Extension ext;
+
+    public static class Extension {
+        public static final String GDPR = "gdpr"; // int: 0 = no, 1 = yes
+
+        public int gdpr;
     }
 
     /**
      * Builder for constructing a {@link Regs} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Set to true if COPPA applies to this request
@@ -33,20 +38,5 @@ public interface Regs {
          * @return this builder instance
          */
         Builder gdpr(boolean gdpr);
-    }
-
-    /**
-     * Definition of {@link Regs} with all public mutable fields
-     */
-    class MutableRegs implements Regs {
-        public int coppa;
-        public Extension ext;
-    }
-
-    /**
-     * Definition of {@link Regs.Extension} with all public mutable fields
-     */
-    class MutableExtension implements Regs.Extension {
-        public int gdpr;
     }
 }

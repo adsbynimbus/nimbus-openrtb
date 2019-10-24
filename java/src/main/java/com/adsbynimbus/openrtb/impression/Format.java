@@ -5,28 +5,23 @@ package com.adsbynimbus.openrtb.impression;
  * banner impression. These are typically used in an array where multiple sizes are permitted. It is
  * recommended that either the w/h pair or the wratio/hratio/wmin set (i.e., for Flex Ads) be specified.
  */
-public interface Format {
+public class Format {
 
     //Ad Format Names
-    int INTERSTITIAL_PORT = 0;
-    int INTERSTITIAL_LAND = 1;
-    int BANNER_300_50 = 2;
-    int BANNER_320_50 = 3;
-    int LETTERBOX = 4;
-    int HALF_SCREEN = 5;
-    int LEADERBOARD = 6;
+    public static final int INTERSTITIAL_PORT = 0;
+    public static final int INTERSTITIAL_LAND = 1;
+    public static final int BANNER_300_50 = 2;
+    public static final int BANNER_320_50 = 3;
+    public static final int LETTERBOX = 4;
+    public static final int HALF_SCREEN = 5;
+    public static final int LEADERBOARD = 6;
 
     //Ad format parameter
-    String FORMAT = "format";
+    public static final String FORMAT = "format";
 
-    String WIDTH = "w";
-    String HEIGHT = "h";
+    public static final String WIDTH = "w";
+    public static final String HEIGHT = "h";
 
-    /**
-     * Definition of {@link Format} with all public mutable fields
-     */
-    class MutableFormat implements Format {
-        public int w;
-        public int h;
-    }
+    public int w;
+    public int h;
 }

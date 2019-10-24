@@ -7,18 +7,23 @@ package com.adsbynimbus.openrtb.targeting;
  * header bidding, but it can also apply to upstream server entities such as another RTB exchange, a
  * mediation platform, or an ad server combines direct campaigns with 3rd party demand in decisioning
  */
-public interface Source {
+public class Source {
+
+    public Extension ext;
 
     // Extensions
-    interface Extension {
-        String OM_PARTNER_NAME = "omidpn";
-        String OM_SDK_VERSION = "omidpv";
+    public static class Extension {
+        public static final String OM_PARTNER_NAME = "omidpn";
+        public static final String OM_SDK_VERSION = "omidpv";
+
+        public String omidpn;
+        public String omidpv;
     }
 
     /**
      * Builder for constructing a {@link Source} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Set the OM SDK information for a measurement enabled app
@@ -28,20 +33,5 @@ public interface Source {
          * @return this builder instance
          */
         Builder omSdk(String partnerName, String sdkVersion);
-    }
-
-    /**
-     * Definition of {@link Source} with all public mutable fields
-     */
-    class MutableSource implements Source {
-        public Extension ext;
-    }
-
-    /**
-     * Definition of {@link Source.Extension} with all public mutable fields
-     */
-    class MutableExtension implements Extension {
-        public String omidpn;
-        public String omidpv;
     }
 }

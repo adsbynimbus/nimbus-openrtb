@@ -11,27 +11,39 @@ import java.util.List;
  * one such type which is the typical case or mix them at their discretion. However, any given bid for the
  * impression must conform to one of the offered types.
  */
-public interface Impression extends Creative {
+public class Impression {
 
-    String BANNER = "banner"; // Banner
-    String VIDEO = "video"; // Video
-    String INTERSTITIAL = "instl"; //int (default 0; 0 = not interstitial, 1 = interstitial or full screen)
-    String SECURE = "secure"; //int (default: 1, 0 = not secure, 1 = require https)
+    public static final String BANNER = "banner"; // Banner
+    public static final String VIDEO = "video"; // Video
+    public static final String INTERSTITIAL = "instl"; //int (default 0; 0 = not interstitial, 1 = interstitial or full screen)
+    public static final String SECURE = "secure"; //int (default: 1, 0 = not secure, 1 = require https)
+
+    public String id;
+    public Banner banner;
+    public Video video;
+    public Integer instl; // Server default 0
+    public Float bidfloor; // Server default 1.0
+    public Integer secure; // Server default 1
+    public Extension ext;
 
     /**
      * Impression 'ext' object used by Nimbus
      */
-    interface Extension {
-        String POSITION = "position";
-        String FACEBOOK_APP_ID = "facebook_app_id";
-        String APS = "aps";
+    public static class Extension {
+        public static final String POSITION = "position";
+        public static final String FACEBOOK_APP_ID = "facebook_app_id";
+        public static final String APS = "aps";
+
+        public String position;
+        public String facebook_app_id;
+        public List aps;
     }
 
 
     /**
      * Builder for constructing a {@link Impression} object
      */
-    interface Builder  {
+    public interface Builder  {
 
         /**
          * Set the id of the impression
@@ -96,27 +108,5 @@ public interface Impression extends Creative {
          * @return this builder instance
          */
         Builder apsParams(List apsParams);
-    }
-
-    /**
-     * Definition of {@link Impression} with all public mutable fields
-     */
-    class MutableImpression implements Impression {
-        public String id;
-        public Banner banner;
-        public Video video;
-        public Integer instl; // Server default 0
-        public Float bidfloor; // Server default 1.0
-        public Integer secure; // Server default 1
-        public Extension ext;
-    }
-
-    /**
-     * Definition of {@link Impression.Extension} with all public mutable fields
-     */
-    class MutableExtension implements Extension {
-        public String position;
-        public String facebook_app_id;
-        public List aps;
     }
 }

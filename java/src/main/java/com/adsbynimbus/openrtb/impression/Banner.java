@@ -11,14 +11,22 @@ package com.adsbynimbus.openrtb.impression;
  * video, audio, and/or native by also including as Imp subordinates objects of those types. However, any
  * given bid for the impression must conform to one of the offered types.
  */
-public interface Banner extends Creative {
+public class Banner extends Creative {
 
-    String BLOCKED_ATTRIBUTES = "battr";
+    public static final String BLOCKED_ATTRIBUTES = "battr";
+
+    public Float bidfloor; // Server default is 2.0
+    public int[] battr;
+    public Format[] format;
+    public Integer w;
+    public Integer h;
+    public Integer pos;
+    public int[] api;
 
     /**
      * Builder for constructing a {@link Banner} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Set the requested formats of this banner impression. If this method is not called you must call
@@ -69,18 +77,5 @@ public interface Banner extends Creative {
          * @return this builder instance
          */
         Builder blockedAttributes(int... battr);
-    }
-
-    /**
-     * Definition of {@link Banner} with all public mutable fields
-     */
-    class MutableBanner implements Banner {
-        public Float bidfloor; // Server default is 2.0
-        public int[] battr;
-        public Format[] format;
-        public Integer w;
-        public Integer h;
-        public Integer pos;
-        public int[] api;
     }
 }
