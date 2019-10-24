@@ -3,13 +3,12 @@ pluginManagement {
         gradlePluginPortal()
         jcenter()
         google()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id == "com.android.library") {
-                useModule("com.android.tools.build:gradle:${agp}")
-            } else if (requested.id.id == 'com.jfrog.bintray') {
-                useVersion("$bintray")
+            if (requested.id.id.startsWith("com.android")) {
+                useModule("com.android.tools.build:gradle:${requested.version}")
             }
         }
     }
