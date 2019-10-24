@@ -1,5 +1,5 @@
 plugins {
-    id "com.android.library"
+    id "com.android.library" version "$agp_version"
 }
 
 android {
@@ -23,9 +23,9 @@ android {
 dependencies {
     api project(':java')
 
-    implementation "androidx.annotation:annotation:$androidx"
-    implementation "androidx.collection:collection:$androidx"
-    implementation "androidx.core:core:$androidx"
+    implementation "androidx.annotation:annotation:$androidx_version"
+    implementation "androidx.collection:collection:$androidx_version"
+    implementation "androidx.core:core:$androidx_version"
 }
 
 tasks.register("javadoc", Javadoc) {

@@ -1,5 +1,5 @@
 plugins {
-    id "com.jfrog.bintray" apply false
+    id "com.jfrog.bintray" version "$bintray_version" apply false
 }
 
 allprojects {
@@ -11,6 +11,7 @@ subprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
 
     apply plugin: "maven-publish"
