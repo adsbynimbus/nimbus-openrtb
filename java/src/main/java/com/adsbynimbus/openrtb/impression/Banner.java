@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.impression;
 
+import java.util.EnumSet;
+
 /**
  * This object represents the most general type of impression. Although the term "banner" may have very
  * specific meaning in other contexts, here it can be many things including a simple static image, an
@@ -11,17 +13,15 @@ package com.adsbynimbus.openrtb.impression;
  * video, audio, and/or native by also including as Imp subordinates objects of those types. However, any
  * given bid for the impression must conform to one of the offered types.
  */
-public class Banner extends Creative {
-
-    public static final String BLOCKED_ATTRIBUTES = "battr";
+public class Banner {
 
     public Float bidfloor; // Server default is 2.0
-    public int[] battr;
+    public EnumSet<Attribute> battr;
     public Format[] format;
     public Integer w;
     public Integer h;
-    public Integer pos;
-    public int[] api;
+    public Position pos;
+    public EnumSet<Api> api;
 
     /**
      * Builder for constructing a {@link Banner} object
@@ -52,7 +52,7 @@ public class Banner extends Creative {
          * @param position
          * @return this builder instance
          */
-        Builder position(int position);
+        Builder position(Position position);
 
         /**
          * Set the bid floor of this banner impression [Default 2.0]
@@ -68,7 +68,7 @@ public class Banner extends Creative {
          * @param apis [VPAID_2, MRAID_1, MRAID_2, MRAID_3]
          * @return this builder instance
          */
-        Builder apis(int...apis);
+        Builder apis(EnumSet<Api> apis);
 
         /**
          * Set creative attributes that should be blocked
@@ -76,6 +76,6 @@ public class Banner extends Creative {
          * @param battr
          * @return this builder instance
          */
-        Builder blockedAttributes(int... battr);
+        Builder blockedAttributes(EnumSet<Attribute> battr);
     }
 }

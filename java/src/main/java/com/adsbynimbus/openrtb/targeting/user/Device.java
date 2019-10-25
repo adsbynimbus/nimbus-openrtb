@@ -7,14 +7,6 @@ package com.adsbynimbus.openrtb.targeting.user;
  */
 public class Device {
 
-    public static final int UNKNOWN = 0;
-    public static final int ETHERNET = 1;
-    public static final int WIFI = 2;
-    public static final int CELLULAR_UNKNOWN = 3;
-    public static final int CELLULAR_2G = 4;
-    public static final int CELLULAR_3G = 5;
-    public static final int CELLULAR_4G = 6;
-
     public static final String USER_AGENT = "ua";
     public static final String GEO = "geo"; // geo object
     public static final String DO_NOT_TRACK = "dnt";
@@ -30,6 +22,22 @@ public class Device {
     public static final String CONNECTION_TYPE = "connectiontype"; //Integer
     public static final String ADVERTISING_ID = "ifa";
 
+    public enum ConnectionType {
+        UNKNOWN(0),
+        ETHERNET(1),
+        WIFI(2),
+        CELLULAR_UNKNOWN(3),
+        CELLULAR_2G(4),
+        CELLULAR_3G(5),
+        CELLULAR_4G(6);
+
+        public final int value;
+
+        ConnectionType(int value) {
+            this.value = value;
+        }
+    }
+
     public String ua;
     public Geo geo;
     public int dnt;
@@ -44,7 +52,7 @@ public class Device {
     public int w;
     public String language;
     public String carrier;
-    public Integer connectiontype;
+    public ConnectionType connectiontype;
     public String ifa;
 
     /**
@@ -115,7 +123,7 @@ public class Device {
          * @param connectionType
          * @return this builder instance
          */
-        Builder connectionType(int connectionType);
+        Builder connectionType(ConnectionType connectionType);
 
         /**
          * Set the advertising id

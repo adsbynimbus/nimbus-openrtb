@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.impression;
 
+import java.util.EnumSet;
+
 /**
  * This object represents an in-stream video impression. Many of the fields are non-essential for minimally
  * viable transactions, but are included to offer fine control when needed. Video in OpenRTB generally
@@ -11,72 +13,122 @@ package com.adsbynimbus.openrtb.impression;
  * banner, audio, and/or native by also including as Imp subordinates objects of those types. However,
  * any given bid for the impression must conform to one of the offered types.
  */
-public class Video extends Creative {
+public class Video {
 
-    /* Protocols [See ORTB 2.5 Section 5.8] */
-    public static final int VAST_2 = 2;
-    public static final int VAST_3 = 3;
-    public static final int VAST_2_WRAPPER = 5;
-    public static final int VAST_3_WRAPPER = 6;
+    /**
+     * Protocols [See ORTB 2.5 Section 5.8]
+     */
+    public enum Protocol {
+        VAST_2(2),
+        VAST_3(3),
+        VAST_2_WRAPPER(5),
+        VAST_3_WRAPPER(6);
 
-    /* Placements [See ORTB 2.5 Section 5.9] */
-    public static final int IN_STREAM = 1;
-    public static final int IN_BANNER = 2;
-    public static final int IN_ARTICLE = 3;
-    public static final int IN_FEED = 4;
-    public static final int INTERSTITIAL_SLIDER_FLOATING = 5;
+        public final int value;
 
-    /* Playback methods [See ORTB 2.5 Section 5.10] */
-    public static final int PAGE_LOAD_SOUND_ON = 1;
-    public static final int PAGE_LOAD_SOUND_OFF = 2;
-    public static final int CLICK_SOUND_ON = 3;
-    public static final int MOUSE_OVER_SOUND_ON = 4;
-    public static final int ENTER_VIEWPORT_SOUND_ON = 5;
-    public static final int ENTER_VIEWPORT_SOUND_OFF = 6;
+        Protocol(int value) {
+            this.value = value;
+        }
+    }
 
-    /* Linearity */
-    public static final int LINEAR = 1;
-    public static final int NON_LINEAR = 2;
+    /**
+     * Placements [See ORTB 2.5 Section 5.9]
+     */
+    public enum Placement {
+        IN_STREAM(1),
+        IN_BANNER(2),
+        IN_ARTICLE(3),
+        IN_FEED(4),
+        INTERSTITIAL_SLIDER_FLOATING(5);
 
-    /* Content Delivery [See ORTB 2.5 Section 5.10] */
-    public static final int STREAMING = 1;
-    public static final int PROGRESSIVE = 2;
-    public static final int DOWNLOAD = 3;
+        public final int value;
+
+        Placement(int value) {
+            this.value = value;
+        }
+    }
+
+    /**
+     * Playback methods [See ORTB 2.5 Section 5.10]
+     */
+    public enum PlaybackMethod {
+        PAGE_LOAD_SOUND_ON(1),
+        PAGE_LOAD_SOUND_OFF(2),
+        CLICK_SOUND_ON(3),
+        MOUSE_OVER_SOUND_ON(4),
+        ENTER_VIEWPORT_SOUND_ON(5),
+        ENTER_VIEWPORT_SOUND_OFF(6);
+
+        public final int value;
+
+        PlaybackMethod(int value) {
+            this.value = value;
+        }
+    }
+
+    /**
+     * Linearity
+     */
+    public enum Linearity {
+        LINEAR(1),
+        NON_LINEAR(2);
+
+        public final int value;
+
+        Linearity(int value) {
+            this.value = value;
+        }
+    }
+
+    /**
+     * Content Delivery [See ORTB 2.5 Section 5.10]
+     */
+    public enum DeliveryMethod {
+        STREAMING(1),
+        PROGRESSIVE(2),
+        DOWNLOAD(3);
+
+        public final int value;
+
+        DeliveryMethod(int value) {
+            this.value = value;
+        }
+    }
 
     /* Property Names */
-    public static final String DELIVERY = "delivery";
-    public static final String LINEARITY = "linearity"; // int 1: linear; 2: non linear
-    public static final String MIN_DURATION = "minduration"; // int default 0
-    public static final String MAX_DURATION = "maxduration"; // int default 60
-    public static final String PROTOCOLS = "protocols"; // int[]
-    public static final String PLACEMENT = "placement";
-    public static final String START_DELAY = "startdelay"; // int default 0
-    public static final String SKIP = "skip"; // int (0 = no, 1 = can skip)
-    public static final String SKIP_MIN = "skipmin"; //int default 0;
-    public static final String SKIP_AFTER = "skipafter"; //int default 0;
-    public static final String MIN_BITRATE = "minbitrate"; // int default 0;
-    public static final String MAX_BITRATE = "maxbitrate"; // int default 20000
-    public static final String PLAYBACK_METHOD = "playbackmethod"; // int default 2
+    String DELIVERY = "delivery";
+    String LINEARITY = "linearity"; // int 1: linear; 2: non linear
+    String MIN_DURATION = "minduration"; // int default 0
+    String MAX_DURATION = "maxduration"; // int default 60
+    String PROTOCOLS = "protocols"; // int[]
+    String PLACEMENT = "placement";
+    String START_DELAY = "startdelay"; // int default 0
+    String SKIP = "skip"; // int (0 = no, 1 = can skip)
+    String SKIP_MIN = "skipmin"; //int default 0;
+    String SKIP_AFTER = "skipafter"; //int default 0;
+    String MIN_BITRATE = "minbitrate"; // int default 0;
+    String MAX_BITRATE = "maxbitrate"; // int default 20000
+    String PLAYBACK_METHOD = "playbackmethod"; // int default 2
 
     public Float bidfloor; // Server default 3
     public String[] mimes;
     public Integer minduration; // Server default 0
     public Integer maxduration; // Server default 60
-    public int[] protocols;
+    public EnumSet<Protocol> protocols;
     public int w;
     public int h;
     public Integer startdelay; // Server default 0;
-    public Integer placement;
-    public Integer linearity;
+    public Placement placement;
+    public Linearity linearity;
     public Integer skip; // optional
-    public int[] delivery;
+    public EnumSet<DeliveryMethod> delivery;
     public Integer skipmin; // Server default 0
     public Integer skipafter; // Server default 0
     public Integer minbitrate; // Server default 0
     public Integer maxbitrate; // Server default 0
-    public Integer pos; // Optional
-    public Integer playbackmethod; // Server default 2;
-    public int[] api;
+    public Position pos; // Optional
+    public PlaybackMethod playbackmethod; // Server default 2;
+    public EnumSet<Api> api;
 
     /**
      * Builder for constructing a {@link Video} object
@@ -89,7 +141,7 @@ public class Video extends Creative {
          * @param position
          * @return this builder instance
          */
-        Builder position(int position);
+        Builder position(Position position);
 
         /**
          * Set the requested mimeTypes. [Default: "video/mp4"]
@@ -140,7 +192,7 @@ public class Video extends Creative {
          * @param protocols [VAST_2, VAST_2_WRAPPER, VAST_3, VAST_3_WRAPPER]
          * @return this builder instance
          */
-        Builder protocols(int... protocols);
+        Builder protocols(EnumSet<Protocol> protocols);
 
         /**
          * Set if the video asset is skippable. Not calling this function assumes it is not skippable
@@ -162,12 +214,12 @@ public class Video extends Creative {
         /**
          * Set the playback method of this video impression
          *
-         * @param playbackMethods [PAGE_LOAD_SOUND_ON, PAGE_LOAD_SOUND_OFF,
+         * @param playbackMethod [PAGE_LOAD_SOUND_ON, PAGE_LOAD_SOUND_OFF,
          *                        CLICK_SOUND_ON, MOUSE_OVER_SOUND_ON, ENTER_VIEWPORT_SOUND_OFF,
          *                        ENTER_VIEWPORT_SOUND_ON]
          * @return this builder instance
          */
-        Builder playbackMethods(int... playbackMethods);
+        Builder playbackMethods(PlaybackMethod playbackMethod);
 
         /**
          * Set the placement type of this video impression
@@ -175,7 +227,7 @@ public class Video extends Creative {
          * @param placement [IN_STREAM, IN_BANNER, IN_ARTICLE, IN_FEED, INTERSTITIAL_SLIDER_FLOATING]
          * @return this builder instance
          */
-        Builder placement(int placement);
+        Builder placement(Placement placement);
 
         /**
          * Set the linearity of the video request
@@ -183,7 +235,7 @@ public class Video extends Creative {
          * @param linearity 1: linear; 2: non linear
          * @return this builder instance
          */
-        Builder linearity(int linearity);
+        Builder linearity(Linearity linearity);
 
         /**
          * Set the desired content delivery method
@@ -191,7 +243,7 @@ public class Video extends Creative {
          * @param deliveryMethod 1: streaming; 2: progressive; 3: download
          * @return this builder instance
          */
-        Builder deliveryMethod(int... deliveryMethod);
+        Builder deliveryMethod(EnumSet<DeliveryMethod> deliveryMethod);
 
         /**
          * Set the requested api values
@@ -199,6 +251,6 @@ public class Video extends Creative {
          * @param apis 1: vpaid 1; 2: vpaid 2; 3: mraid 1; 4: ormma; 5: mraid 2; 6: mraid 3
          * @return this builder instance
          */
-        Builder apis(int... apis);
+        Builder apis(EnumSet<Api> apis);
     }
 }

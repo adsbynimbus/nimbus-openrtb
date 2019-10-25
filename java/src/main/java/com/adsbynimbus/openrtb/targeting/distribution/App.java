@@ -34,7 +34,7 @@ public class App {
     public String ver;
     public Integer privacypolicy;
     public Integer paid;
-    public String publisher;
+    public Publisher publisher;
 
     /**
      * Builder for constructing a {@link App} object

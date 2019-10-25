@@ -10,23 +10,21 @@ package com.adsbynimbus.openrtb.targeting.user;
  */
 public class Geo {
 
-    public static final String LATITUDE = "lat"; // Float
-    public static final String LONGITUDE = "lon"; // Float (optional)
-    public static final String TYPE = "type"; // Integer
-    public static final String ACCURACY = "accuracy"; // Integer
-    public static final String COUNTRY = "country";
-    public static final String CITY = "city";
-    public static final String METRO = "metro";
-    public static final String STATE = "state";
+    public enum LocationType {
+        GPS(1),
+        IP_LOOKUP(2),
+        USER_PROVIDED(3);
 
-    // Location type
-    public static final int GPS = 1;
-    public static final int IP_LOOKUP = 2;
-    public static final int USER_PROVIDED = 3;
+        public final int value;
+
+        LocationType(int value) {
+            this.value = value;
+        }
+    }
 
     public Float lat;
     public Float lon;
-    public Integer type;
+    public LocationType type;
     public Integer accuracy;
     public String country;
     public String city;
@@ -76,7 +74,7 @@ public class Geo {
          * @param locationType
          * @return this builder instance
          */
-        Builder locationType(int locationType);
+        Builder locationType(LocationType locationType);
 
         /**
          * Set the city

@@ -16,12 +16,11 @@ public class Format {
     public static final int HALF_SCREEN = 5;
     public static final int LEADERBOARD = 6;
 
-    //Ad format parameter
-    public static final String FORMAT = "format";
+    public final int w;
+    public final int h;
 
-    public static final String WIDTH = "w";
-    public static final String HEIGHT = "h";
-
-    public int w;
-    public int h;
+    public Format(int width, int height) {
+        this.w = width;
+        this.h = height;
+    }
 }

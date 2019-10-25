@@ -2,8 +2,6 @@ package com.adsbynimbus.openrtb.impression;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.util.Log;
-import android.util.SparseArray;
 import androidx.annotation.IntDef;
 
 import com.adsbynimbus.openrtb.R;
@@ -15,16 +13,11 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 /**
  * Android implementation of {@link Format}
  */
-public class AndroidFormat implements Format {
-
-    static final SparseArray<AndroidFormat> FORMATS = new SparseArray<>(10);
+public class AndroidFormat extends Format {
 
     @Retention(SOURCE)
     @IntDef({INTERSTITIAL_PORT, INTERSTITIAL_LAND, BANNER_300_50, BANNER_320_50, LETTERBOX, HALF_SCREEN, LEADERBOARD})
     public @interface FormatName { }
-
-    public final int w;
-    public final int h;
 
     /**
      * Constructor
@@ -33,8 +26,7 @@ public class AndroidFormat implements Format {
      * @param height - height
      */
     public AndroidFormat(int width, int height) {
-        this.w = width;
-        this.h = height;
+        super(width, height);
     }
 
     /**
@@ -43,11 +35,10 @@ public class AndroidFormat implements Format {
      * @param sizes - {@link FormatName}
      * @return {@link AndroidFormat}
      */
-    public static AndroidFormat[] forSizes(@FormatName int... sizes) {
-        final AndroidFormat[] formats = new AndroidFormat[sizes.length];
+    public static Format[] forSizes(@FormatName int... sizes) {
+        final Format[] formats = new Format[sizes.length];
         for (int i = 0; i < formats.length; ++i) {
-            AndroidFormat format = FORMATS.get(sizes[i]);
-            if (format == null) {
+            Format format;
                 switch (sizes[i]) {
                     case INTERSTITIAL_PORT:
                         format = new AndroidFormat(320, 480);
@@ -71,10 +62,8 @@ public class AndroidFormat implements Format {
                         format = new AndroidFormat(728, 90);
                         break;
                     default:
-                        Log.d(AndroidFormat.class.getName(), "Invalid format specified, omitting.");
+                        format = null;
                 }
-                FORMATS.put(sizes[i], format);
-            }
             formats[i] = format;
         }
         return formats;
@@ -92,10 +81,6 @@ public class AndroidFormat implements Format {
         for (int i = 0; i < interstitialFormats.length; ++i) {
             interstitialFormats[i] = new AndroidFormat(sizeArray[i * 2], sizeArray[i * 2 + 1]);
         }
-        FORMATS.put(INTERSTITIAL_PORT, interstitialFormats[0]);
-        FORMATS.put(INTERSTITIAL_LAND, interstitialFormats[1]);
-        FORMATS.put(LETTERBOX, interstitialFormats[2]);
-        FORMATS.put(HALF_SCREEN, interstitialFormats[6]);
         if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             final AndroidFormat portrait = interstitialFormats[0];
             interstitialFormats[0] = interstitialFormats[1];
