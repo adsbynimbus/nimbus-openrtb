@@ -1,3 +1,3 @@
--keep,allowshrinking class com.adsbynimbus.openrtb.impression.AndroidFormat {
-    public *;
+-keep,allowshrinking class com.adsbynimbus.openrtb.** {
+    public <fields>;
 }
