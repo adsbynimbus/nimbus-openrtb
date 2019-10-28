@@ -73,6 +73,18 @@ public class AndroidDeviceBuilder implements Device.Builder {
     /**
      * {@inheritDoc}
      *
+     * @param deviceType {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Device.Builder deviceType(Device.DeviceType deviceType) {
+        device.devicetype = deviceType;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
      * @param connectionType {@inheritDoc}
      * @return {@inheritDoc}
      */

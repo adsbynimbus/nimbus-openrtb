@@ -7,21 +7,6 @@ package com.adsbynimbus.openrtb.targeting.user;
  */
 public class Device {
 
-    public static final String USER_AGENT = "ua";
-    public static final String GEO = "geo"; // geo object
-    public static final String DO_NOT_TRACK = "dnt";
-    public static final String LIMIT_AD_TRACKING = "lmt";
-    public static final String IP_ADDRESS = "ip";
-    public static final String DEVICE_TYPE = "devicetype";
-    public static final String MAKE = "make";
-    public static final String MODEL = "model";
-    public static final String OS = "os";
-    public static final String OS_VERSION = "osv";
-    public static final String LANGUAGE = "language";
-    public static final String CARRIER = "carrier";
-    public static final String CONNECTION_TYPE = "connectiontype"; //Integer
-    public static final String ADVERTISING_ID = "ifa";
-
     public enum ConnectionType {
         UNKNOWN(0),
         ETHERNET(1),
@@ -38,12 +23,28 @@ public class Device {
         }
     }
 
+    public enum DeviceType {
+        MOBILE_TABLET(1),
+        PERSONAL_COMPUTER(2),
+        CONNECTED_TV(3),
+        PHONE(4),
+        TABLET(5),
+        CONNECTED_DEVICE(6),
+        SET_TOP_BOX(7);
+
+        public final int value;
+
+        DeviceType(int value) {
+            this.value = value;
+        }
+    }
+
     public String ua;
     public Geo geo;
     public int dnt;
     public int lmt;
     public String ip;
-    public Integer devicetype;
+    public DeviceType devicetype;
     public String make;
     public String model;
     public String os;
@@ -100,6 +101,14 @@ public class Device {
          * @return this builder instance
          */
         Builder ipAddress(String ipAddress);
+
+        /**
+         * Set the type of device for this object.
+         *
+         * @param deviceType
+         * @return this builder instance
+         */
+        Builder deviceType(DeviceType deviceType);
 
         /**
          * Sets the device language

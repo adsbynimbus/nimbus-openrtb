@@ -95,21 +95,6 @@ public class Video {
         }
     }
 
-    /* Property Names */
-    String DELIVERY = "delivery";
-    String LINEARITY = "linearity"; // int 1: linear; 2: non linear
-    String MIN_DURATION = "minduration"; // int default 0
-    String MAX_DURATION = "maxduration"; // int default 60
-    String PROTOCOLS = "protocols"; // int[]
-    String PLACEMENT = "placement";
-    String START_DELAY = "startdelay"; // int default 0
-    String SKIP = "skip"; // int (0 = no, 1 = can skip)
-    String SKIP_MIN = "skipmin"; //int default 0;
-    String SKIP_AFTER = "skipafter"; //int default 0;
-    String MIN_BITRATE = "minbitrate"; // int default 0;
-    String MAX_BITRATE = "maxbitrate"; // int default 20000
-    String PLAYBACK_METHOD = "playbackmethod"; // int default 2
-
     public Float bidfloor; // Server default 3
     public String[] mimes;
     public Integer minduration; // Server default 0

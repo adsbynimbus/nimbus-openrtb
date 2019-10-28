@@ -19,16 +19,6 @@ import com.adsbynimbus.openrtb.targeting.user.User;
  */
 public class BidRequest {
 
-    public static final String IMP = "imp"; // Impression[] (only size 1 valid)
-    public static final String APP = "app"; // App
-    public static final String DEVICE = "device"; // Device
-    public static final String USER = "user"; // User
-    public static final String TEST = "test"; // int (default 0; 0 = Live, 1 = Test)
-    public static final String TIMEOUT = "tmax"; // int
-    public static final String REGS = "regs";
-    public static final String SOURCE = "source";
-    public static final String BADV = "badv";
-
     public Impression[] imp;
     public App app;
     public Device device;
@@ -41,15 +31,10 @@ public class BidRequest {
     public String[] badv;
     public Extension ext;
 
-    public static final String ID = "id";
-    public static final String EXTENSION = "ext";
-
     /**
      * BidRequest 'ext' object used by Nimbus
      */
     public static class Extension {
-        public static final String API_KEY = "api_key";
-        public static final String SESSION_ID = "session_id";
 
         public String api_key;
         public String session_id;

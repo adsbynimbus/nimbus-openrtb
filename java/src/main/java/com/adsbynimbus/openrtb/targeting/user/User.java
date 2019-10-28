@@ -10,22 +10,21 @@ import com.adsbynimbus.openrtb.targeting.Data;
  */
 public class User {
 
-    public static final String AGE = "age"; // Integer
-    public static final String BUYER_UID = "buyeruid";
-    public static final String YEAR_OF_BIRTH = "yob"; // Integer
-    public static final String GENDER = "gender";
-    public static final String KEYWORDS = "keywords";
-    public static final String CUSTOM_DATA = "custom_data";
-    public static final String DATA = "data";
+    public enum Gender {
+        MALE("Male"),
+        FEMALE("Female");
 
-    // Gender Consts
-    public static final String MALE = "Male";
-    public static final String FEMALE = "Female";
+        public final String value;
+
+        Gender(String value) {
+            this.value = value;
+        }
+    }
 
     public Integer age;
     public String buyeruid;
     public Integer yob;
-    public String gender;
+    public Gender gender;
     public String keywords;
     public String custom_data;
     public Data[] data;
@@ -35,8 +34,6 @@ public class User {
      * User 'ext' object used by Nimbus
      */
     public static class Extension {
-        public static final String CONSENT = "consent";
-        public static final String DID_CONSENT = "did_consent"; // int
 
         public String consent;
         public int did_consent;
@@ -74,10 +71,10 @@ public class User {
         /**
          * Sets the gender of this user
          *
-         * @param gender [M, F, or O]
+         * @param gender Male or Female
          * @return this builder instance
          */
-        Builder gender(String gender);
+        Builder gender(Gender gender);
 
         /**
          * Sets the keywords associated with this user

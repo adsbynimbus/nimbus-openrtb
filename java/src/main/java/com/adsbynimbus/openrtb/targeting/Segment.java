@@ -7,8 +7,6 @@ package com.adsbynimbus.openrtb.targeting;
  */
 public class Segment {
 
-    public static final String VALUE = "value";
-
     public String id;
     public String name;
     public String value;

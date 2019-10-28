@@ -7,13 +7,10 @@ package com.adsbynimbus.openrtb.targeting;
  */
 public class Regs {
 
-    public static final String COPPA = "coppa"; // int: 0 = no, 1 = yes
-
     public int coppa;
     public Extension ext;
 
     public static class Extension {
-        public static final String GDPR = "gdpr"; // int: 0 = no, 1 = yes
 
         public int gdpr;
     }

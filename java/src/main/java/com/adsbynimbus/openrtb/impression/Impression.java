@@ -13,11 +13,6 @@ import java.util.List;
  */
 public class Impression {
 
-    public static final String BANNER = "banner"; // Banner
-    public static final String VIDEO = "video"; // Video
-    public static final String INTERSTITIAL = "instl"; //int (default 0; 0 = not interstitial, 1 = interstitial or full screen)
-    public static final String SECURE = "secure"; //int (default: 1, 0 = not secure, 1 = require https)
-
     public String id;
     public Banner banner;
     public Video video;
@@ -30,9 +25,6 @@ public class Impression {
      * Impression 'ext' object used by Nimbus
      */
     public static class Extension {
-        public static final String POSITION = "position";
-        public static final String FACEBOOK_APP_ID = "facebook_app_id";
-        public static final String APS = "aps";
 
         public String position;
         public String facebook_app_id;

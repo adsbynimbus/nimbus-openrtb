@@ -13,8 +13,6 @@ public class Source {
 
     // Extensions
     public static class Extension {
-        public static final String OM_PARTNER_NAME = "omidpn";
-        public static final String OM_SDK_VERSION = "omidpv";
 
         public String omidpn;
         public String omidpv;

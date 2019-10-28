@@ -60,7 +60,7 @@ public class AndroidUserBuilder implements User.Builder {
      * @return {@inheritDoc}
      */
     @Override
-    public AndroidUserBuilder gender(String gender) {
+    public AndroidUserBuilder gender(User.Gender gender) {
         user.gender = gender;
         return this;
     }
