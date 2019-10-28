@@ -47,6 +47,18 @@ public class AndroidDeviceBuilder implements Device.Builder {
     }
 
     /**
+     * Returns a builder for the geo object. A new Geo object will be created if none exists.
+     *
+     * @return a builder wrapping the geo object
+     */
+    public AndroidGeoBuilder geo() {
+        if (device.geo == null) {
+            device.geo = new Geo();
+        }
+        return new AndroidGeoBuilder(device.geo);
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @param ipAddress {@inheritDoc}

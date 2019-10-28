@@ -3,16 +3,22 @@ package com.adsbynimbus.openrtb;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
+import com.adsbynimbus.openrtb.impression.AndroidImpressionBuilder;
 import com.adsbynimbus.openrtb.impression.Format;
 import com.adsbynimbus.openrtb.impression.Impression;
+import com.adsbynimbus.openrtb.targeting.AndroidRegsBuilder;
+import com.adsbynimbus.openrtb.targeting.AndroidSourceBuilder;
+import com.adsbynimbus.openrtb.targeting.distribution.AndroidAppBuilder;
 import com.adsbynimbus.openrtb.targeting.distribution.App;
+import com.adsbynimbus.openrtb.targeting.user.AndroidDeviceBuilder;
+import com.adsbynimbus.openrtb.targeting.user.AndroidUserBuilder;
 import com.adsbynimbus.openrtb.targeting.user.Device;
 import com.adsbynimbus.openrtb.targeting.Regs;
 import com.adsbynimbus.openrtb.targeting.Source;
 import com.adsbynimbus.openrtb.targeting.user.User;
 
 /**
- *  Implementation of {@link BidRequest.Builder} with Androidx annotations for validation
+ * Implementation of {@link BidRequest.Builder} with Androidx annotations for validation
  */
 public final class AndroidBidRequestBuilder implements BidRequest.Builder {
 
@@ -36,6 +42,18 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
     }
 
     /**
+     * Returns a builder for the imp object. A new Impression object will be created if none exists.
+     *
+     * @return a builder wrapping the imp object
+     */
+    public AndroidImpressionBuilder impression() {
+        if (request.imp == null || request.imp.length < 1 || request.imp[0] == null) {
+            request.imp = new Impression[]{new Impression()};
+        }
+        return new AndroidImpressionBuilder(request.imp[0]);
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @param app {@inheritDoc}
@@ -45,6 +63,18 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
     public AndroidBidRequestBuilder app(@NonNull App app) {
         request.app = app;
         return this;
+    }
+
+    /**
+     * Returns a builder for the app object. A new App object will be created if none exists.
+     *
+     * @return a builder wrapping the app object
+     */
+    public AndroidAppBuilder app() {
+        if (request.app == null) {
+            request.app = new App();
+        }
+        return new AndroidAppBuilder(request.app);
     }
 
     /**
@@ -60,9 +90,21 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
     }
 
     /**
+     * Returns a builder for the app object. A new App object will be created if none exists.
+     *
+     * @return a builder wrapping the app object
+     */
+    public AndroidDeviceBuilder device() {
+        if (request.device == null) {
+            request.device = new Device();
+        }
+        return new AndroidDeviceBuilder(request.device);
+    }
+
+    /**
      * {@inheritDoc}
      *
-     * @param width {@inheritDoc}
+     * @param width  {@inheritDoc}
      * @param height {@inheritDoc}
      * @return {@inheritDoc}
      */
@@ -82,6 +124,18 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
     public AndroidBidRequestBuilder user(@NonNull User user) {
         request.user = user;
         return this;
+    }
+
+    /**
+     * Returns a builder for the user object. A new User object will be created if none exists.
+     *
+     * @return a builder wrapping the user object
+     */
+    public AndroidUserBuilder user() {
+        if (request.user == null) {
+            request.user = new User();
+        }
+        return new AndroidUserBuilder(request.user);
     }
 
     /**
@@ -123,6 +177,18 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
     }
 
     /**
+     * Returns a builder for the regs object. A new Regs object will be created if none exists.
+     *
+     * @return a builder wrapping the regs object
+     */
+    public AndroidRegsBuilder regs() {
+        if (request.regs == null) {
+            request.regs = new Regs();
+        }
+        return new AndroidRegsBuilder(request.regs);
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @param source {@inheritDoc}
@@ -132,6 +198,18 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
     public AndroidBidRequestBuilder source(@NonNull Source source) {
         request.source = source;
         return this;
+    }
+
+    /**
+     * Returns a builder for the source object. A new Source object will be created if none exists.
+     *
+     * @return a builder wrapping the source object
+     */
+    public AndroidSourceBuilder source() {
+        if (request.source == null) {
+            request.source = new Source();
+        }
+        return new AndroidSourceBuilder(request.source);
     }
 
     /**

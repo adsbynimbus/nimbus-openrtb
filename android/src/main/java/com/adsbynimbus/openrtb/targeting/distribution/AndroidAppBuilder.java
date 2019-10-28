@@ -99,6 +99,18 @@ public class AndroidAppBuilder implements App.Builder {
     }
 
     /**
+     * Returns a builder for the publisher object. A new Publisher object will be created if none exists.
+     *
+     * @return a builder wrapping the publisher object
+     */
+    public AndroidPublisherBuilder publisher() {
+        if (app.publisher == null) {
+            app.publisher = new Publisher();
+        }
+        return new AndroidPublisherBuilder(app.publisher);
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @param pageCategories {@inheritDoc}

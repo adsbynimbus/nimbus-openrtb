@@ -1,3 +1,3 @@
--keep,allowshrinking class com.adsbynimbus.openrtb.impression.Format {
-    public *;
+-keep,allowshrinking class com.adsbynimbus.openrtb.** {
+    public <fields>;
 }

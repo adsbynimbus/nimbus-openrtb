@@ -16,7 +16,7 @@ public class AndroidImpressionBuilder implements Impression.Builder {
     /**
      * Constructor
      *
-     * @param impression
+     * @param impression an Impression object
      */
     public AndroidImpressionBuilder(@NonNull Impression impression) {
         this.impression = impression;
@@ -47,6 +47,18 @@ public class AndroidImpressionBuilder implements Impression.Builder {
     }
 
     /**
+     * Returns a builder for the banner object. A new Banner object will be created if none exists.
+     *
+     * @return a builder wrapping the banner object
+     */
+    public AndroidBannerBuilder banner() {
+        if (impression.banner == null) {
+            impression.banner = new Banner();
+        }
+        return new AndroidBannerBuilder(impression.banner);
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @param video {@inheritDoc}
@@ -56,6 +68,18 @@ public class AndroidImpressionBuilder implements Impression.Builder {
     public AndroidImpressionBuilder video(@NonNull Video video) {
         impression.video = video;
         return this;
+    }
+
+    /**
+     * Returns a builder for the video object. A new Video object will be created if none exists.
+     *
+     * @return a builder wrapping the video object
+     */
+    public AndroidVideoBuilder video() {
+        if (impression.video == null) {
+            impression.video = new Video();
+        }
+        return new AndroidVideoBuilder(impression.video);
     }
 
     /**
