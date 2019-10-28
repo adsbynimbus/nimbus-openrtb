@@ -1,34 +1,40 @@
 package com.adsbynimbus.openrtb.targeting.user;
 
+import com.adsbynimbus.openrtb.targeting.Data;
+
 /**
  * This object contains information known or derived about the human user of the device (i.e., the
  * audience for advertising). The user id is an exchange artifact and may be subject to rotation or other
  * privacy policies. However, this user ID must be stable long enough to serve reasonably as the basis for
  * frequency capping and retargeting.
  */
-public interface User {
+public class User {
 
-    String AGE = "age"; // Integer
-    String BUYER_UID = "buyeruid";
-    String YEAR_OF_BIRTH = "yob"; // Integer
-    String GENDER = "gender";
+    public static final String MALE = "Male";
+    public static final String FEMAlE = "Female";
 
-    // Gender Consts
-    String MALE = "Male";
-    String FEMALE = "Female";
+    public Integer age;
+    public String buyeruid;
+    public Integer yob;
+    public String gender;
+    public String keywords;
+    public String custom_data;
+    public Data[] data;
+    public Extension ext;
 
     /**
      * User 'ext' object used by Nimbus
      */
-    interface Extension {
-        String CONSENT = "consent";
-        String DID_CONSENT = "did_consent"; // int
+    public static class Extension {
+
+        public String consent;
+        public int did_consent;
     }
 
     /**
      * Builder for constructing a {@link User} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
          * Set the age of the user
@@ -36,7 +42,7 @@ public interface User {
          * @param age
          * @return this builder instance
          */
-        Builder withAge(int age);
+        Builder age(int age);
 
         /**
          * Set the buyer id. If using Facebook this is the bidder token
@@ -44,57 +50,62 @@ public interface User {
          * @param buyerUid
          * @return this builder instance
          */
-        Builder withBuyerUid(String buyerUid);
+        Builder buyerUid(String buyerUid);
 
         /**
-         * Set the age of the user
+         * Set the age of this user
          *
          * @param yob year of birth
          * @return this builder instance
          */
-        Builder withYearOfBirth(int yob);
+        Builder yearOfBirth(int yob);
 
         /**
-         * Sets the gender of the user
+         * Sets the gender of this user
          *
-         * @param gender [M, F, or O]
+         * @param gender Male or Female
          * @return this builder instance
          */
-        Builder withGender(String gender);
+        Builder gender(String gender);
 
         /**
-         * Adds the IAB consent string to the request
+         * Sets the keywords associated with this user
          *
-         * @param consentString
+         * @param keywords a comma delimited String of keywords
          * @return this builder instance
          */
-        Builder withIABConsentString(String consentString);
+        Builder keywords(String keywords);
 
         /**
-         * Adds the IAB consent string to the request
+         * Set a String of custom data to be sent to Nimbus for this user
          *
-         * @param didConsent boolean: true if gave consent [Default: false]
+         * @param customData a String representing some custom data
          * @return this builder instance
          */
-        Builder withGDPRConsent(boolean didConsent);
-    }
+        Builder customData(String customData);
 
-    /**
-     * Definition of {@link User} with all public mutable fields
-     */
-    class MutableUser implements User {
-        public Integer age;
-        public String buyeruid;
-        public Integer yob;
-        public String gender;
-        public Extension ext;
-    }
+        /**
+         * Sets an array of Data objects to be sent with this user
+         *
+         * @param data any number of Data objects
+         * @return this builder instance
+         */
+        Builder data(Data... data);
 
-    /**
-     * Definition of {@link User.Extension} with all public mutable fields
-     */
-    class MutableExtension implements Extension {
-        public String consent;
-        public int did_consent;
+        /**
+         * Adds a publisher provided GDPR consent String to this User to be sent with a request
+         *
+         * @param consent publisher provided GDPR consent String
+         * @return this builder instance
+         */
+        Builder gdprConsentString(String consent);
+
+        /**
+         * Set to true if the user has consented to the publisher's data policy
+         *
+         * @param didConsent true if gave consent [Default: false]
+         * @return this builder instance
+         */
+        Builder gdprDidConsent(boolean didConsent);
     }
 }

@@ -8,34 +8,35 @@ package com.adsbynimbus.openrtb.targeting.user;
  * The lat/lon attributes should only be passed if they conform to the accuracy depicted in the type
  * attribute. For example, the centroid of a geographic region such as postal code should not be passed.
  */
-public interface Geo {
+public class Geo {
 
-    String LATITUDE = "lat"; // Float
-    String LONGITUDE = "lon"; // Float (optional)
-    String TYPE = "type"; // Integer
-    String ACCURACY = "accuracy"; // Integer
-    String COUNTRY = "country";
-    String CITY = "city";
-    String METRO = "metro";
-    String STATE = "state";
+    public interface LocationType {
+        int GPS = 1;
+        int IP_LOOKUP = 2;
+        int USER_PROVIDED = 3;
+    }
 
-    // Location type
-    int GPS = 1;
-    int IP_LOOKUP = 2;
-    int USER_PROVIDED = 3;
+    public Float lat;
+    public Float lon;
+    public Integer type;
+    public Integer accuracy;
+    public String country;
+    public String city;
+    public String metro;
+    public String state;
 
     /**
      * Builder for constructing a {@link Geo} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
-         * Set the latitude and accuracy
+         * Set the latitude of this Geo object
          *
          * @param latitude
          * @return this builder instance
          */
-        Builder withLatitude(float latitude);
+        Builder latitude(float latitude);
 
         /**
          * Set the country
@@ -43,7 +44,7 @@ public interface Geo {
          * @param countryCode
          * @return this builder instance
          */
-        Builder withCountry(String countryCode);
+        Builder country(String countryCode);
 
         /**
          * Set the longitude
@@ -51,7 +52,7 @@ public interface Geo {
          * @param longitude
          * @return this builder instance
          */
-        public Builder withLongitude(float longitude);
+        Builder longitude(float longitude);
 
         /**
          * Set the accuracy of the location data as reported by the device
@@ -59,7 +60,7 @@ public interface Geo {
          * @param accuracy
          * @return this builder instance
          */
-        Builder withAccuracy(int accuracy);
+        Builder accuracy(int accuracy);
 
         /**
          * Set the location type
@@ -67,7 +68,7 @@ public interface Geo {
          * @param locationType
          * @return this builder instance
          */
-        Builder withLocationType(int locationType);
+        Builder locationType(Integer locationType);
 
         /**
          * Set the city
@@ -75,7 +76,7 @@ public interface Geo {
          * @param city
          * @return this builder instance
          */
-        Builder withCity(String city);
+        Builder city(String city);
 
         /**
          * Set the metro
@@ -83,7 +84,7 @@ public interface Geo {
          * @param metro
          * @return this builder instance
          */
-        Builder withMetro(String metro);
+        Builder metro(String metro);
 
         /**
          * Set the state
@@ -91,20 +92,6 @@ public interface Geo {
          * @param state
          * @return this builder instance
          */
-        Builder withState(String state);
-    }
-
-    /**
-     * Definition of {@link Geo} with all public mutable fields
-     */
-    class MutableGeo implements Geo {
-        public Float lat;
-        public Float lon;
-        public Integer type;
-        public Integer accuracy;
-        public String country;
-        public String city;
-        public String metro;
-        public String state;
+        Builder state(String state);
     }
 }

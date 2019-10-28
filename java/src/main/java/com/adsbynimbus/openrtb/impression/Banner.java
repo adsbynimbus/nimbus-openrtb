@@ -11,74 +11,69 @@ package com.adsbynimbus.openrtb.impression;
  * video, audio, and/or native by also including as Imp subordinates objects of those types. However, any
  * given bid for the impression must conform to one of the offered types.
  */
-public interface Banner extends Creative {
+public class Banner {
 
-    String BLOCKED_ATTRIBUTES = "battr";
+    public Float bidfloor; // Server default is 2.0
+    public int[] battr;
+    public Format[] format;
+    public Integer w;
+    public Integer h;
+    public Integer pos;
+    public int[] api;
 
     /**
      * Builder for constructing a {@link Banner} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
-         * Set the requested formats of the ad.
+         * Set the requested formats of this banner impression. If this method is not called you must call
+         * {@link Builder#size(int, int)}
          *
-         * @param formats
+         * @param format a permitted size for this banner impression
          * @return this builder instance
          */
-        Builder withFormats(Format... formats);
+        Builder format(Format... format);
 
         /**
-         * Set the device size in pixels independent of density
+         * Set the exact size of this banner impression. Use of {@link Builder#format(Format...)} is recommended
          *
-         * @param width
-         * @param height
+         * @param width exact width in density independent pixels of the requested banner
+         * @param height exact height in density independent pixels of the requested banner
          * @return this builder instance
          */
-        Builder withDeviceIndependentSize(int width, int height);
+        Builder size(int width, int height);
 
         /**
-         * Set the position of the Ad Unit.
+         * Set the position of the banner impression on the screen
          *
          * @param position
          * @return this builder instance
          */
-        Builder withPosition(int position);
+        Builder position(int position);
 
         /**
-         * Set the bid floor. [Default 2.0]
+         * Set the bid floor of this banner impression [Default 2.0]
          *
          * @param bidFloor
          * @return this builder instance
          */
-         Builder withBidFloor(float bidFloor);
+         Builder bidFloor(float bidFloor);
 
         /**
-         * Set the supported creative types
+         * Set the supported apis for this banner impression
          *
          * @param apis [VPAID_2, MRAID_1, MRAID_2, MRAID_3]
          * @return this builder instance
          */
-        Builder withSupportedApis(int...apis);
+        Builder apis(int... apis);
 
         /**
-         * Set blocked creative attributes
+         * Set creative attributes that should be blocked
          *
-         * @param attributes
+         * @param battr
          * @return this builder instance
          */
-        Builder withBlockedAttributes(int... attributes);
-    }
-
-    /**
-     * Definition of {@link Banner} with all public mutable fields
-     */
-    class MutableBanner implements Banner {
-        public Float bidfloor; // Server default is 2.0
-        public Format[] format;
-        public Integer w;
-        public Integer h;
-        public Integer pos;
-        public int[] api;
+        Builder blockedAttributes(int... battr);
     }
 }

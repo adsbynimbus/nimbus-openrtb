@@ -17,81 +17,82 @@ import com.adsbynimbus.openrtb.targeting.user.User;
  * appear. These objects are highly recommended, but only one applies to a given bid request depending
  * on whether the media is browser-based web content or a non-browser application, respectively.
  */
-public interface BidRequest {
+public class BidRequest {
 
-    String IMP = "imp"; // Impression[] (only size 1 valid)
-    String APP = "app"; // App
-    String DEVICE = "device"; // Device
-    String USER = "user"; // User
-    String TEST = "test"; // int (default 0; 0 = Live, 1 = Test)
-    String TIMEOUT = "tmax"; // int
-    String REGS = "regs";
-    String SOURCE = "source";
-    String BADV = "badv";
-
-    String ID = "id";
-    String EXTENSION = "ext";
+    public Impression[] imp;
+    public App app;
+    public Device device;
+    public Format format;
+    public User user;
+    public Integer test;
+    public Integer tmax;
+    public Regs regs;
+    public Source source;
+    public String[] badv;
+    public Extension ext;
 
     /**
      * BidRequest 'ext' object used by Nimbus
      */
-    interface Extension {
-        String API_KEY = "api_key";
-        String SESSION_ID = "session_id";
+    public static class Extension {
+
+        public String api_key;
+        public String session_id;
     }
 
     /**
      * Builder for constructing a {@link BidRequest} object
      */
-    interface Builder {
+    public interface Builder {
 
         /**
-         * Set the {@link Impression} object
+         * Add an impression to this request
          *
-         * @param impressions
+         * @param impression
          * @return this builder instance
          */
-        Builder forImpressions(Impression... impressions);
+        Builder impression(Impression impression);
 
         /**
-         * Set the {@link App} object
+         * Set the app details for this request
          *
          * @param app
          * @return this builder instance
          */
-        Builder forApp(App app);
+        Builder app(App app);
 
         /**
-         * Set the {@link Device} object
+         * Set the {@link Device} details of this request
          *
          * @param device
          * @return this builder instance
          */
-        Builder forDevice(Device device);
+        Builder device(Device device);
 
         /**
-         * Set the device size
+         * Set the device size of this request in absolute pixels
          *
-         * @param width int width
-         * @param height int height
+         * @param width width of the device in pixels
+         * @param height height of the device in pixels
          * @return this builder instance
          */
-        Builder forDeviceSize(int width, int height);
+        Builder deviceSize(int width, int height);
 
         /**
-         * Set the {@link User} object
+         * Set the {@link User} details of this request
          *
          * @param user
          * @return this builder instance
          */
-        Builder withUser(User user);
+        Builder user(User user);
 
         /**
          * Mark this request as a test
          *
+         * @param enabled true if test mode is enabled, default is false
          * @return {@link Builder}
          */
-        Builder withTestFlag();
+        Builder test(boolean enabled);
 
         /**
          * Set the timeout of the request.
@@ -99,7 +100,7 @@ public interface BidRequest {
          * @param timeout int [Default: 500]
          * @return this builder instance
          */
-        Builder withTimeout(int timeout);
+        Builder timeout(int timeout);
 
         /**
          * Sets the {@link Regs} object
@@ -107,7 +108,7 @@ public interface BidRequest {
          * @param regs
          * @return this builder instance
          */
-        Builder withRegs(Regs regs);
+        Builder regs(Regs regs);
 
         /**
          * Sets the {@link Source} object
@@ -115,7 +116,7 @@ public interface BidRequest {
          * @param source
          * @return this builder instance
          */
-        Builder withSource(Source source);
+        Builder source(Source source);
 
         /**
          * Sets a list of blocked advertisers by domains
@@ -123,7 +124,7 @@ public interface BidRequest {
          * @param domains
          * @return this builder instance
          */
-         Builder withBlockedDomains(String... domains);
+         Builder blockedDomains(String... domains);
 
         /**
          * Sets the Nimbus API key
@@ -131,7 +132,7 @@ public interface BidRequest {
          * @param apiKey
          * @return this builder instance
          */
-        Builder withApiKey(String apiKey);
+        Builder apiKey(String apiKey);
 
         /**
          * Sets the Nimbus session id
@@ -139,31 +140,6 @@ public interface BidRequest {
          * @param sessionId
          * @return this builder instance
          */
-        Builder withSessionId(String sessionId);
-    }
-
-    /**
-     * Definition of {@link BidRequest} with all public mutable fields
-     */
-    class MutableBidRequest implements BidRequest {
-        public Impression[] imp;
-        public App app;
-        public Device device;
-        public Format format;
-        public User user;
-        public Integer test;
-        public Integer tmax;
-        public Regs regs;
-        public Source source;
-        public String[] badv;
-        public Extension ext;
-    }
-
-    /**
-     * Definition of {@link BidRequest.Extension} with all public mutable fields
-     */
-    class MutableExtension implements Extension {
-        public String api_key;
-        public String session_id;
+        Builder sessionId(String sessionId);
     }
 }
