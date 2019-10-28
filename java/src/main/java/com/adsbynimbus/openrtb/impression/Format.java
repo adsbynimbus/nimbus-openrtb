@@ -8,13 +8,13 @@ package com.adsbynimbus.openrtb.impression;
 public class Format {
 
     //Ad Format Names
-    public static final int INTERSTITIAL_PORT = 0;
-    public static final int INTERSTITIAL_LAND = 1;
-    public static final int BANNER_300_50 = 2;
-    public static final int BANNER_320_50 = 3;
-    public static final int LETTERBOX = 4;
-    public static final int HALF_SCREEN = 5;
-    public static final int LEADERBOARD = 6;
+    public static final Format INTERSTITIAL_PORT = new Format(320, 480);
+    public static final Format INTERSTITIAL_LAND = new Format(480, 320);
+    public static final Format BANNER_300_50 = new Format(300, 50);
+    public static final Format BANNER_320_50 = new Format(320,50);
+    public static final Format LETTERBOX = new Format(300, 250);
+    public static final Format HALF_SCREEN = new Format(300, 600);
+    public static final Format LEADERBOARD = new Format(728, 90);
 
     public final int w;
     public final int h;
