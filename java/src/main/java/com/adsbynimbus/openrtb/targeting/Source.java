@@ -6,6 +6,8 @@ package com.adsbynimbus.openrtb.targeting;
  * decisioning when the exchange itself does not control the final decision. A common example of this is
  * header bidding, but it can also apply to upstream server entities such as another RTB exchange, a
  * mediation platform, or an ad server combines direct campaigns with 3rd party demand in decisioning
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=11">OpenRTB Section 3.2.2</a>
  */
 public class Source {
 

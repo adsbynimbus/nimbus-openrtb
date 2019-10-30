@@ -18,6 +18,8 @@ import java.util.UUID;
  * are the Site and App objects, which describe the type of published media in which the impression(s)
  * appear. These objects are highly recommended, but only one applies to a given bid request depending
  * on whether the media is browser-based web content or a non-browser application, respectively.
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=10">OpenRTB Section 3.2.1</a>
  */
 public class BidRequest {
 

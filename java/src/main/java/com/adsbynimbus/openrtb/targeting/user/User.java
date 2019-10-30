@@ -56,20 +56,46 @@ public class User {
     public Integer yob;
 
     /**
-     * Gender, where “Male” = male, “Female” = female, “O” = known to be other (i.e., omitted is unknown).
+     * {@link Gender}, where “Male” = male, “Female” = female, “O” = known to be other (i.e., omitted is unknown).
      */
     public Gender gender;
+
+    /**
+     * Comma separated list of keywords, interests, or intent.
+     */
     public String keywords;
+
+    /**
+     * Optional feature to pass bidder data that was set in the exchange’s cookie. The string must be in base85 cookie
+     * safe characters and be in any format. Proper JSON encoding must be used to include "escaped" quotation marks.
+     */
     public String custom_data;
+
+    /**
+     * Additional user data. Each {@link Data} object represents a different data source.
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26">OpenRTB Section 3.2.21</a>
+     */
     public Data[] data;
+
+    /**
+     * {@link User} extension object unique to Nimbus
+     */
     public Extension ext;
 
     /**
-     * User 'ext' object used by Nimbus
+     * {@link User} extentsion object used by Nimbus
      */
     public static class Extension {
 
+        /**
+         * Publisher provided GDPR consent string
+         */
         public String consent;
+
+        /**
+         * Set to 1 if the user has consented to data tracking, 0 if the user has opted out of data tracking
+         */
         public int did_consent;
     }
 
@@ -81,32 +107,36 @@ public class User {
         /**
          * Set the age of the user
          *
-         * @param age
+         * @param age the age of the user in years
          * @return this builder instance
+         * @see #age
          */
         Builder age(int age);
 
         /**
          * Set the buyer id. If using Facebook this is the bidder token
          *
-         * @param buyerUid
+         * @param buyerUid set to the Facebook bidder token if using Facebook
          * @return this builder instance
+         * @see #buyeruid
          */
         Builder buyerUid(String buyerUid);
 
         /**
          * Set the age of this user
          *
-         * @param yob year of birth
+         * @param yob year of birth as a 4 digit int
          * @return this builder instance
+         * @see #yob
          */
         Builder yearOfBirth(int yob);
 
         /**
          * Sets the gender of this user
          *
-         * @param gender Male or Female
+         * @param gender one of {@link Gender#MALE} or {@link Gender#FEMALE}
          * @return this builder instance
+         * @see #gender
          */
         Builder gender(Gender gender);
 
@@ -115,6 +145,7 @@ public class User {
          *
          * @param keywords a comma delimited String of keywords
          * @return this builder instance
+         * @see #keywords
          */
         Builder keywords(String keywords);
 
@@ -123,14 +154,17 @@ public class User {
          *
          * @param customData a String representing some custom data
          * @return this builder instance
+         * @see #custom_data
          */
         Builder customData(String customData);
 
         /**
          * Sets an array of Data objects to be sent with this user
          *
-         * @param data any number of Data objects
+         * @param data any number of Data objects describing this user
          * @return this builder instance
+         * @see #data
+         * @see Data
          */
         Builder data(Data... data);
 
@@ -139,6 +173,7 @@ public class User {
          *
          * @param consent publisher provided GDPR consent String
          * @return this builder instance
+         * @see Extension#consent
          */
         Builder gdprConsentString(String consent);
 
@@ -147,6 +182,7 @@ public class User {
          *
          * @param didConsent true if gave consent [Default: false]
          * @return this builder instance
+         * @see Extension#did_consent
          */
         Builder gdprDidConsent(boolean didConsent);
     }
