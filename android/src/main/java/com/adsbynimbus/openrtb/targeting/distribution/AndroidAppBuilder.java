@@ -1,15 +1,27 @@
 package com.adsbynimbus.openrtb.targeting.distribution;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 /**
  * Implementation of {@link App.Builder} with Androidx annotations for validation
+ *
+ * @see App
  */
-public class AndroidAppBuilder implements App.Builder {
+public final class AndroidAppBuilder implements App.Builder {
 
+    /**
+     * The {@link App} object this builder wraps
+     */
     @NonNull
     public final App app;
 
+    /**
+     * Constructs a {@link AndroidAppBuilder} that will edit the fields of the {@link App} object in place
+     *
+     * @param app a non null app object
+     */
     public AndroidAppBuilder(@NonNull App app) {
         this.app = app;
     }
@@ -31,6 +43,7 @@ public class AndroidAppBuilder implements App.Builder {
      *
      * @param bundle {@inheritDoc}
      * @return {@inheritDoc}
+     * @see Context#getPackageName()
      */
     @Override
     public AndroidAppBuilder bundle(String bundle) {
@@ -99,7 +112,7 @@ public class AndroidAppBuilder implements App.Builder {
     }
 
     /**
-     * Returns a builder for the publisher object. A new Publisher object will be created if none exists.
+     * Returns a builder for the publisher object. A new {@link Publisher} object will be created if none exists.
      *
      * @return a builder wrapping the publisher object
      */

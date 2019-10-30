@@ -4,12 +4,22 @@ import androidx.annotation.NonNull;
 
 /**
  * Implementation of {@link Data.Builder} with Androidx annotations for validation
+ *
+ * @see Data
  */
 public final class AndroidDataBuilder implements Data.Builder {
 
+    /**
+     * The {@link Data} object this builder wraps
+     */
     @NonNull
     public final Data data;
 
+    /**
+     * Constructs a {@link AndroidDataBuilder} that will edit the fields of the {@link Data} object in place
+     *
+     * @param data a non null data object
+     */
     public AndroidDataBuilder(@NonNull Data data) {
         this.data = data;
     }

@@ -5,12 +5,23 @@ import androidx.annotation.NonNull;
 
 /**
  * Implementation of {@link Geo.Builder} with Androidx annotations for validation
+ *
+ * @see Geo
  */
-public class AndroidGeoBuilder implements Geo.Builder {
+public final class AndroidGeoBuilder implements Geo.Builder {
 
+    /**
+     * The {@link Geo} object this builder wraps
+     */
+    @NonNull
     public final Geo geo;
 
-    public AndroidGeoBuilder(Geo geo) {
+    /**
+     * Constructs a {@link AndroidGeoBuilder} that will edit the fields of the {@link Geo} object in place
+     *
+     * @param geo a non null geo object
+     */
+    public AndroidGeoBuilder(@NonNull Geo geo) {
         this.geo = geo;
     }
 

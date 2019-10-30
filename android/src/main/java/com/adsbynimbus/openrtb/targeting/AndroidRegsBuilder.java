@@ -1,13 +1,26 @@
 package com.adsbynimbus.openrtb.targeting;
 
+import androidx.annotation.NonNull;
+
 /**
  * Implementation of {@link Regs.Builder} with Androidx annotations for validation
+ *
+ * @see Regs
  */
 public final class AndroidRegsBuilder implements Regs.Builder {
 
+    /**
+     * This {@link Regs} object this builder wraps
+     */
+    @NonNull
     public final Regs regs;
 
-    public AndroidRegsBuilder(Regs regs) {
+    /**
+     * Constructs a {@link AndroidRegsBuilder} that will edit the fields of the {@link Regs} object in place
+     *
+     * @param regs a non null regs object
+     */
+    public AndroidRegsBuilder(@NonNull Regs regs) {
         this.regs = regs;
     }
 
