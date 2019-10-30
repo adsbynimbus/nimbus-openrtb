@@ -10,6 +10,8 @@ import java.util.List;
  * subordinate to the Imp object indicates the type of impression being offered. The publisher can choose
  * one such type which is the typical case or mix them at their discretion. However, any given bid for the
  * impression must conform to one of the offered types.
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=12">OpenRTB Section 3.2.4</a>
  */
 public class Impression {
 

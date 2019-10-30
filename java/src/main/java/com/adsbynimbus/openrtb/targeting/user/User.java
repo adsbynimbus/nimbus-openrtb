@@ -7,12 +7,30 @@ import com.adsbynimbus.openrtb.targeting.Data;
  * audience for advertising). The user id is an exchange artifact and may be subject to rotation or other
  * privacy policies. However, this user ID must be stable long enough to serve reasonably as the basis for
  * frequency capping and retargeting.
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=25">OpenRTB Section 3.2.20</a>
  */
 public class User {
 
+    /**
+     * Gender of this User
+     */
     public enum Gender {
+
+        /**
+         * Male
+         */
         MALE("Male"),
-        FEMALE("Female");
+
+        /**
+         * Female
+         */
+        FEMALE("Female"),
+
+        /**
+         * Other
+         */
+        OTHER("O");
 
         public final String value;
 
@@ -21,9 +39,25 @@ public class User {
         }
     }
 
+    /**
+     * Optional age of the user
+     */
     public Integer age;
+
+    /**
+     * Buyer-specific ID for the user as mapped by the exchange for the buyer. Set to Facebook bidder token if
+     * integrating Facebook demand
+     */
     public String buyeruid;
+
+    /**
+     * Year of birth as a 4-digit integer
+     */
     public Integer yob;
+
+    /**
+     * Gender, where “Male” = male, “Female” = female, “O” = known to be other (i.e., omitted is unknown).
+     */
     public Gender gender;
     public String keywords;
     public String custom_data;

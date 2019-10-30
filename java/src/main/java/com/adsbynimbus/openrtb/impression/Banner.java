@@ -12,6 +12,8 @@ import java.util.EnumSet;
  * a banner type impression. At the publisher’s discretion, that same impression may also be offered as
  * video, audio, and/or native by also including as Imp subordinates objects of those types. However, any
  * given bid for the impression must conform to one of the offered types.
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=14">OpenRTB Section 3.2.6</a>
  */
 public class Banner {
 

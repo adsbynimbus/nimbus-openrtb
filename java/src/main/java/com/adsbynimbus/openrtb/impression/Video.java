@@ -12,11 +12,15 @@ import java.util.EnumSet;
  * video type impression. At the publisher’s discretion, that same impression may also be offered as
  * banner, audio, and/or native by also including as Imp subordinates objects of those types. However,
  * any given bid for the impression must conform to one of the offered types.
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=15">OpenRTB Section 3.2.7</a>
  */
 public class Video {
 
     /**
-     * Protocols [See ORTB 2.5 Section 5.8]
+     * Protocols
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=47">OpenRTB Section 5.8</a>
      */
     public enum Protocol {
         /**
@@ -47,7 +51,9 @@ public class Video {
     }
 
     /**
-     * Placements [See ORTB 2.5 Section 5.9]
+     * Placements
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=47">OpenRTB Section 5.9</a>
      */
     public enum Placement {
 
@@ -90,7 +96,9 @@ public class Video {
     }
 
     /**
-     * Playback methods [See ORTB 2.5 Section 5.10]
+     * Playback methods
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=48">OpenRTB Section 5.10</a>
      */
     public enum PlaybackMethod {
 
@@ -133,6 +141,8 @@ public class Video {
 
     /**
      * Linearity
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=47">OpenRTB Section 5.7</a>
      */
     public enum Linearity {
 
@@ -154,7 +164,9 @@ public class Video {
     }
 
     /**
-     * Content Delivery [See ORTB 2.5 Section 5.10]
+     * Content Delivery
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=48">OpenRTB Section 5.10</a>
      */
     public enum DeliveryMethod {
 

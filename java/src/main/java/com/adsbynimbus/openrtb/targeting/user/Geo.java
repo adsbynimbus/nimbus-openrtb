@@ -7,9 +7,14 @@ package com.adsbynimbus.openrtb.targeting.user;
  * necessarily their current location).
  * The lat/lon attributes should only be passed if they conform to the accuracy depicted in the type
  * attribute. For example, the centroid of a geographic region such as postal code should not be passed.
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=24">OpenRTB Section 3.2.19</a>
  */
 public class Geo {
 
+    /**
+     * Indicates how the geographic information was determined.
+     */
     public enum LocationType {
         /**
          * GPS/Location Services

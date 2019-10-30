@@ -4,6 +4,8 @@ package com.adsbynimbus.openrtb.impression;
  * This object represents an allowed size (i.e., height and width combination) or Flex Ad parameters for a
  * banner impression. These are typically used in an array where multiple sizes are permitted. It is
  * recommended that either the w/h pair or the wratio/hratio/wmin set (i.e., for Flex Ads) be specified.
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=18">OpenRTB Section 3.2.10</a>
  */
 public class Format {
 

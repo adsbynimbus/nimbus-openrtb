@@ -4,6 +4,8 @@ package com.adsbynimbus.openrtb.targeting.distribution;
  * This object should be included if the ad supported content is a non-browser application (typically in
  * mobile) as opposed to a website. A bid request must not contain both an App and a Site object. At a
  * minimum, it is useful to provide an App ID or bundle, but this is not strictly required.
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=20">OpenRTB Section 3.2.14</a>
  */
 public class App {
 
@@ -29,17 +31,23 @@ public class App {
     public String storeurl;
 
     /**
-     * Array of IAB content categories of the app. Refer to List 5.1
+     * Array of IAB content categories of the app.
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
      */
     public String[] cat;
 
     /**
-     * Array of IAB content categories that describe the current section of the app. Refer to List 5.1.
+     * Array of IAB content categories that describe the current section of the app.
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
      */
     public String[] sectioncat;
 
     /**
-     * Array of IAB content categories that describe the current page or view of the app. Refer to List 5.1.
+     * Array of IAB content categories that describe the current page or view of the app.
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
      */
     public String[] pagecat;
 
@@ -110,6 +118,7 @@ public class App {
          * @param cat list of IAB content categories
          * @return this builder instance
          * @see #cat
+         * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
          */
         Builder categories(String... cat);
 
@@ -118,6 +127,8 @@ public class App {
          *
          * @param pageCategories list of IAB content categories
          * @return this builder instance
+         * @see #pagecat
+         * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
          */
         Builder pageCategories(String... pageCategories);
 
@@ -127,6 +138,7 @@ public class App {
          * @param sectionCategories list of IAB content categories
          * @return this builder instance
          * @see #sectioncat
+         * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
          */
         Builder sectionCategories(String... sectionCategories);
 
