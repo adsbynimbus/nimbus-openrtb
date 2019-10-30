@@ -6,8 +6,19 @@ package com.adsbynimbus.openrtb.targeting.distribution;
  */
 public class Publisher {
 
+    /**
+     * Publisher name (may be aliased at the publisher’s request).
+     */
     public String name;
+
+    /**
+     * Highest level domain of the publisher (e.g., "adsbynimbus.com").
+     */
     public String domain;
+
+    /**
+     * Array of IAB content categories that describe the publisher. Refer to List 5.1.
+     */
     public String[] cat;
 
     /**
@@ -16,26 +27,29 @@ public class Publisher {
     public interface Builder {
 
         /**
-         * Set the IAB categories of this publisher
+         * Set the IAB content categories describing this publisher
          *
-         * @param categories
+         * @param categories list of IAB content categories
          * @return this builder instance
+         * @see #cat
          */
         Builder categories(String... categories);
 
         /**
          * Set the name of this publisher
          *
-         * @param name
+         * @param name publisher name
          * @return this builder instance
+         * @see #name
          */
         Builder name(String name);
 
         /**
-         * Set the domain of this publisher
+         * Set the top level domain of this publisher
          *
-         * @param domain
+         * @param domain the domain (e.g. "adsbynimbus.com")
          * @return this builder instance
+         * @see #domain
          */
          Builder domain(String domain);
     }

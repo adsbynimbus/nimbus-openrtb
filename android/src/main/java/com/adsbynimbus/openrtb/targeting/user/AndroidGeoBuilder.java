@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.targeting.user;
 
+import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 
 /**
@@ -20,7 +21,7 @@ public class AndroidGeoBuilder implements Geo.Builder {
      * @return {@inheritDoc}
      */
     @Override
-    public AndroidGeoBuilder latitude(float latitude) {
+    public AndroidGeoBuilder latitude(@FloatRange(from = -90f, to = 90f) float latitude) {
         geo.lat = latitude;
         return this;
     }
@@ -44,7 +45,7 @@ public class AndroidGeoBuilder implements Geo.Builder {
      * @return {@inheritDoc}
      */
     @Override
-    public AndroidGeoBuilder longitude(float longitude) {
+    public AndroidGeoBuilder longitude(@FloatRange(from = -180, to = 180) float longitude) {
         geo.lon = longitude;
         return this;
     }
