@@ -230,8 +230,8 @@ public class Video {
     public int h;
 
     /**
-     * Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements. > 0 Mid roll where the
-     * value indicates the start delay, 0 pre roll, -1 generic mid roll, -2 generic post roll. [Default: 0]
+     * Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements. &gt; 0 Mid roll where
+     * the value indicates the start delay, 0 pre roll, -1 generic mid roll, -2 generic post roll. [Default: 0]
      */
     public Integer startdelay;
 
@@ -387,7 +387,8 @@ public class Video {
         /**
          * Set the start delay of this video impression
          *
-         * @param startDelay -2 generic post roll, -1 generic midroll, 0 pre roll, > 0 mid roll start delay [Default: 0]
+         * @param startDelay -2 generic post roll, -1 generic midroll, 0 pre roll, &gt; 0 mid roll start delay
+         *                   [Default: 0]
          * @return this builder instance
          * @see #startdelay
          */

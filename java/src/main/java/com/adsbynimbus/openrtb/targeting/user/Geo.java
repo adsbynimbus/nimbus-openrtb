@@ -66,7 +66,7 @@ public class Geo {
     public String country;
 
     /**
-     * City using United Nations Code for Trade & Transport Locations.
+     * City using United Nations Code for Trade &amp; Transport Locations.
      *
      * @see <a href="http://www.unece.org/cefact/locode/service/location.htm">United Nations Location Codes</a>
      */
@@ -136,7 +136,7 @@ public class Geo {
         Builder locationType(LocationType locationType);
 
         /**
-         * Set the city using the United Nations Code for Trade & Transport Locations.
+         * Set the city using the United Nations Code for Trade &amp; Transport Locations.
          *
          * @param city city code
          * @return this builder instance

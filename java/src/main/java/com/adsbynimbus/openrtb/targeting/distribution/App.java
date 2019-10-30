@@ -21,7 +21,7 @@ public class App {
     public String bundle;
 
     /**
-     * Domain of the app (e.g., “adsbynimbus.com”).
+     * Domain of the app (e.g., "adsbynimbus.com").
      */
     public String domain;
 

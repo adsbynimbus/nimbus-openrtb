@@ -56,7 +56,7 @@ public class User {
     public Integer yob;
 
     /**
-     * {@link Gender}, where “Male” = male, “Female” = female, “O” = known to be other (i.e., omitted is unknown).
+     * {@link Gender}, where "Male" = male, "Female" = female, "O" = known to be other (i.e., omitted is unknown).
      */
     public Gender gender;
 
