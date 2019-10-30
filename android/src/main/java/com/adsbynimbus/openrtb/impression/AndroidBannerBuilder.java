@@ -8,12 +8,22 @@ import java.lang.annotation.Retention;
 
 /**
  * Implementation of {@link Banner.Builder} with Androidx annotations for validation
+ *
+ * @see Banner
  */
-public class AndroidBannerBuilder implements Banner.Builder {
+public final class AndroidBannerBuilder implements Banner.Builder {
 
+    /**
+     * The {@link Banner} object this builder wraps
+     */
     @NonNull
     public final Banner banner;
 
+    /**
+     * Constructs a {@link AndroidBannerBuilder} that will edit the fields of the {@link Banner} object in place
+     *
+     * @param banner a non null banner object
+     */
     public AndroidBannerBuilder(@NonNull Banner banner) {
         this.banner = banner;
     }

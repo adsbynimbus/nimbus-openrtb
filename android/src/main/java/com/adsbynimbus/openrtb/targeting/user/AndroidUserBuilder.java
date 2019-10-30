@@ -11,16 +11,26 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Implementation of {@link User.Builder} with Androidx annotations for validation
+ *
+ * @see User
  */
-public class AndroidUserBuilder implements User.Builder {
+public final class AndroidUserBuilder implements User.Builder {
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({User.MALE, User.FEMAlE})
     public @interface Gender { }
 
+    /**
+     * The {@link User} object this builder wraps
+     */
     @NonNull
     public final User user;
 
+    /**
+     * Constructs a {@link AndroidUserBuilder} that will edit the fields of the {@link User} object in place
+     *
+     * @param user a non null user object
+     */
     public AndroidUserBuilder(@NonNull User user) {
         this.user = user;
     }

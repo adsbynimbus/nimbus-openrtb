@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.targeting.user;
 
+import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 
@@ -10,16 +11,27 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Implementation of {@link Geo.Builder} with Androidx annotations for validation
+ *
+ * @see Geo
  */
-public class AndroidGeoBuilder implements Geo.Builder {
+public final class AndroidGeoBuilder implements Geo.Builder {
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({LocationType.GPS, LocationType.IP_LOOKUP, LocationType.USER_PROVIDED})
     public @interface LocationTypeInt { }
 
+    /**
+     * The {@link Geo} object this builder wraps
+     */
+    @NonNull
     public final Geo geo;
 
-    public AndroidGeoBuilder(Geo geo) {
+    /**
+     * Constructs a {@link AndroidGeoBuilder} that will edit the fields of the {@link Geo} object in place
+     *
+     * @param geo a non null geo object
+     */
+    public AndroidGeoBuilder(@NonNull Geo geo) {
         this.geo = geo;
     }
 
@@ -30,7 +42,7 @@ public class AndroidGeoBuilder implements Geo.Builder {
      * @return {@inheritDoc}
      */
     @Override
-    public AndroidGeoBuilder latitude(float latitude) {
+    public AndroidGeoBuilder latitude(@FloatRange(from = -90f, to = 90f) float latitude) {
         geo.lat = latitude;
         return this;
     }
@@ -54,7 +66,7 @@ public class AndroidGeoBuilder implements Geo.Builder {
      * @return {@inheritDoc}
      */
     @Override
-    public AndroidGeoBuilder longitude(float longitude) {
+    public AndroidGeoBuilder longitude(@FloatRange(from = -180, to = 180) float longitude) {
         geo.lon = longitude;
         return this;
     }

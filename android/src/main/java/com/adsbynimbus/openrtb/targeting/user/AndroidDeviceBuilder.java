@@ -1,6 +1,8 @@
 package com.adsbynimbus.openrtb.targeting.user;
 
+import android.content.Context;
 import android.os.Build;
+import android.webkit.WebSettings;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
@@ -13,9 +15,14 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Implementation of {@link Device.Builder} with Androidx annotations for validation
+ *
+ * @see Device
  */
-public class AndroidDeviceBuilder implements Device.Builder {
+public final class AndroidDeviceBuilder implements Device.Builder {
 
+    /**
+     * Android OS name constant
+     */
     public static final String ANDROID = "android";
 
     @Retention(RetentionPolicy.SOURCE)
@@ -28,9 +35,17 @@ public class AndroidDeviceBuilder implements Device.Builder {
             DeviceType.TABLET, DeviceType.CONNECTED_DEVICE, DeviceType.SET_TOP_BOX})
     public @interface DeviceTypeInt { }
 
+    /**
+     * The {@link Device} object this builder wraps
+     */
     @NonNull
     public final Device device;
 
+    /**
+     * Constructs a {@link AndroidDeviceBuilder} that will edit the fields of the {@link Device} object in place
+     *
+     * @param device a non null device object
+     */
     public AndroidDeviceBuilder(@NonNull Device device) {
         this.device = device;
         device.make = Build.MANUFACTURER;
@@ -44,6 +59,7 @@ public class AndroidDeviceBuilder implements Device.Builder {
      *
      * @param userAgent {@inheritDoc}
      * @return {@inheritDoc}
+     * @see WebSettings#getDefaultUserAgent(Context)
      */
     @Override
     public AndroidDeviceBuilder userAgent(@NonNull String userAgent) {
@@ -180,6 +196,7 @@ public class AndroidDeviceBuilder implements Device.Builder {
      *
      * @param make {@inheritDoc}
      * @return {@inheritDoc}
+     * @see Build#MANUFACTURER
      */
     @Override
     public AndroidDeviceBuilder manufacturer(String make) {
@@ -192,6 +209,7 @@ public class AndroidDeviceBuilder implements Device.Builder {
      *
      * @param model {@inheritDoc}
      * @return {@inheritDoc}
+     * @see Build#MODEL
      */
     @Override
     public AndroidDeviceBuilder model(String model) {
@@ -202,8 +220,9 @@ public class AndroidDeviceBuilder implements Device.Builder {
     /**
      * {@inheritDoc}
      *
-     * @param os {@inheritDoc}
+     * @param os {@inheritDoc} - Set to {@value #ANDROID}
      * @return {@inheritDoc}
+     * @see #ANDROID
      */
     @Override
     public AndroidDeviceBuilder osName(String os) {
@@ -216,6 +235,7 @@ public class AndroidDeviceBuilder implements Device.Builder {
      *
      * @param osVersion {@inheritDoc}
      * @return {@inheritDoc}
+     * @see Build.VERSION#RELEASE
      */
     @Override
     public AndroidDeviceBuilder osVersion(String osVersion) {

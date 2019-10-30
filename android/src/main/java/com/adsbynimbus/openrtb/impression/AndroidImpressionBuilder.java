@@ -7,16 +7,21 @@ import java.util.List;
 
 /**
  * Implementation of {@link Impression.Builder} with Androidx annotations for validation
+ *
+ * @see Impression
  */
-public class AndroidImpressionBuilder implements Impression.Builder {
+public final class AndroidImpressionBuilder implements Impression.Builder {
 
+    /**
+     * The {@link Impression} object this builder wraps
+     */
     @NonNull
     public final Impression impression;
 
     /**
-     * Constructor
+     * Constructs a {@link AndroidImpressionBuilder} that will edit the fields of the {@link Impression} object in place
      *
-     * @param impression an Impression object
+     * @param impression a non null impression object
      */
     public AndroidImpressionBuilder(@NonNull Impression impression) {
         this.impression = impression;
@@ -47,9 +52,10 @@ public class AndroidImpressionBuilder implements Impression.Builder {
     }
 
     /**
-     * Returns a builder for the banner object. A new Banner object will be created if none exists.
+     * Returns a builder for the banner object. A new {@link Banner} object will be created if none exists.
      *
      * @return a builder wrapping the banner object
+     * @see Banner
      */
     public AndroidBannerBuilder banner() {
         if (impression.banner == null) {
@@ -71,9 +77,10 @@ public class AndroidImpressionBuilder implements Impression.Builder {
     }
 
     /**
-     * Returns a builder for the video object. A new Video object will be created if none exists.
+     * Returns a builder for the video object. A new {@link Video} object will be created if none exists.
      *
      * @return a builder wrapping the video object
+     * @see Video
      */
     public AndroidVideoBuilder video() {
         if (impression.video == null) {

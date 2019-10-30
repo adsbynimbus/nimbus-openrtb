@@ -16,8 +16,10 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Implementation of {@link Video.Builder} with Androidx annotations for validation
+ *
+ * @see Video
  */
-public class AndroidVideoBuilder implements Video.Builder {
+public final class AndroidVideoBuilder implements Video.Builder {
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({Protocol.VAST_2, Protocol.VAST_3, Protocol.VAST_2_WRAPPER, Protocol.VAST_3_WRAPPER})
@@ -42,9 +44,17 @@ public class AndroidVideoBuilder implements Video.Builder {
     @IntDef({DeliveryMethod.STREAMING, DeliveryMethod.PROGRESSIVE, DeliveryMethod.DOWNLOAD})
     public @interface DeliveryMethodInt { }
 
+    /**
+     * The {@link Video} object this builder wraps
+     */
     @NonNull
     public final Video video;
 
+    /**
+     * Constructs a {@link AndroidVideoBuilder} that will edit the fields of the {@link Video} object in place
+     *
+     * @param video a non null video object
+     */
     public AndroidVideoBuilder(@NonNull Video video) {
         this.video = video;
     }

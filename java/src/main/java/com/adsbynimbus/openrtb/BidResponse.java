@@ -1,28 +1,78 @@
 package com.adsbynimbus.openrtb;
 
 /**
- * A winning bid from Nimbus
+ * A winning bid response from Nimbus
  */
 public class BidResponse {
 
+    /**
+     * The type of creative returned. ["static", "video", "facebook"]
+     */
     public String type;
+
+    /**
+     * This unique auction id. Represented as a GUID
+     */
     public String auction_id;
+
+    /**
+     * This winning auction's bid in cents
+     */
     public int bid_in_cents;
+
+    /**
+     * The content type of this creative. "text/html" for static or a mime type for video ads
+     */
     public String content_type;
+
+    /**
+     * The height of the creative if available. Will not be set for Video or Facebook ads
+     */
     public int height;
+
+    /**
+     * The width of the creative if available. Will not be set for Video or Facebook ads
+     */
     public int width;
+
+    /**
+     * Set to true if the original request was for an interstitial dd
+     */
     public boolean is_interstitial;
+
+    /**
+     * The markup returned by Nimbus. Will be in the format of html for static or xml VAST for video
+     */
     public String markup;
+
+    /**
+     * The network that won this auction
+     */
     public String network;
+
+    /**
+     * An {@link Trackers} object containing additional urls for measurement
+     */
     public Trackers trackers;
+
+    /**
+     * The winning placement id if the creative returned is Facebook or maps to a line item
+     */
     public String placement_id;
+
+    /**
+     * Set to true if Nimbus has determined the creative returned requests MRAID in the top level markup
+     */
     public boolean is_mraid;
 
     /**
-     * Tracking urls
+     * Additional tracking urls
      */
     public static class Trackers {
 
+        /**
+         * A list of urls to fire a request to when an impression is registered
+         */
         public String[] impression_trackers;
     }
 }
