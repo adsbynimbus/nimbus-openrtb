@@ -9,12 +9,24 @@ package com.adsbynimbus.openrtb.targeting;
  */
 public class Source {
 
+    /**
+     * Placeholder for exchange-specific extensions to OpenRTB. Reference {@link Extension} for values
+     */
     public Extension ext;
 
-    // Extensions
+    /**
+     * {@link Source} extension object unique to Nimbus
+     */
     public static class Extension {
 
+        /**
+         * Partner name that identifies the OM SDK integration
+         */
         public String omidpn;
+
+        /**
+         * Current version of the OM SDK integration
+         */
         public String omidpv;
     }
 

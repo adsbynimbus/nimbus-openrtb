@@ -8,6 +8,8 @@ import com.adsbynimbus.openrtb.targeting.Regs;
 import com.adsbynimbus.openrtb.targeting.Source;
 import com.adsbynimbus.openrtb.targeting.user.User;
 
+import java.util.UUID;
+
 /**
  * The top-level bid request object contains a globally unique bid request or auction ID. This id attribute is
  * required as is at least one impression object (Section 3.2.4). Other attributes in this top-level object
@@ -19,24 +21,80 @@ import com.adsbynimbus.openrtb.targeting.user.User;
  */
 public class BidRequest {
 
+    /**
+     * Array of Imp objects ({@link Impression}) representing the impressions offered. Only 1 Imp object is supported.
+     */
     public Impression[] imp;
+
+    /**
+     * Details via an App object ({@link App}) about the publisher’s app (i.e., non-browser applications).
+     * Only applicable and recommended for apps.
+     */
     public App app;
+
+    /**
+     * Details via a Device object ({@link Device}) about the user’s device to which the impression will be delivered.
+     */
     public Device device;
+
+    /**
+     * This is not part of the spec, adding this here for convenience allows height and width to be passed without the
+     * video/banner object to backwards support the GET
+     */
     public Format format;
+
+    /**
+     * Details via a User object ({@link User}) about the human user of the device; the advertising audience.
+     */
     public User user;
+
+    /**
+     * Indicator of test mode in which auctions are not billable, where 0 = live mode, 1 = test mode
+     */
     public Integer test;
+
+    /**
+     * Maximum time in milliseconds the exchange allows for bids to be received including Internet latency to avoid
+     * timeout. This value supersedes any a priori guidance from the exchange.
+     */
     public Integer tmax;
+
+    /**
+     * A Regs object ({@link Regs}) that specifies any industry, legal, or governmental regulations in
+     * force for this request.
+     */
     public Regs regs;
+
+    /**
+     * A Source object ({@link Source}) that provides data about the inventory source and which entity makes
+     * the final decision.
+     */
     public Source source;
+
+    /**
+     * Block list of advertisers by their domains (e.g., "ford.com").
+     */
     public String[] badv;
+
+    /**
+     * Placeholder for exchange-specific extensions to OpenRTB. Reference {@link Extension} for values
+     */
     public Extension ext;
 
     /**
-     * BidRequest 'ext' object used by Nimbus
+     * {@link BidRequest} extension object unique to Nimbus
      */
     public static class Extension {
 
+        /**
+         * The publisher specific api key used to communicate with Nimbus
+         */
         public String api_key;
+
+        /**
+         * Any unique string value to identify the session. Defaults to {@link UUID#randomUUID()} when using the
+         * Nimbus SDK
+         */
         public String session_id;
     }
 
@@ -48,7 +106,8 @@ public class BidRequest {
         /**
          * Add an impression to this request
          *
-         * @param impression
+         * @param impression an impression object to set or replace the value currently on this request. Will create the
+         *                   impression array if it does not exist and replace the current value in imp[0] if one does.
          * @return this builder instance
          */
         Builder impression(Impression impression);
@@ -56,7 +115,7 @@ public class BidRequest {
         /**
          * Set the app details for this request
          *
-         * @param app
+         * @param app an app object to set or replace the value currently on this request.
          * @return this builder instance
          */
         Builder app(App app);
@@ -64,7 +123,7 @@ public class BidRequest {
         /**
          * Set the {@link Device} details of this request
          *
-         * @param device
+         * @param device a device object to set or replace the value currently on this request.
          * @return this builder instance
          */
         Builder device(Device device);
@@ -81,7 +140,7 @@ public class BidRequest {
         /**
          * Set the {@link User} details of this request
          *
-         * @param user
+         * @param user a user object to set or replace the value currently on this request
          * @return this builder instance
          */
         Builder user(User user);
@@ -95,9 +154,9 @@ public class BidRequest {
         Builder test(boolean enabled);
 
         /**
-         * Set the timeout of the request.
+         * Set the timeout of this request in ms
          *
-         * @param timeout int [Default: 500]
+         * @param timeout set or replace the timeout value on this request. [Default: 500]
          * @return this builder instance
          */
         Builder timeout(int timeout);
@@ -105,7 +164,7 @@ public class BidRequest {
         /**
          * Sets the {@link Regs} object
          *
-         * @param regs
+         * @param regs a regs object to set or replace the value currently on this request
          * @return this builder instance
          */
         Builder regs(Regs regs);
@@ -113,15 +172,15 @@ public class BidRequest {
         /**
          * Sets the {@link Source} object
          *
-         * @param source
+         * @param source a source object to set or replace the value currently on this request
          * @return this builder instance
          */
         Builder source(Source source);
 
         /**
-         * Sets a list of blocked advertisers by domains
+         * Sets a list of blocked advertisers by domains.
          *
-         * @param domains
+         * @param domains a list of domain names to block
          * @return this builder instance
          */
          Builder blockedDomains(String... domains);
@@ -129,7 +188,7 @@ public class BidRequest {
         /**
          * Sets the Nimbus API key
          *
-         * @param apiKey
+         * @param apiKey the publisher specific api key provided by Nimbus
          * @return this builder instance
          */
         Builder apiKey(String apiKey);
@@ -137,7 +196,7 @@ public class BidRequest {
         /**
          * Sets the Nimbus session id
          *
-         * @param sessionId
+         * @param sessionId any unique identifier for this session. Recommend using {@link UUID#randomUUID()}
          * @return this builder instance
          */
         Builder sessionId(String sessionId);
