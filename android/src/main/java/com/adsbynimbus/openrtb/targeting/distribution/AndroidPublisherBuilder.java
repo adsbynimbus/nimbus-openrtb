@@ -4,11 +4,22 @@ import androidx.annotation.NonNull;
 
 /**
  * Implementation of {@link Publisher.Builder} with Androidx annotations for validation
+ *
+ * @see Publisher
  */
-public class AndroidPublisherBuilder implements Publisher.Builder {
+public final class AndroidPublisherBuilder implements Publisher.Builder {
 
+    /**
+     * The {@link Publisher} object this builder wraps
+     */
+    @NonNull
     public final Publisher publisher;
 
+    /**
+     * Constructs a {@link AndroidPublisherBuilder} that will edit the fields of the {@link Publisher} object in place
+     *
+     * @param publisher a non null publisher object
+     */
     public AndroidPublisherBuilder(@NonNull Publisher publisher) {
         this.publisher = publisher;
     }

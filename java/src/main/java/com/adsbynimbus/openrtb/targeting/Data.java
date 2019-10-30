@@ -5,11 +5,26 @@ package com.adsbynimbus.openrtb.targeting;
  * content) to be specified. This data may be from multiple sources whether from the exchange itself or
  * third parties as specified by the id field. A bid request can mix data objects from multiple providers.
  * The specific data providers in use should be published by the exchange a priori to its bidders.
+ *
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26">OpenRTB Section 3.2.21</a>
  */
 public class Data {
 
+    /**
+     * Exchange-specific ID for the data provider
+     */
     public String id;
+
+    /**
+     * Exchange-specific name for the data provider.
+     */
     public String name;
+
+    /**
+     * Array of {@link Segment}  objects that contain the actual data values.
+     *
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26">OpenRTB Section 3.2.22</a>
+     */
     public Segment[] segment;
 
     /**
@@ -22,6 +37,7 @@ public class Data {
          *
          * @param id any string
          * @return this builder instance
+         * @see #id
          */
         Builder id(String id);
 
@@ -30,14 +46,17 @@ public class Data {
          *
          * @param name any string
          * @return this builder instance
+         * @see #name
          */
         Builder name(String name);
 
         /**
          * Set segmenting data
          *
-         * @param segments array of segments
+         * @param segments array of segments describing this data object
          * @return this builder instance
+         * @see #segment
+         * @see Segment
          */
         Builder segments(Segment... segments);
     }
