@@ -66,38 +66,37 @@ public class Device {
     public enum DeviceType {
 
         /**
-         * Mobile/Tablet - Interchangeable with {@link DeviceType#PHONE} and {@link DeviceType#TABLET}
-         * (Since OpenRTB 2.0)
+         * Mobile/Tablet - Interchangeable with PHONE and Tablet
          */
         MOBILE_TABLET(1),
 
         /**
-         * Personal Computer (Since OpenRTB 2.0)
+         * Personal Computer
          */
         PERSONAL_COMPUTER(2),
 
         /**
-         * Connected TV (Since OpenRTB 2.0)
+         * Connected TV
          */
         CONNECTED_TV(3),
 
         /**
-         * Phone - Interchangeable with {@link DeviceType#MOBILE_TABLET} (Since OpenRTB 2.2)
+         * Phone - Interchangeable with MOBILE_TABLET
          */
         PHONE(4),
 
         /**
-         * Tablet - Interchangeable with {@link DeviceType#MOBILE_TABLET} (Since OpenRTB 2.2)
+         * Tablet - Interchangeable with MOBILE_TABLET
          */
         TABLET(5),
 
         /**
-         * Connected Device (Since OpenRTB 2.2)
+         * Connected Device
          */
         CONNECTED_DEVICE(6),
 
         /**
-         * Set Top Box (Since OpenRTB 2.2)
+         * Set Top Box
          */
         SET_TOP_BOX(7);
 
@@ -114,7 +113,7 @@ public class Device {
     public String ua;
 
     /**
-     * Location of the device assumed to be the user’s current location defined by a {@link Geo} object.
+     * Location of the device assumed to be the user’s current location defined by a Geo object.
      */
     public Geo geo;
 
@@ -136,7 +135,7 @@ public class Device {
     public String ip;
 
     /**
-     * The general type of device. Refer to {@link DeviceType}
+     * The general type of device.
      */
     public DeviceType devicetype;
 
@@ -182,7 +181,7 @@ public class Device {
     public String carrier;
 
     /**
-     * Network connection type. Refer to {@link ConnectionType}.
+     * Network connection type.
      */
     public ConnectionType connectiontype;
 
@@ -192,12 +191,14 @@ public class Device {
     public String ifa;
 
     /**
-     * Builder for constructing a {@link Device} object
+     * Builder for constructing a Device object
+     *
+     * @see Device
      */
     public interface Builder {
 
         /**
-         * Sets the limit ad tracking and do not track flags
+         * Sets the limit ad tracking and do not track flags.
          *
          * @param lat true if limited ad tracking is enabled for this device
          * @return this builder instance
@@ -207,7 +208,7 @@ public class Device {
         Builder limitedAdTracking(boolean lat);
 
         /**
-         * Set the physical device size of the screen
+         * Sets the physical device size of the screen.
          *
          * @param width physical width of the screen in pixels
          * @param height physical height of the screen in pixels
@@ -218,7 +219,7 @@ public class Device {
         Builder size(int width, int height);
 
         /**
-         * Sets the user agent of this device
+         * Sets the user agent of this device.
          *
          * @param userAgent the user agent provided by the device WebView
          * @return this builder instance
@@ -227,7 +228,7 @@ public class Device {
         Builder userAgent(String userAgent);
 
         /**
-         * Set the location information of this device. Refer to {@link Geo}.
+         * Sets the location information of this device.
          *
          * @param geo the location information of this device
          * @return this builder instance
@@ -237,7 +238,7 @@ public class Device {
         Builder geo(Geo geo);
 
         /**
-         * Set the IP address of the device. This can be omitted as Nimbus will infer it from the inbound request.
+         * Sets the IP address of the device. This can be omitted as Nimbus will infer it from the inbound request.
          *
          * @param ipAddress the ipv4 address closest to the device
          * @return this builder instance
@@ -246,7 +247,7 @@ public class Device {
         Builder ipAddress(String ipAddress);
 
         /**
-         * Set the {@link DeviceType} for this object.
+         * Sets the type of device.
          *
          * @param deviceType the type of device this is
          * @return this builder instance
@@ -256,7 +257,7 @@ public class Device {
         Builder deviceType(DeviceType deviceType);
 
         /**
-         * Sets the device language
+         * Sets the device language.
          *
          * @param language the device language using ISO-639-1-alpha-2
          * @return this builder instance
@@ -265,7 +266,7 @@ public class Device {
         Builder language(String language);
 
         /**
-         * Sets the device carrier
+         * Sets the device carrier.
          *
          * @param carrier the carrier of the device (e.g. "Verizon")
          * @return this builder instance
@@ -274,7 +275,7 @@ public class Device {
         Builder carrier(String carrier);
 
         /**
-         * Set the current {@link ConnectionType} of this device
+         * Set the current connection type of this device.
          *
          * @param connectionType the latest resolvable connection type
          * @return this builder instance
@@ -284,7 +285,7 @@ public class Device {
         Builder connectionType(ConnectionType connectionType);
 
         /**
-         * Set the advertising id provided by the device's operating system
+         * Sets the advertising id provided by the device's operating system.
          *
          * @param ifa the advertising id as returned by the device's operating system
          * @return this builder instance
@@ -293,7 +294,7 @@ public class Device {
         Builder advertisingId(String ifa);
 
         /**
-         * Set manufacturer name of this device (e.g. "Google")
+         * Sets manufacturer name of this device (e.g. "Google").
          *
          * @param make the manufacturer name
          * @return this builder instance
@@ -302,7 +303,7 @@ public class Device {
         Builder manufacturer(String make);
 
         /**
-         * Set model name of this device (e.g. "Pixel")
+         * Sets model name of this device (e.g. "Pixel").
          *
          * @param model the name of this device model
          * @return this builder instance
@@ -311,7 +312,7 @@ public class Device {
         Builder model(String model);
 
         /**
-         * Set the operating system name of this device
+         * Sets the operating system name of this device.
          *
          * @param os the operating system name (e.g. "Android")
          * @return this builder instance
@@ -320,7 +321,7 @@ public class Device {
         Builder osName(String os);
 
         /**
-         * Set the operating system version of this device
+         * Sets the operating system version of this device.
          *
          * @param osVersion the operating system version (e.g "10", "9", "8.1")
          * @return this builder instance

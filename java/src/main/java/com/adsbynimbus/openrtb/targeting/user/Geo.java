@@ -49,7 +49,7 @@ public class Geo {
     public Float lon;
 
     /**
-     * Source of location data; recommended when passing lat/lon. Refer to {@link LocationType}.
+     * Source of location data; recommended when passing lat/lon.
      */
     public LocationType type;
 
@@ -85,12 +85,14 @@ public class Geo {
     public String state;
 
     /**
-     * Builder for constructing a {@link Geo} object
+     * Builder for constructing a Geo object
+     *
+     * @see Geo
      */
     public interface Builder {
 
         /**
-         * Set the latitude of this Geo object
+         * Sets the latitude of this geo object.
          *
          * @param latitude latitude from -90 to +90
          * @return this builder instance
@@ -99,7 +101,7 @@ public class Geo {
         Builder latitude(float latitude);
 
         /**
-         * Set the 3 letter country code of this geo object
+         * Sets the 3 letter country code of this geo object.
          *
          * @param countryCode 3 letter country code
          * @return this builder instance
@@ -108,7 +110,7 @@ public class Geo {
         Builder country(String countryCode);
 
         /**
-         * Set the longitude of this geo object
+         * Sets the longitude of this geo object.
          *
          * @param longitude longitude from -180 to +180
          * @return this builder instance
@@ -117,7 +119,7 @@ public class Geo {
         Builder longitude(float longitude);
 
         /**
-         * Set the accuracy of the location data as reported by the device
+         * Sets the accuracy of the location data as reported by the device.
          *
          * @param accuracy the accuracy reported by the device
          * @return this builder instance
@@ -126,7 +128,7 @@ public class Geo {
         Builder accuracy(int accuracy);
 
         /**
-         * Set the {@link LocationType} of this geo object
+         * Sets the location type of this geo object.
          *
          * @param locationType the location type
          * @return this builder instance
@@ -136,7 +138,7 @@ public class Geo {
         Builder locationType(LocationType locationType);
 
         /**
-         * Set the city using the United Nations Code for Trade &amp; Transport Locations.
+         * Sets the city using the United Nations Code for Trade &amp; Transport Locations.
          *
          * @param city city code
          * @return this builder instance
@@ -145,7 +147,7 @@ public class Geo {
         Builder city(String city);
 
         /**
-         * Set the Google metro code of this geo object
+         * Sets the Google metro code of this geo object.
          *
          * @param metro Google metro code
          * @return this builder instance
@@ -154,7 +156,7 @@ public class Geo {
         Builder metro(String metro);
 
         /**
-         * Set the 2 letter state code of this geo object
+         * Sets the 2 letter state code of this geo object.
          *
          * @param state 2 letter state code
          * @return this builder instance
