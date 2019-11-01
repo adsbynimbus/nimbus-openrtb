@@ -18,22 +18,22 @@ import com.adsbynimbus.openrtb.targeting.Source;
 import com.adsbynimbus.openrtb.targeting.user.User;
 
 /**
- * Implementation of {@link BidRequest.Builder} with Androidx annotations for validation
+ * BidRequest builder implementation with Androidx annotations for validation
  *
  * @see BidRequest
  */
 public final class AndroidBidRequestBuilder implements BidRequest.Builder {
 
     /**
-     * The {@link BidRequest} object this builder wraps
+     * The bid request object this builder wraps
      */
     @NonNull
     public final BidRequest request;
 
     /**
-     * Constructs a {@link AndroidBidRequestBuilder} that will edit the fields of the {@link BidRequest} object in place
+     * Constructs a builder that will edit the fields of the bid request object in place.
      *
-     * @param request a non null bid request object
+     * @param request a bid request object
      */
     public AndroidBidRequestBuilder(@NonNull BidRequest request) {
         this.request = request;

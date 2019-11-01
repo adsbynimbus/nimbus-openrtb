@@ -5,7 +5,7 @@ package com.adsbynimbus.openrtb.targeting.distribution;
  * mobile) as opposed to a website. A bid request must not contain both an App and a Site object. At a
  * minimum, it is useful to provide an App ID or bundle, but this is not strictly required.
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=20">OpenRTB Section 3.2.14</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=25">OpenRTB Section 3.2.14</a>
  */
 public class App {
 
@@ -43,21 +43,21 @@ public class App {
     /**
      * Array of IAB content categories of the app.
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
      */
     public String[] cat;
 
     /**
      * Array of IAB content categories that describe the current section of the app.
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
      */
     public String[] sectioncat;
 
     /**
      * Array of IAB content categories that describe the current page or view of the app.
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
      */
     public String[] pagecat;
 
@@ -72,31 +72,37 @@ public class App {
     public Integer privacypolicy;
 
     /**
-     * 0 = app is free, 1 = the app is a paid version
+     * Indicates if the app is free or paid.
+     * <ul>
+     *     <li>0: free</li>
+     *     <li>1: paid</li>
+     * </ul>
      */
     public Integer paid;
 
     /**
-     * Details about the {@link Publisher} of the app.
+     * Details about the publisher of the app.
      */
     public Publisher publisher;
 
     /**
-     * Builder for constructing an {@link App} object
+     * Builder for constructing an app object
+     *
+     * @see App
      */
     public interface Builder {
 
         /**
-         * Set the name of this app
+         * Sets the name of this app.
          *
-         * @param name name of the app
+         * @param name the name of the app
          * @return this builder instance
          * @see #name
          */
         Builder name(String name);
 
         /**
-         * Set the bundle id of this app.
+         * Sets the bundle id of this app.
          *
          * @param bundle the bundle id
          * @return this builder instance
@@ -105,7 +111,7 @@ public class App {
         Builder bundle(String bundle);
 
         /**
-         * Set the domain name of this app
+         * Sets the domain name of this app.
          *
          * @param domain the domain associated with this app
          * @return this builder instance
@@ -114,7 +120,7 @@ public class App {
         Builder domain(String domain);
 
         /**
-         * Set this app store url
+         * Sets this app store url.
          *
          * @param storeUrl the store url of this app
          * @return this builder instance
@@ -123,17 +129,17 @@ public class App {
         Builder storeUrl(String storeUrl);
 
         /**
-         * Set the IAB content categories that describe this app.
+         * Sets the IAB content categories that describe this app.
          *
          * @param cat list of IAB content categories
          * @return this builder instance
          * @see #cat
-         * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
+         * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
          */
         Builder categories(String... cat);
 
         /**
-         * Set the IAB content categories that describe the current page of this app
+         * Sets the IAB content categories that describe the current page of this app.
          *
          * @param pageCategories list of IAB content categories
          * @return this builder instance
@@ -143,7 +149,7 @@ public class App {
         Builder pageCategories(String... pageCategories);
 
         /**
-         * Set the IAB content categories that describe the current section of this app
+         * Sets the IAB content categories that describe the current section of this app.
          *
          * @param sectionCategories list of IAB content categories
          * @return this builder instance
@@ -153,7 +159,7 @@ public class App {
         Builder sectionCategories(String... sectionCategories);
 
         /**
-         * Set the version of this app
+         * Sets the version of this app.
          *
          * @param version the app version friendly name
          * @return this builder instance
@@ -162,16 +168,16 @@ public class App {
         Builder version(String version);
 
         /**
-         * Set to true if this app has a privacy policy associated with it
+         * Sets to true if this app has a privacy policy associated with it.
          *
-         * @param privacyPolicy 0: no policy; 1: policy
+         * @param privacyPolicy the privacy policy where 0: no policy; 1: policy
          * @return this builder instance
          * @see #privacypolicy
          */
         Builder privacyPolicy(boolean privacyPolicy);
 
         /**
-         * Set to true if this app is a paid app
+         * Sets to true if this app is a paid app.
          *
          * @param paid true if this app is a paid app, false otherwise
          * @return this builder instance
@@ -180,7 +186,7 @@ public class App {
         Builder paid(boolean paid);
 
         /**
-         * Set the Publisher of this app
+         * Sets the Publisher of this app.
          *
          * @param publisher the configured publisher object
          * @return this builder instance

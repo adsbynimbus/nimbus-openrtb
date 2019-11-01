@@ -5,22 +5,22 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 /**
- * Implementation of {@link App.Builder} with Androidx annotations for validation
+ * App builder implementation with Androidx annotations for validation
  *
  * @see App
  */
 public final class AndroidAppBuilder implements App.Builder {
 
     /**
-     * The {@link App} object this builder wraps
+     * The app object this builder wraps
      */
     @NonNull
     public final App app;
 
     /**
-     * Constructs a {@link AndroidAppBuilder} that will edit the fields of the {@link App} object in place
+     * Constructs a builder that will edit the fields of the app object in place.
      *
-     * @param app a non null app object
+     * @param app an app object
      */
     public AndroidAppBuilder(@NonNull App app) {
         this.app = app;

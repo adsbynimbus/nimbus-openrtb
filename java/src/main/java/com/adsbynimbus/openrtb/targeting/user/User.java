@@ -8,7 +8,7 @@ import com.adsbynimbus.openrtb.targeting.Data;
  * privacy policies. However, this user ID must be stable long enough to serve reasonably as the basis for
  * frequency capping and retargeting.
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=25">OpenRTB Section 3.2.20</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=30">OpenRTB Section 3.2.20</a>
  */
 public class User {
 
@@ -23,7 +23,7 @@ public class User {
     public static final String FEMAlE = "Female";
 
     /**
-     * Optional age of the user
+     * Age of the user
      */
     public Integer age;
 
@@ -39,7 +39,7 @@ public class User {
     public Integer yob;
 
     /**
-     * Gender where "Male" = male, "Female" = female, "O" = known to be other (i.e., omitted is unknown).
+     * Users gender where "Male" = male, "Female" = female. If omitted it is assumed to be unknown.
      */
     public String gender;
 
@@ -55,19 +55,21 @@ public class User {
     public String custom_data;
 
     /**
-     * Additional user data. Each {@link Data} object represents a different data source.
+     * Additional user data. Each data object represents a different data source.
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26">OpenRTB Section 3.2.21</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31">OpenRTB Section 3.2.21</a>
      */
     public Data[] data;
 
     /**
-     * {@link User} extension object unique to Nimbus
+     * User extension object unique to Nimbus
      */
     public Extension ext;
 
     /**
-     * {@link User} extentsion object used by Nimbus
+     * User extension object used by Nimbus
+     *
+     * @see User
      */
     public static class Extension {
 
@@ -83,12 +85,14 @@ public class User {
     }
 
     /**
-     * Builder for constructing a {@link User} object
+     * Builder for constructing a User object
+     *
+     * @see User
      */
     public interface Builder {
 
         /**
-         * Set the age of the user
+         * Sets the age of the user.
          *
          * @param age the age of the user in years
          * @return this builder instance
@@ -97,7 +101,7 @@ public class User {
         Builder age(int age);
 
         /**
-         * Set the buyer id. If using Facebook this is the bidder token
+         * Sets the buyer id. If using Facebook this is the bidder token.
          *
          * @param buyerUid set to the Facebook bidder token if using Facebook
          * @return this builder instance
@@ -106,7 +110,7 @@ public class User {
         Builder buyerUid(String buyerUid);
 
         /**
-         * Set the age of this user
+         * Sets the age of this user.
          *
          * @param yob year of birth as a 4 digit int
          * @return this builder instance
@@ -115,7 +119,7 @@ public class User {
         Builder yearOfBirth(int yob);
 
         /**
-         * Sets the gender of this user
+         * Sets the gender of this user.
          *
          * @param gender one of "Male" or "Female"
          * @return this builder instance
@@ -124,7 +128,7 @@ public class User {
         Builder gender(String gender);
 
         /**
-         * Sets the keywords associated with this user
+         * Sets the keywords associated with this user.
          *
          * @param keywords a comma delimited String of keywords
          * @return this builder instance
@@ -133,7 +137,7 @@ public class User {
         Builder keywords(String keywords);
 
         /**
-         * Set a String of custom data to be sent to Nimbus for this user
+         * Sets a String of custom data to be sent to Nimbus for this user.
          *
          * @param customData a String representing some custom data
          * @return this builder instance
@@ -142,7 +146,7 @@ public class User {
         Builder customData(String customData);
 
         /**
-         * Sets an array of Data objects to be sent with this user
+         * Sets an array of Data objects to be sent with this user.
          *
          * @param data any number of Data objects describing this user
          * @return this builder instance
@@ -152,7 +156,7 @@ public class User {
         Builder data(Data... data);
 
         /**
-         * Adds a publisher provided GDPR consent String to this User to be sent with a request
+         * Adds a publisher provided GDPR consent String to this User to be sent with a request.
          *
          * @param consent publisher provided GDPR consent String
          * @return this builder instance
@@ -161,7 +165,7 @@ public class User {
         Builder gdprConsentString(String consent);
 
         /**
-         * Set to true if the user has consented to the publisher's data policy
+         * Sets to true if the user has consented to the publisher's data policy.
          *
          * @param didConsent true if gave consent [Default: false]
          * @return this builder instance

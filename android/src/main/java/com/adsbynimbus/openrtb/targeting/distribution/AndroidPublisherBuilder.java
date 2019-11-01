@@ -3,22 +3,22 @@ package com.adsbynimbus.openrtb.targeting.distribution;
 import androidx.annotation.NonNull;
 
 /**
- * Implementation of {@link Publisher.Builder} with Androidx annotations for validation
+ * Publisher builder implementation with Androidx annotations for validation
  *
  * @see Publisher
  */
 public final class AndroidPublisherBuilder implements Publisher.Builder {
 
     /**
-     * The {@link Publisher} object this builder wraps
+     * The publisher object this builder wraps
      */
     @NonNull
     public final Publisher publisher;
 
     /**
-     * Constructs a {@link AndroidPublisherBuilder} that will edit the fields of the {@link Publisher} object in place
+     * Constructs a builder that will edit the fields of the publisher object in place.
      *
-     * @param publisher a non null publisher object
+     * @param publisher a publisher object
      */
     public AndroidPublisherBuilder(@NonNull Publisher publisher) {
         this.publisher = publisher;

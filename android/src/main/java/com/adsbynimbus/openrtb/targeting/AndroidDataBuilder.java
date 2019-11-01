@@ -3,22 +3,22 @@ package com.adsbynimbus.openrtb.targeting;
 import androidx.annotation.NonNull;
 
 /**
- * Implementation of {@link Data.Builder} with Androidx annotations for validation
+ * Data builder implementation with Androidx annotations for validation
  *
  * @see Data
  */
 public final class AndroidDataBuilder implements Data.Builder {
 
     /**
-     * The {@link Data} object this builder wraps
+     * The data object this builder wraps
      */
     @NonNull
     public final Data data;
 
     /**
-     * Constructs a {@link AndroidDataBuilder} that will edit the fields of the {@link Data} object in place
+     * Constructs a builder that will edit the fields of the data object in place.
      *
-     * @param data a non null data object
+     * @param data a data object
      */
     public AndroidDataBuilder(@NonNull Data data) {
         this.data = data;

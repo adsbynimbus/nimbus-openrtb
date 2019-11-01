@@ -14,7 +14,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Implementation of {@link Device.Builder} with Androidx annotations for validation
+ * Device builder implementation with Androidx annotations for validation
  *
  * @see Device
  */
@@ -36,15 +36,15 @@ public final class AndroidDeviceBuilder implements Device.Builder {
     public @interface DeviceTypeInt { }
 
     /**
-     * The {@link Device} object this builder wraps
+     * The devide object this builder wraps
      */
     @NonNull
     public final Device device;
 
     /**
-     * Constructs a {@link AndroidDeviceBuilder} that will edit the fields of the {@link Device} object in place
+     * Constructs a builder that will edit the fields of the device object in place.
      *
-     * @param device a non null device object
+     * @param device a device object
      */
     public AndroidDeviceBuilder(@NonNull Device device) {
         this.device = device;
@@ -80,7 +80,7 @@ public final class AndroidDeviceBuilder implements Device.Builder {
     }
 
     /**
-     * Returns a builder for the geo object. A new Geo object will be created if none exists.
+     * Returns a builder for the geo object. A new {@link Geo} object will be created if none exists.
      *
      * @return a builder wrapping the geo object
      */

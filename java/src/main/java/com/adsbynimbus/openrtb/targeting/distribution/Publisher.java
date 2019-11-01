@@ -4,7 +4,7 @@ package com.adsbynimbus.openrtb.targeting.distribution;
  * This object describes the publisher of the media in which the ad will be displayed. The publisher is
  * typically the seller in an OpenRTB transaction.
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=21">OpenRTB Section 3.2.15</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26">OpenRTB Section 3.2.15</a>
  */
 public class Publisher {
 
@@ -19,19 +19,21 @@ public class Publisher {
     public String domain;
 
     /**
-     * Array of IAB content categories that describe the publisher. Refer to List 5.1.
+     * Array of IAB content categories that describe the publisher.
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
      */
     public String[] cat;
 
     /**
-     * Builder for constructing a {@link Publisher} object
+     * Builder for constructing a Publisher object.
+     *
+     * @see Publisher
      */
     public interface Builder {
 
         /**
-         * Set the IAB content categories describing this publisher
+         * Sets the IAB content categories describing this publisher.
          *
          * @param categories list of IAB content categories
          * @return this builder instance
@@ -40,7 +42,7 @@ public class Publisher {
         Builder categories(String... categories);
 
         /**
-         * Set the name of this publisher
+         * Sets the name of this publisher.
          *
          * @param name publisher name
          * @return this builder instance
@@ -49,7 +51,7 @@ public class Publisher {
         Builder name(String name);
 
         /**
-         * Set the top level domain of this publisher
+         * Sets the top level domain of this publisher.
          *
          * @param domain the domain (e.g. "adsbynimbus.com")
          * @return this builder instance
