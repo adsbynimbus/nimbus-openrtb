@@ -8,7 +8,7 @@ import com.adsbynimbus.openrtb.targeting.Data;
  * privacy policies. However, this user ID must be stable long enough to serve reasonably as the basis for
  * frequency capping and retargeting.
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=25">OpenRTB Section 3.2.20</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=30">OpenRTB Section 3.2.20</a>
  */
 public class User {
 
@@ -69,7 +69,7 @@ public class User {
     /**
      * Additional user data. Each data object represents a different data source.
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26">OpenRTB Section 3.2.21</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31">OpenRTB Section 3.2.21</a>
      */
     public Data[] data;
 

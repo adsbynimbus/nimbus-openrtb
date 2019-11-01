@@ -5,14 +5,14 @@ package com.adsbynimbus.openrtb.targeting.user;
  * information includes its hardware, platform, location, and carrier data. The device can refer to a mobile
  * handset, a desktop computer, set top box, or other digital device.
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=23">OpenRTB Section 3.2.18</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=28">OpenRTB Section 3.2.18</a>
  */
 public class Device {
 
     /**
      * Options for the type of device connectivity
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=51">OpenRTB Section 5.22</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56">OpenRTB Section 5.22</a>
      */
     public enum ConnectionType {
 
@@ -61,7 +61,7 @@ public class Device {
     /**
      * Type of device from which the impression originated.
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=51">OpenRTB Section 5.21</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56">OpenRTB Section 5.21</a>
      */
     public enum DeviceType {
 

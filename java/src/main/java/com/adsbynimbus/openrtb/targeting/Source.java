@@ -7,17 +7,19 @@ package com.adsbynimbus.openrtb.targeting;
  * header bidding, but it can also apply to upstream server entities such as another RTB exchange, a
  * mediation platform, or an ad server combines direct campaigns with 3rd party demand in decisioning
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=11">OpenRTB Section 3.2.2</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=16">OpenRTB Section 3.2.2</a>
  */
 public class Source {
 
     /**
-     * Placeholder for exchange-specific extensions to OpenRTB. Reference {@link Extension} for values
+     * Placeholder for exchange-specific extensions to OpenRTB.
      */
     public Extension ext;
 
     /**
-     * {@link Source} extension object unique to Nimbus
+     * Source extension object unique to Nimbus
+     *
+     * @see Source
      */
     public static class Extension {
 
@@ -33,12 +35,14 @@ public class Source {
     }
 
     /**
-     * Builder for constructing a {@link Source} object
+     * Builder for constructing a Source object
+     *
+     * @see Source
      */
     public interface Builder {
 
         /**
-         * Set the OM SDK information for a measurement enabled app
+         * Sets the OM SDK information for a measurement enabled app.
          *
          * @param partnerName should match the partner name field from OM
          * @param sdkVersion OM SDK version

@@ -5,7 +5,7 @@ package com.adsbynimbus.openrtb.targeting;
  * object is a collection of such values from a given data provider. The specific segment names and value
  * options must be published by the exchange a priori to its bidders.
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26">OpenRTB Section 3.2.22</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31">OpenRTB Section 3.2.22</a>
  */
 public class Segment {
 
@@ -20,16 +20,19 @@ public class Segment {
     public String name;
 
     /**
-     * String representation of the data segment value
+     * String representation of the data segment value.
      */
     public String value;
 
     /**
-     * Builder for constructing a {@link Segment} object
+     * Builder for constructing a Segment object
+     *
+     * @see Segment
      */
     public interface Builder {
+
         /**
-         * Set the id of this segment object
+         * Sets the id of this segment object.
          *
          * @param id any string representing the id of this segment
          * @return this builder instance
@@ -38,7 +41,7 @@ public class Segment {
         Builder id(String id);
 
         /**
-         * Set the name of this segment
+         * Sets the name of this segment.
          *
          * @param name any string representing the name of this segment
          * @return this builder instance
@@ -47,7 +50,7 @@ public class Segment {
         Builder name(String name);
 
         /**
-         * Set the value of this segment
+         * Sets the value of this segment.
          *
          * @param value any string representing this segment value
          * @return this builder instance

@@ -4,7 +4,7 @@ package com.adsbynimbus.openrtb.targeting.distribution;
  * This object describes the publisher of the media in which the ad will be displayed. The publisher is
  * typically the seller in an OpenRTB transaction.
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=21">OpenRTB Section 3.2.15</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26">OpenRTB Section 3.2.15</a>
  */
 public class Publisher {
 
@@ -21,7 +21,7 @@ public class Publisher {
     /**
      * Array of IAB content categories that describe the publisher.
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
      */
     public String[] cat;
 
