@@ -4,22 +4,22 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 
 /**
- * Implementation of {@link Geo.Builder} with Androidx annotations for validation
+ * Geo builder implementation with Androidx annotations for validation
  *
  * @see Geo
  */
 public final class AndroidGeoBuilder implements Geo.Builder {
 
     /**
-     * The {@link Geo} object this builder wraps
+     * The geo object this builder wraps
      */
     @NonNull
     public final Geo geo;
 
     /**
-     * Constructs a {@link AndroidGeoBuilder} that will edit the fields of the {@link Geo} object in place
+     * Constructs a builder that will edit the fields of the geo object in place.
      *
-     * @param geo a non null geo object
+     * @param geo a geo object
      */
     public AndroidGeoBuilder(@NonNull Geo geo) {
         this.geo = geo;

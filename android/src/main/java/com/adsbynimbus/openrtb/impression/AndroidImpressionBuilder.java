@@ -6,22 +6,22 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 /**
- * Implementation of {@link Impression.Builder} with Androidx annotations for validation
+ * Impression builder implementation with Androidx annotations for validation
  *
  * @see Impression
  */
 public final class AndroidImpressionBuilder implements Impression.Builder {
 
     /**
-     * The {@link Impression} object this builder wraps
+     * The impression object this builder wraps.
      */
     @NonNull
     public final Impression impression;
 
     /**
-     * Constructs a {@link AndroidImpressionBuilder} that will edit the fields of the {@link Impression} object in place
+     * Constructs a builder that will edit the fields of the impression object in place.
      *
-     * @param impression a non null impression object
+     * @param impression an impression object
      */
     public AndroidImpressionBuilder(@NonNull Impression impression) {
         this.impression = impression;
