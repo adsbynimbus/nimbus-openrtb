@@ -1,9 +1,9 @@
 package com.adsbynimbus.openrtb.impression;
 
 /**
- * API frameworks supported by the publisher
+ * API frameworks supported by the publisher for a {@link Banner} impression
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=46">OpenRTB Section 5.6</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=51">OpenRTB Section 5.6</a>
  */
 public enum Api {
 
@@ -35,12 +35,7 @@ public enum Api {
     /**
      * MRAID 3
      */
-    MRAID_3(6),
-
-    /**
-     * OM SDK - Nimbus extension
-     */
-    OMID(7);
+    MRAID_3(6);
 
     public final int value;
 

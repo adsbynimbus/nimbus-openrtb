@@ -3,9 +3,9 @@ package com.adsbynimbus.openrtb.impression;
 /**
  * Standard list of creative attributes that can describe an ad being served or serve as restrictions of thereof.
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=45">OpenRTB Section 5.3</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=50">OpenRTB Section 5.3</a>
  */
-public enum Attribute {
+public enum CreativeAttribute {
 
     /**
      * 1: Audio Ad (Auto-Play)
@@ -94,7 +94,7 @@ public enum Attribute {
 
     public final int value;
 
-    Attribute(int value) {
+    CreativeAttribute(int value) {
         this.value = value;
     }
 }

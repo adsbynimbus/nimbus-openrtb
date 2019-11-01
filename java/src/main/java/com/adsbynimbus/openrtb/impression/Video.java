@@ -3,24 +3,23 @@ package com.adsbynimbus.openrtb.impression;
 import java.util.EnumSet;
 
 /**
- * This object represents an in-stream video impression. Many of the fields are non-essential for minimally
- * viable transactions, but are included to offer fine control when needed. Video in OpenRTB generally
- * assumes compliance with the VAST standard. As such, the notion of companion ads is supported by
- * optionally including an array of Banner objects (refer to the Banner object in Section 3.2.6) that define
- * these companion ads.
- * The presence of a Video as a subordinate of the Imp object indicates that this impression is offered as a
- * video type impression. At the publisher’s discretion, that same impression may also be offered as
- * banner, audio, and/or native by also including as Imp subordinates objects of those types. However,
- * any given bid for the impression must conform to one of the offered types.
+ * This object represents an in-stream video impression. Many of the fields are non-essential for minimally viable
+ * transactions, but are included to offer fine control when needed. Video in OpenRTB generally assumes compliance with
+ * the VAST standard. As such, the notion of companion ads is supported by optionally including an array of
+ * {@link Banner} objects that define these companion ads. The presence of a {@link Video} as a subordinate of the
+ * {@link Impression} object indicates that this impression is offered as a video type impression. At the publisher’s
+ * discretion, that same impression may also be offered as banner, audio, and/or native by also including as Imp
+ * subordinates objects of those types. However, any given bid for the impression must conform to one of the offered
+ * types.
  *
- * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=15">OpenRTB Section 3.2.7</a>
+ * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=20">OpenRTB Section 3.2.7</a>
  */
 public class Video {
 
     /**
      * Protocols
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=47">OpenRTB Section 5.8</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52">OpenRTB Section 5.8</a>
      */
     public enum Protocol {
         /**
@@ -53,7 +52,7 @@ public class Video {
     /**
      * Placements
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=47">OpenRTB Section 5.9</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52">OpenRTB Section 5.9</a>
      */
     public enum Placement {
 
@@ -98,7 +97,7 @@ public class Video {
     /**
      * Playback methods
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=48">OpenRTB Section 5.10</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53">OpenRTB Section 5.10</a>
      */
     public enum PlaybackMethod {
 
@@ -142,7 +141,7 @@ public class Video {
     /**
      * Linearity
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=47">OpenRTB Section 5.7</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52">OpenRTB Section 5.7</a>
      */
     public enum Linearity {
 
@@ -166,7 +165,7 @@ public class Video {
     /**
      * Content Delivery
      *
-     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=48">OpenRTB Section 5.10</a>
+     * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53">OpenRTB Section 5.10</a>
      */
     public enum DeliveryMethod {
 
@@ -193,8 +192,9 @@ public class Video {
     }
 
     /**
-     * Minimum bid for this video impression expressed in CPM. This value should be equal to or higher than the
-     * value set on {@link Impression#bidfloor}. [Default: 3.0]
+     * Minimum bid for this video impression expressed in CPM.
+     * <p><br>
+     * If this value is omitted Nimbus will default to 3.0
      */
     public Float bidfloor;
 
@@ -204,18 +204,21 @@ public class Video {
     public String[] mimes;
 
     /**
-     * Optional minimum video ad duration in seconds. [Default: 0]
+     * Minimum video ad duration in seconds.
+     * <p><br>
+     * If this value is omitted Nimbus defaults to 0
      */
-    public Integer minduration; // Server default 0
+    public Integer minduration;
 
     /**
-     * Optional maximum video ad duration in seconds. [Default: 60]
+     * Maximum video ad duration in seconds.
+     * <p><br>
+     * If this value is omitted Nimbus defaults to 60
      */
     public Integer maxduration;
 
     /**
-     * Array of supported video protocols. Refer to {@link Protocol}. At least one supported protocol must be specified
-     * in this array.
+     * Set of supported video protocols
      */
     public EnumSet<Protocol> protocols;
 
@@ -230,81 +233,92 @@ public class Video {
     public int h;
 
     /**
-     * Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements. &gt; 0 Mid roll where
-     * the value indicates the start delay, 0 pre roll, -1 generic mid roll, -2 generic post roll. [Default: 0]
+     * Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.
+     * <ul>
+     *     <li>&gt; 0: Mid roll where the value indicates the start delay</li>
+     *     <li>0: pre roll </li>
+     *     <li>-1: generic mid roll</li>
+     *     <li>-2: generic post roll</li>
+     * </ul>
      */
     public Integer startdelay;
 
     /**
-     * {@link Placement} type for this video impression
+     * Placement type for this video impression
      */
     public Placement placement;
 
     /**
      * Indicates if the impression must be linear, nonlinear, etc. If none specified, assume all are allowed.
-     * Refer to {@link Linearity}.
      */
     public Linearity linearity;
 
     /**
      * Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes. If a bidder sends
      * markup/creative that is itself skippable, the Bid object should include the attr array with an element of
-     * {@link Attribute#HAS_SKIP_BUTTON} indicating skippable video. Refer to {@link Attribute}.
+     * {@link CreativeAttribute#HAS_SKIP_BUTTON} indicating skippable video.
      */
     public Integer skip; // optional
 
     /**
-     * Supported delivery methods (e.g., streaming, progressive). If none specified, assume all are supported.
-     * Refer to {@link DeliveryMethod}
+     * Supported delivery methods; if none specified, assume all are supported.
      */
     public EnumSet<DeliveryMethod> delivery;
 
     /**
-     * Videos of total duration greater than this number of seconds can be skippable;
-     * only applicable if the ad is skippable. [Default: 0]
+     * Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is
+     * skippable.
+     * <p><br>
+     * If this value is omitted Nimbus defaults to 0
      */
     public Integer skipmin;
 
     /**
-     * Optional number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable.
-     * [Default: 0]
+     * Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable.
+     * <p><br>
+     * If this value is omitted Nimbus defaults to 0
      */
     public Integer skipafter;
 
     /**
-     * Optional minimum bit rate in Kbps. [Default: 0]
+     * Minimum bit rate in Kbps.
+     * <p><br>
+     * If this value is omitted Nimbus defaults to 0
      */
     public Integer minbitrate;
 
     /**
-     * Optional maximum bit rate in Kbps. [Default: 0]
+     * Maximum bit rate in Kbps.
+     * <p><br>
+     * If this value is omitted Nimbus defaults to 0
      */
-    public Integer maxbitrate; // Server default 0
+    public Integer maxbitrate;
 
     /**
-     * Ad position on screen. Refer to {@link Position}
+     * Ad position on screen.
      */
     public Position pos; // Optional
 
     /**
-     * The event that causes playback to end. Refer to {@link PlaybackMethod}.
-     * [Default: 2 - {@link PlaybackMethod#PAGE_LOAD_SOUND_OFF}]
+     * The event that causes playback to start
      */
     public PlaybackMethod playbackmethod;
 
     /**
-     * Set of supported API frameworks for this impression. Refer to {@link Api}. If an API is not explicitly listed,
+     * Set of supported API frameworks for this impression. If an API is not explicitly listed,
      * it is assumed not to be supported.
      */
     public EnumSet<Api> api;
 
     /**
-     * Builder for constructing a {@link Video} object
+     * Builder for constructing a Video object
+     *
+     * @see Video
      */
     public interface Builder {
 
         /**
-         * Set the position of this video impression
+         * Sets the position of this Video impression
          *
          * @param position the position on screen
          * @return this builder instance
@@ -313,7 +327,7 @@ public class Video {
         Builder position(Position position);
 
         /**
-         * Set the requested mimeTypes. [Default: "video/mp4"]
+         * Sets the supported video mimeTypes
          *
          * @param mimeTypes the list of requested mime types
          * @return this builder instance
@@ -322,19 +336,21 @@ public class Video {
         Builder mimes(String... mimeTypes);
 
         /**
-         * Set the bid floor for this video impression [Default: 3.0]
+         * Sets the bid floor for this Video impression
+         * <p><br>
+         * If this value is omitted Nimbus defaults to 3.0
          *
-         * @param bidFloor bid floor represented in CPM[Default: 3.0]
+         * @param bidFloor bid floor represented in CPM
          * @return this builder instance
          * @see #bidfloor
          */
         Builder bidFloor(float bidFloor);
 
         /**
-         * Set a duration constraints for this video impression
+         * Sets duration constraints for this Video impression
          *
-         * @param minDuration [Default: 0]
-         * @param maxDuration [Default: 60]
+         * @param minDuration Minimum length this video impression can be
+         * @param maxDuration Maximum length this video impression can be
          * @return this builder instance
          * @see #minduration
          * @see #maxduration
@@ -342,10 +358,10 @@ public class Video {
         Builder duration(int minDuration, int maxDuration);
 
         /**
-         * Set a bitrate constraints for this video impression
+         * Sets a bitrate constraints for this video impression
          *
-         * @param minBitrate [Default: 0]
-         * @param maxBitrate [Default: 20000]
+         * @param minBitrate Minimum bit rate this video impression can be
+         * @param maxBitrate Maximum bit rate this video impression can be
          * @return this builder instance
          * @see #minbitrate
          * @see #maxbitrate
@@ -353,9 +369,9 @@ public class Video {
         Builder bitrate(int minBitrate, int maxBitrate);
 
         /**
-         * Set the video player width and height in density independent pixels
+         * Sets the video player width and height in density independent pixels
          *
-         * @param width width of the video player in density independent pixels
+         * @param width  width of the video player in density independent pixels
          * @param height height of the video player in density independent pixels
          * @return {@link Builder}
          * @see #w
@@ -364,19 +380,19 @@ public class Video {
         Builder playerSize(int width, int height);
 
         /**
-         * Set the supported protocols of this video impression
+         * Sets the supported protocols of this video impression
          *
-         * @param protocols supported protocols [VAST_2, VAST_2_WRAPPER, VAST_3, VAST_3_WRAPPER]
+         * @param protocols a set of supported protocols
          * @return this builder instance
          * @see #protocols
          */
         Builder protocols(EnumSet<Protocol> protocols);
 
         /**
-         * Set if the video asset is skippable. Not calling this function assumes it is not skippable
+         * Sets if the video is skippable. Not calling this function assumes it is not skippable.
          *
-         * @param skipMin   - minimum duration in seconds of video length before skip is enabled
-         * @param skipAfter - minimum duration video must be watched to skip
+         * @param skipMin   minimum duration in seconds of video length before skip is enabled
+         * @param skipAfter minimum duration video must be watched to skip
          * @return this builder instance
          * @see #skip
          * @see #skipmin
@@ -385,57 +401,54 @@ public class Video {
         Builder skipEnabled(int skipMin, int skipAfter);
 
         /**
-         * Set the start delay of this video impression
+         * Sets the start delay of this video impression
          *
-         * @param startDelay -2 generic post roll, -1 generic midroll, 0 pre roll, &gt; 0 mid roll start delay
-         *                   [Default: 0]
+         * @param startDelay start delay in seconds
          * @return this builder instance
          * @see #startdelay
          */
         Builder startDelay(int startDelay);
 
         /**
-         * Set the playback method of this video impression
+         * Sets the playback method of this video impression.
          *
-         * @param playbackMethod one of [PAGE_LOAD_SOUND_ON, PAGE_LOAD_SOUND_OFF,
-         *                        CLICK_SOUND_ON, MOUSE_OVER_SOUND_ON, ENTER_VIEWPORT_SOUND_OFF,
-         *                        ENTER_VIEWPORT_SOUND_ON]
+         * @param playbackMethod the method that starts the video playback
          * @return this builder instance
          * @see #playbackmethod
          */
         Builder playbackMethods(PlaybackMethod playbackMethod);
 
         /**
-         * Set the placement type of this video impression
+         * Sets the placement type of this video impression.
          *
-         * @param placement one of [IN_STREAM, IN_BANNER, IN_ARTICLE, IN_FEED, INTERSTITIAL_SLIDER_FLOATING]
+         * @param placement the placement of the video for this impression
          * @return this builder instance
          * @see #placement
          */
         Builder placement(Placement placement);
 
         /**
-         * Set the linearity of this video request
+         * Sets the linearity of this video impression.
          *
-         * @param linearity 1: linear; 2: non linear
+         * @param linearity the linearity of this video impression
          * @return this builder instance
          * @see #linearity
          */
         Builder linearity(Linearity linearity);
 
         /**
-         * Set the desired content delivery method
+         * Set the desired content delivery method.
          *
-         * @param deliveryMethod 1: streaming; 2: progressive; 3: download
+         * @param deliveryMethod the desired delivery method
          * @return this builder instance
          * @see #delivery
          */
         Builder deliveryMethod(EnumSet<DeliveryMethod> deliveryMethod);
 
         /**
-         * Set the requested api values
+         * Sets the supported api values
          *
-         * @param apis 1: vpaid 1; 2: vpaid 2; 3: mraid 1; 4: ormma; 5: mraid 2; 6: mraid 3
+         * @param apis set of supported api values
          * @return this builder instance
          * @see #api
          */

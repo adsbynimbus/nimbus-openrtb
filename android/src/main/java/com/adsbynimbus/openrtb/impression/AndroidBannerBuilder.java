@@ -96,7 +96,7 @@ public final class AndroidBannerBuilder implements Banner.Builder {
      * @return {@inheritDoc}
      */
     @Override
-    public AndroidBannerBuilder blockedAttributes(EnumSet<Attribute> battr) {
+    public AndroidBannerBuilder blockedAttributes(EnumSet<CreativeAttribute> battr) {
         banner.battr = battr;
         return this;
     }
