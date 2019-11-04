@@ -109,13 +109,13 @@ public class Device {
      * Standard "Do Not Track" flag as set in the header by the browser, where 0 = tracking is unrestricted,
      * 1 = do not track
      */
-    public int dnt;
+    public Integer dnt;
 
     /**
      * "Limit Ad Tracking" signal commercially endorsed (e.g., iOS, Android), where 0 = tracking is unrestricted,
      * 1 = tracking must be limited per commercial guidelines.
      */
-    public int lmt;
+    public Integer lmt;
 
     /**
      * IPv4 address closest to device. Will be set automatically by Nimbus
@@ -150,12 +150,12 @@ public class Device {
     /**
      * Physical height of the screen in pixels.
      */
-    public int h;
+    public Integer h;
 
     /**
      * Physical width of the screen in pixels.
      */
-    public int w;
+    public Integer w;
 
     /**
      * Browser language using ISO-639-1-alpha-2

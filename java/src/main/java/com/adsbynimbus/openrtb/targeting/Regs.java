@@ -17,7 +17,7 @@ public class Regs {
      *
      * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=76">OpenRTB Section 7.5</a>
      */
-    public int coppa;
+    public Integer coppa;
     public Extension ext;
 
     /**
@@ -31,7 +31,7 @@ public class Regs {
          * <p><br>
          * If this value is omitted Nimbus defaults to 0
          */
-        public int gdpr;
+        public Integer gdpr;
     }
 
     /**
