@@ -150,7 +150,7 @@
 
 
 #### <a name="pkg-files">Package files</a>
-[app.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/app.go) [aps.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps.go) [aps_custom_unmarshaller.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps_custom_unmarshaller.go) [banner.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/banner.go) [data.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/data.go) [device.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/device.go) [format.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/format.go) [geo.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/geo.go) [imp.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/imp.go) [primitives-to-references.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives-to-references.go) [primitives.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives.go) [publisher.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/publisher.go) [regs.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/regs.go) [request.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/request.go) [segment.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/segment.go) [source.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/source.go) [user.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/user.go) [video.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/video.go) 
+[app.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/app.go) [aps.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps.go) [aps_custom_unmarshaller.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps_custom_unmarshaller.go) [banner.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/banner.go) [data.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/data.go) [device.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/device.go) [format.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/format.go) [geo.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/geo.go) [imp.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/imp.go) [primitives-to-references.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives-to-references.go) [primitives.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives.go) [publisher.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/publisher.go) [regs.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/regs.go) [request.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/request.go) [segment.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/segment.go) [source.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/source.go) [user.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/user.go) [video.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/video.go)
 
 
 ## <a name="pkg-constants">Constants</a>
@@ -1110,10 +1110,11 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 ## <a name="RegsExt">type</a> [RegsExt](/src/target/regs.go?s=523:598#L14)
 ``` go
 type RegsExt struct {
-    GDPR int `json:"gdpr" valid:"range(0|1),optional"`
+    GDPR      int    `json:"gdpr" valid:"range(0|1),optional"`
+    USPrivacy string `json:"us_privacy,omitempty" valid:"optional"`
 }
 ```
-RegsExt being used for GDPR
+RegsExt being used for GDPR & CCPA as US Privacy
 
 
 

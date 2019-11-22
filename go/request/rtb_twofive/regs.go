@@ -10,9 +10,10 @@ type Regs struct {
 	Ext   *RegsExt `json:"ext"   valid:"optional"`
 }
 
-// RegsExt being used for GDPR
+// RegsExt being used for GDPR & CCPA as US Privacy
 type RegsExt struct {
-	GDPR int `json:"gdpr" valid:"range(0|1),optional"`
+	GDPR      int    `json:"gdpr" valid:"range(0|1),optional"`
+	USPrivacy string `json:"us_privacy,omitempty" valid:"optional"`
 }
 
 // MarshalJSONObject implements MarshalerJSONObject
@@ -51,6 +52,7 @@ func (r *Regs) NKeys() int { return 0 }
 // MarshalJSONObject implements MarshalerJSONObject
 func (e *RegsExt) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.IntKey("gdpr", e.GDPR)
+	enc.StringKeyOmitEmpty("us_privacy", e.USPrivacy)
 }
 
 // IsNil checks if instance is nil
@@ -64,7 +66,8 @@ func (e *RegsExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 	switch k {
 	case "gdpr":
 		return dec.Int(&e.GDPR)
-
+	case "us_privacy":
+		return dec.String(&e.USPrivacy)
 	}
 	return nil
 }

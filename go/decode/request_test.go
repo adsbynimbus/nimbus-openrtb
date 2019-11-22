@@ -10,10 +10,11 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+
 	twofive "github.com/timehop/nimbus-openrtb/go/request/rtb_twofive"
 )
 
-var jsonRequestTestBody = []byte(`{"imp":[{"banner":{"w":320,"h":480,"pos":7,"api":[3,5]},"instl":1,"bidfloor":2}],"app":{"name":"foo","bundle":"bar","domain":"https://foo.com","storeurl":"https://itunes.apple.com/us/app/foo","cat":["IAB14","IAB1","IAB9"],"privacypolicy":1,"paid":0,"publisher":{"name":"foo","domain":"https://foo.com"}},"device":{"ua":"Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4","geo":{"lat":37.751,"lon":-97.822,"ipservice":3,"country":"USA","city":"New York"},"dnt":0,"lmt":0,"ip":"174.193.148.17","make":"Apple","model":"iPhone","os":"ios","osv":"10.3.2","language":"en","carrier":"Verizon","connection_type":6,"ifa":"13579176-e94e-4e6e-96ae-572b787af21c"},"user":{"gender":"male"},"format":{"h":480,"w":360},"at":1,"regs":{"ext":{"gdpr":1}},"ext":{"api_key":"83499783-c452-461f-8c37-43877f859ba3","session_id":"1","position":"pingpong"}}`)
+var jsonRequestTestBody = []byte(`{"imp":[{"banner":{"w":320,"h":480,"pos":7,"api":[3,5]},"instl":1,"bidfloor":2}],"app":{"name":"foo","bundle":"bar","domain":"https://foo.com","storeurl":"https://itunes.apple.com/us/app/foo","cat":["IAB14","IAB1","IAB9"],"privacypolicy":1,"paid":0,"publisher":{"name":"foo","domain":"https://foo.com"}},"device":{"ua":"Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4","geo":{"lat":37.751,"lon":-97.822,"ipservice":3,"country":"USA","city":"New York"},"dnt":0,"lmt":0,"ip":"174.193.148.17","make":"Apple","model":"iPhone","os":"ios","osv":"10.3.2","language":"en","carrier":"Verizon","connection_type":6,"ifa":"13579176-e94e-4e6e-96ae-572b787af21c"},"user":{"gender":"male"},"format":{"h":480,"w":360},"at":1,"regs":{"ext":{"gdpr":1,"us_privacy":"1YNY"}},"ext":{"api_key":"83499783-c452-461f-8c37-43877f859ba3","session_id":"1","position":"pingpong"}}`)
 
 func TestRequestToStruct(t *testing.T) {
 	// gzipped request
