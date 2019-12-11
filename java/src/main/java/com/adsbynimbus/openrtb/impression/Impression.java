@@ -84,7 +84,7 @@ public class Impression {
         /**
          * The list of key value pairs provided by a DTBRequest from the APS library.
          */
-        public List aps;
+        public List<?> aps;
     }
 
 
