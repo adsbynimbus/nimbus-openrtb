@@ -1,3 +1,3 @@
--keep,allowshrinking class com.adsbynimbus.openrtb.** {
+-keep class com.adsbynimbus.openrtb.** {
     public <fields>;
 }

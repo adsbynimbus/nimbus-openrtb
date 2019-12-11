@@ -36,9 +36,9 @@ public class BidResponse {
     public int width;
 
     /**
-     * Set to true if the original request was for an interstitial dd
+     * Set to 1 if the original request was for an interstitial dd
      */
-    public boolean is_interstitial;
+    public int is_interstitial;
 
     /**
      * The markup returned by Nimbus. Will be in the format of html for static or xml VAST for video
@@ -61,9 +61,9 @@ public class BidResponse {
     public String placement_id;
 
     /**
-     * Set to true if Nimbus has determined the creative returned requests MRAID in the top level markup
+     * Set to 1 if Nimbus has determined the creative returned requests MRAID in the top level markup
      */
-    public boolean is_mraid;
+    public int is_mraid;
 
     /**
      * Additional tracking urls
