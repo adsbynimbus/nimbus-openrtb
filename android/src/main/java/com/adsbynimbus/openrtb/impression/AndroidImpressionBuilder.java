@@ -147,7 +147,7 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @return {@inheritDoc}
      */
     @Override
-    public AndroidImpressionBuilder apsParams(@NonNull List apsParams) {
+    public AndroidImpressionBuilder apsParams(@NonNull List<?> apsParams) {
         if (impression.ext == null) {
             impression.ext = new Impression.Extension();
         }
