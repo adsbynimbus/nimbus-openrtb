@@ -167,6 +167,6 @@ public class Impression {
          * @param apsParams a list of key value pair maps from the APS sdk
          * @return this builder instance
          */
-        Builder apsParams(List apsParams);
+        Builder apsParams(List<?> apsParams);
     }
 }

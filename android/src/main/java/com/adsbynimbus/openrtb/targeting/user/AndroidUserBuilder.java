@@ -104,7 +104,7 @@ public final class AndroidUserBuilder implements User.Builder {
     @Override
     public AndroidUserBuilder customData(String customData) {
         user.custom_data = customData;
-        return null;
+        return this;
     }
 
     /**
@@ -116,7 +116,7 @@ public final class AndroidUserBuilder implements User.Builder {
     @Override
     public AndroidUserBuilder data(Data... data) {
         user.data = data;
-        return null;
+        return this;
     }
 
     /**
