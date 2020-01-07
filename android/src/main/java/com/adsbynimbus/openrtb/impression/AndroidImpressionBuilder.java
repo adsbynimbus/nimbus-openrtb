@@ -122,7 +122,7 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
     @Override
     public AndroidImpressionBuilder secure(boolean secure) {
         impression.secure = secure ? 1 : 0;
-        return null;
+        return this;
     }
 
     /**
