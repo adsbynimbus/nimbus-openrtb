@@ -182,7 +182,7 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param playbackMethod {@inheritDoc}
      * @return {@inheritDoc}
      */
-    public AndroidVideoBuilder playbackMethod(@PlaybackMethodInt Integer playbackMethod) {
+    public AndroidVideoBuilder playbackMethod(@PlaybackMethodInt int... playbackMethod) {
         video.playbackmethod = playbackMethod;
         return this;
     }
