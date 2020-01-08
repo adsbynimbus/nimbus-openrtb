@@ -271,7 +271,7 @@ public class Video {
     /**
      * The event that causes playback to start
      */
-    public Integer playbackmethod;
+    public int[] playbackmethod;
 
     /**
      * Set of supported API frameworks for this impression. If an API is not explicitly listed,
@@ -388,7 +388,7 @@ public class Video {
          * @see #playbackmethod
          * @see PlaybackMethod
          */
-        Builder playbackMethod(Integer playbackMethod);
+        Builder playbackMethod(int... playbackMethod);
 
         /**
          * Sets the placement type of this video impression.
