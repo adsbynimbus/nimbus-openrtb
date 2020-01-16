@@ -3,17 +3,16 @@ plugins {
 }
 
 allprojects {
-    group = "com.adsbynimbus.openrtb"
-    version = (System.getenv("TAG_NAME") ?: 'development').split('/').last()
-}
-
-subprojects {
     repositories {
         google()
         jcenter()
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
+    group = "com.adsbynimbus.openrtb"
+    version = (System.getenv("TAG_NAME") ?: 'development').split('/').last()
+}
 
+subprojects {
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
 
