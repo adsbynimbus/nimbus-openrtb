@@ -9,6 +9,7 @@ import "github.com/francoispqt/gojay"
 // these companion ads.
 type Video struct {
 	BidFloor       *float64 `json:"bidfloor,omitempty"       valid:"optional"`
+	CompanionAd    []Banner `json:"companionad,omitempty"    valid:"optional"`
 	Mimes          []string `json:"mimes,omitempty"          valid:"optional"`
 	Minduration    int      `json:"minduration"              valid:"optional"`
 	Maxduration    int      `json:"maxduration,omitempty"    valid:"optional"`
@@ -32,6 +33,8 @@ func (v *Video) MarshalJSONObject(enc *gojay.Encoder) {
 	if v.BidFloor != nil {
 		enc.Float64KeyOmitEmpty("bidfloor", *v.BidFloor)
 	}
+	var bannerSlice = Banners(v.CompanionAd)
+	enc.ArrayKeyOmitEmpty("companionad", bannerSlice)
 	var mimesSlice = Strings(v.Mimes)
 	enc.ArrayKeyOmitEmpty("mimes", mimesSlice)
 	enc.IntKey("minduration", v.Minduration)
@@ -69,6 +72,14 @@ func (v *Video) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 		err := dec.Float64(&value)
 		if err == nil {
 			v.BidFloor = &value
+		}
+		return err
+
+	case "companionad":
+		var aSlice = Banners{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			v.CompanionAd = []Banner(aSlice)
 		}
 		return err
 
