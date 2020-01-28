@@ -11,7 +11,7 @@ type Device struct {
 	Dnt            int    `json:"dnt"                       valid:"range(0|1),optional"` // 0 = tracking is unrestricted, 1 = tracking is restricted
 	Lmt            int    `json:"lmt"                       valid:"range(0|1),optional"` // 0 = tracking is unrestricted, 1 = tracking must be limited by commericial guidelines
 	IP             string `json:"ip"                        valid:"ipv4,optional"`
-	DeviceType     int    `json:"devicetype,omitempty"      valid:"optional"`
+	DeviceType     int    `json:"devicetype,omitempty"      valid:"required"`
 	Make           string `json:"make,omitempty"            valid:"optional"`
 	Model          string `json:"model,omitempty"           valid:"optional"`
 	OS             string `json:"os,omitempty"              valid:"in(android|ios),required"`
@@ -31,7 +31,7 @@ func (d *Device) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.IntKey("dnt", d.Dnt)
 	enc.IntKey("lmt", d.Lmt)
 	enc.StringKey("ip", d.IP)
-	enc.IntKeyOmitEmpty("devicetype", d.DeviceType)
+	enc.IntKey("devicetype", d.DeviceType)
 	enc.StringKeyOmitEmpty("make", d.Make)
 	enc.StringKeyOmitEmpty("model", d.Model)
 	enc.StringKeyOmitEmpty("os", d.OS)
