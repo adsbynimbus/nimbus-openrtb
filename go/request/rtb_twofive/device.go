@@ -9,7 +9,7 @@ type Device struct {
 	Ua             string `json:"ua"                        valid:"required"`
 	Geo            *Geo   `json:"geo,omitempty"             valid:"optional"`
 	Dnt            int    `json:"dnt"                       valid:"range(0|1),optional"` // 0 = tracking is unrestricted, 1 = tracking is restricted
-	Lmt            int    `json:"lmt"                       valid:"range(0|1),optional"` // 0 = tracking is unrestricted, 1 = tracking must be limited by commericial guidelines
+	Lmt            int    `json:"lmt"                       valid:"range(0|1),optional"` // 0 = tracking is unrestricted, 1 = tracking must be limited by commercial guidelines
 	IP             string `json:"ip"                        valid:"ipv4,optional"`
 	DeviceType     int    `json:"devicetype,omitempty"      valid:"required"`
 	Make           string `json:"make,omitempty"            valid:"optional"`
@@ -105,7 +105,6 @@ func (d *Device) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	case "ifa":
 		return dec.String(&d.Ifa)
-
 	}
 	return nil
 }
