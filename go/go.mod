@@ -1,6 +1,6 @@
 module github.com/timehop/nimbus-openrtb/go
 
-go 1.12
+go 1.13
 
 require (
 	github.com/francoispqt/gojay v1.2.13
