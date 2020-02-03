@@ -17,6 +17,7 @@ type Banner struct {
 	H        int      `json:"h"                  valid:"required"`
 	API      []int    `json:"api,omitempty"      valid:"inintarr(1|2|3|4|5|6),optional"` // 3,5,6 -> mraid1, 2, and 3
 	Pos      int      `json:"pos,omitempty"      valid:"range(0|7),optional"`            // 0,1,2,3,4,5,6,7 -> Unknown, Above the Fold, DEPRECATED - May or may not be initially visible depending on screen size/resolution.,Below the Fold,Header,Footer,Sidebar,Full Screen
+	Vcm      int      `json:"vcm,omitempty"      valid:"optional"`                       // Relevant only for Banner objects used with a Video object (Section 3.2.7) in an array of companion ads. Indicates the  companion banner rendering mode relative to the associated video, where 0 = concurrent, 1 = end-card.
 }
 
 // MarshalJSONObject implements MarshalerJSONObject
@@ -33,6 +34,7 @@ func (b *Banner) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.IntKeyOmitEmpty("pos", b.Pos)
 	var aPISlice = Ints(b.API)
 	enc.ArrayKeyOmitEmpty("api", aPISlice)
+	enc.IntKeyOmitEmpty("vcm", b.Vcm)
 }
 
 // IsNil checks if instance is nil
@@ -85,6 +87,9 @@ func (b *Banner) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 			b.API = []int(aSlice)
 		}
 		return err
+
+	case "vcm":
+		return dec.Int(&b.Vcm)
 
 	}
 	return nil
