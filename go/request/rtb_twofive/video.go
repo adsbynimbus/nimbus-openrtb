@@ -10,6 +10,7 @@ import "github.com/francoispqt/gojay"
 type Video struct {
 	BidFloor       *float64 `json:"bidfloor,omitempty"       valid:"optional"`
 	CompanionAd    []Banner `json:"companionad,omitempty"    valid:"optional"`
+	CompanionType  []int    `json:"companiontype,omitempty"  valid:"optional"` //1, 2, 3 -> Static Resource, HTM Resource, iframe Resource
 	Mimes          []string `json:"mimes,omitempty"          valid:"optional"`
 	Minduration    int      `json:"minduration"              valid:"optional"`
 	Maxduration    int      `json:"maxduration,omitempty"    valid:"optional"`
@@ -56,6 +57,8 @@ func (v *Video) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.ArrayKeyOmitEmpty("api", aPISlice)
 	enc.IntKeyOmitEmpty("minbitrate", v.MinBitRate)
 	enc.IntKeyOmitEmpty("maxbitrate", v.MaxBitRate)
+	var companionTypeSlice = Ints(v.CompanionType)
+	enc.ArrayKeyOmitEmpty("companiontype", companionTypeSlice)
 }
 
 // IsNil checks if instance is nil
@@ -80,6 +83,14 @@ func (v *Video) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 		err := dec.Array(&aSlice)
 		if err == nil && len(aSlice) > 0 {
 			v.CompanionAd = []Banner(aSlice)
+		}
+		return err
+
+	case "companiontype":
+		var aSlice = Ints{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			v.CompanionType = []int(aSlice)
 		}
 		return err
 
