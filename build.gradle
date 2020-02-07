@@ -1,5 +1,5 @@
 plugins {
-    id "com.jfrog.bintray" version "$bintray_version" apply false
+    id "com.jfrog.bintray" version "$versions_bintray" apply false
 }
 
 allprojects {
