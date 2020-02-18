@@ -9,7 +9,12 @@ allprojects {
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
     group = "com.adsbynimbus.openrtb"
-    version = (System.getenv("TAG_NAME") ?: 'development').split('/').last()
+    version = (System.getenv("TAG_NAME") ?: 'development').split('/').last().with {
+        if (it.startsWith("v")) {
+            return it.substring(1)
+        }
+        return it
+    }
 }
 
 subprojects {
