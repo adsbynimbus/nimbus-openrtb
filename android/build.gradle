@@ -23,7 +23,7 @@ android {
 dependencies {
     api project(':java')
 
-    implementation "androidx.annotation:annotation:$androidx_version"
+    implementation "androidx.annotation:annotation:$versions_androidx"
 }
 
 tasks.register("javadoc", Javadoc) {
