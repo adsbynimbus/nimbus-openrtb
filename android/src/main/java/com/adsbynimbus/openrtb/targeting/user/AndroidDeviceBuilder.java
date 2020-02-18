@@ -39,7 +39,7 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * The devide object this builder wraps
      */
     @NonNull
-    public final Device device;
+    private final Device device;
 
     /**
      * Constructs a builder that will edit the fields of the device object in place.

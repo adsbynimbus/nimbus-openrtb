@@ -24,7 +24,7 @@ public final class AndroidGeoBuilder implements Geo.Builder {
      * The geo object this builder wraps
      */
     @NonNull
-    public final Geo geo;
+    private final Geo geo;
 
     /**
      * Constructs a builder that will edit the fields of the geo object in place.

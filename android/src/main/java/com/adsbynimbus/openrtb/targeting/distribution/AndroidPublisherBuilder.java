@@ -13,7 +13,7 @@ public final class AndroidPublisherBuilder implements Publisher.Builder {
      * The publisher object this builder wraps
      */
     @NonNull
-    public final Publisher publisher;
+    private final Publisher publisher;
 
     /**
      * Constructs a builder that will edit the fields of the publisher object in place.

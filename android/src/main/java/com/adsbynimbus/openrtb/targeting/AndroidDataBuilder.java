@@ -13,7 +13,7 @@ public final class AndroidDataBuilder implements Data.Builder {
      * The data object this builder wraps
      */
     @NonNull
-    public final Data data;
+    private final Data data;
 
     /**
      * Constructs a builder that will edit the fields of the data object in place.

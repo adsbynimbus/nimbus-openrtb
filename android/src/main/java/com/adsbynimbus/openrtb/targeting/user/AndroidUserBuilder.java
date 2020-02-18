@@ -24,7 +24,7 @@ public final class AndroidUserBuilder implements User.Builder {
      * The user object this builder wraps
      */
     @NonNull
-    public final User user;
+    private final User user;
 
     /**
      * Constructs a builder that will edit the fields of the user object in place.

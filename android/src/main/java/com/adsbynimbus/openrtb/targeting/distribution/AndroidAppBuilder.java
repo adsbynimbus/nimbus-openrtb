@@ -15,7 +15,7 @@ public final class AndroidAppBuilder implements App.Builder {
      * The app object this builder wraps
      */
     @NonNull
-    public final App app;
+    private final App app;
 
     /**
      * Constructs a builder that will edit the fields of the app object in place.

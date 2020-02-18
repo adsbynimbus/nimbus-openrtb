@@ -13,7 +13,7 @@ public final class AndroidSourceBuilder implements Source.Builder {
      * The source object this builder wraps
      */
     @NonNull
-    public final Source source;
+    private final Source source;
 
     /**
      * Constructs a builder that will edit the fields of the source object in place.
