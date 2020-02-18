@@ -13,7 +13,7 @@ public final class AndroidRegsBuilder implements Regs.Builder {
      * This regs object this builder wraps
      */
     @NonNull
-    public final Regs regs;
+    private final Regs regs;
 
     /**
      * Constructs a builder that will edit the fields of the regs object in place

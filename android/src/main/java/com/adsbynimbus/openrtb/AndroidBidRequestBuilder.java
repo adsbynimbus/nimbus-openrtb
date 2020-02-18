@@ -28,7 +28,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * The bid request object this builder wraps
      */
     @NonNull
-    public final BidRequest request;
+    private final BidRequest request;
 
     /**
      * Constructs a builder that will edit the fields of the bid request object in place.

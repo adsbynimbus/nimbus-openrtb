@@ -13,7 +13,7 @@ public final class AndroidSegmentBuilder implements Segment.Builder {
      * The segment object this builder wraps
      */
     @NonNull
-    public final Segment segment;
+    private final Segment segment;
 
     /**
      * Constructs a builder that will edit the fields of the segment object in place.
