@@ -21,6 +21,11 @@ public class BidResponse {
     public int bid_in_cents;
 
     /**
+     * This winning auction's precise winning bid
+     */
+    public double bid_raw;
+
+    /**
      * The content type of this creative. "text/html" for static or a mime type for video ads
      */
     public String content_type;
