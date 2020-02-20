@@ -150,7 +150,7 @@
 
 
 #### <a name="pkg-files">Package files</a>
-[app.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/app.go) [aps.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps.go) [aps_custom_unmarshaller.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps_custom_unmarshaller.go) [banner.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/banner.go) [data.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/data.go) [device.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/device.go) [format.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/format.go) [geo.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/geo.go) [imp.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/imp.go) [primitives-to-references.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives-to-references.go) [primitives.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives.go) [publisher.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/publisher.go) [regs.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/regs.go) [request.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/request.go) [segment.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/segment.go) [source.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/source.go) [user.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/user.go) [video.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/video.go)
+[app.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/app.go) [aps.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps.go) [aps_custom_unmarshaller.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/aps_custom_unmarshaller.go) [banner.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/banner.go) [data.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/data.go) [device.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/device.go) [format.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/format.go) [geo.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/geo.go) [imp.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/imp.go) [primitives-to-references.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives-to-references.go) [primitives.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/primitives.go) [publisher.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/publisher.go) [regs.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/regs.go) [request.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/request.go) [segment.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/segment.go) [source.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/source.go) [user.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/user.go) [video.go](/src/github.com/timehop/nimbus-openrtb/go/request/rtb_twofive/video.go) 
 
 
 ## <a name="pkg-constants">Constants</a>
@@ -360,7 +360,7 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
-## <a name="Banner">type</a> [Banner](/src/target/banner.go?s=553:1278#L12)
+## <a name="Banner">type</a> [Banner](/src/target/banner.go?s=553:1588#L12)
 ``` go
 type Banner struct {
     BidFloor *float64 `json:"bidfloor,omitempty" valid:"optional"`
@@ -370,6 +370,7 @@ type Banner struct {
     H        int      `json:"h"                  valid:"required"`
     API      []int    `json:"api,omitempty"      valid:"inintarr(1|2|3|4|5|6),optional"` // 3,5,6 -> mraid1, 2, and 3
     Pos      int      `json:"pos,omitempty"      valid:"range(0|7),optional"`            // 0,1,2,3,4,5,6,7 -> Unknown, Above the Fold, DEPRECATED - May or may not be initially visible depending on screen size/resolution.,Below the Fold,Header,Footer,Sidebar,Full Screen
+    Vcm      int      `json:"vcm,omitempty"      valid:"optional"`                       // Relevant only for Banner objects used with a Video object (Section 3.2.7) in an array of companion ads. Indicates the  companion banner rendering mode relative to the associated video, where 0 = concurrent, 1 = end-card.
 }
 ```
 Banner represents the most general type of impression. Although the term “banner” may have very
@@ -387,7 +388,7 @@ Video to describe optional companion ads defined in the VAST specification.
 
 
 
-### <a name="Banner.IsNil">func</a> (\*Banner) [IsNil](/src/target/banner.go?s=1829:1858#L39)
+### <a name="Banner.IsNil">func</a> (\*Banner) [IsNil](/src/target/banner.go?s=2174:2203#L41)
 ``` go
 func (b *Banner) IsNil() bool
 ```
@@ -396,7 +397,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="Banner.MarshalJSONObject">func</a> (\*Banner) [MarshalJSONObject](/src/target/banner.go?s=1332:1386#L23)
+### <a name="Banner.MarshalJSONObject">func</a> (\*Banner) [MarshalJSONObject](/src/target/banner.go?s=1642:1696#L24)
 ``` go
 func (b *Banner) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -405,7 +406,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="Banner.NKeys">func</a> (\*Banner) [NKeys](/src/target/banner.go?s=2781:2809#L94)
+### <a name="Banner.NKeys">func</a> (\*Banner) [NKeys](/src/target/banner.go?s=3165:3193#L99)
 ``` go
 func (b *Banner) NKeys() int
 ```
@@ -414,7 +415,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="Banner.UnmarshalJSONObject">func</a> (\*Banner) [UnmarshalJSONObject](/src/target/banner.go?s=1945:2017#L44)
+### <a name="Banner.UnmarshalJSONObject">func</a> (\*Banner) [UnmarshalJSONObject](/src/target/banner.go?s=2290:2362#L46)
 ``` go
 func (b *Banner) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -423,7 +424,7 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
-## <a name="Banners">type</a> [Banners](/src/target/banner.go?s=2839:2860#L97)
+## <a name="Banners">type</a> [Banners](/src/target/banner.go?s=3223:3244#L102)
 ``` go
 type Banners []Banner
 ```
@@ -438,7 +439,7 @@ Banners ...
 
 
 
-### <a name="Banners.IsNil">func</a> (Banners) [IsNil](/src/target/banner.go?s=3213:3242#L117)
+### <a name="Banners.IsNil">func</a> (Banners) [IsNil](/src/target/banner.go?s=3597:3626#L122)
 ``` go
 func (s Banners) IsNil() bool
 ```
@@ -447,7 +448,7 @@ IsNil ...
 
 
 
-### <a name="Banners.MarshalJSONArray">func</a> (Banners) [MarshalJSONArray](/src/target/banner.go?s=3098:3151#L110)
+### <a name="Banners.MarshalJSONArray">func</a> (Banners) [MarshalJSONArray](/src/target/banner.go?s=3482:3535#L115)
 ``` go
 func (s Banners) MarshalJSONArray(enc *gojay.Encoder)
 ```
@@ -456,7 +457,7 @@ MarshalJSONArray ...
 
 
 
-### <a name="Banners.UnmarshalJSONArray">func</a> (\*Banners) [UnmarshalJSONArray](/src/target/banner.go?s=2888:2950#L100)
+### <a name="Banners.UnmarshalJSONArray">func</a> (\*Banners) [UnmarshalJSONArray](/src/target/banner.go?s=3272:3334#L105)
 ``` go
 func (s *Banners) UnmarshalJSONArray(dec *gojay.Decoder) error
 ```
@@ -565,15 +566,15 @@ UnmarshalJSONArray ...
 
 
 
-## <a name="Device">type</a> [Device](/src/target/device.go?s=344:1757#L8)
+## <a name="Device">type</a> [Device](/src/target/device.go?s=344:1756#L8)
 ``` go
 type Device struct {
     Ua             string `json:"ua"                        valid:"required"`
     Geo            *Geo   `json:"geo,omitempty"             valid:"optional"`
     Dnt            int    `json:"dnt"                       valid:"range(0|1),optional"` // 0 = tracking is unrestricted, 1 = tracking is restricted
-    Lmt            int    `json:"lmt"                       valid:"range(0|1),optional"` // 0 = tracking is unrestricted, 1 = tracking must be limited by commericial guidelines
+    Lmt            int    `json:"lmt"                       valid:"range(0|1),optional"` // 0 = tracking is unrestricted, 1 = tracking must be limited by commercial guidelines
     IP             string `json:"ip"                        valid:"ipv4,optional"`
-    DeviceType     int    `json:"devicetype,omitempty"      valid:"optional"`
+    DeviceType     int    `json:"devicetype,omitempty"      valid:"required"`
     Make           string `json:"make,omitempty"            valid:"optional"`
     Model          string `json:"model,omitempty"           valid:"optional"`
     OS             string `json:"os,omitempty"              valid:"in(android|ios),required"`
@@ -599,7 +600,7 @@ handset, a desktop computer, set top box, or other digital device.
 
 
 
-### <a name="Device.IsNil">func</a> (\*Device) [IsNil](/src/target/device.go?s=2497:2526#L48)
+### <a name="Device.IsNil">func</a> (\*Device) [IsNil](/src/target/device.go?s=2487:2516#L48)
 ``` go
 func (d *Device) IsNil() bool
 ```
@@ -608,7 +609,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="Device.MarshalJSONObject">func</a> (\*Device) [MarshalJSONObject](/src/target/device.go?s=1811:1865#L28)
+### <a name="Device.MarshalJSONObject">func</a> (\*Device) [MarshalJSONObject](/src/target/device.go?s=1810:1864#L28)
 ``` go
 func (d *Device) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -617,7 +618,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="Device.NKeys">func</a> (\*Device) [NKeys](/src/target/device.go?s=3531:3559#L114)
+### <a name="Device.NKeys">func</a> (\*Device) [NKeys](/src/target/device.go?s=3520:3548#L113)
 ``` go
 func (d *Device) NKeys() int
 ```
@@ -626,7 +627,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="Device.UnmarshalJSONObject">func</a> (\*Device) [UnmarshalJSONObject](/src/target/device.go?s=2613:2685#L53)
+### <a name="Device.UnmarshalJSONObject">func</a> (\*Device) [UnmarshalJSONObject](/src/target/device.go?s=2603:2675#L53)
 ``` go
 func (d *Device) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -820,7 +821,7 @@ a given page. Each Imp object has a required ID so that bids can reference them 
 
 
 
-### <a name="Imp.IsNil">func</a> (\*Imp) [IsNil](/src/target/imp.go?s=1899:1925#L42)
+### <a name="Imp.IsNil">func</a> (\*Imp) [IsNil](/src/target/imp.go?s=1812:1838#L41)
 ``` go
 func (i *Imp) IsNil() bool
 ```
@@ -829,7 +830,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="Imp.MarshalJSONObject">func</a> (\*Imp) [MarshalJSONObject](/src/target/imp.go?s=1518:1569#L29)
+### <a name="Imp.MarshalJSONObject">func</a> (\*Imp) [MarshalJSONObject](/src/target/imp.go?s=1431:1482#L28)
 ``` go
 func (i *Imp) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -838,7 +839,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="Imp.NKeys">func</a> (\*Imp) [NKeys](/src/target/imp.go?s=2777:2802#L99)
+### <a name="Imp.NKeys">func</a> (\*Imp) [NKeys](/src/target/imp.go?s=2690:2715#L98)
 ``` go
 func (i *Imp) NKeys() int
 ```
@@ -847,7 +848,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="Imp.UnmarshalJSONObject">func</a> (\*Imp) [UnmarshalJSONObject](/src/target/imp.go?s=2012:2081#L47)
+### <a name="Imp.UnmarshalJSONObject">func</a> (\*Imp) [UnmarshalJSONObject](/src/target/imp.go?s=1925:1994#L46)
 ``` go
 func (i *Imp) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -856,7 +857,7 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
-## <a name="ImpExt">type</a> [ImpExt](/src/target/imp.go?s=988:1464#L21)
+## <a name="ImpExt">type</a> [ImpExt](/src/target/imp.go?s=988:1377#L21)
 ``` go
 type ImpExt struct {
     APS           []APS  `json:"aps,omitempty"             valid:"optional"`
@@ -875,7 +876,7 @@ ImpExt ...
 
 
 
-### <a name="ImpExt.IsNil">func</a> (\*ImpExt) [IsNil](/src/target/imp.go?s=3191:3220#L111)
+### <a name="ImpExt.IsNil">func</a> (\*ImpExt) [IsNil](/src/target/imp.go?s=3053:3082#L109)
 ``` go
 func (e *ImpExt) IsNil() bool
 ```
@@ -884,7 +885,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="ImpExt.MarshalJSONObject">func</a> (\*ImpExt) [MarshalJSONObject](/src/target/imp.go?s=2869:2923#L102)
+### <a name="ImpExt.MarshalJSONObject">func</a> (\*ImpExt) [MarshalJSONObject](/src/target/imp.go?s=2782:2836#L101)
 ``` go
 func (e *ImpExt) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -893,7 +894,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="ImpExt.NKeys">func</a> (\*ImpExt) [NKeys](/src/target/imp.go?s=3776:3804#L141)
+### <a name="ImpExt.NKeys">func</a> (\*ImpExt) [NKeys](/src/target/imp.go?s=3583:3611#L136)
 ``` go
 func (e *ImpExt) NKeys() int
 ```
@@ -902,7 +903,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="ImpExt.UnmarshalJSONObject">func</a> (\*ImpExt) [UnmarshalJSONObject](/src/target/imp.go?s=3307:3379#L116)
+### <a name="ImpExt.UnmarshalJSONObject">func</a> (\*ImpExt) [UnmarshalJSONObject](/src/target/imp.go?s=3169:3241#L114)
 ``` go
 func (e *ImpExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -911,7 +912,7 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
-## <a name="Imps">type</a> [Imps](/src/target/imp.go?s=3831:3846#L144)
+## <a name="Imps">type</a> [Imps](/src/target/imp.go?s=3638:3653#L139)
 ``` go
 type Imps []Imp
 ```
@@ -926,7 +927,7 @@ Imps ...
 
 
 
-### <a name="Imps.IsNil">func</a> (Imps) [IsNil](/src/target/imp.go?s=4190:4216#L164)
+### <a name="Imps.IsNil">func</a> (Imps) [IsNil](/src/target/imp.go?s=3997:4023#L159)
 ``` go
 func (s Imps) IsNil() bool
 ```
@@ -935,7 +936,7 @@ IsNil ...
 
 
 
-### <a name="Imps.MarshalJSONArray">func</a> (Imps) [MarshalJSONArray](/src/target/imp.go?s=4078:4128#L157)
+### <a name="Imps.MarshalJSONArray">func</a> (Imps) [MarshalJSONArray](/src/target/imp.go?s=3885:3935#L152)
 ``` go
 func (s Imps) MarshalJSONArray(enc *gojay.Encoder)
 ```
@@ -944,7 +945,7 @@ MarshalJSONArray ...
 
 
 
-### <a name="Imps.UnmarshalJSONArray">func</a> (\*Imps) [UnmarshalJSONArray](/src/target/imp.go?s=3874:3933#L147)
+### <a name="Imps.UnmarshalJSONArray">func</a> (\*Imps) [UnmarshalJSONArray](/src/target/imp.go?s=3681:3740#L142)
 ``` go
 func (s *Imps) UnmarshalJSONArray(dec *gojay.Decoder) error
 ```
@@ -1071,7 +1072,7 @@ regulations for the United States Children’s Online Privacy Protection Act (�
 
 
 
-### <a name="Regs.IsNil">func</a> (\*Regs) [IsNil](/src/target/regs.go?s=813:840#L25)
+### <a name="Regs.IsNil">func</a> (\*Regs) [IsNil](/src/target/regs.go?s=907:934#L26)
 ``` go
 func (r *Regs) IsNil() bool
 ```
@@ -1080,7 +1081,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="Regs.MarshalJSONObject">func</a> (\*Regs) [MarshalJSONObject](/src/target/regs.go?s=652:704#L19)
+### <a name="Regs.MarshalJSONObject">func</a> (\*Regs) [MarshalJSONObject](/src/target/regs.go?s=746:798#L20)
 ``` go
 func (r *Regs) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -1089,7 +1090,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="Regs.NKeys">func</a> (\*Regs) [NKeys](/src/target/regs.go?s=1244:1270#L49)
+### <a name="Regs.NKeys">func</a> (\*Regs) [NKeys](/src/target/regs.go?s=1338:1364#L50)
 ``` go
 func (r *Regs) NKeys() int
 ```
@@ -1098,7 +1099,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="Regs.UnmarshalJSONObject">func</a> (\*Regs) [UnmarshalJSONObject](/src/target/regs.go?s=927:997#L30)
+### <a name="Regs.UnmarshalJSONObject">func</a> (\*Regs) [UnmarshalJSONObject](/src/target/regs.go?s=1021:1091#L31)
 ``` go
 func (r *Regs) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -1107,7 +1108,7 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
-## <a name="RegsExt">type</a> [RegsExt](/src/target/regs.go?s=523:598#L14)
+## <a name="RegsExt">type</a> [RegsExt](/src/target/regs.go?s=544:692#L14)
 ``` go
 type RegsExt struct {
     GDPR      int    `json:"gdpr" valid:"range(0|1),optional"`
@@ -1125,7 +1126,7 @@ RegsExt being used for GDPR & CCPA as US Privacy
 
 
 
-### <a name="RegsExt.IsNil">func</a> (\*RegsExt) [IsNil](/src/target/regs.go?s=1461:1491#L57)
+### <a name="RegsExt.IsNil">func</a> (\*RegsExt) [IsNil](/src/target/regs.go?s=1606:1636#L59)
 ``` go
 func (e *RegsExt) IsNil() bool
 ```
@@ -1134,7 +1135,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="RegsExt.MarshalJSONObject">func</a> (\*RegsExt) [MarshalJSONObject](/src/target/regs.go?s=1337:1392#L52)
+### <a name="RegsExt.MarshalJSONObject">func</a> (\*RegsExt) [MarshalJSONObject](/src/target/regs.go?s=1431:1486#L53)
 ``` go
 func (e *RegsExt) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -1143,7 +1144,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="RegsExt.NKeys">func</a> (\*RegsExt) [NKeys](/src/target/regs.go?s=1775:1804#L73)
+### <a name="RegsExt.NKeys">func</a> (\*RegsExt) [NKeys](/src/target/regs.go?s=1973:2002#L76)
 ``` go
 func (e *RegsExt) NKeys() int
 ```
@@ -1152,7 +1153,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="RegsExt.UnmarshalJSONObject">func</a> (\*RegsExt) [UnmarshalJSONObject](/src/target/regs.go?s=1578:1651#L62)
+### <a name="RegsExt.UnmarshalJSONObject">func</a> (\*RegsExt) [UnmarshalJSONObject](/src/target/regs.go?s=1723:1796#L64)
 ``` go
 func (e *RegsExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -1402,7 +1403,7 @@ mediation platform, or an ad server combines direct campaigns with 3rd party dem
 
 
 
-### <a name="Source.IsNil">func</a> (\*Source) [IsNil](/src/target/source.go?s=1183:1212#L26)
+### <a name="Source.IsNil">func</a> (\*Source) [IsNil](/src/target/source.go?s=1192:1221#L26)
 ``` go
 func (s *Source) IsNil() bool
 ```
@@ -1420,7 +1421,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="Source.NKeys">func</a> (\*Source) [NKeys](/src/target/source.go?s=1496:1524#L42)
+### <a name="Source.NKeys">func</a> (\*Source) [NKeys](/src/target/source.go?s=1505:1533#L42)
 ``` go
 func (s *Source) NKeys() int
 ```
@@ -1429,7 +1430,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="Source.UnmarshalJSONObject">func</a> (\*Source) [UnmarshalJSONObject](/src/target/source.go?s=1299:1371#L31)
+### <a name="Source.UnmarshalJSONObject">func</a> (\*Source) [UnmarshalJSONObject](/src/target/source.go?s=1308:1380#L31)
 ``` go
 func (s *Source) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -1456,7 +1457,7 @@ SourceExt also for OM SDK extensions to be passed to demand
 
 
 
-### <a name="SourceExt.IsNil">func</a> (\*SourceExt) [IsNil](/src/target/source.go?s=1777:1809#L51)
+### <a name="SourceExt.IsNil">func</a> (\*SourceExt) [IsNil](/src/target/source.go?s=1786:1818#L51)
 ``` go
 func (s *SourceExt) IsNil() bool
 ```
@@ -1465,7 +1466,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="SourceExt.MarshalJSONObject">func</a> (\*SourceExt) [MarshalJSONObject](/src/target/source.go?s=1591:1648#L45)
+### <a name="SourceExt.MarshalJSONObject">func</a> (\*SourceExt) [MarshalJSONObject](/src/target/source.go?s=1600:1657#L45)
 ``` go
 func (s *SourceExt) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -1474,7 +1475,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="SourceExt.NKeys">func</a> (\*SourceExt) [NKeys](/src/target/source.go?s=2150:2181#L70)
+### <a name="SourceExt.NKeys">func</a> (\*SourceExt) [NKeys](/src/target/source.go?s=2159:2190#L70)
 ``` go
 func (s *SourceExt) NKeys() int
 ```
@@ -1483,7 +1484,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="SourceExt.UnmarshalJSONObject">func</a> (\*SourceExt) [UnmarshalJSONObject](/src/target/source.go?s=1896:1971#L56)
+### <a name="SourceExt.UnmarshalJSONObject">func</a> (\*SourceExt) [UnmarshalJSONObject](/src/target/source.go?s=1905:1980#L56)
 ``` go
 func (s *SourceExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -1561,7 +1562,7 @@ frequency capping and retargeting.
 
 
 
-### <a name="User.IsNil">func</a> (\*User) [IsNil](/src/target/user.go?s=2060:2087#L41)
+### <a name="User.IsNil">func</a> (\*User) [IsNil](/src/target/user.go?s=1916:1943#L40)
 ``` go
 func (u *User) IsNil() bool
 ```
@@ -1570,7 +1571,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="User.MarshalJSONObject">func</a> (\*User) [MarshalJSONObject](/src/target/user.go?s=1593:1645#L28)
+### <a name="User.MarshalJSONObject">func</a> (\*User) [MarshalJSONObject](/src/target/user.go?s=1449:1501#L27)
 ``` go
 func (u *User) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -1579,7 +1580,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="User.NKeys">func</a> (\*User) [NKeys](/src/target/user.go?s=2882:2908#L88)
+### <a name="User.NKeys">func</a> (\*User) [NKeys](/src/target/user.go?s=2738:2764#L87)
 ``` go
 func (u *User) NKeys() int
 ```
@@ -1588,7 +1589,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="User.UnmarshalJSONObject">func</a> (\*User) [UnmarshalJSONObject](/src/target/user.go?s=2174:2244#L46)
+### <a name="User.UnmarshalJSONObject">func</a> (\*User) [UnmarshalJSONObject](/src/target/user.go?s=2030:2100#L45)
 ``` go
 func (u *User) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -1597,7 +1598,7 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
-## <a name="UserExt">type</a> [UserExt](/src/target/user.go?s=1027:1539#L21)
+## <a name="UserExt">type</a> [UserExt](/src/target/user.go?s=1027:1395#L21)
 ``` go
 type UserExt struct {
     Consent    string `json:"consent,omitempty"     valid:"base64rawstring,optional"` // if a publisher has their own cpm they can supply thier own GDPR consent string
@@ -1615,7 +1616,7 @@ UserExt being used for GDPR
 
 
 
-### <a name="UserExt.IsNil">func</a> (\*UserExt) [IsNil](/src/target/user.go?s=3202:3232#L98)
+### <a name="UserExt.IsNil">func</a> (\*UserExt) [IsNil](/src/target/user.go?s=3023:3053#L96)
 ``` go
 func (e *UserExt) IsNil() bool
 ```
@@ -1624,7 +1625,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="UserExt.MarshalJSONObject">func</a> (\*UserExt) [MarshalJSONObject](/src/target/user.go?s=2975:3030#L91)
+### <a name="UserExt.MarshalJSONObject">func</a> (\*UserExt) [MarshalJSONObject](/src/target/user.go?s=2831:2886#L90)
 ``` go
 func (e *UserExt) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -1633,7 +1634,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="UserExt.NKeys">func</a> (\*UserExt) [NKeys](/src/target/user.go?s=3618:3647#L120)
+### <a name="UserExt.NKeys">func</a> (\*UserExt) [NKeys](/src/target/user.go?s=3401:3430#L116)
 ``` go
 func (e *UserExt) NKeys() int
 ```
@@ -1642,7 +1643,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="UserExt.UnmarshalJSONObject">func</a> (\*UserExt) [UnmarshalJSONObject](/src/target/user.go?s=3319:3392#L103)
+### <a name="UserExt.UnmarshalJSONObject">func</a> (\*UserExt) [UnmarshalJSONObject](/src/target/user.go?s=3140:3213#L101)
 ``` go
 func (e *UserExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -1651,10 +1652,12 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 
 
 
-## <a name="Video">type</a> [Video](/src/target/video.go?s=500:2862#L10)
+## <a name="Video">type</a> [Video](/src/target/video.go?s=500:3074#L10)
 ``` go
 type Video struct {
     BidFloor       *float64 `json:"bidfloor,omitempty"       valid:"optional"`
+    CompanionAd    []Banner `json:"companionad,omitempty"    valid:"optional"`
+    CompanionType  []int    `json:"companiontype,omitempty"  valid:"optional"` //1, 2, 3 -> Static Resource, HTM Resource, iframe Resource
     Mimes          []string `json:"mimes,omitempty"          valid:"optional"`
     Minduration    int      `json:"minduration"              valid:"optional"`
     Maxduration    int      `json:"maxduration,omitempty"    valid:"optional"`
@@ -1688,7 +1691,7 @@ these companion ads.
 
 
 
-### <a name="Video.IsNil">func</a> (\*Video) [IsNil](/src/target/video.go?s=3977:4005#L59)
+### <a name="Video.IsNil">func</a> (\*Video) [IsNil](/src/target/video.go?s=4390:4418#L65)
 ``` go
 func (v *Video) IsNil() bool
 ```
@@ -1697,7 +1700,7 @@ IsNil checks if instance is nil
 
 
 
-### <a name="Video.MarshalJSONObject">func</a> (\*Video) [MarshalJSONObject](/src/target/video.go?s=2916:2969#L31)
+### <a name="Video.MarshalJSONObject">func</a> (\*Video) [MarshalJSONObject](/src/target/video.go?s=3128:3181#L33)
 ``` go
 func (v *Video) MarshalJSONObject(enc *gojay.Encoder)
 ```
@@ -1706,7 +1709,7 @@ MarshalJSONObject implements MarshalerJSONObject
 
 
 
-### <a name="Video.NKeys">func</a> (\*Video) [NKeys](/src/target/video.go?s=5662:5689#L153)
+### <a name="Video.NKeys">func</a> (\*Video) [NKeys](/src/target/video.go?s=6403:6430#L175)
 ``` go
 func (v *Video) NKeys() int
 ```
@@ -1715,7 +1718,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="Video.UnmarshalJSONObject">func</a> (\*Video) [UnmarshalJSONObject](/src/target/video.go?s=4092:4163#L64)
+### <a name="Video.UnmarshalJSONObject">func</a> (\*Video) [UnmarshalJSONObject](/src/target/video.go?s=4505:4576#L70)
 ``` go
 func (v *Video) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
