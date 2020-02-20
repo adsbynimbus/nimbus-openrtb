@@ -7,6 +7,7 @@ type Bid struct {
 	Type           string    `json:"type"`
 	AuctionID      string    `json:"auction_id"`
 	BidInCents     int       `json:"bid_in_cents"`
+	BidRaw         float64   `json:"bid_raw"`
 	ContentType    string    `json:"content_type"`
 	Height         int       `json:"height,omitempty"`
 	Width          int       `json:"width,omitempty"`
@@ -33,6 +34,9 @@ func (r *Bid) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 		return dec.String(&r.AuctionID)
 
 	case "bid_in_cents":
+		return dec.Int(&r.BidInCents)
+
+	case "bid_raw":
 		return dec.Int(&r.BidInCents)
 
 	case "content_type":
