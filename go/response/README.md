@@ -29,12 +29,13 @@
 
 
 
-## <a name="Bid">type</a> [Bid](/src/target/bid_response.go?s=141:693#L6)
+## <a name="Bid">type</a> [Bid](/src/target/bid_response.go?s=141:736#L6)
 ``` go
 type Bid struct {
     Type           string    `json:"type"`
     AuctionID      string    `json:"auction_id"`
     BidInCents     int       `json:"bid_in_cents"`
+    BidRaw         float64   `json:"bid_raw"`
     ContentType    string    `json:"content_type"`
     Height         int       `json:"height,omitempty"`
     Width          int       `json:"width,omitempty"`
@@ -56,7 +57,7 @@ Bid represents what Nimbus responds with and is unique to the Nimbus environment
 
 
 
-### <a name="Bid.NKeys">func</a> (\*Bid) [NKeys](/src/target/bid_response.go?s=1742:1767#L73)
+### <a name="Bid.NKeys">func</a> (\*Bid) [NKeys](/src/target/bid_response.go?s=1835:1860#L77)
 ``` go
 func (r *Bid) NKeys() int
 ```
@@ -65,7 +66,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="Bid.UnmarshalJSONObject">func</a> (\*Bid) [UnmarshalJSONObject](/src/target/bid_response.go?s=940:1009#L26)
+### <a name="Bid.UnmarshalJSONObject">func</a> (\*Bid) [UnmarshalJSONObject](/src/target/bid_response.go?s=983:1052#L27)
 ``` go
 func (r *Bid) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```
@@ -98,7 +99,7 @@ UnmarshalJSONArray decodes JSON array elements into slice
 
 
 
-## <a name="Trackers">type</a> [Trackers](/src/target/bid_response.go?s=782:874#L21)
+## <a name="Trackers">type</a> [Trackers](/src/target/bid_response.go?s=825:917#L22)
 ``` go
 type Trackers struct {
     ImpressionTrackers []string `json:"impression_trackers,omitempty"`
@@ -115,7 +116,7 @@ Trackers provides a forward thinking impression structure that clients have to f
 
 
 
-### <a name="Trackers.NKeys">func</a> (\*Trackers) [NKeys](/src/target/bid_response.go?s=2183:2213#L92)
+### <a name="Trackers.NKeys">func</a> (\*Trackers) [NKeys](/src/target/bid_response.go?s=2276:2306#L96)
 ``` go
 func (t *Trackers) NKeys() int
 ```
@@ -124,7 +125,7 @@ NKeys returns the number of keys to unmarshal
 
 
 
-### <a name="Trackers.UnmarshalJSONObject">func</a> (\*Trackers) [UnmarshalJSONObject](/src/target/bid_response.go?s=1846:1920#L76)
+### <a name="Trackers.UnmarshalJSONObject">func</a> (\*Trackers) [UnmarshalJSONObject](/src/target/bid_response.go?s=1939:2013#L80)
 ``` go
 func (t *Trackers) UnmarshalJSONObject(dec *gojay.Decoder, k string) error
 ```

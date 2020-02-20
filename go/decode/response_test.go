@@ -13,7 +13,7 @@ import (
 	"github.com/timehop/nimbus-openrtb/go/response"
 )
 
-var jsonResponseTestBody = []byte(`{"type":"facebook","auction_id":"7d1a4f2b-b7b2-445e-b1f9-61e7ce56ef48","bid_in_cents":100,"content_type":"application/json; charset=utf-8","is_interstitial":1,"markup":"{\"type\":\"ID\",\"bid_id\":\"2762638018393877168\",\"placement_id\":\"IMG_16_9_LINK#191445434271484_1906402376109106\",\"resolved_placement_id\":\"IMG_16_9_LINK#191445434271484_1906402376109106\",\"sdk_version\":\"4.99.1\",\"device_id\":\"0F9DC9F9-C7E7-4579-A945-88A87BDF91E8\",\"template\":200,\"payload\":null}","network":"facebook","trackers":{"impression_trackers":["foobar.com"]},"placement_id":"IMG_16_9_LINK#191445434271484_1906402376109106"}`)
+var jsonResponseTestBody = []byte(`{"type":"facebook","auction_id":"7d1a4f2b-b7b2-445e-b1f9-61e7ce56ef48","bid_in_cents":100,"bid_raw":0,"content_type":"application/json; charset=utf-8","is_interstitial":1,"markup":"{\"type\":\"ID\",\"bid_id\":\"2762638018393877168\",\"placement_id\":\"IMG_16_9_LINK#191445434271484_1906402376109106\",\"resolved_placement_id\":\"IMG_16_9_LINK#191445434271484_1906402376109106\",\"sdk_version\":\"4.99.1\",\"device_id\":\"0F9DC9F9-C7E7-4579-A945-88A87BDF91E8\",\"template\":200,\"payload\":null}","network":"facebook","trackers":{"impression_trackers":["foobar.com"]},"placement_id":"IMG_16_9_LINK#191445434271484_1906402376109106"}`)
 
 func TestResponseToStruct(t *testing.T) {
 	// gzipped response
