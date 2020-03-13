@@ -79,5 +79,10 @@ public class BidResponse {
          * A list of urls to fire a request to when an impression is registered
          */
         public String[] impression_trackers;
+
+        /**
+         * A list of urls to fire a request to when a click is registered
+         */
+        public String[] click_trackers;
     }
 }
