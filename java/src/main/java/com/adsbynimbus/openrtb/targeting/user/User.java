@@ -15,12 +15,12 @@ public class User {
     /**
      * Male User
      */
-    public static final String MALE = "Male";
+    public static final String MALE = "male";
 
     /**
      * Female
      */
-    public static final String FEMAlE = "Female";
+    public static final String FEMAlE = "female";
 
     /**
      * Age of the user
@@ -39,7 +39,7 @@ public class User {
     public Integer yob;
 
     /**
-     * Users gender where "Male" = male, "Female" = female. If omitted it is assumed to be unknown.
+     * User gender where "male" = male, "female" = female. If omitted it is assumed to be unknown.
      */
     public String gender;
 
