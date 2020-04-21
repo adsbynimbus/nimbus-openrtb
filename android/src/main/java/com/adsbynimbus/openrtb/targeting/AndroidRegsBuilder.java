@@ -50,4 +50,15 @@ public final class AndroidRegsBuilder implements Regs.Builder {
         regs.ext.gdpr = gdpr ? 1 : 0;
         return this;
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param usPrivacyString {@inheritDoc}
+     * @return {@inheritDoc}
+     */
+    @Override
+    public Regs.Builder ccpa(@NonNull String usPrivacyString) {
+        return null;
+    }
 }
