@@ -21,23 +21,6 @@ subprojects {
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
 
-    def javadocProvider = tasks.register("javadocJar", Jar) {
-        classifier = 'javadoc'
-        from tasks.named('javadoc')
-    }
-    def sourcesProvider = tasks.register("sourcesJar", Jar)
-
-    afterEvaluate {
-        publishing {
-            publications {
-                bintray(MavenPublication) {
-                    artifact sourcesJar
-                    artifact javadocJar
-                }
-            }
-        }
-    }
-
     tasks.named("publish").configure {
         bintray {
             user System.getenv("BINTRAY_USER") ?: System.getProperty('bintray.user')
@@ -60,14 +43,5 @@ subprojects {
                 }
             }
         }
-
-        bintrayUpload {
-            dependsOn tasks.named('build')
-            dependsOn tasks.matching({ it.name.startsWith('generatePomFile') })
-            dependsOn javadocProvider
-            dependsOn sourcesProvider
-        }
-
-        dependsOn bintrayUpload
     }
 }
