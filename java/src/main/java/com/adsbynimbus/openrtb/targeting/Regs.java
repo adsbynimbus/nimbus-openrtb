@@ -18,10 +18,14 @@ public class Regs {
      * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=76">OpenRTB Section 7.5</a>
      */
     public Integer coppa;
+
+    /**
+     * Regs extension object unique to Nimbus
+     */
     public Extension ext;
 
     /**
-     * Placeholder for exchange-specific extensions to OpenRTB. Reference {@link Extension} for values
+     * Placeholder for exchange-specific extensions to OpenRTB
      */
     public static class Extension {
 
@@ -32,6 +36,23 @@ public class Regs {
          * If this value is omitted Nimbus defaults to 0
          */
         public Integer gdpr;
+
+        /**
+         * A publisher generated string representing compliance with CCPA.
+         *
+         * <p>The CCPA privacy string is a 4 character string in the following format:
+         * <ul>
+         *     <li>Integer - Privacy string version.</li>
+         *     <li>[Y, N, -] - Publisher has provided explicit user notice.</li>
+         *     <li>[Y, N, -] - User opted out of sale</li>
+         *     <li>[Y, N, -] - Publisher operating under the Limited Service Provider Agreement</li>
+         * </ul>
+         * <p>If the user does not fall within a US Privacy jurisdiction, hyphens should be used in
+         * the last three positions, generating this privacy string: "1---"
+         *
+         * @see <a href="https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md#us-privacy-string-format">US Privacy String Format</a>
+         */
+        public String us_privacy;
     }
 
     /**
@@ -57,5 +78,14 @@ public class Regs {
          * @see Extension#gdpr
          */
         Builder gdpr(boolean gdpr);
+
+        /**
+         * A publisher generated string representing compliance with CCPA.
+         *
+         * @param usPrivacyString the four character CCPA privacy string
+         * @return this builder instance
+         * @see Extension#us_privacy
+         */
+        Builder ccpa(String usPrivacyString);
     }
 }
