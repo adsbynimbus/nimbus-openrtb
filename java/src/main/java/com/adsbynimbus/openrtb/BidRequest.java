@@ -24,6 +24,16 @@ import java.util.UUID;
 public class BidRequest {
 
     /**
+     * Required header if making a request to Nimbus defining the OpenRTB version
+     */
+    public static final String HEADER_OPEN_RTB = "x-openrtb-version";
+
+    /**
+     * The current supported OpenRTB version for use with {@link #HEADER_OPEN_RTB}
+     */
+    public static final String OPEN_RTB_VERSION = "2.5";
+
+    /**
      * Array of impression objects representing the impressions offered. Only 1 impression object is supported.
      */
     public Impression[] imp;
