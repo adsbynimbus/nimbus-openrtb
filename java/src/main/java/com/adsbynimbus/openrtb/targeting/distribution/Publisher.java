@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.targeting.distribution;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * This object describes the publisher of the media in which the ad will be displayed. The publisher is
  * typically the seller in an OpenRTB transaction.
@@ -23,6 +26,7 @@ public class Publisher {
      *
      * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
      */
+    @Nullable
     public String[] cat;
 
     /**
@@ -39,7 +43,8 @@ public class Publisher {
          * @return this builder instance
          * @see #cat
          */
-        Builder categories(String... categories);
+        @NotNull
+        Builder categories(@Nullable String... categories);
 
         /**
          * Sets the name of this publisher.
@@ -48,7 +53,8 @@ public class Publisher {
          * @return this builder instance
          * @see #name
          */
-        Builder name(String name);
+        @NotNull
+        Builder name(@NotNull String name);
 
         /**
          * Sets the top level domain of this publisher.
@@ -57,6 +63,7 @@ public class Publisher {
          * @return this builder instance
          * @see #domain
          */
-         Builder domain(String domain);
+        @NotNull
+        Builder domain(@NotNull String domain);
     }
 }

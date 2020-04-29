@@ -2,6 +2,9 @@ package com.adsbynimbus.openrtb.targeting.user;
 
 import com.adsbynimbus.openrtb.targeting.Data;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * This object contains information known or derived about the human user of the device (i.e., the
  * audience for advertising). The user id is an exchange artifact and may be subject to rotation or other
@@ -25,33 +28,39 @@ public class User {
     /**
      * Age of the user
      */
+    @Nullable
     public Integer age;
 
     /**
      * Buyer-specific ID for the user as mapped by the exchange for the buyer. Set to Facebook bidder token if
      * integrating Facebook demand
      */
+    @Nullable
     public String buyeruid;
 
     /**
      * Year of birth as a 4-digit integer
      */
+    @Nullable
     public Integer yob;
 
     /**
      * User gender where "male" = male, "female" = female. If omitted it is assumed to be unknown.
      */
+    @Nullable
     public String gender;
 
     /**
      * Comma separated list of keywords, interests, or intent.
      */
+    @Nullable
     public String keywords;
 
     /**
      * Optional feature to pass bidder data that was set in the exchange’s cookie. The string must be in base85 cookie
      * safe characters and be in any format. Proper JSON encoding must be used to include "escaped" quotation marks.
      */
+    @Nullable
     public String custom_data;
 
     /**
@@ -59,11 +68,13 @@ public class User {
      *
      * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31">OpenRTB Section 3.2.21</a>
      */
+    @Nullable
     public Data[] data;
 
     /**
      * User extension object unique to Nimbus
      */
+    @Nullable
     public Extension ext;
 
     /**
@@ -76,6 +87,7 @@ public class User {
         /**
          * Publisher provided GDPR consent string
          */
+        @Nullable
         public String consent;
 
         /**
@@ -98,6 +110,7 @@ public class User {
          * @return this builder instance
          * @see #age
          */
+        @NotNull
         Builder age(int age);
 
         /**
@@ -107,7 +120,8 @@ public class User {
          * @return this builder instance
          * @see #buyeruid
          */
-        Builder buyerUid(String buyerUid);
+        @NotNull
+        Builder buyerUid(@NotNull String buyerUid);
 
         /**
          * Sets the age of this user.
@@ -116,7 +130,8 @@ public class User {
          * @return this builder instance
          * @see #yob
          */
-        Builder yearOfBirth(int yob);
+        @NotNull
+        Builder yearOfBirth(@Nullable Integer yob);
 
         /**
          * Sets the gender of this user.
@@ -125,7 +140,8 @@ public class User {
          * @return this builder instance
          * @see #gender
          */
-        Builder gender(String gender);
+        @NotNull
+        Builder gender(@Nullable String gender);
 
         /**
          * Sets the keywords associated with this user.
@@ -134,7 +150,8 @@ public class User {
          * @return this builder instance
          * @see #keywords
          */
-        Builder keywords(String keywords);
+        @NotNull
+        Builder keywords(@Nullable String keywords);
 
         /**
          * Sets a String of custom data to be sent to Nimbus for this user.
@@ -143,7 +160,8 @@ public class User {
          * @return this builder instance
          * @see #custom_data
          */
-        Builder customData(String customData);
+        @NotNull
+        Builder customData(@Nullable String customData);
 
         /**
          * Sets an array of Data objects to be sent with this user.
@@ -153,7 +171,8 @@ public class User {
          * @see #data
          * @see Data
          */
-        Builder data(Data... data);
+        @NotNull
+        Builder data(@Nullable Data... data);
 
         /**
          * Adds a publisher provided GDPR consent String to this User to be sent with a request.
@@ -162,7 +181,8 @@ public class User {
          * @return this builder instance
          * @see Extension#consent
          */
-        Builder gdprConsentString(String consent);
+        @NotNull
+        Builder gdprConsentString(@Nullable String consent);
 
         /**
          * Sets to true if the user has consented to the publisher's data policy.
@@ -171,6 +191,7 @@ public class User {
          * @return this builder instance
          * @see Extension#did_consent
          */
+        @NotNull
         Builder gdprDidConsent(boolean didConsent);
     }
 }

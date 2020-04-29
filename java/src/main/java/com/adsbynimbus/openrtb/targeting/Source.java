@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.targeting;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * This object describes the nature and behavior of the entity that is the source of the bid request
  * upstream from the exchange. The primary purpose of this object is to define post-auction or upstream
@@ -48,6 +51,7 @@ public class Source {
          * @param sdkVersion OM SDK version
          * @return this builder instance
          */
-        Builder omSdk(String partnerName, String sdkVersion);
+        @NotNull
+        Builder omSdk(@NotNull String partnerName, @NotNull String sdkVersion);
     }
 }

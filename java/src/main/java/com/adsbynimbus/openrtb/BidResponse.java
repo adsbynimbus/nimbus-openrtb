@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * A winning bid response from Nimbus
  */
@@ -28,6 +30,7 @@ public class BidResponse {
     /**
      * The content type of this creative. "text/html" for static or a mime type for video ads
      */
+    @Nullable
     public String content_type;
 
     /**
@@ -58,11 +61,13 @@ public class BidResponse {
     /**
      * An {@link Trackers} object containing additional urls for measurement
      */
+    @Nullable
     public Trackers trackers;
 
     /**
      * The winning placement id if the creative returned is Facebook or maps to a line item
      */
+    @Nullable
     public String placement_id;
 
     /**
@@ -78,11 +83,13 @@ public class BidResponse {
         /**
          * A list of urls to fire a request to when an impression is registered
          */
+        @Nullable
         public String[] impression_trackers;
 
         /**
          * A list of urls to fire a request to when a click is registered
          */
+        @Nullable
         public String[] click_trackers;
     }
 }

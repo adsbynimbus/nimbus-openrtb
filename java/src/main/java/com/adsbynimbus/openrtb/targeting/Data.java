@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.targeting;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * The data and segment objects together allow additional data about the related object (e.g., user,
  * content) to be specified. This data may be from multiple sources whether from the exchange itself or
@@ -13,11 +16,13 @@ public class Data {
     /**
      * Exchange-specific ID for the data provider.
      */
+    @Nullable
     public String id;
 
     /**
      * Exchange-specific name for the data provider.
      */
+    @Nullable
     public String name;
 
     /**
@@ -41,7 +46,8 @@ public class Data {
          * @return this builder instance
          * @see #id
          */
-        Builder id(String id);
+        @NotNull
+        Builder id(@NotNull String id);
 
         /**
          * Sets the name of the data object.
@@ -50,7 +56,8 @@ public class Data {
          * @return this builder instance
          * @see #name
          */
-        Builder name(String name);
+        @NotNull
+        Builder name(@NotNull String name);
 
         /**
          * Sets segmenting data.
@@ -60,6 +67,7 @@ public class Data {
          * @see #segment
          * @see Segment
          */
-        Builder segments(Segment... segments);
+        @NotNull
+        Builder segments(@NotNull Segment... segments);
     }
 }

@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.targeting.distribution;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * This object should be included if the ad supported content is a non-browser application (typically in
  * mobile) as opposed to a website. A bid request must not contain both an App and a Site object. At a
@@ -45,6 +48,7 @@ public class App {
      *
      * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
      */
+    @Nullable
     public String[] cat;
 
     /**
@@ -52,6 +56,7 @@ public class App {
      *
      * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
      */
+    @Nullable
     public String[] sectioncat;
 
     /**
@@ -59,6 +64,7 @@ public class App {
      *
      * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
      */
+    @Nullable
     public String[] pagecat;
 
     /**
@@ -69,6 +75,7 @@ public class App {
     /**
      * Indicates if the app has a privacy policy, where 0 = no, 1 = yes
      */
+    @Nullable
     public Integer privacypolicy;
 
     /**
@@ -78,6 +85,7 @@ public class App {
      *     <li>1: paid</li>
      * </ul>
      */
+    @Nullable
     public Integer paid;
 
     /**
@@ -99,7 +107,8 @@ public class App {
          * @return this builder instance
          * @see #name
          */
-        Builder name(String name);
+        @NotNull
+        Builder name(@NotNull String name);
 
         /**
          * Sets the bundle id of this app.
@@ -108,7 +117,8 @@ public class App {
          * @return this builder instance
          * @see #bundle
          */
-        Builder bundle(String bundle);
+        @NotNull
+        Builder bundle(@NotNull String bundle);
 
         /**
          * Sets the domain name of this app.
@@ -117,7 +127,8 @@ public class App {
          * @return this builder instance
          * @see #domain
          */
-        Builder domain(String domain);
+        @NotNull
+        Builder domain(@NotNull String domain);
 
         /**
          * Sets this app store url.
@@ -126,7 +137,8 @@ public class App {
          * @return this builder instance
          * @see #storeurl
          */
-        Builder storeUrl(String storeUrl);
+        @NotNull
+        Builder storeUrl(@NotNull String storeUrl);
 
         /**
          * Sets the IAB content categories that describe this app.
@@ -136,7 +148,8 @@ public class App {
          * @see #cat
          * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39">OpenRTB Section 5.1</a>
          */
-        Builder categories(String... cat);
+        @NotNull
+        Builder categories(@Nullable String... cat);
 
         /**
          * Sets the IAB content categories that describe the current page of this app.
@@ -146,7 +159,8 @@ public class App {
          * @see #pagecat
          * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
          */
-        Builder pageCategories(String... pageCategories);
+        @NotNull
+        Builder pageCategories(@Nullable String... pageCategories);
 
         /**
          * Sets the IAB content categories that describe the current section of this app.
@@ -156,7 +170,8 @@ public class App {
          * @see #sectioncat
          * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34">OpenRTB Section 5.1</a>
          */
-        Builder sectionCategories(String... sectionCategories);
+        @NotNull
+        Builder sectionCategories(@Nullable String... sectionCategories);
 
         /**
          * Sets the version of this app.
@@ -165,7 +180,8 @@ public class App {
          * @return this builder instance
          * @see #ver
          */
-        Builder version(String version);
+        @NotNull
+        Builder version(@NotNull String version);
 
         /**
          * Sets to true if this app has a privacy policy associated with it.
@@ -174,6 +190,7 @@ public class App {
          * @return this builder instance
          * @see #privacypolicy
          */
+        @NotNull
         Builder privacyPolicy(boolean privacyPolicy);
 
         /**
@@ -183,6 +200,7 @@ public class App {
          * @return this builder instance
          * @see #paid
          */
+        @NotNull
         Builder paid(boolean paid);
 
         /**
@@ -193,6 +211,7 @@ public class App {
          * @see #publisher
          * @see Publisher
          */
-        Builder publisher(Publisher publisher);
+        @NotNull
+        Builder publisher(@NotNull Publisher publisher);
     }
 }

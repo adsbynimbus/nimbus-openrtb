@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.impression;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * This object represents an in-stream video impression. Many of the fields are non-essential for minimally viable
  * transactions, but are included to offer fine control when needed. Video in OpenRTB generally assumes compliance with
@@ -165,11 +168,13 @@ public class Video {
      * <p><br>
      * If this value is omitted Nimbus will default to 3.0
      */
+    @Nullable
     public Float bidfloor;
 
     /**
      * Content MIME types supported (e.g., "video/3gp", "video/mp4").
      */
+    @Nullable
     public String[] mimes;
 
     /**
@@ -177,6 +182,7 @@ public class Video {
      * <p><br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @Nullable
     public Integer minduration;
 
     /**
@@ -184,11 +190,13 @@ public class Video {
      * <p><br>
      * If this value is omitted Nimbus defaults to 60
      */
+    @Nullable
     public Integer maxduration;
 
     /**
      * Set of supported video protocols
      */
+    @Nullable
     public int[] protocols;
 
     /**
@@ -210,16 +218,19 @@ public class Video {
      *     <li>-2: generic post roll</li>
      * </ul>
      */
+    @Nullable
     public Integer startdelay;
 
     /**
      * Placement type for this video impression
      */
+    @Nullable
     public Integer placement;
 
     /**
      * Indicates if the impression must be linear, nonlinear, etc. If none specified, assume all are allowed.
      */
+    @Nullable
     public Integer linearity;
 
     /**
@@ -227,11 +238,13 @@ public class Video {
      * markup/creative that is itself skippable, the Bid object should include the attr array with an element of
      * {@link CreativeAttribute#HAS_SKIP_BUTTON} indicating skippable video. Refer to {@link CreativeAttribute}.
      */
+    @Nullable
     public Integer skip;
 
     /**
      * Supported delivery methods; if none specified, assume all are supported.
      */
+    @Nullable
     public int[] delivery;
 
     /**
@@ -240,6 +253,7 @@ public class Video {
      * <p><br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @Nullable
     public Integer skipmin;
 
     /**
@@ -247,6 +261,7 @@ public class Video {
      * <p><br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @Nullable
     public Integer skipafter;
 
     /**
@@ -254,6 +269,7 @@ public class Video {
      * <p><br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @Nullable
     public Integer minbitrate;
 
     /**
@@ -261,22 +277,26 @@ public class Video {
      * <p><br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @Nullable
     public Integer maxbitrate;
 
     /**
      * Ad position on screen.
      */
+    @Nullable
     public Integer pos;
 
     /**
      * The event that causes playback to start
      */
+    @Nullable
     public int[] playbackmethod;
 
     /**
      * Set of supported API frameworks for this impression. If an API is not explicitly listed,
      * it is assumed not to be supported.
      */
+    @Nullable
     public int[] api;
 
     /**
@@ -294,7 +314,8 @@ public class Video {
          * @see #pos
          * @see Position
          */
-        Builder position(Integer position);
+        @NotNull
+        Builder position(@Nullable Integer position);
 
         /**
          * Sets the supported video mimeTypes
@@ -303,7 +324,8 @@ public class Video {
          * @return this builder instance
          * @see #mimes
          */
-        Builder mimes(String... mimeTypes);
+        @NotNull
+        Builder mimes(@Nullable String... mimeTypes);
 
         /**
          * Sets the bid floor for this Video impression
@@ -314,6 +336,7 @@ public class Video {
          * @return this builder instance
          * @see #bidfloor
          */
+        @NotNull
         Builder bidFloor(float bidFloor);
 
         /**
@@ -325,6 +348,7 @@ public class Video {
          * @see #minduration
          * @see #maxduration
          */
+        @NotNull
         Builder duration(int minDuration, int maxDuration);
 
         /**
@@ -336,6 +360,7 @@ public class Video {
          * @see #minbitrate
          * @see #maxbitrate
          */
+        @NotNull
         Builder bitrate(int minBitrate, int maxBitrate);
 
         /**
@@ -347,6 +372,7 @@ public class Video {
          * @see #w
          * @see #h
          */
+        @NotNull
         Builder playerSize(int width, int height);
 
         /**
@@ -357,7 +383,8 @@ public class Video {
          * @see #protocols
          * @see Protocol
          */
-        Builder protocols(int... protocols);
+        @NotNull
+        Builder protocols(@Nullable int... protocols);
 
         /**
          * Sets if the video is skippable. Not calling this function assumes it is not skippable.
@@ -369,6 +396,7 @@ public class Video {
          * @see #skipmin
          * @see #skipafter
          */
+        @NotNull
         Builder skipEnabled(int skipMin, int skipAfter);
 
         /**
@@ -378,6 +406,7 @@ public class Video {
          * @return this builder instance
          * @see #startdelay
          */
+        @NotNull
         Builder startDelay(int startDelay);
 
         /**
@@ -388,7 +417,8 @@ public class Video {
          * @see #playbackmethod
          * @see PlaybackMethod
          */
-        Builder playbackMethod(int... playbackMethod);
+        @NotNull
+        Builder playbackMethod(@Nullable int... playbackMethod);
 
         /**
          * Sets the placement type of this video impression.
@@ -398,7 +428,8 @@ public class Video {
          * @see #placement
          * @see Placement
          */
-        Builder placement(Integer placement);
+        @NotNull
+        Builder placement(@Nullable Integer placement);
 
         /**
          * Sets the linearity of this video impression.
@@ -407,7 +438,8 @@ public class Video {
          * @return this builder instance
          * @see #linearity
          */
-        Builder linearity(Integer linearity);
+        @NotNull
+        Builder linearity(@Nullable Integer linearity);
 
         /**
          * Set the desired content delivery method.
@@ -417,7 +449,8 @@ public class Video {
          * @see #delivery
          * @see DeliveryMethod
          */
-        Builder deliveryMethod(int... deliveryMethod);
+        @NotNull
+        Builder deliveryMethod(@Nullable int... deliveryMethod);
 
         /**
          * Sets the supported api values
@@ -427,6 +460,7 @@ public class Video {
          * @see #api
          * @see Api
          */
-        Builder apis(int... apis);
+        @NotNull
+        Builder apis(@Nullable int... apis);
     }
 }

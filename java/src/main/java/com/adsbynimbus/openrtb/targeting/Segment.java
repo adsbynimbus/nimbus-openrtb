@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.targeting;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Segment objects are essentially key-value pairs that convey specific units of data. The parent Data
  * object is a collection of such values from a given data provider. The specific segment names and value
@@ -38,7 +40,8 @@ public class Segment {
          * @return this builder instance
          * @see #id
          */
-        Builder id(String id);
+        @NotNull
+        Builder id(@NotNull String id);
 
         /**
          * Sets the name of this segment.
@@ -47,7 +50,8 @@ public class Segment {
          * @return this builder instance
          * @see #name
          */
-        Builder name(String name);
+        @NotNull
+        Builder name(@NotNull String name);
 
         /**
          * Sets the value of this segment.
@@ -56,6 +60,7 @@ public class Segment {
          * @return this builder instance
          * @see #value
          */
-        Builder value(String value);
+        @NotNull
+        Builder value(@NotNull String value);
     }
 }

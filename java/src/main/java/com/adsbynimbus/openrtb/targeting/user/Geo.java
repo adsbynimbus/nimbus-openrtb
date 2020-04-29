@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.targeting.user;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * This object encapsulates various methods for specifying a geographic location. When subordinate to a
  * Device object, it indicates the location of the device which can also be interpreted as the user’s current
@@ -36,16 +39,19 @@ public class Geo {
     /**
      * Latitude from -90.0 to +90.0, where negative is south.
      */
+    @Nullable
     public Float lat;
 
     /**
      * Longitude from -180.0 to +180.0, where negative is west
      */
+    @Nullable
     public Float lon;
 
     /**
      * Source of location data; recommended when passing lat/lon.
      */
+    @Nullable
     public Integer type;
 
     /**
@@ -53,11 +59,13 @@ public class Geo {
      * device’s location services (i.e., type = 1). Note that this is the accuracy as reported from the device.
      * Consult OS specific documentation (e.g., Android, iOS) for exact interpretation.
      */
+    @Nullable
     public Integer accuracy;
 
     /**
      * Country code using ISO-3166-1-alpha-3.
      */
+    @Nullable
     public String country;
 
     /**
@@ -65,6 +73,7 @@ public class Geo {
      *
      * @see <a href="http://www.unece.org/cefact/locode/service/location.htm">United Nations Location Codes</a>
      */
+    @Nullable
     public String city;
 
     /**
@@ -72,11 +81,13 @@ public class Geo {
      *
      * @see <a href="code.google.com/apis/adwords/docs/appendix/metrocodes.html">Google Metro codes</a>
      */
+    @Nullable
     public String metro;
 
     /**
      * 2-letter state code.
      */
+    @Nullable
     public String state;
 
     /**
@@ -93,6 +104,7 @@ public class Geo {
          * @return this builder instance
          * @see #lat
          */
+        @NotNull
         Builder latitude(float latitude);
 
         /**
@@ -102,7 +114,8 @@ public class Geo {
          * @return this builder instance
          * @see #country
          */
-        Builder country(String countryCode);
+        @NotNull
+        Builder country(@Nullable String countryCode);
 
         /**
          * Sets the longitude of this geo object.
@@ -111,6 +124,7 @@ public class Geo {
          * @return this builder instance
          * @see #lon
          */
+        @NotNull
         Builder longitude(float longitude);
 
         /**
@@ -120,6 +134,7 @@ public class Geo {
          * @return this builder instance
          * @see #accuracy
          */
+        @NotNull
         Builder accuracy(int accuracy);
 
         /**
@@ -130,7 +145,8 @@ public class Geo {
          * @see #type
          * @see LocationType
          */
-        Builder locationType(Integer locationType);
+        @NotNull
+        Builder locationType(@Nullable Integer locationType);
 
         /**
          * Sets the city using the United Nations Code for Trade &amp; Transport Locations.
@@ -139,7 +155,8 @@ public class Geo {
          * @return this builder instance
          * @see #city
          */
-        Builder city(String city);
+        @NotNull
+        Builder city(@Nullable String city);
 
         /**
          * Sets the Google metro code of this geo object.
@@ -148,7 +165,8 @@ public class Geo {
          * @return this builder instance
          * @see #metro
          */
-        Builder metro(String metro);
+        @NotNull
+        Builder metro(@Nullable String metro);
 
         /**
          * Sets the 2 letter state code of this geo object.
@@ -157,6 +175,7 @@ public class Geo {
          * @return this builder instance
          * @see #state
          */
-        Builder state(String state);
+        @NotNull
+        Builder state(@Nullable String state);
     }
 }

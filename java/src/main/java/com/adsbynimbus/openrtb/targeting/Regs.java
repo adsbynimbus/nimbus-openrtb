@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.targeting;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * This object contains any legal, governmental, or industry regulations that apply to the request. The
  * coppa flag signals whether or not the request falls under the United States Federal Trade Commission’s
@@ -17,11 +20,13 @@ public class Regs {
      *
      * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=76">OpenRTB Section 7.5</a>
      */
+    @Nullable
     public Integer coppa;
 
     /**
      * Regs extension object unique to Nimbus
      */
+    @Nullable
     public Extension ext;
 
     /**
@@ -35,6 +40,7 @@ public class Regs {
          * <p><br>
          * If this value is omitted Nimbus defaults to 0
          */
+        @Nullable
         public Integer gdpr;
 
         /**
@@ -52,6 +58,7 @@ public class Regs {
          *
          * @see <a href="https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md#us-privacy-string-format">US Privacy String Format</a>
          */
+        @Nullable
         public String us_privacy;
     }
 
@@ -68,6 +75,7 @@ public class Regs {
          * @see #coppa
          * @see <a href="https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=71">OpenRTB Section 7.5</a>
          */
+        @NotNull
         Builder coppa(boolean coppa);
 
         /**
@@ -77,6 +85,7 @@ public class Regs {
          * @return this builder instance
          * @see Extension#gdpr
          */
+        @NotNull
         Builder gdpr(boolean gdpr);
 
         /**
@@ -86,6 +95,7 @@ public class Regs {
          * @return this builder instance
          * @see Extension#us_privacy
          */
-        Builder ccpa(String usPrivacyString);
+        @NotNull
+        Builder ccpa(@NotNull String usPrivacyString);
     }
 }

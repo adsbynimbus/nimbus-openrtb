@@ -2,6 +2,9 @@ package com.adsbynimbus.openrtb.impression;
 
 import com.adsbynimbus.openrtb.BidRequest;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 
 /**
@@ -20,18 +23,21 @@ public class Impression {
      * A unique identifier for this impression within the context of the bid request (typically, starts with 1
      * and increments). This field is optional as only 1 impression object is currently supported by Nimbus.
      */
+    @Nullable
     public String id;
 
     /**
      * A banner object; required if this impression is offered as a banner ad opportunity or is used in the Nimbus
      * hybrid auction.
      */
+    @Nullable
     public Banner banner;
 
     /**
      * A video object; required if this impression is offered as a video ad opportunity or is used in Nimbus
      * hybrid auction.
      */
+    @Nullable
     public Video video;
 
     /**
@@ -39,14 +45,15 @@ public class Impression {
      * <p><br>
      * If this value is omitted Nimbus will default to 0
      */
+    @Nullable
     public Integer instl;
 
     /**
      * Minimum bid for this impression expressed in CPM.
      * <p><br>
      * If this value is omitted Nimbus defaults to 1.0
-     *
      */
+    @Nullable
     public Float bidfloor;
 
     /**
@@ -55,6 +62,7 @@ public class Impression {
      * <p><br>
      * If this value is omitted Nimbus defaults to 1
      */
+    @Nullable
     public Integer secure;
 
     /**
@@ -79,11 +87,13 @@ public class Impression {
         /**
          * The identifier for this app provided by Facebook. Required if including Facebook demand in this request.
          */
+        @Nullable
         public String facebook_app_id;
 
         /**
          * The list of key value pairs provided by a DTBRequest from the APS library.
          */
+        @Nullable
         public List<?> aps;
     }
 
@@ -102,7 +112,8 @@ public class Impression {
          * @return this builder instance
          * @see #id
          */
-        Builder id(String id);
+        @NotNull
+        Builder id(@Nullable String id);
 
         /**
          * Includes a banner in the auction for this impression
@@ -111,7 +122,8 @@ public class Impression {
          * @return this builder instance
          * @see #banner
          */
-        Builder banner(Banner banner);
+        @NotNull
+        Builder banner(@Nullable Banner banner);
 
         /**
          * Includes a video in the auction for this impression
@@ -120,7 +132,8 @@ public class Impression {
          * @return this builder instance
          * @see #video
          */
-        Builder video(Video video);
+        @NotNull
+        Builder video(@Nullable Video video);
 
         /**
          * Sets the bid floor of this impression.
@@ -131,6 +144,7 @@ public class Impression {
          * @return this builder instance
          * @see #bidfloor
          */
+        @NotNull
         Builder bidFloor(float bidFloor);
 
         /**
@@ -140,6 +154,7 @@ public class Impression {
          * @return this builder instance
          * @see #instl
          */
+        @NotNull
         Builder interstitial(boolean instl);
 
         /**
@@ -151,6 +166,7 @@ public class Impression {
          * @return this builder instance
          * @see #secure
          */
+        @NotNull
         Builder secure(boolean secure);
 
         /**
@@ -159,7 +175,8 @@ public class Impression {
          * @param facebookAppId unique app identifier provided by Facebook
          * @return this builder instance
          */
-        Builder facebookAppId(String facebookAppId);
+        @NotNull
+        Builder facebookAppId(@Nullable String facebookAppId);
 
         /**
          * Sets the APS params for this impression
@@ -167,6 +184,7 @@ public class Impression {
          * @param apsParams a list of key value pair maps from the APS sdk
          * @return this builder instance
          */
-        Builder apsParams(List<?> apsParams);
+        @NotNull
+        Builder apsParams(@Nullable List<?> apsParams);
     }
 }

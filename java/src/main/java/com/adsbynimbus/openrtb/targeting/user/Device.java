@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.targeting.user;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * This object provides information pertaining to the device through which the user is interacting. Device
  * information includes its hardware, platform, location, and carrier data. The device can refer to a mobile
@@ -103,23 +106,27 @@ public class Device {
     /**
      * Location of the device assumed to be the user’s current location defined by a Geo object.
      */
+    @Nullable
     public Geo geo;
 
     /**
      * Standard "Do Not Track" flag as set in the header by the browser, where 0 = tracking is unrestricted,
      * 1 = do not track
      */
+    @Nullable
     public Integer dnt;
 
     /**
      * "Limit Ad Tracking" signal commercially endorsed (e.g., iOS, Android), where 0 = tracking is unrestricted,
      * 1 = tracking must be limited per commercial guidelines.
      */
+    @Nullable
     public Integer lmt;
 
     /**
      * IPv4 address closest to device. Will be set automatically by Nimbus
      */
+    @Nullable
     public String ip;
 
     /**
@@ -130,11 +137,13 @@ public class Device {
     /**
      * Device make (e.g., "Google").
      */
+    @Nullable
     public String make;
 
     /**
      * Device model (e.g., "Pixel").
      */
+    @Nullable
     public String model;
 
     /**
@@ -160,17 +169,20 @@ public class Device {
     /**
      * Browser language using ISO-639-1-alpha-2
      */
+    @Nullable
     public String language;
 
     /**
      * Carrier or ISP (e.g., "Verizon") using exchange curated string names which should be published
      * to bidders a priori.
      */
+    @Nullable
     public String carrier;
 
     /**
      * Network connection type.
      */
+    @Nullable
     public Integer connectiontype;
 
     /**
@@ -193,6 +205,7 @@ public class Device {
          * @see #lmt
          * @see #dnt
          */
+        @NotNull
         Builder limitedAdTracking(boolean lat);
 
         /**
@@ -204,6 +217,7 @@ public class Device {
          * @see #h
          * @see #w
          */
+        @NotNull
         Builder size(int width, int height);
 
         /**
@@ -213,7 +227,8 @@ public class Device {
          * @return this builder instance
          * @see #ua
          */
-        Builder userAgent(String userAgent);
+        @NotNull
+        Builder userAgent(@NotNull String userAgent);
 
         /**
          * Sets the location information of this device.
@@ -223,7 +238,8 @@ public class Device {
          * @see #geo
          * @see Geo
          */
-        Builder geo(Geo geo);
+        @NotNull
+        Builder geo(@Nullable Geo geo);
 
         /**
          * Sets the IP address of the device. This can be omitted as Nimbus will infer it from the inbound request.
@@ -232,7 +248,8 @@ public class Device {
          * @return this builder instance
          * @see #ip
          */
-        Builder ipAddress(String ipAddress);
+        @NotNull
+        Builder ipAddress(@Nullable String ipAddress);
 
         /**
          * Sets the type of device.
@@ -242,7 +259,8 @@ public class Device {
          * @see #devicetype
          * @see DeviceType
          */
-        Builder deviceType(Integer deviceType);
+        @NotNull
+        Builder deviceType(@Nullable Integer deviceType);
 
         /**
          * Sets the device language.
@@ -251,7 +269,8 @@ public class Device {
          * @return this builder instance
          * @see #language
          */
-        Builder language(String language);
+        @NotNull
+        Builder language(@Nullable String language);
 
         /**
          * Sets the device carrier.
@@ -260,7 +279,8 @@ public class Device {
          * @return this builder instance
          * @see #carrier
          */
-        Builder carrier(String carrier);
+        @NotNull
+        Builder carrier(@Nullable String carrier);
 
         /**
          * Set the current connection type of this device.
@@ -270,7 +290,8 @@ public class Device {
          * @see #connectiontype
          * @see ConnectionType
          */
-        Builder connectionType(Integer connectionType);
+        @NotNull
+        Builder connectionType(@Nullable Integer connectionType);
 
         /**
          * Sets the advertising id provided by the device's operating system.
@@ -279,7 +300,8 @@ public class Device {
          * @return this builder instance
          * @see #ifa
          */
-        Builder advertisingId(String ifa);
+        @NotNull
+        Builder advertisingId(@NotNull String ifa);
 
         /**
          * Sets manufacturer name of this device (e.g. "Google").
@@ -288,7 +310,8 @@ public class Device {
          * @return this builder instance
          * @see #make
          */
-        Builder manufacturer(String make);
+        @NotNull
+        Builder manufacturer(@Nullable String make);
 
         /**
          * Sets model name of this device (e.g. "Pixel").
@@ -297,7 +320,8 @@ public class Device {
          * @return this builder instance
          * @see #model
          */
-        Builder model(String model);
+        @NotNull
+        Builder model(@Nullable String model);
 
         /**
          * Sets the operating system name of this device.
@@ -306,7 +330,8 @@ public class Device {
          * @return this builder instance
          * @see #os
          */
-        Builder osName(String os);
+        @NotNull
+        Builder osName(@Nullable String os);
 
         /**
          * Sets the operating system version of this device.
@@ -315,6 +340,7 @@ public class Device {
          * @return this builder instance
          * @see #osv
          */
-        Builder osVersion(String osVersion);
+        @NotNull
+        Builder osVersion(@Nullable String osVersion);
     }
 }

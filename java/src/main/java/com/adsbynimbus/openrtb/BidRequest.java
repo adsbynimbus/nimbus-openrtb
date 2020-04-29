@@ -8,6 +8,9 @@ import com.adsbynimbus.openrtb.targeting.Regs;
 import com.adsbynimbus.openrtb.targeting.Source;
 import com.adsbynimbus.openrtb.targeting.user.User;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.UUID;
 
 /**
@@ -57,11 +60,13 @@ public class BidRequest {
     /**
      * Details about the human user of the device; the advertising audience.
      */
+    @Nullable
     public User user;
 
     /**
      * Indicator of test mode in which auctions are not billable, where 0 = live mode, 1 = test mode
      */
+    @Nullable
     public Integer test;
 
     /**
@@ -70,21 +75,25 @@ public class BidRequest {
      * <p><br>
      * If this value is omitted Nimbus will default to 500
      */
+    @Nullable
     public Integer tmax;
 
     /**
      * A Regs object that specifies any industry, legal, or governmental regulations in force for this request.
      */
+    @Nullable
     public Regs regs;
 
     /**
      * A Source object that provides data about the inventory source and which entity makes the final decision.
      */
+    @Nullable
     public Source source;
 
     /**
      * Block list of advertisers by their domains (e.g., "ford.com").
      */
+    @Nullable
     public String[] badv;
 
     /**
@@ -123,7 +132,8 @@ public class BidRequest {
          *                   impression array if it does not exist and replace the current value in imp[0] if one does.
          * @return this builder instance
          */
-        Builder impression(Impression impression);
+        @NotNull
+        Builder impression(@NotNull Impression impression);
 
         /**
          * Sets the app details for this request.
@@ -131,7 +141,8 @@ public class BidRequest {
          * @param app an app object to set or replace the value currently on this request.
          * @return this builder instance
          */
-        Builder app(App app);
+        @NotNull
+        Builder app(@NotNull App app);
 
         /**
          * Sets the device details of this request.
@@ -139,15 +150,17 @@ public class BidRequest {
          * @param device a device object to set or replace the value currently on this request.
          * @return this builder instance
          */
-        Builder device(Device device);
+        @NotNull
+        Builder device(@NotNull Device device);
 
         /**
          * Sets the device size of this request in absolute pixels.
          *
-         * @param width width of the device in pixels
+         * @param width  width of the device in pixels
          * @param height height of the device in pixels
          * @return this builder instance
          */
+        @NotNull
         Builder deviceSize(int width, int height);
 
         /**
@@ -156,7 +169,8 @@ public class BidRequest {
          * @param user a user object to set or replace the value currently on this request
          * @return this builder instance
          */
-        Builder user(User user);
+        @NotNull
+        Builder user(@NotNull User user);
 
         /**
          * Marks this request as a test.
@@ -164,6 +178,7 @@ public class BidRequest {
          * @param enabled true if test mode is enabled, default is false
          * @return {@link Builder}
          */
+        @NotNull
         Builder test(boolean enabled);
 
         /**
@@ -174,6 +189,7 @@ public class BidRequest {
          * @param timeout set or replace the timeout value on this request.
          * @return this builder instance
          */
+        @NotNull
         Builder timeout(int timeout);
 
         /**
@@ -182,7 +198,8 @@ public class BidRequest {
          * @param regs a regs object to set or replace the value currently on this request
          * @return this builder instance
          */
-        Builder regs(Regs regs);
+        @NotNull
+        Builder regs(@NotNull Regs regs);
 
         /**
          * Sets the source object of this request.
@@ -190,7 +207,8 @@ public class BidRequest {
          * @param source a source object to set or replace the value currently on this request
          * @return this builder instance
          */
-        Builder source(Source source);
+        @NotNull
+        Builder source(@NotNull Source source);
 
         /**
          * Sets a list of blocked advertisers by domains.
@@ -198,7 +216,8 @@ public class BidRequest {
          * @param domains a list of domain names to block
          * @return this builder instance
          */
-         Builder blockedDomains(String... domains);
+        @NotNull
+        Builder blockedDomains(@NotNull String... domains);
 
         /**
          * Sets the Nimbus API key.
@@ -206,7 +225,8 @@ public class BidRequest {
          * @param apiKey the publisher specific api key provided by Nimbus
          * @return this builder instance
          */
-        Builder apiKey(String apiKey);
+        @NotNull
+        Builder apiKey(@NotNull String apiKey);
 
         /**
          * Sets the Nimbus session id.
@@ -214,6 +234,7 @@ public class BidRequest {
          * @param sessionId any unique identifier for this session. Recommend using {@link UUID#randomUUID()}
          * @return this builder instance
          */
-        Builder sessionId(String sessionId);
+        @NotNull
+        Builder sessionId(@NotNull String sessionId);
     }
 }
