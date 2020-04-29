@@ -28,6 +28,7 @@ dependencies {
 
 tasks.register("javadoc", Javadoc) {
     source += android.sourceSets.main.java.sourceFiles
+    source += project(':java').layout.files('src/main/java')
     classpath += files(android.getBootClasspath().join(File.pathSeparator))
     classpath += configurations.releaseCompileClasspath
     exclude '**/BuildConfig.java'

@@ -17,6 +17,12 @@ allprojects {
     }
 }
 
+def cleanTask = tasks.register("clean", Delete) {
+    doLast {
+        delete rootProject.buildDir
+    }
+}
+
 subprojects {
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
@@ -43,5 +49,9 @@ subprojects {
                 }
             }
         }
+    }
+
+    cleanTask.configure {
+        dependsOn tasks.named("clean")
     }
 }
