@@ -1,17 +1,12 @@
-package com.adsbynimbus.openrtb;
+package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
-import com.adsbynimbus.openrtb.impression.AndroidImpressionBuilder;
+import com.adsbynimbus.openrtb.BidRequest;
 import com.adsbynimbus.openrtb.impression.Format;
 import com.adsbynimbus.openrtb.impression.Impression;
-import com.adsbynimbus.openrtb.targeting.AndroidRegsBuilder;
-import com.adsbynimbus.openrtb.targeting.AndroidSourceBuilder;
-import com.adsbynimbus.openrtb.targeting.distribution.AndroidAppBuilder;
 import com.adsbynimbus.openrtb.targeting.distribution.App;
-import com.adsbynimbus.openrtb.targeting.user.AndroidDeviceBuilder;
-import com.adsbynimbus.openrtb.targeting.user.AndroidUserBuilder;
 import com.adsbynimbus.openrtb.targeting.user.Device;
 import com.adsbynimbus.openrtb.targeting.Regs;
 import com.adsbynimbus.openrtb.targeting.Source;

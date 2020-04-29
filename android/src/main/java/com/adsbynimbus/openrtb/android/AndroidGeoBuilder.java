@@ -1,9 +1,10 @@
-package com.adsbynimbus.openrtb.targeting.user;
+package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 
+import com.adsbynimbus.openrtb.targeting.user.Geo;
 import com.adsbynimbus.openrtb.targeting.user.Geo.LocationType;
 
 import java.lang.annotation.Retention;

@@ -1,6 +1,8 @@
-package com.adsbynimbus.openrtb.targeting.distribution;
+package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.NonNull;
+
+import com.adsbynimbus.openrtb.targeting.distribution.Publisher;
 
 /**
  * Publisher builder implementation with Androidx annotations for validation

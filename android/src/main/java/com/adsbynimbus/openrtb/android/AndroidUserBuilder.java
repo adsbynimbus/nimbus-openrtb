@@ -1,10 +1,11 @@
-package com.adsbynimbus.openrtb.targeting.user;
+package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringDef;
 
 import com.adsbynimbus.openrtb.targeting.Data;
+import com.adsbynimbus.openrtb.targeting.user.User;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

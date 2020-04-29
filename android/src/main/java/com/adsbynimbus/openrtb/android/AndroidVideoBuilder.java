@@ -1,10 +1,11 @@
-package com.adsbynimbus.openrtb.impression;
+package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
+import com.adsbynimbus.openrtb.impression.Video;
 import com.adsbynimbus.openrtb.impression.Video.DeliveryMethod;
 import com.adsbynimbus.openrtb.impression.Video.Linearity;
 import com.adsbynimbus.openrtb.impression.Video.Placement;

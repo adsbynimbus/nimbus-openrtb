@@ -1,6 +1,8 @@
-package com.adsbynimbus.openrtb.targeting;
+package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.NonNull;
+
+import com.adsbynimbus.openrtb.targeting.Segment;
 
 /**
  * Segment builder with Androidx annotations for validation

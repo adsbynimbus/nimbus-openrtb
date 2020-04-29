@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb.targeting.user;
+package com.adsbynimbus.openrtb.android;
 
 import android.content.Context;
 import android.os.Build;
@@ -7,8 +7,10 @@ import android.webkit.WebSettings;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 
+import com.adsbynimbus.openrtb.targeting.user.Device;
 import com.adsbynimbus.openrtb.targeting.user.Device.ConnectionType;
 import com.adsbynimbus.openrtb.targeting.user.Device.DeviceType;
+import com.adsbynimbus.openrtb.targeting.user.Geo;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
