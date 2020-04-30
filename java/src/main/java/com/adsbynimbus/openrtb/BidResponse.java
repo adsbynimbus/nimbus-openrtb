@@ -44,7 +44,7 @@ public class BidResponse {
     public int width;
 
     /**
-     * Set to 1 if the original request was for an interstitial dd
+     * Set to 1 if the original request was for an interstitial ad
      */
     public int is_interstitial;
 
