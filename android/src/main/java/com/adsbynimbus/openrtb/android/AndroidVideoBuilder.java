@@ -4,6 +4,7 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.adsbynimbus.openrtb.impression.Video;
 import com.adsbynimbus.openrtb.impression.Video.DeliveryMethod;
@@ -66,8 +67,8 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param position {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidVideoBuilder position(@PositionInt Integer position) {
+    @Override @NonNull
+    public AndroidVideoBuilder position(@Nullable @PositionInt Integer position) {
         video.pos = position;
         return this;
     }
@@ -78,8 +79,8 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param mimeTypes {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidVideoBuilder mimes(@NonNull String... mimeTypes) {
+    @Override @NonNull
+    public AndroidVideoBuilder mimes(@Nullable String... mimeTypes) {
         video.mimes = mimeTypes;
         return this;
     }
@@ -90,7 +91,7 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param bidFloor {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidVideoBuilder bidFloor(@FloatRange(from = 0) float bidFloor) {
         video.bidfloor = bidFloor;
         return this;
@@ -103,7 +104,7 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param maxDuration {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidVideoBuilder duration(@IntRange(from = 0) int minDuration, @IntRange(from = 1) int maxDuration) {
         video.minduration = minDuration;
         video.maxduration = maxDuration;
@@ -117,7 +118,7 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param maxBitrate {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidVideoBuilder bitrate(@IntRange(from = 0) int minBitrate, int maxBitrate) {
         video.minbitrate = minBitrate;
         video.maxbitrate = maxBitrate;
@@ -131,7 +132,7 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param height {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidVideoBuilder playerSize(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
         video.w = width;
         video.h = height;
@@ -144,8 +145,8 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param protocols {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidVideoBuilder protocols(@NonNull @ProtocolInt int... protocols) {
+    @Override @NonNull
+    public AndroidVideoBuilder protocols(@Nullable @ProtocolInt int... protocols) {
         video.protocols = protocols;
         return this;
     }
@@ -157,7 +158,7 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param skipAfter {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidVideoBuilder skipEnabled(@IntRange(from = 0) int skipMin, @IntRange(from = 0) int skipAfter) {
         video.skip = 1;
         video.skipmin = skipMin;
@@ -171,7 +172,7 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param startDelay {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidVideoBuilder startDelay(@IntRange(from = 0) int startDelay) {
         video.startdelay = startDelay;
         return this;
@@ -183,7 +184,8 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param playbackMethod {@inheritDoc}
      * @return {@inheritDoc}
      */
-    public AndroidVideoBuilder playbackMethod(@PlaybackMethodInt int... playbackMethod) {
+    @Override @NonNull
+    public AndroidVideoBuilder playbackMethod(@Nullable @PlaybackMethodInt int... playbackMethod) {
         video.playbackmethod = playbackMethod;
         return this;
     }
@@ -194,8 +196,8 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param placement {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidVideoBuilder placement(@PlacementInt Integer placement) {
+    @Override @NonNull
+    public AndroidVideoBuilder placement(@Nullable@PlacementInt Integer placement) {
         video.placement = placement;
         return this;
     }
@@ -206,8 +208,8 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param linearity {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidVideoBuilder linearity(@LinearityInt Integer linearity) {
+    @Override @NonNull
+    public AndroidVideoBuilder linearity(@Nullable @LinearityInt Integer linearity) {
         video.linearity = linearity;
         return this;
     }
@@ -218,8 +220,8 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param deliveryMethods {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidVideoBuilder deliveryMethod(@DeliveryMethodInt int... deliveryMethods) {
+    @Override @NonNull
+    public AndroidVideoBuilder deliveryMethod(@Nullable @DeliveryMethodInt int... deliveryMethods) {
         video.delivery = deliveryMethods;
         return this;
     }
@@ -230,8 +232,8 @@ public final class AndroidVideoBuilder implements Video.Builder {
      * @param apis {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidVideoBuilder apis(@ApiInt int... apis) {
+    @Override @NonNull
+    public AndroidVideoBuilder apis(@Nullable @ApiInt int... apis) {
         video.api = apis;
         return this;
     }

@@ -2,6 +2,7 @@ package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 
 import com.adsbynimbus.openrtb.targeting.Data;
@@ -42,7 +43,7 @@ public final class AndroidUserBuilder implements User.Builder {
      * @param age {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidUserBuilder age(@IntRange(from = 0) int age) {
         user.age = age;
         return this;
@@ -54,7 +55,7 @@ public final class AndroidUserBuilder implements User.Builder {
      * @param buyerUid {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidUserBuilder buyerUid(@NonNull String buyerUid) {
         user.buyeruid = buyerUid;
         return this;
@@ -66,8 +67,8 @@ public final class AndroidUserBuilder implements User.Builder {
      * @param yob {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidUserBuilder yearOfBirth(@IntRange(from = 0) int yob) {
+    @Override @NonNull
+    public AndroidUserBuilder yearOfBirth(@Nullable @IntRange(from = 0) Integer yob) {
         user.yob = yob;
         return this;
     }
@@ -78,8 +79,8 @@ public final class AndroidUserBuilder implements User.Builder {
      * @param gender {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidUserBuilder gender(@Gender String gender) {
+    @Override @NonNull
+    public AndroidUserBuilder gender(@Nullable @Gender String gender) {
         user.gender = gender;
         return this;
     }
@@ -90,8 +91,8 @@ public final class AndroidUserBuilder implements User.Builder {
      * @param keywords {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidUserBuilder keywords(String keywords) {
+    @Override @NonNull
+    public AndroidUserBuilder keywords(@Nullable String keywords) {
         user.keywords = keywords;
         return this;
     }
@@ -102,8 +103,8 @@ public final class AndroidUserBuilder implements User.Builder {
      * @param customData {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidUserBuilder customData(String customData) {
+    @Override @NonNull
+    public AndroidUserBuilder customData(@Nullable String customData) {
         user.custom_data = customData;
         return this;
     }
@@ -114,8 +115,8 @@ public final class AndroidUserBuilder implements User.Builder {
      * @param data {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidUserBuilder data(Data... data) {
+    @Override @NonNull
+    public AndroidUserBuilder data(@Nullable Data... data) {
         user.data = data;
         return this;
     }
@@ -126,8 +127,8 @@ public final class AndroidUserBuilder implements User.Builder {
      * @param consentString {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidUserBuilder gdprConsentString(@NonNull String consentString) {
+    @Override @NonNull
+    public AndroidUserBuilder gdprConsentString(@Nullable String consentString) {
         if (user.ext == null) {
             user.ext = new User.Extension();
         }
@@ -141,7 +142,7 @@ public final class AndroidUserBuilder implements User.Builder {
      * @param didConsent {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidUserBuilder gdprDidConsent(boolean didConsent) {
         if (user.ext == null) {
             user.ext = new User.Extension();

@@ -1,6 +1,7 @@
 package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.adsbynimbus.openrtb.targeting.distribution.Publisher;
 
@@ -32,8 +33,8 @@ public final class AndroidPublisherBuilder implements Publisher.Builder {
      * @param categories {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidPublisherBuilder categories(String... categories) {
+    @Override @NonNull
+    public AndroidPublisherBuilder categories(@Nullable String... categories) {
         publisher.cat = categories;
         return this;
     }
@@ -44,7 +45,7 @@ public final class AndroidPublisherBuilder implements Publisher.Builder {
      * @param name {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidPublisherBuilder name(@NonNull String name) {
         publisher.name = name;
         return this;
@@ -56,7 +57,7 @@ public final class AndroidPublisherBuilder implements Publisher.Builder {
      * @param domain {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidPublisherBuilder domain(@NonNull String domain) {
         publisher.domain = domain;
         return this;

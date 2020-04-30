@@ -2,6 +2,7 @@ package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.adsbynimbus.openrtb.impression.Banner;
 import com.adsbynimbus.openrtb.impression.Impression;
@@ -37,8 +38,8 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @param id {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidImpressionBuilder id(String id) {
+    @Override @NonNull
+    public AndroidImpressionBuilder id(@Nullable String id) {
         impression.id = id;
         return this;
     }
@@ -49,8 +50,8 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @param banner {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidImpressionBuilder banner(@NonNull Banner banner) {
+    @Override @NonNull
+    public AndroidImpressionBuilder banner(@Nullable Banner banner) {
         impression.banner = banner;
         return this;
     }
@@ -61,6 +62,7 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @return a builder wrapping the banner object
      * @see Banner
      */
+    @NonNull
     public AndroidBannerBuilder banner() {
         if (impression.banner == null) {
             impression.banner = new Banner();
@@ -74,8 +76,8 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @param video {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidImpressionBuilder video(@NonNull Video video) {
+    @Override @NonNull
+    public AndroidImpressionBuilder video(@Nullable Video video) {
         impression.video = video;
         return this;
     }
@@ -86,6 +88,7 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @return a builder wrapping the video object
      * @see Video
      */
+    @NonNull
     public AndroidVideoBuilder video() {
         if (impression.video == null) {
             impression.video = new Video();
@@ -99,7 +102,7 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @param bidFloor {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidImpressionBuilder bidFloor(@FloatRange(from = 0) float bidFloor) {
         impression.bidfloor = bidFloor;
         return this;
@@ -111,7 +114,7 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @param instl {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidImpressionBuilder interstitial(boolean instl) {
         impression.instl = instl ? 1 : 0;
         return this;
@@ -123,7 +126,7 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @param secure {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidImpressionBuilder secure(boolean secure) {
         impression.secure = secure ? 1 : 0;
         return this;
@@ -135,8 +138,8 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @param facebookAppId {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidImpressionBuilder facebookAppId(@NonNull String facebookAppId) {
+    @Override @NonNull
+    public AndroidImpressionBuilder facebookAppId(@Nullable String facebookAppId) {
         if (impression.ext == null) {
             impression.ext = new Impression.Extension();
         }
@@ -150,8 +153,8 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
      * @param apsParams {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidImpressionBuilder apsParams(@NonNull List<?> apsParams) {
+    @Override @NonNull
+    public AndroidImpressionBuilder apsParams(@Nullable List<?> apsParams) {
         if (impression.ext == null) {
             impression.ext = new Impression.Extension();
         }

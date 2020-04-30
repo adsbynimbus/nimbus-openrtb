@@ -31,8 +31,8 @@ public final class AndroidSegmentBuilder implements Segment.Builder {
      * @param id {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidSegmentBuilder id(String id) {
+    @Override @NonNull
+    public AndroidSegmentBuilder id(@NonNull String id) {
         segment.id = id;
         return this;
     }
@@ -43,8 +43,8 @@ public final class AndroidSegmentBuilder implements Segment.Builder {
      * @param name {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidSegmentBuilder name(String name) {
+    @Override @NonNull
+    public AndroidSegmentBuilder name(@NonNull String name) {
         segment.name = name;
         return this;
     }
@@ -55,8 +55,8 @@ public final class AndroidSegmentBuilder implements Segment.Builder {
      * @param value {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidSegmentBuilder value(String value) {
+    @Override @NonNull
+    public AndroidSegmentBuilder value(@NonNull String value) {
         segment.value = value;
         return this;
     }

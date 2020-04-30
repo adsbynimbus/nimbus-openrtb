@@ -3,6 +3,7 @@ package com.adsbynimbus.openrtb.android;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.adsbynimbus.openrtb.targeting.distribution.App;
 import com.adsbynimbus.openrtb.targeting.distribution.Publisher;
@@ -35,8 +36,8 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param name {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidAppBuilder name(String name) {
+    @Override @NonNull
+    public AndroidAppBuilder name(@NonNull String name) {
         app.name = name;
         return this;
     }
@@ -48,8 +49,8 @@ public final class AndroidAppBuilder implements App.Builder {
      * @return {@inheritDoc}
      * @see Context#getPackageName()
      */
-    @Override
-    public AndroidAppBuilder bundle(String bundle) {
+    @Override @NonNull
+    public AndroidAppBuilder bundle(@NonNull String bundle) {
         app.bundle = bundle;
         return this;
     }
@@ -60,8 +61,8 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param domain {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidAppBuilder domain(String domain) {
+    @Override @NonNull
+    public AndroidAppBuilder domain(@NonNull String domain) {
         app.domain = domain;
         return this;
     }
@@ -72,8 +73,8 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param storeUrl {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidAppBuilder storeUrl(String storeUrl) {
+    @Override @NonNull
+    public AndroidAppBuilder storeUrl(@NonNull String storeUrl) {
         app.storeurl = storeUrl;
         return this;
     }
@@ -84,8 +85,8 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param categories {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidAppBuilder categories(String... categories) {
+    @Override @NonNull
+    public AndroidAppBuilder categories(@Nullable String... categories) {
         app.cat = categories;
         return this;
     }
@@ -96,7 +97,7 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param paid {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidAppBuilder paid(boolean paid) {
         app.paid = paid ? 1 : 0;
         return this;
@@ -108,7 +109,7 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param publisher {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidAppBuilder publisher(@NonNull Publisher publisher) {
         app.publisher = publisher;
         return this;
@@ -118,7 +119,7 @@ public final class AndroidAppBuilder implements App.Builder {
      * Returns a builder for the publisher object. A new {@link Publisher} object will be created if none exists.
      *
      * @return a builder wrapping the publisher object
-     */
+     */ @NonNull
     public AndroidPublisherBuilder publisher() {
         if (app.publisher == null) {
             app.publisher = new Publisher();
@@ -132,8 +133,8 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param pageCategories {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidAppBuilder pageCategories(String... pageCategories) {
+    @Override @NonNull
+    public AndroidAppBuilder pageCategories(@Nullable String... pageCategories) {
         app.pagecat = pageCategories;
         return this;
     }
@@ -144,8 +145,8 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param sectionCategories {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidAppBuilder sectionCategories(String... sectionCategories) {
+    @Override @NonNull
+    public AndroidAppBuilder sectionCategories(@Nullable String... sectionCategories) {
         app.sectioncat = sectionCategories;
         return this;
     }
@@ -156,7 +157,7 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param privacyPolicy {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidAppBuilder privacyPolicy(boolean privacyPolicy) {
         app.privacypolicy = privacyPolicy ? 1 : 0;
         return this;
@@ -168,8 +169,8 @@ public final class AndroidAppBuilder implements App.Builder {
      * @param version {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidAppBuilder version(String version) {
+    @Override @NonNull
+    public AndroidAppBuilder version(@Nullable String version) {
         app.ver = version;
         return this;
     }

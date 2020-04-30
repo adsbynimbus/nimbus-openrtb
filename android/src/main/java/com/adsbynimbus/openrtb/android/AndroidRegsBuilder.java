@@ -32,7 +32,7 @@ public final class AndroidRegsBuilder implements Regs.Builder {
      * @param coppa {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidRegsBuilder coppa(boolean coppa) {
         regs.coppa = coppa ? 1 : 0;
         return this;
@@ -44,7 +44,7 @@ public final class AndroidRegsBuilder implements Regs.Builder {
      * @param gdpr {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidRegsBuilder gdpr(boolean gdpr) {
         if (regs.ext == null) {
             regs.ext = new Regs.Extension();
@@ -59,8 +59,12 @@ public final class AndroidRegsBuilder implements Regs.Builder {
      * @param usPrivacyString {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public Regs.Builder ccpa(@NonNull String usPrivacyString) {
-        return null;
+    @Override @NonNull
+    public AndroidRegsBuilder ccpa(@NonNull String usPrivacyString) {
+        if (regs.ext == null) {
+            regs.ext = new Regs.Extension();
+        }
+        regs.ext.us_privacy = usPrivacyString;
+        return this;
     }
 }

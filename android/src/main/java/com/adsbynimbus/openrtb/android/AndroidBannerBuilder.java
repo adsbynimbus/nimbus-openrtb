@@ -2,6 +2,7 @@ package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.adsbynimbus.openrtb.impression.Banner;
 import com.adsbynimbus.openrtb.impression.Format;
@@ -34,8 +35,8 @@ public final class AndroidBannerBuilder implements Banner.Builder {
      * @param format {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidBannerBuilder format(@NonNull Format... format) {
+    @Override @NonNull
+    public AndroidBannerBuilder format(@Nullable Format... format) {
         banner.format = format;
         return this;
     }
@@ -47,7 +48,7 @@ public final class AndroidBannerBuilder implements Banner.Builder {
      * @param height {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBannerBuilder size(int width, int height) {
         banner.w = width;
         banner.h = height;
@@ -60,7 +61,7 @@ public final class AndroidBannerBuilder implements Banner.Builder {
      * @param position {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBannerBuilder position(@PositionInt int position) {
         banner.pos = position;
         return this;
@@ -72,7 +73,7 @@ public final class AndroidBannerBuilder implements Banner.Builder {
      * @param bidFloor {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBannerBuilder bidFloor(@FloatRange(from = 0) float bidFloor) {
         banner.bidfloor = bidFloor;
         return this;
@@ -84,7 +85,7 @@ public final class AndroidBannerBuilder implements Banner.Builder {
      * @param apis {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBannerBuilder apis(@ApiInt int... apis) {
         banner.api = apis;
         return this;
@@ -96,7 +97,7 @@ public final class AndroidBannerBuilder implements Banner.Builder {
      * @param battr {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBannerBuilder blockedAttributes(@CreativeAttributeInt int... battr) {
         banner.battr = battr;
         return this;

@@ -2,6 +2,7 @@ package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.adsbynimbus.openrtb.BidRequest;
 import com.adsbynimbus.openrtb.impression.Format;
@@ -40,7 +41,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param impression {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder impression(@NonNull Impression impression) {
         request.imp = new Impression[]{impression};
         return this;
@@ -51,6 +52,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      *
      * @return a builder wrapping the imp object
      */
+    @NonNull
     public AndroidImpressionBuilder impression() {
         if (request.imp == null || request.imp.length < 1 || request.imp[0] == null) {
             request.imp = new Impression[]{new Impression()};
@@ -64,7 +66,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param app {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder app(@NonNull App app) {
         request.app = app;
         return this;
@@ -75,6 +77,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      *
      * @return a builder wrapping the app object
      */
+    @NonNull
     public AndroidAppBuilder app() {
         if (request.app == null) {
             request.app = new App();
@@ -88,7 +91,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param device {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder device(@NonNull Device device) {
         request.device = device;
         return this;
@@ -99,6 +102,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      *
      * @return a builder wrapping the app object
      */
+    @NonNull
     public AndroidDeviceBuilder device() {
         if (request.device == null) {
             request.device = new Device();
@@ -113,7 +117,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param height {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder deviceSize(int width, int height) {
         request.format = new Format(width, height);
         return this;
@@ -125,7 +129,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param user {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder user(@NonNull User user) {
         request.user = user;
         return this;
@@ -136,6 +140,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      *
      * @return a builder wrapping the user object
      */
+    @NonNull
     public AndroidUserBuilder user() {
         if (request.user == null) {
             request.user = new User();
@@ -149,7 +154,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param enabled {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder test(boolean enabled) {
         if (enabled) {
             request.test = 1;
@@ -163,7 +168,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param timeout {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder timeout(@IntRange(from = 1) int timeout) {
         request.tmax = timeout;
         return this;
@@ -175,7 +180,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param regs {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder regs(@NonNull Regs regs) {
         request.regs = regs;
         return this;
@@ -186,6 +191,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      *
      * @return a builder wrapping the regs object
      */
+    @NonNull
     public AndroidRegsBuilder regs() {
         if (request.regs == null) {
             request.regs = new Regs();
@@ -199,7 +205,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param source {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder source(@NonNull Source source) {
         request.source = source;
         return this;
@@ -210,6 +216,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      *
      * @return a builder wrapping the source object
      */
+    @NonNull
     public AndroidSourceBuilder source() {
         if (request.source == null) {
             request.source = new Source();
@@ -223,8 +230,8 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param domains {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidBidRequestBuilder blockedDomains(@NonNull String... domains) {
+    @Override @NonNull
+    public AndroidBidRequestBuilder blockedDomains(@Nullable String... domains) {
         request.badv = domains;
         return this;
     }
@@ -235,7 +242,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param apiKey {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder apiKey(@NonNull String apiKey) {
         if (request.ext == null) {
             request.ext = new BidRequest.Extension();
@@ -250,7 +257,7 @@ public final class AndroidBidRequestBuilder implements BidRequest.Builder {
      * @param sessionId {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidBidRequestBuilder sessionId(@NonNull String sessionId) {
         if (request.ext == null) {
             request.ext = new BidRequest.Extension();

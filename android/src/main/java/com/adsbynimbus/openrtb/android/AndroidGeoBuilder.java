@@ -3,6 +3,7 @@ package com.adsbynimbus.openrtb.android;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.adsbynimbus.openrtb.targeting.user.Geo;
 import com.adsbynimbus.openrtb.targeting.user.Geo.LocationType;
@@ -42,7 +43,7 @@ public final class AndroidGeoBuilder implements Geo.Builder {
      * @param latitude {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidGeoBuilder latitude(@FloatRange(from = -90f, to = 90f) float latitude) {
         geo.lat = latitude;
         return this;
@@ -54,8 +55,8 @@ public final class AndroidGeoBuilder implements Geo.Builder {
      * @param countryCode {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidGeoBuilder country(@NonNull String countryCode) {
+    @Override @NonNull
+    public AndroidGeoBuilder country(@Nullable String countryCode) {
         geo.country = countryCode;
         return this;
     }
@@ -66,7 +67,7 @@ public final class AndroidGeoBuilder implements Geo.Builder {
      * @param longitude {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidGeoBuilder longitude(@FloatRange(from = -180, to = 180) float longitude) {
         geo.lon = longitude;
         return this;
@@ -78,7 +79,7 @@ public final class AndroidGeoBuilder implements Geo.Builder {
      * @param accuracy {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidGeoBuilder accuracy(int accuracy) {
         geo.accuracy = accuracy;
         return this;
@@ -90,8 +91,8 @@ public final class AndroidGeoBuilder implements Geo.Builder {
      * @param locationType {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidGeoBuilder locationType(@LocationTypeInt Integer locationType) {
+    @Override @NonNull
+    public AndroidGeoBuilder locationType(@Nullable @LocationTypeInt Integer locationType) {
         geo.type = locationType;
         return this;
     }
@@ -102,8 +103,8 @@ public final class AndroidGeoBuilder implements Geo.Builder {
      * @param city {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidGeoBuilder city(@NonNull String city) {
+    @Override @NonNull
+    public AndroidGeoBuilder city(@Nullable String city) {
         geo.city = city;
         return this;
     }
@@ -114,8 +115,8 @@ public final class AndroidGeoBuilder implements Geo.Builder {
      * @param metro {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidGeoBuilder metro(String metro) {
+    @Override @NonNull
+    public AndroidGeoBuilder metro(@Nullable String metro) {
         geo.metro = metro;
         return this;
     }
@@ -126,8 +127,8 @@ public final class AndroidGeoBuilder implements Geo.Builder {
      * @param state {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidGeoBuilder state(String state) {
+    @Override @NonNull
+    public AndroidGeoBuilder state(@Nullable String state) {
         geo.state = state;
         return this;
     }

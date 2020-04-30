@@ -33,7 +33,7 @@ public final class AndroidSourceBuilder implements Source.Builder {
      * @param sdkVersion {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidSourceBuilder omSdk(@NonNull String partnerName, @NonNull String sdkVersion) {
         if (source.ext == null) {
             source.ext = new Source.Extension();

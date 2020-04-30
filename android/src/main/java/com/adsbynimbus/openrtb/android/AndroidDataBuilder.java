@@ -33,8 +33,8 @@ public final class AndroidDataBuilder implements Data.Builder {
      * @param id {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidDataBuilder id(String id) {
+    @Override @NonNull
+    public AndroidDataBuilder id(@NonNull String id) {
         data.id = id;
         return this;
     }
@@ -45,8 +45,8 @@ public final class AndroidDataBuilder implements Data.Builder {
      * @param name {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidDataBuilder name(String name) {
+    @Override @NonNull
+    public AndroidDataBuilder name(@NonNull String name) {
         data.name = name;
         return this;
     }
@@ -57,8 +57,8 @@ public final class AndroidDataBuilder implements Data.Builder {
      * @param segments {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidDataBuilder segments(Segment... segments) {
+    @Override @NonNull
+    public AndroidDataBuilder segments(@NonNull Segment... segments) {
         data.segment = segments;
         return this;
     }

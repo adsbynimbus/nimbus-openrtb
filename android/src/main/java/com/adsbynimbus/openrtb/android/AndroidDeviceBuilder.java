@@ -6,6 +6,7 @@ import android.webkit.WebSettings;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.adsbynimbus.openrtb.targeting.user.Device;
 import com.adsbynimbus.openrtb.targeting.user.Device.ConnectionType;
@@ -63,7 +64,7 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @return {@inheritDoc}
      * @see WebSettings#getDefaultUserAgent(Context)
      */
-    @Override
+    @Override @NonNull
     public AndroidDeviceBuilder userAgent(@NonNull String userAgent) {
         device.ua = userAgent;
         return this;
@@ -75,8 +76,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @param geo {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidDeviceBuilder geo(@NonNull Geo geo) {
+    @Override @NonNull
+    public AndroidDeviceBuilder geo(@Nullable Geo geo) {
         device.geo = geo;
         return this;
     }
@@ -86,6 +87,7 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      *
      * @return a builder wrapping the geo object
      */
+    @NonNull
     public AndroidGeoBuilder geo() {
         if (device.geo == null) {
             device.geo = new Geo();
@@ -99,8 +101,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @param ipAddress {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidDeviceBuilder ipAddress(@NonNull String ipAddress) {
+    @Override @NonNull
+    public AndroidDeviceBuilder ipAddress(@Nullable String ipAddress) {
         device.ip = ipAddress;
         return this;
     }
@@ -111,8 +113,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @param deviceType {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public Device.Builder deviceType(@DeviceTypeInt Integer deviceType) {
+    @Override @NonNull
+    public Device.Builder deviceType(@DeviceTypeInt @Nullable Integer deviceType) {
         device.devicetype = deviceType;
         return this;
     }
@@ -123,8 +125,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @param connectionType {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidDeviceBuilder connectionType(@ConnectionTypeInt Integer connectionType) {
+    @Override @NonNull
+    public AndroidDeviceBuilder connectionType(@ConnectionTypeInt @Nullable Integer connectionType) {
         device.connectiontype = connectionType;
         return this;
     }
@@ -135,7 +137,7 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @param lat {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidDeviceBuilder limitedAdTracking(boolean lat) {
         final int val = lat ? 1 : 0;
         device.lmt = val;
@@ -150,7 +152,7 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @param height {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidDeviceBuilder size(int width, int height) {
         device.w = width;
         device.h = height;
@@ -163,8 +165,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @param language {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidDeviceBuilder language(String language) {
+    @Override @NonNull
+    public AndroidDeviceBuilder language(@Nullable String language) {
         device.language = language;
         return this;
     }
@@ -175,8 +177,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @param carrier {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
-    public AndroidDeviceBuilder carrier(String carrier) {
+    @Override @NonNull
+    public AndroidDeviceBuilder carrier(@Nullable String carrier) {
         device.carrier = carrier;
         return this;
     }
@@ -187,7 +189,7 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @param ifa {@inheritDoc}
      * @return {@inheritDoc}
      */
-    @Override
+    @Override @NonNull
     public AndroidDeviceBuilder advertisingId(@NonNull String ifa) {
         device.ifa = ifa;
         return this;
@@ -200,8 +202,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @return {@inheritDoc}
      * @see Build#MANUFACTURER
      */
-    @Override
-    public AndroidDeviceBuilder manufacturer(String make) {
+    @Override @NonNull
+    public AndroidDeviceBuilder manufacturer(@Nullable String make) {
         device.make = make;
         return this;
     }
@@ -213,8 +215,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @return {@inheritDoc}
      * @see Build#MODEL
      */
-    @Override
-    public AndroidDeviceBuilder model(String model) {
+    @Override @NonNull
+    public AndroidDeviceBuilder model(@Nullable String model) {
         device.model = model;
         return this;
     }
@@ -226,8 +228,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @return {@inheritDoc}
      * @see #ANDROID
      */
-    @Override
-    public AndroidDeviceBuilder osName(String os) {
+    @Override @NonNull
+    public AndroidDeviceBuilder osName(@Nullable String os) {
         device.os = os;
         return this;
     }
@@ -239,8 +241,8 @@ public final class AndroidDeviceBuilder implements Device.Builder {
      * @return {@inheritDoc}
      * @see Build.VERSION#RELEASE
      */
-    @Override
-    public AndroidDeviceBuilder osVersion(String osVersion) {
+    @Override @NonNull
+    public AndroidDeviceBuilder osVersion(@Nullable String osVersion) {
         device.osv = osVersion;
         return this;
     }
