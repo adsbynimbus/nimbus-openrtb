@@ -24,6 +24,7 @@ dependencies {
     api project(':java')
 
     implementation "androidx.annotation:annotation:$versions_androidx"
+    implementation "org.jetbrains:annotations:$verisons_annotations"
 }
 
 tasks.register("javadoc", Javadoc) {
@@ -33,6 +34,9 @@ tasks.register("javadoc", Javadoc) {
     classpath += configurations.releaseCompileClasspath
     exclude '**/BuildConfig.java'
     exclude '**/R.java'
+    failOnError = true
+    options.links += "https://developer.android.com/reference/"
+    options.links += "https://developer.android.com/reference/androidx/"
     inputs.files(javaPreCompileRelease)
     outputs.dir(destinationDir)
 }
