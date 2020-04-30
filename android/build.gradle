@@ -27,9 +27,8 @@ dependencies {
     implementation "org.jetbrains:annotations:$verisons_annotations"
 }
 
-tasks.register("javadoc", Javadoc) {
+def javadocTask = tasks.register("javadoc", Javadoc) {
     source += android.sourceSets.main.java.sourceFiles
-    source += project(':java').layout.files('src/main/java')
     classpath += files(android.getBootClasspath().join(File.pathSeparator))
     classpath += configurations.releaseCompileClasspath
     exclude '**/BuildConfig.java'
@@ -37,6 +36,7 @@ tasks.register("javadoc", Javadoc) {
     failOnError = true
     options.links += "https://developer.android.com/reference/"
     options.links += "https://developer.android.com/reference/androidx/"
+    options.links += file("/${project(":java").buildDir}/docs/javadoc/").toURI().toURL().toString()
     inputs.files(javaPreCompileRelease)
     outputs.dir(destinationDir)
 }
@@ -48,7 +48,7 @@ def sourcesTask = tasks.register('sourcesJar', Jar) {
 
 tasks.register("javadocJar", Jar) {
     archiveClassifier = 'javadoc'
-    from tasks.named('javadoc')
+    from javadocTask
 }
 
 configurations {
