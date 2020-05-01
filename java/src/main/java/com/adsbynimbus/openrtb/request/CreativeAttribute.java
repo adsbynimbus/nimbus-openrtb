@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb.impression;
+package com.adsbynimbus.openrtb.request;
 
 /**
  * Standard list of creative attributes that can describe an ad being served or serve as restrictions of thereof.

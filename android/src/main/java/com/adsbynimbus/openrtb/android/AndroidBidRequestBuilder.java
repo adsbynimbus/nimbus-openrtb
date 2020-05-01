@@ -4,14 +4,14 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.adsbynimbus.openrtb.BidRequest;
-import com.adsbynimbus.openrtb.impression.Format;
-import com.adsbynimbus.openrtb.impression.Impression;
-import com.adsbynimbus.openrtb.targeting.distribution.App;
-import com.adsbynimbus.openrtb.targeting.user.Device;
-import com.adsbynimbus.openrtb.targeting.Regs;
-import com.adsbynimbus.openrtb.targeting.Source;
-import com.adsbynimbus.openrtb.targeting.user.User;
+import com.adsbynimbus.openrtb.request.BidRequest;
+import com.adsbynimbus.openrtb.request.Format;
+import com.adsbynimbus.openrtb.request.Impression;
+import com.adsbynimbus.openrtb.request.App;
+import com.adsbynimbus.openrtb.request.Device;
+import com.adsbynimbus.openrtb.request.Regs;
+import com.adsbynimbus.openrtb.request.Source;
+import com.adsbynimbus.openrtb.request.User;
 
 /**
  * BidRequest builder implementation with Androidx annotations for validation

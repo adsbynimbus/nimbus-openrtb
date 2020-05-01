@@ -8,10 +8,10 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.adsbynimbus.openrtb.targeting.user.Device;
-import com.adsbynimbus.openrtb.targeting.user.Device.ConnectionType;
-import com.adsbynimbus.openrtb.targeting.user.Device.DeviceType;
-import com.adsbynimbus.openrtb.targeting.user.Geo;
+import com.adsbynimbus.openrtb.request.Device;
+import com.adsbynimbus.openrtb.request.Device.ConnectionType;
+import com.adsbynimbus.openrtb.request.Device.DeviceType;
+import com.adsbynimbus.openrtb.request.Geo;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

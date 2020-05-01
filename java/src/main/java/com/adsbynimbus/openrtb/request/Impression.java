@@ -1,6 +1,4 @@
-package com.adsbynimbus.openrtb.impression;
-
-import com.adsbynimbus.openrtb.BidRequest;
+package com.adsbynimbus.openrtb.request;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

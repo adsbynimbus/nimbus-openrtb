@@ -2,7 +2,7 @@ package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.NonNull;
 
-import com.adsbynimbus.openrtb.targeting.Source;
+import com.adsbynimbus.openrtb.request.Source;
 
 /**
  * Source builder implementation with Androidx annotations for validation

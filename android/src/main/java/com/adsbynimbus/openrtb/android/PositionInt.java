@@ -2,7 +2,7 @@ package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.IntDef;
 
-import com.adsbynimbus.openrtb.impression.Position;
+import com.adsbynimbus.openrtb.request.Position;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

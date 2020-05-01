@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb.impression;
+package com.adsbynimbus.openrtb.request;
 
 /**
  * Describes the position of the ad as a relative measure of visibility or prominence. This OpenRTB table has values

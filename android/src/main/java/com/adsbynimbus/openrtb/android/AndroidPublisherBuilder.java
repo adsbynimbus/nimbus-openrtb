@@ -3,7 +3,7 @@ package com.adsbynimbus.openrtb.android;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.adsbynimbus.openrtb.targeting.distribution.Publisher;
+import com.adsbynimbus.openrtb.request.Publisher;
 
 /**
  * Publisher builder implementation with Androidx annotations for validation

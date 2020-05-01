@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb.impression;
+package com.adsbynimbus.openrtb.request;
 
 /**
  * This object represents an allowed size (i.e., height and width combination)

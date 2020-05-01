@@ -4,9 +4,9 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.adsbynimbus.openrtb.impression.Banner;
-import com.adsbynimbus.openrtb.impression.Impression;
-import com.adsbynimbus.openrtb.impression.Video;
+import com.adsbynimbus.openrtb.request.Banner;
+import com.adsbynimbus.openrtb.request.Impression;
+import com.adsbynimbus.openrtb.request.Video;
 
 import java.util.List;
 

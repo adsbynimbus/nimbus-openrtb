@@ -2,7 +2,7 @@ package com.adsbynimbus.openrtb.android;
 
 import androidx.annotation.NonNull;
 
-import com.adsbynimbus.openrtb.targeting.Regs;
+import com.adsbynimbus.openrtb.request.Regs;
 
 /**
  * Regs builder object with Androidx annotations for validation

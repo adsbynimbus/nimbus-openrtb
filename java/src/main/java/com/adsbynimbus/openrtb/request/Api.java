@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb.impression;
+package com.adsbynimbus.openrtb.request;
 
 /**
  * API frameworks supported by the publisher for a {@link Banner} impression

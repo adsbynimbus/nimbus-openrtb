@@ -5,8 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 
-import com.adsbynimbus.openrtb.targeting.Data;
-import com.adsbynimbus.openrtb.targeting.user.User;
+import com.adsbynimbus.openrtb.request.Data;
+import com.adsbynimbus.openrtb.request.User;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

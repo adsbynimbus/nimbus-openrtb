@@ -1,4 +1,4 @@
-package com.adsbynimbus.openrtb.impression;
+package com.adsbynimbus.openrtb.request;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

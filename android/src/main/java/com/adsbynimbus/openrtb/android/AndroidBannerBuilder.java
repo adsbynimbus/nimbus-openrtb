@@ -4,8 +4,8 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.adsbynimbus.openrtb.impression.Banner;
-import com.adsbynimbus.openrtb.impression.Format;
+import com.adsbynimbus.openrtb.request.Banner;
+import com.adsbynimbus.openrtb.request.Format;
 
 /**
  * Banner builder implementation with Androidx annotations for validation

@@ -5,8 +5,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.adsbynimbus.openrtb.targeting.distribution.App;
-import com.adsbynimbus.openrtb.targeting.distribution.Publisher;
+import com.adsbynimbus.openrtb.request.App;
+import com.adsbynimbus.openrtb.request.Publisher;
 
 /**
  * App builder implementation with Androidx annotations for validation

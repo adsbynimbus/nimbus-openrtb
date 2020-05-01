@@ -6,12 +6,12 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.adsbynimbus.openrtb.impression.Video;
-import com.adsbynimbus.openrtb.impression.Video.DeliveryMethod;
-import com.adsbynimbus.openrtb.impression.Video.Linearity;
-import com.adsbynimbus.openrtb.impression.Video.Placement;
-import com.adsbynimbus.openrtb.impression.Video.PlaybackMethod;
-import com.adsbynimbus.openrtb.impression.Video.Protocol;
+import com.adsbynimbus.openrtb.request.Video;
+import com.adsbynimbus.openrtb.request.Video.DeliveryMethod;
+import com.adsbynimbus.openrtb.request.Video.Linearity;
+import com.adsbynimbus.openrtb.request.Video.Placement;
+import com.adsbynimbus.openrtb.request.Video.PlaybackMethod;
+import com.adsbynimbus.openrtb.request.Video.Protocol;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
