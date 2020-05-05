@@ -3,7 +3,7 @@ package com.adsbynimbus.openrtb.response
 /**
  * A winning bid response from Nimbus
  */
-class BidResponse {
+class NimbusResponse {
     
     /**
      * The type of creative returned.
