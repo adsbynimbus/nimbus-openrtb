@@ -12,11 +12,13 @@ class Data {
     /**
      * Exchange-specific ID for the data provider.
      */
+    @JvmField
     var id: String? = null
 
     /**
      * Exchange-specific name for the data provider.
      */
+    @JvmField
     var name: String? = null
 
     /**
@@ -24,6 +26,7 @@ class Data {
      *
      * @see [OpenRTB Section 3.2.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=31)
      */
+    @JvmField
     var segment: Array<Segment>? = null
 
     /**

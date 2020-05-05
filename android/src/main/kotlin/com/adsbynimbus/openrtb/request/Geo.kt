@@ -36,16 +36,19 @@ class Geo {
     /**
      * Latitude from -90.0 to +90.0, where negative is south.
      */
+    @JvmField
     var lat: Float? = null
 
     /**
      * Longitude from -180.0 to +180.0, where negative is west
      */
+    @JvmField
     var lon: Float? = null
 
     /**
      * Source of location data; recommended when passing lat/lon.
      */
+    @JvmField
     var type: Int? = null
 
     /**
@@ -53,11 +56,13 @@ class Geo {
      * device’s location services (i.e., type = 1). Note that this is the accuracy as reported from the device.
      * Consult OS specific documentation (e.g., Android, iOS) for exact interpretation.
      */
+    @JvmField
     var accuracy: Int? = null
 
     /**
      * Country code using ISO-3166-1-alpha-3.
      */
+    @JvmField
     var country: String? = null
 
     /**
@@ -65,6 +70,7 @@ class Geo {
      *
      * @see [United Nations Location Codes](http://www.unece.org/cefact/locode/service/location.htm)
      */
+    @JvmField
     var city: String? = null
 
     /**
@@ -72,11 +78,13 @@ class Geo {
      *
      * @see [Google Metro codes](code.google.com/apis/adwords/docs/appendix/metrocodes.html)
      */
+    @JvmField
     var metro: String? = null
 
     /**
      * 2-letter state code.
      */
+    @JvmField
     var state: String? = null
 
     /**

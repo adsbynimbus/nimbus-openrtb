@@ -13,6 +13,7 @@ class Source {
     /**
      * Placeholder for exchange-specific extensions to OpenRTB.
      */
+    @JvmField
     var ext: Extension? = null
 
     /**
@@ -24,11 +25,13 @@ class Source {
         /**
          * Partner name that identifies the OM SDK integration
          */
+        @JvmField
         var omidpn: String? = null
 
         /**
          * Current version of the OM SDK integration
          */
+        @JvmField
         var omidpv: String? = null
     }
 

@@ -11,22 +11,26 @@ class App {
     /**
      * App name (may be aliased at the publisher’s request).
      */
+    @JvmField
     var name: String? = null
 
     /**
      * A platform-specific application identifier intended to be unique to the app and independent of the exchange. On
      * Android, this should be a bundle or package name (e.g., com.foo.mygame). On iOS, it is typically a numeric ID.
      */
+    @JvmField
     var bundle: String? = null
 
     /**
      * Domain of the app (e.g., "adsbynimbus.com").
      */
+    @JvmField
     var domain: String? = null
 
     /**
      * App store URL for an installed app; for IQG 2.1 compliance
      */
+    @JvmField
     var storeurl: String? = null
 
     /**
@@ -34,6 +38,7 @@ class App {
      *
      * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=39)
      */
+    @JvmField
     var cat: Array<String>? = null
 
     /**
@@ -41,6 +46,7 @@ class App {
      *
      * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=39)
      */
+    @JvmField
     var sectioncat: Array<String>? = null
 
     /**
@@ -48,16 +54,19 @@ class App {
      *
      * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=39)
      */
+    @JvmField
     var pagecat: Array<String>? = null
 
     /**
      * Application version.
      */
+    @JvmField
     var ver: String? = null
 
     /**
      * Indicates if the app has a privacy policy, where 0 = no, 1 = yes
      */
+    @JvmField
     var privacypolicy: Int? = null
 
     /**
@@ -67,11 +76,13 @@ class App {
      *  * 1: paid
      *
      */
+    @JvmField
     var paid: Int? = null
 
     /**
      * Details about the publisher of the app.
      */
+    @JvmField
     var publisher: Publisher? = null
 
     /**

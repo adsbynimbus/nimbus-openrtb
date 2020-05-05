@@ -15,18 +15,21 @@ class Impression {
      * A unique identifier for this impression within the context of the bid request (typically, starts with 1
      * and increments). This field is optional as only 1 impression object is currently supported by Nimbus.
      */
+    @JvmField
     var id: String? = null
 
     /**
      * A banner object; required if this impression is offered as a banner ad opportunity or is used in the Nimbus
      * hybrid auction.
      */
+    @JvmField
     var banner: Banner? = null
 
     /**
      * A video object; required if this impression is offered as a video ad opportunity or is used in Nimbus
      * hybrid auction.
      */
+    @JvmField
     var video: Video? = null
 
     /**
@@ -35,6 +38,7 @@ class Impression {
      * <br></br>
      * If this value is omitted Nimbus will default to 0
      */
+    @JvmField
     var instl: Int? = null
 
     /**
@@ -44,6 +48,7 @@ class Impression {
      * If this value is omitted Nimbus defaults to 1.0
      *
      */
+    @JvmField
     var bidfloor: Float? = null
 
     /**
@@ -53,6 +58,7 @@ class Impression {
      * <br></br>
      * If this value is omitted Nimbus defaults to 1
      */
+    @JvmField
     var secure: Int? = null
 
     /**
@@ -60,6 +66,7 @@ class Impression {
      *
      * @see Extension
      */
+    @JvmField
     var ext: Extension? = null
 
     /**
@@ -71,16 +78,19 @@ class Impression {
         /**
          * Required string identifying the name of the placement that will be displayed on the Nimbus dashboard.
          */
+        @JvmField
         var position: String? = null
 
         /**
          * The identifier for this app provided by Facebook. Required if including Facebook demand in this request.
          */
+        @JvmField
         var facebook_app_id: String? = null
 
         /**
          * The list of key value pairs provided by a DTBRequest from the APS library.
          */
+        @JvmField
         var aps: List<*>? = null
     }
 

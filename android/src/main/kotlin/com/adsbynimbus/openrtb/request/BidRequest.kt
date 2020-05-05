@@ -15,32 +15,38 @@ class BidRequest {
     /**
      * Array of impression objects representing the impressions offered. Only 1 impression object is supported.
      */
+    @JvmField
     var imp: Array<Impression>? = null
 
     /**
      * Details about the publisher’s app (i.e., non-browser applications).
      */
+    @JvmField
     var app: App? = null
 
     /**
      * Details about the user’s device to which the impression will be delivered.
      */
+    @JvmField
     var device: Device? = null
 
     /**
      * This is not part of the spec, adding this here for convenience allows height and width to be passed without the
      * video/banner object to backwards support the GET
      */
+    @JvmField
     var format: Format? = null
 
     /**
      * Details about the human user of the device; the advertising audience.
      */
+    @JvmField
     var user: User? = null
 
     /**
      * Indicator of test mode in which auctions are not billable, where 0 = live mode, 1 = test mode
      */
+    @JvmField
     var test: Int? = null
 
     /**
@@ -50,26 +56,31 @@ class BidRequest {
      * <br></br>
      * If this value is omitted Nimbus will default to 500
      */
+    @JvmField
     var tmax: Int? = null
 
     /**
      * A Regs object that specifies any industry, legal, or governmental regulations in force for this request.
      */
+    @JvmField
     var regs: Regs? = null
 
     /**
      * A Source object that provides data about the inventory source and which entity makes the final decision.
      */
+    @JvmField
     var source: Source? = null
 
     /**
      * Block list of advertisers by their domains (e.g., "ford.com").
      */
+    @JvmField
     var badv: Array<String>? = null
 
     /**
      * Placeholder for exchange-specific extensions to OpenRTB.
      */
+    @JvmField
     var ext: Extension? = null
 
     /**
@@ -79,12 +90,14 @@ class BidRequest {
         /**
          * The publisher specific api key used to communicate with Nimbus
          */
+        @JvmField
         var api_key: String? = null
 
         /**
          * Any unique string value to identify the session. Defaults to [UUID.randomUUID] when using the
          * Nimbus SDK
          */
+        @JvmField
         var session_id: String? = null
     }
 

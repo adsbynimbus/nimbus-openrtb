@@ -11,16 +11,19 @@ class Segment {
     /**
      * ID of the data segment specific to the data provider.
      */
+    @JvmField
     var id: String? = null
 
     /**
      * Name of the data segment specific to the data provider.
      */
+    @JvmField
     var name: String? = null
 
     /**
      * String representation of the data segment value.
      */
+    @JvmField
     var value: String? = null
 
     /**

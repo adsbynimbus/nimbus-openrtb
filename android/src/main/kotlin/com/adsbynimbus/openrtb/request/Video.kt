@@ -170,11 +170,13 @@ class Video {
      * <br></br>
      * If this value is omitted Nimbus will default to 3.0
      */
+    @JvmField
     var bidfloor: Float? = null
 
     /**
      * Content MIME types supported (e.g., "video/3gp", "video/mp4").
      */
+    @JvmField
     var mimes: Array<String>? = null
 
     /**
@@ -183,6 +185,7 @@ class Video {
      * <br></br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @JvmField
     var minduration: Int? = null
 
     /**
@@ -191,21 +194,25 @@ class Video {
      * <br></br>
      * If this value is omitted Nimbus defaults to 60
      */
+    @JvmField
     var maxduration: Int? = null
 
     /**
      * Set of supported video protocols
      */
+    @JvmField
     var protocols: IntArray? = null
 
     /**
      * Width of the video player in device independent pixels (DIPS).
      */
+    @JvmField
     var w = 0
 
     /**
      * Height of the video player in device independent pixels (DIPS).
      */
+    @JvmField
     var h = 0
 
     /**
@@ -217,16 +224,19 @@ class Video {
      *  * -2: generic post roll
      *
      */
+    @JvmField
     var startdelay: Int? = null
 
     /**
      * Placement type for this video impression
      */
+    @JvmField
     var placement: Int? = null
 
     /**
      * Indicates if the impression must be linear, nonlinear, etc. If none specified, assume all are allowed.
      */
+    @JvmField
     var linearity: Int? = null
 
     /**
@@ -234,60 +244,65 @@ class Video {
      * markup/creative that is itself skippable, the Bid object should include the attr array with an element of
      * [CreativeAttribute.HAS_SKIP_BUTTON] indicating skippable video. Refer to [CreativeAttribute].
      */
+    @JvmField
     var skip: Int? = null
 
     /**
      * Supported delivery methods; if none specified, assume all are supported.
      */
+    @JvmField
     var delivery: IntArray? = null
 
     /**
      * Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is
      * skippable.
      *
-     * <br></br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @JvmField
     var skipmin: Int? = null
 
     /**
      * Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable.
      *
-     * <br></br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @JvmField
     var skipafter: Int? = null
 
     /**
      * Minimum bit rate in Kbps.
      *
-     * <br></br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @JvmField
     var minbitrate: Int? = null
 
     /**
      * Maximum bit rate in Kbps.
      *
-     * <br></br>
      * If this value is omitted Nimbus defaults to 0
      */
+    @JvmField
     var maxbitrate: Int? = null
 
     /**
      * Ad position on screen.
      */
+    @JvmField
     var pos: Int? = null
 
     /**
      * The event that causes playback to start
      */
+    @JvmField
     var playbackmethod: IntArray? = null
 
     /**
      * Set of supported API frameworks for this impression. If an API is not explicitly listed,
      * it is assumed not to be supported.
      */
+    @JvmField
     var api: IntArray? = null
 
     /**

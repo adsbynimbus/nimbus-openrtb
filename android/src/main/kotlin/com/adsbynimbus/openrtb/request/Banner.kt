@@ -14,49 +14,54 @@ package com.adsbynimbus.openrtb.request
  * @see [OpenRTB Section 3.2.6](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=19)
  */
 class Banner {
+
     /**
-     *
-     *
      * Minimum bid for this banner impression expressed in CPM. This value should be equal to or higher than the
      * value set on the [Impression] object.
      *
-     * <br></br>
      * If this value is omitted Nimbus will default to 2.0
      */
+    @JvmField
     var bidfloor: Float? = null
 
     /**
      * Set of creative attributes to block
      */
+    @JvmField
     var battr: IntArray? = null
 
     /**
      * Array of Format objects representing the banner sizes permitted. If none are specified, then use of the
      * h and w attributes is required.
      */
+    @JvmField
     var format: Array<Format>? = null
 
     /**
      * Exact width in device independent pixels (DIPS); required if the [Format] array is not specified or if this
      * object is configured for a banner size such as 320x50 or 300x50
      */
+    @JvmField
     var w: Int? = null
 
     /**
      * Exact height in device independent pixels (DIPS); required if the [Banner] array are specified or if this
      * object is configured for a banner size such as 320x50 or 300x50
      */
+    @JvmField
     var h: Int? = null
 
     /**
      * Ad position on screen
      */
+    @JvmField
     var pos: Int? = null
 
     /**
      * Set of supported Api frameworks for this banner impression. If an Api is not explicitly listed,
      * it is assumed not to be supported.
      */
+    @JvmField
     var api: IntArray? = null
 
     /**

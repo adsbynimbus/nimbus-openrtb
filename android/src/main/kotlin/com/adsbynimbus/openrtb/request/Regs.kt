@@ -17,11 +17,13 @@ class Regs {
      *
      * @see [OpenRTB Section 7.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=76)
      */
+    @JvmField
     var coppa: Int? = null
 
     /**
      * Regs extension object unique to Nimbus
      */
+    @JvmField
     var ext: Extension? = null
 
     /**
@@ -35,6 +37,7 @@ class Regs {
          * <br></br>
          * If this value is omitted Nimbus defaults to 0
          */
+        @JvmField
         var gdpr: Int? = null
 
         /**
@@ -54,6 +57,7 @@ class Regs {
          *
          * @see [US Privacy String Format](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md.us-privacy-string-format)
          */
+        @JvmField
         var us_privacy: String? = null
     }
 
