@@ -101,6 +101,18 @@ class BidRequest {
         var session_id: String? = null
     }
 
+    companion object {
+        /**
+         * Required header if making a request to Nimbus defining the OpenRTB version
+         */
+        const val HEADER_OPEN_RTB = "x-openrtb-version"
+
+        /**
+         * The current supported OpenRTB version for use with [.HEADER_OPEN_RTB]
+         */
+        const val OPEN_RTB_VERSION = "2.5"
+    }
+
     /**
      * Builder for constructing a BidRequest object
      *
