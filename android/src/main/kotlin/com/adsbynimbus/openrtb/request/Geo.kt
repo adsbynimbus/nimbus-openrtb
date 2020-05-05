@@ -100,7 +100,7 @@ class Geo {
          * @return this builder instance
          * @see .lat
          */
-        fun latitude(latitude: Float): Builder?
+        fun latitude(latitude: Float): Builder
 
         /**
          * Sets the 3 letter country code of this geo object.
@@ -109,7 +109,7 @@ class Geo {
          * @return this builder instance
          * @see .country
          */
-        fun country(countryCode: String?): Builder?
+        fun country(countryCode: String?): Builder
 
         /**
          * Sets the longitude of this geo object.
@@ -118,7 +118,7 @@ class Geo {
          * @return this builder instance
          * @see .lon
          */
-        fun longitude(longitude: Float): Builder?
+        fun longitude(longitude: Float): Builder
 
         /**
          * Sets the accuracy of the location data as reported by the device.
@@ -127,7 +127,7 @@ class Geo {
          * @return this builder instance
          * @see .accuracy
          */
-        fun accuracy(accuracy: Int): Builder?
+        fun accuracy(accuracy: Int): Builder
 
         /**
          * Sets the location type of this geo object.
@@ -138,7 +138,7 @@ class Geo {
          *
          * @see LocationType
          */
-        fun locationType(locationType: Int?): Builder?
+        fun locationType(locationType: Int?): Builder
 
         /**
          * Sets the city using the United Nations Code for Trade &amp; Transport Locations.
@@ -147,7 +147,7 @@ class Geo {
          * @return this builder instance
          * @see .city
          */
-        fun city(city: String?): Builder?
+        fun city(city: String?): Builder
 
         /**
          * Sets the Google metro code of this geo object.
@@ -156,7 +156,7 @@ class Geo {
          * @return this builder instance
          * @see .metro
          */
-        fun metro(metro: String?): Builder?
+        fun metro(metro: String?): Builder
 
         /**
          * Sets the 2 letter state code of this geo object.
@@ -165,6 +165,6 @@ class Geo {
          * @return this builder instance
          * @see .state
          */
-        fun state(state: String?): Builder?
+        fun state(state: String?): Builder
     }
 }

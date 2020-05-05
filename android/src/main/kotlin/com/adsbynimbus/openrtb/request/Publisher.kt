@@ -40,7 +40,7 @@ class Publisher {
          * @return this builder instance
          * @see .cat
          */
-        fun categories(vararg categories: String?): Builder?
+        fun categories(vararg categories: String?): Builder
 
         /**
          * Sets the name of this publisher.
@@ -49,7 +49,7 @@ class Publisher {
          * @return this builder instance
          * @see .name
          */
-        fun name(name: String?): Builder?
+        fun name(name: String?): Builder
 
         /**
          * Sets the top level domain of this publisher.
@@ -58,6 +58,6 @@ class Publisher {
          * @return this builder instance
          * @see .domain
          */
-        fun domain(domain: String?): Builder?
+        fun domain(domain: String?): Builder
     }
 }

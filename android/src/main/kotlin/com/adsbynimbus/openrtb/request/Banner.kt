@@ -78,7 +78,7 @@ class Banner {
          * @return this builder instance
          * @see .format
          */
-        fun format(vararg format: Format?): Builder?
+        fun format(vararg format: Format?): Builder
 
         /**
          * Sets the exact size of this banner impression. Use of [Builder.format] is recommended
@@ -90,7 +90,7 @@ class Banner {
          *
          * @see .h
          */
-        fun size(width: Int, height: Int): Builder?
+        fun size(width: Int, height: Int): Builder
 
         /**
          * Sets the position of this banner impression on the screen
@@ -99,7 +99,7 @@ class Banner {
          * @return this builder instance
          * @see .pos
          */
-        fun position(position: Int): Builder?
+        fun position(position: Int): Builder
 
         /**
          * Sets the bid floor of this banner impression
@@ -108,7 +108,7 @@ class Banner {
          * @return this builder instance
          * @see .bidfloor
          */
-        fun bidFloor(bidFloor: Float): Builder?
+        fun bidFloor(bidFloor: Float): Builder
 
         /**
          * Sets the supported apis for this banner impression.
@@ -117,7 +117,7 @@ class Banner {
          * @return this builder instance
          * @see .api
          */
-        fun apis(vararg apis: Int): Builder?
+        fun apis(vararg apis: Int): Builder
 
         /**
          * Sets creative attributes that should be blocked for this request
@@ -126,6 +126,6 @@ class Banner {
          * @return this builder instance
          * @see .battr
          */
-        fun blockedAttributes(vararg battr: Int): Builder?
+        fun blockedAttributes(vararg battr: Int): Builder
     }
 }

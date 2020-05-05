@@ -42,7 +42,7 @@ class Data {
          * @return this builder instance
          * @see .id
          */
-        fun id(id: String?): Builder?
+        fun id(id: String?): Builder
 
         /**
          * Sets the name of the data object.
@@ -51,7 +51,7 @@ class Data {
          * @return this builder instance
          * @see .name
          */
-        fun name(name: String?): Builder?
+        fun name(name: String?): Builder
 
         /**
          * Sets segmenting data.
@@ -62,6 +62,6 @@ class Data {
          *
          * @see Segment
          */
-        fun segments(vararg segments: Segment?): Builder?
+        fun segments(vararg segments: Segment?): Builder
     }
 }

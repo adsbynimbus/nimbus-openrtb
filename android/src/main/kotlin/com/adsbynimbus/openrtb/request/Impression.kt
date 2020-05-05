@@ -107,7 +107,7 @@ class Impression {
          * @return this builder instance
          * @see .id
          */
-        fun id(id: String?): Builder?
+        fun id(id: String?): Builder
 
         /**
          * Includes a banner in the auction for this impression
@@ -116,7 +116,7 @@ class Impression {
          * @return this builder instance
          * @see .banner
          */
-        fun banner(banner: Banner?): Builder?
+        fun banner(banner: Banner?): Builder
 
         /**
          * Includes a video in the auction for this impression
@@ -125,7 +125,7 @@ class Impression {
          * @return this builder instance
          * @see .video
          */
-        fun video(video: Video?): Builder?
+        fun video(video: Video?): Builder
 
         /**
          * Sets the bid floor of this impression.
@@ -137,7 +137,7 @@ class Impression {
          * @return this builder instance
          * @see .bidfloor
          */
-        fun bidFloor(bidFloor: Float): Builder?
+        fun bidFloor(bidFloor: Float): Builder
 
         /**
          * Sets to true if this placement is an interstitial
@@ -146,7 +146,7 @@ class Impression {
          * @return this builder instance
          * @see .instl
          */
-        fun interstitial(instl: Boolean): Builder?
+        fun interstitial(instl: Boolean): Builder
 
         /**
          * Set to true if this impression must be served over HTTPS, false to allow HTTP and HTTPS. This call is
@@ -157,7 +157,7 @@ class Impression {
          * @return this builder instance
          * @see .secure
          */
-        fun secure(secure: Boolean): Builder?
+        fun secure(secure: Boolean): Builder
 
         /**
          * Sets the Facebook App id of this impression
@@ -165,7 +165,7 @@ class Impression {
          * @param facebookAppId unique app identifier provided by Facebook
          * @return this builder instance
          */
-        fun facebookAppId(facebookAppId: String?): Builder?
+        fun facebookAppId(facebookAppId: String?): Builder
 
         /**
          * Sets the APS params for this impression
@@ -173,6 +173,6 @@ class Impression {
          * @param apsParams a list of key value pair maps from the APS sdk
          * @return this builder instance
          */
-        fun apsParams(apsParams: List<*>?): Builder?
+        fun apsParams(apsParams: List<*>?): Builder
     }
 }

@@ -48,6 +48,6 @@ class Source {
          * @param sdkVersion OM SDK version
          * @return this builder instance
          */
-        fun omSdk(partnerName: String?, sdkVersion: String?): Builder?
+        fun omSdk(partnerName: String?, sdkVersion: String?): Builder
     }
 }

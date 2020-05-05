@@ -98,7 +98,7 @@ class App {
          * @return this builder instance
          * @see .name
          */
-        fun name(name: String?): Builder?
+        fun name(name: String?): Builder
 
         /**
          * Sets the bundle id of this app.
@@ -107,7 +107,7 @@ class App {
          * @return this builder instance
          * @see .bundle
          */
-        fun bundle(bundle: String?): Builder?
+        fun bundle(bundle: String?): Builder
 
         /**
          * Sets the domain name of this app.
@@ -116,7 +116,7 @@ class App {
          * @return this builder instance
          * @see .domain
          */
-        fun domain(domain: String?): Builder?
+        fun domain(domain: String?): Builder
 
         /**
          * Sets this app store url.
@@ -125,7 +125,7 @@ class App {
          * @return this builder instance
          * @see .storeurl
          */
-        fun storeUrl(storeUrl: String?): Builder?
+        fun storeUrl(storeUrl: String?): Builder
 
         /**
          * Sets the IAB content categories that describe this app.
@@ -136,7 +136,7 @@ class App {
          *
          * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=39)
          */
-        fun categories(vararg cat: String?): Builder?
+        fun categories(vararg cat: String?): Builder
 
         /**
          * Sets the IAB content categories that describe the current page of this app.
@@ -147,7 +147,7 @@ class App {
          *
          * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=34)
          */
-        fun pageCategories(vararg pageCategories: String?): Builder?
+        fun pageCategories(vararg pageCategories: String?): Builder
 
         /**
          * Sets the IAB content categories that describe the current section of this app.
@@ -158,7 +158,7 @@ class App {
          *
          * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=34)
          */
-        fun sectionCategories(vararg sectionCategories: String?): Builder?
+        fun sectionCategories(vararg sectionCategories: String?): Builder
 
         /**
          * Sets the version of this app.
@@ -167,7 +167,7 @@ class App {
          * @return this builder instance
          * @see .ver
          */
-        fun version(version: String?): Builder?
+        fun version(version: String?): Builder
 
         /**
          * Sets to true if this app has a privacy policy associated with it.
@@ -176,7 +176,7 @@ class App {
          * @return this builder instance
          * @see .privacypolicy
          */
-        fun privacyPolicy(privacyPolicy: Boolean): Builder?
+        fun privacyPolicy(privacyPolicy: Boolean): Builder
 
         /**
          * Sets to true if this app is a paid app.
@@ -185,7 +185,7 @@ class App {
          * @return this builder instance
          * @see .paid
          */
-        fun paid(paid: Boolean): Builder?
+        fun paid(paid: Boolean): Builder
 
         /**
          * Sets the Publisher of this app.
@@ -196,7 +196,7 @@ class App {
          *
          * @see Publisher
          */
-        fun publisher(publisher: Publisher?): Builder?
+        fun publisher(publisher: Publisher?): Builder
     }
 
     companion object {

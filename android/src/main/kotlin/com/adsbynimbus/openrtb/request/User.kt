@@ -93,7 +93,7 @@ class User {
          * @return this builder instance
          * @see .age
          */
-        fun age(age: Int): Builder?
+        fun age(age: Int): Builder
 
         /**
          * Sets the buyer id. If using Facebook this is the bidder token.
@@ -102,7 +102,7 @@ class User {
          * @return this builder instance
          * @see .buyeruid
          */
-        fun buyerUid(buyerUid: String?): Builder?
+        fun buyerUid(buyerUid: String?): Builder
 
         /**
          * Sets the age of this user.
@@ -111,7 +111,7 @@ class User {
          * @return this builder instance
          * @see .yob
          */
-        fun yearOfBirth(yob: Int): Builder?
+        fun yearOfBirth(yob: Int): Builder
 
         /**
          * Sets the gender of this user.
@@ -120,7 +120,7 @@ class User {
          * @return this builder instance
          * @see .gender
          */
-        fun gender(gender: String?): Builder?
+        fun gender(gender: String?): Builder
 
         /**
          * Sets the keywords associated with this user.
@@ -129,7 +129,7 @@ class User {
          * @return this builder instance
          * @see .keywords
          */
-        fun keywords(keywords: String?): Builder?
+        fun keywords(keywords: String?): Builder
 
         /**
          * Sets a String of custom data to be sent to Nimbus for this user.
@@ -138,7 +138,7 @@ class User {
          * @return this builder instance
          * @see .custom_data
          */
-        fun customData(customData: String?): Builder?
+        fun customData(customData: String?): Builder
 
         /**
          * Sets an array of Data objects to be sent with this user.
@@ -149,7 +149,7 @@ class User {
          *
          * @see Data
          */
-        fun data(vararg data: Data?): Builder?
+        fun data(vararg data: Data?): Builder
 
         /**
          * Adds a publisher provided GDPR consent String to this User to be sent with a request.
@@ -158,7 +158,7 @@ class User {
          * @return this builder instance
          * @see Extension.consent
          */
-        fun gdprConsentString(consent: String?): Builder?
+        fun gdprConsentString(consent: String?): Builder
 
         /**
          * Sets to true if the user has consented to the publisher's data policy.
@@ -167,7 +167,7 @@ class User {
          * @return this builder instance
          * @see Extension.did_consent
          */
-        fun gdprDidConsent(didConsent: Boolean): Builder?
+        fun gdprDidConsent(didConsent: Boolean): Builder
     }
 
     companion object {

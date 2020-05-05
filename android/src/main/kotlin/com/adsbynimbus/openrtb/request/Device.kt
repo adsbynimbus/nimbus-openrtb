@@ -210,7 +210,7 @@ class Device {
          *
          * @see .dnt
          */
-        fun limitedAdTracking(lat: Boolean): Builder?
+        fun limitedAdTracking(lat: Boolean): Builder
 
         /**
          * Sets the physical device size of the screen.
@@ -222,7 +222,7 @@ class Device {
          *
          * @see .w
          */
-        fun size(width: Int, height: Int): Builder?
+        fun size(width: Int, height: Int): Builder
 
         /**
          * Sets the user agent of this device.
@@ -231,7 +231,7 @@ class Device {
          * @return this builder instance
          * @see .ua
          */
-        fun userAgent(userAgent: String?): Builder?
+        fun userAgent(userAgent: String?): Builder
 
         /**
          * Sets the location information of this device.
@@ -242,7 +242,7 @@ class Device {
          *
          * @see Geo
          */
-        fun geo(geo: Geo?): Builder?
+        fun geo(geo: Geo?): Builder
 
         /**
          * Sets the IP address of the device. This can be omitted as Nimbus will infer it from the inbound request.
@@ -251,7 +251,7 @@ class Device {
          * @return this builder instance
          * @see .ip
          */
-        fun ipAddress(ipAddress: String?): Builder?
+        fun ipAddress(ipAddress: String?): Builder
 
         /**
          * Sets the type of device.
@@ -262,7 +262,7 @@ class Device {
          *
          * @see DeviceType
          */
-        fun deviceType(deviceType: Int?): Builder?
+        fun deviceType(deviceType: Int?): Builder
 
         /**
          * Sets the device language.
@@ -271,7 +271,7 @@ class Device {
          * @return this builder instance
          * @see .language
          */
-        fun language(language: String?): Builder?
+        fun language(language: String?): Builder
 
         /**
          * Sets the device carrier.
@@ -280,7 +280,7 @@ class Device {
          * @return this builder instance
          * @see .carrier
          */
-        fun carrier(carrier: String?): Builder?
+        fun carrier(carrier: String?): Builder
 
         /**
          * Set the current connection type of this device.
@@ -291,7 +291,7 @@ class Device {
          *
          * @see ConnectionType
          */
-        fun connectionType(connectionType: Int?): Builder?
+        fun connectionType(connectionType: Int?): Builder
 
         /**
          * Sets the advertising id provided by the device's operating system.
@@ -300,7 +300,7 @@ class Device {
          * @return this builder instance
          * @see .ifa
          */
-        fun advertisingId(ifa: String?): Builder?
+        fun advertisingId(ifa: String?): Builder
 
         /**
          * Sets manufacturer name of this device (e.g. "Google").
@@ -309,7 +309,7 @@ class Device {
          * @return this builder instance
          * @see .make
          */
-        fun manufacturer(make: String?): Builder?
+        fun manufacturer(make: String?): Builder
 
         /**
          * Sets model name of this device (e.g. "Pixel").
@@ -318,7 +318,7 @@ class Device {
          * @return this builder instance
          * @see .model
          */
-        fun model(model: String?): Builder?
+        fun model(model: String?): Builder
 
         /**
          * Sets the operating system name of this device.
@@ -327,7 +327,7 @@ class Device {
          * @return this builder instance
          * @see .os
          */
-        fun osName(os: String?): Builder?
+        fun osName(os: String?): Builder
 
         /**
          * Sets the operating system version of this device.
@@ -336,6 +336,6 @@ class Device {
          * @return this builder instance
          * @see .osv
          */
-        fun osVersion(osVersion: String?): Builder?
+        fun osVersion(osVersion: String?): Builder
     }
 }

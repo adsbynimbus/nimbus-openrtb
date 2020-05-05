@@ -114,7 +114,7 @@ class BidRequest {
          * impression array if it does not exist and replace the current value in imp[0] if one does.
          * @return this builder instance
          */
-        fun impression(impression: Impression?): Builder?
+        fun impression(impression: Impression?): Builder
 
         /**
          * Sets the app details for this request.
@@ -122,7 +122,7 @@ class BidRequest {
          * @param app an app object to set or replace the value currently on this request.
          * @return this builder instance
          */
-        fun app(app: App?): Builder?
+        fun app(app: App?): Builder
 
         /**
          * Sets the device details of this request.
@@ -130,7 +130,7 @@ class BidRequest {
          * @param device a device object to set or replace the value currently on this request.
          * @return this builder instance
          */
-        fun device(device: Device?): Builder?
+        fun device(device: Device?): Builder
 
         /**
          * Sets the device size of this request in absolute pixels.
@@ -139,7 +139,7 @@ class BidRequest {
          * @param height height of the device in pixels
          * @return this builder instance
          */
-        fun deviceSize(width: Int, height: Int): Builder?
+        fun deviceSize(width: Int, height: Int): Builder
 
         /**
          * Set the user details of this request.
@@ -147,7 +147,7 @@ class BidRequest {
          * @param user a user object to set or replace the value currently on this request
          * @return this builder instance
          */
-        fun user(user: User?): Builder?
+        fun user(user: User?): Builder
 
         /**
          * Marks this request as a test.
@@ -155,7 +155,7 @@ class BidRequest {
          * @param enabled true if test mode is enabled, default is false
          * @return [Builder]
          */
-        fun test(enabled: Boolean): Builder?
+        fun test(enabled: Boolean): Builder
 
         /**
          * Sets the timeout of this request in ms.
@@ -166,7 +166,7 @@ class BidRequest {
          * @param timeout set or replace the timeout value on this request.
          * @return this builder instance
          */
-        fun timeout(timeout: Int): Builder?
+        fun timeout(timeout: Int): Builder
 
         /**
          * Sets the regs object of this request.
@@ -174,7 +174,7 @@ class BidRequest {
          * @param regs a regs object to set or replace the value currently on this request
          * @return this builder instance
          */
-        fun regs(regs: Regs?): Builder?
+        fun regs(regs: Regs?): Builder
 
         /**
          * Sets the source object of this request.
@@ -182,7 +182,7 @@ class BidRequest {
          * @param source a source object to set or replace the value currently on this request
          * @return this builder instance
          */
-        fun source(source: Source?): Builder?
+        fun source(source: Source?): Builder
 
         /**
          * Sets a list of blocked advertisers by domains.
@@ -190,7 +190,7 @@ class BidRequest {
          * @param domains a list of domain names to block
          * @return this builder instance
          */
-        fun blockedDomains(vararg domains: String?): Builder?
+        fun blockedDomains(vararg domains: String?): Builder
 
         /**
          * Sets the Nimbus API key.
@@ -198,7 +198,7 @@ class BidRequest {
          * @param apiKey the publisher specific api key provided by Nimbus
          * @return this builder instance
          */
-        fun apiKey(apiKey: String?): Builder?
+        fun apiKey(apiKey: String?): Builder
 
         /**
          * Sets the Nimbus session id.
@@ -206,6 +206,6 @@ class BidRequest {
          * @param sessionId any unique identifier for this session. Recommend using [UUID.randomUUID]
          * @return this builder instance
          */
-        fun sessionId(sessionId: String?): Builder?
+        fun sessionId(sessionId: String?): Builder
     }
 }

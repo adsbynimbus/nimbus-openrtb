@@ -320,7 +320,7 @@ class Video {
          *
          * @see Position
          */
-        fun position(position: Int?): Builder?
+        fun position(position: Int?): Builder
 
         /**
          * Sets the supported video mimeTypes
@@ -329,7 +329,7 @@ class Video {
          * @return this builder instance
          * @see .mimes
          */
-        fun mimes(vararg mimeTypes: String?): Builder?
+        fun mimes(vararg mimeTypes: String?): Builder
 
         /**
          * Sets the bid floor for this Video impression
@@ -341,7 +341,7 @@ class Video {
          * @return this builder instance
          * @see .bidfloor
          */
-        fun bidFloor(bidFloor: Float): Builder?
+        fun bidFloor(bidFloor: Float): Builder
 
         /**
          * Sets duration constraints for this Video impression
@@ -353,7 +353,7 @@ class Video {
          *
          * @see .maxduration
          */
-        fun duration(minDuration: Int, maxDuration: Int): Builder?
+        fun duration(minDuration: Int, maxDuration: Int): Builder
 
         /**
          * Sets a bitrate constraints for this video impression
@@ -365,7 +365,7 @@ class Video {
          *
          * @see .maxbitrate
          */
-        fun bitrate(minBitrate: Int, maxBitrate: Int): Builder?
+        fun bitrate(minBitrate: Int, maxBitrate: Int): Builder
 
         /**
          * Sets the video player width and height in density independent pixels
@@ -377,7 +377,7 @@ class Video {
          *
          * @see .h
          */
-        fun playerSize(width: Int, height: Int): Builder?
+        fun playerSize(width: Int, height: Int): Builder
 
         /**
          * Sets the supported protocols of this video impression
@@ -388,7 +388,7 @@ class Video {
          *
          * @see Protocol
          */
-        fun protocols(vararg protocols: Int): Builder?
+        fun protocols(vararg protocols: Int): Builder
 
         /**
          * Sets if the video is skippable. Not calling this function assumes it is not skippable.
@@ -402,7 +402,7 @@ class Video {
          *
          * @see .skipafter
          */
-        fun skipEnabled(skipMin: Int, skipAfter: Int): Builder?
+        fun skipEnabled(skipMin: Int, skipAfter: Int): Builder
 
         /**
          * Sets the start delay of this video impression
@@ -411,7 +411,7 @@ class Video {
          * @return this builder instance
          * @see .startdelay
          */
-        fun startDelay(startDelay: Int): Builder?
+        fun startDelay(startDelay: Int): Builder
 
         /**
          * Sets the playback method of this video impression.
@@ -422,7 +422,7 @@ class Video {
          *
          * @see PlaybackMethod
          */
-        fun playbackMethod(vararg playbackMethod: Int): Builder?
+        fun playbackMethod(vararg playbackMethod: Int): Builder
 
         /**
          * Sets the placement type of this video impression.
@@ -433,7 +433,7 @@ class Video {
          *
          * @see Placement
          */
-        fun placement(placement: Int?): Builder?
+        fun placement(placement: Int?): Builder
 
         /**
          * Sets the linearity of this video impression.
@@ -442,7 +442,7 @@ class Video {
          * @return this builder instance
          * @see .linearity
          */
-        fun linearity(linearity: Int?): Builder?
+        fun linearity(linearity: Int?): Builder
 
         /**
          * Set the desired content delivery method.
@@ -453,7 +453,7 @@ class Video {
          *
          * @see DeliveryMethod
          */
-        fun deliveryMethod(vararg deliveryMethod: Int): Builder?
+        fun deliveryMethod(vararg deliveryMethod: Int): Builder
 
         /**
          * Sets the supported api values
@@ -464,6 +464,6 @@ class Video {
          *
          * @see Api
          */
-        fun apis(vararg apis: Int): Builder?
+        fun apis(vararg apis: Int): Builder
     }
 }

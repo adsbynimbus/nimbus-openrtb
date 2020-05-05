@@ -39,7 +39,7 @@ class Segment {
          * @return this builder instance
          * @see .id
          */
-        fun id(id: String?): Builder?
+        fun id(id: String?): Builder
 
         /**
          * Sets the name of this segment.
@@ -48,7 +48,7 @@ class Segment {
          * @return this builder instance
          * @see .name
          */
-        fun name(name: String?): Builder?
+        fun name(name: String?): Builder
 
         /**
          * Sets the value of this segment.
@@ -57,6 +57,6 @@ class Segment {
          * @return this builder instance
          * @see .value
          */
-        fun value(value: String?): Builder?
+        fun value(value: String?): Builder
     }
 }

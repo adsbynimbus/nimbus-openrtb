@@ -74,7 +74,7 @@ class Regs {
          *
          * @see [OpenRTB Section 7.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=71)
          */
-        fun coppa(coppa: Boolean): Builder?
+        fun coppa(coppa: Boolean): Builder
 
         /**
          * Set to true if GDPR applies to this request
@@ -83,7 +83,7 @@ class Regs {
          * @return this builder instance
          * @see Extension.gdpr
          */
-        fun gdpr(gdpr: Boolean): Builder?
+        fun gdpr(gdpr: Boolean): Builder
 
         /**
          * A publisher generated string representing compliance with CCPA.
@@ -92,6 +92,6 @@ class Regs {
          * @return this builder instance
          * @see Extension.us_privacy
          */
-        fun ccpa(usPrivacyString: String?): Builder?
+        fun ccpa(usPrivacyString: String?): Builder
     }
 }
