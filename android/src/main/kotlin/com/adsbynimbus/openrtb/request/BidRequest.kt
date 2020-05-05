@@ -12,7 +12,7 @@ package com.adsbynimbus.openrtb.request
  *
  * [OpenRTB Section 3.2.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=15)
  */
-class BidRequest {
+open class BidRequest {
 
     /**
      * Array of impression objects representing the impressions offered.
@@ -95,7 +95,7 @@ class BidRequest {
     /**
      * BidRequest extension object unique to Nimbus
      */
-    class Extension {
+    open class Extension {
         /**
          * The publisher specific api key used to communicate with Nimbus
          */

@@ -7,7 +7,7 @@ package com.adsbynimbus.openrtb.request
  * @param h height in device independent pixels (DIPS).
  * [OpenRTB Section 3.2.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=23)
  */
-class Format(@JvmField val w: Int, @JvmField val h: Int) {
+open class Format(@JvmField val w: Int, @JvmField val h: Int) {
 
     companion object {
         /**

@@ -9,7 +9,7 @@ package com.adsbynimbus.openrtb.request
  * [OpenRTB Section 3.2.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
  * @see [Data]
  */
-class Segment {
+open class Segment {
     /**
      * ID of the data segment specific to the data provider.
      */

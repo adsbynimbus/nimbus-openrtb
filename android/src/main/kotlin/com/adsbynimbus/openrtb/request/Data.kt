@@ -8,7 +8,7 @@ package com.adsbynimbus.openrtb.request
  *
  * [OpenRTB Section 3.2.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
  */
-class Data {
+open class Data {
     /**
      * Exchange-specific ID for the data provider.
      */

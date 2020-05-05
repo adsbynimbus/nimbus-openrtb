@@ -8,7 +8,7 @@ package com.adsbynimbus.openrtb.request
  *
  * [OpenRTB Section 3.2.3](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=17)
  */
-class Regs {
+open class Regs {
     /**
      * Flag indicating if this request is subject to the COPPA regulations established by the USA FTC.
      *
@@ -31,7 +31,7 @@ class Regs {
     /**
      * Placeholder for exchange-specific extensions to OpenRTB
      */
-    class Extension {
+    open class Extension {
         /**
          * Flag indication if this request is subject to GDPR regulations.
          *
