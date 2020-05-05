@@ -1,21 +1,23 @@
 package com.adsbynimbus.openrtb.request
 
 /**
- * This object contains any legal, governmental, or industry regulations that apply to the request. The
- * coppa flag signals whether or not the request falls under the United States Federal Trade Commission’s
+ * This object contains any legal, governmental, or industry regulations that apply to the request.
+ *
+ * The coppa flag signals whether or not the request falls under the United States Federal Trade Commission’s
  * regulations for the United States Children’s Online Privacy Protection Act ("COPPA").
  *
- * @see [OpenRTB Section 3.2.3](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=17)
+ * [OpenRTB Section 3.2.3](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=17)
  */
 class Regs {
     /**
-     * Flag indicating if this request is subject to the COPPA regulations established by the USA FTC,
-     * where 0 = no, 1 = yes.
+     * Flag indicating if this request is subject to the COPPA regulations established by the USA FTC.
      *
-     * <br></br>
-     * If this value is omitted Nimbus defaults to 0
+     * * 0 = no
+     * * 1 = yes
      *
-     * @see [OpenRTB Section 7.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=76)
+     * If this value is omitted Nimbus defaults to 0.
+     *
+     * [OpenRTB Section 7.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=76)
      */
     @JvmField
     var coppa: Int? = null
@@ -31,11 +33,10 @@ class Regs {
      */
     class Extension {
         /**
-         * Flag indication if this request is subject to GDPR regulations. This flag will be set automatically by
-         * Nimbus based on the received IP address.
+         * Flag indication if this request is subject to GDPR regulations.
          *
-         * <br></br>
-         * If this value is omitted Nimbus defaults to 0
+         * This flag will be set automatically by Nimbus based on the received IP address. If this value is omitted
+         * Nimbus defaults to 0.
          */
         @JvmField
         var gdpr: Int? = null
@@ -46,10 +47,10 @@ class Regs {
          *
          * The CCPA privacy string is a 4 character string in the following format:
          *
-         *  * Integer - Privacy string version.
-         *  * [Y, N, -] - Publisher has provided explicit user notice.
-         *  * [Y, N, -] - User opted out of sale
-         *  * [Y, N, -] - Publisher operating under the Limited Service Provider Agreement
+         * Integer - Privacy string version.
+         * (Y, N, -) - Publisher has provided explicit user notice.
+         * (Y, N, -) - User opted out of sale
+         * (Y, N, -) - Publisher operating under the Limited Service Provider Agreement
          *
          *
          * If the user does not fall within a US Privacy jurisdiction, hyphens should be used in
@@ -70,9 +71,9 @@ class Regs {
          *
          * @param coppa true if COPPA applies to this request. Default is false
          * @return this builder instance
-         * @see .coppa
+         * @see [Regs.coppa]
          *
-         * @see [OpenRTB Section 7.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=71)
+         * [OpenRTB Section 7.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=71)
          */
         fun coppa(coppa: Boolean): Builder
 
@@ -81,7 +82,7 @@ class Regs {
          *
          * @param gdpr true if GDPR applies to this request. Default is false
          * @return this builder instance
-         * @see Extension.gdpr
+         * @see [Extension.gdpr]
          */
         fun gdpr(gdpr: Boolean): Builder
 
@@ -90,7 +91,7 @@ class Regs {
          *
          * @param usPrivacyString the four character CCPA privacy string
          * @return this builder instance
-         * @see Extension.us_privacy
+         * @see [Extension.us_privacy]
          */
         fun ccpa(usPrivacyString: String?): Builder
     }

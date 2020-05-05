@@ -1,11 +1,12 @@
 package com.adsbynimbus.openrtb.request
 
 /**
- * This object provides information pertaining to the device through which the user is interacting. Device
- * information includes its hardware, platform, location, and carrier data. The device can refer to a mobile
+ * This object provides information pertaining to the device through which the user is interacting.
+ *
+ * Device information includes its hardware, platform, location, and carrier data. The device can refer to a mobile
  * handset, a desktop computer, set top box, or other digital device.
  *
- * @see [OpenRTB Section 3.2.18](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=28)
+ * [OpenRTB Section 3.2.18](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=28)
  */
 class Device {
 
@@ -22,21 +23,25 @@ class Device {
     var geo: Geo? = null
 
     /**
-     * Standard "Do Not Track" flag as set in the header by the browser, where 0 = tracking is unrestricted,
-     * 1 = do not track
+     * Standard "Do Not Track" flag as set in the header by the browser.
+     *
+     * * 0 = tracking is unrestricted
+     * * 1 = do not track
      */
     @JvmField
     var dnt: Int? = null
 
     /**
-     * "Limit Ad Tracking" signal commercially endorsed (e.g., iOS, Android), where 0 = tracking is unrestricted,
-     * 1 = tracking must be limited per commercial guidelines.
+     * "Limit Ad Tracking" signal commercially endorsed (e.g., iOS, Android).
+     *
+     * * 0 = tracking is unrestricted
+     * * 1 = tracking must be limited per commercial guidelines
      */
     @JvmField
     var lmt: Int? = null
 
     /**
-     * IPv4 address closest to device. Will be set automatically by Nimbus
+     * IPv4 address closest to device. Will be set automatically by Nimbus.
      */
     @JvmField
     var ip: String? = null
@@ -90,8 +95,8 @@ class Device {
     var language: String? = null
 
     /**
-     * Carrier or ISP (e.g., "Verizon") using exchange curated string names which should be published
-     * to bidders a priori.
+     * Carrier or ISP (e.g., "Verizon") using exchange curated string names which should be published to bidders a
+     * priori.
      */
     @JvmField
     var carrier: String? = null
@@ -109,13 +114,17 @@ class Device {
     var ifa: String? = null
 
     companion object {
+
+        /**
+         * Device os string "android"
+         */
         const val ANDROID = "android"
     }
 
     /**
      * Options for the type of device connectivity
      *
-     * @see [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=56)
+     * [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
      */
     interface ConnectionType {
         companion object {
@@ -159,7 +168,7 @@ class Device {
     /**
      * Type of device from which the impression originated.
      *
-     * @see [OpenRTB Section 5.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=56)
+     * [OpenRTB Section 5.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
      */
     interface DeviceType {
         companion object {
@@ -203,7 +212,7 @@ class Device {
     /**
      * Builder for constructing a Device object
      *
-     * @see Device
+     * @see [Device]
      */
     interface Builder {
         /**
@@ -211,9 +220,8 @@ class Device {
          *
          * @param lat true if limited ad tracking is enabled for this device
          * @return this builder instance
-         * @see .lmt
-         *
-         * @see .dnt
+         * @see [Device.lmt]
+         * @see [Device.dnt]
          */
         fun limitedAdTracking(lat: Boolean): Builder
 
@@ -223,9 +231,8 @@ class Device {
          * @param width  physical width of the screen in pixels
          * @param height physical height of the screen in pixels
          * @return this builder instance
-         * @see .h
-         *
-         * @see .w
+         * @see [Device.h]
+         * @see [Device.w]
          */
         fun size(width: Int, height: Int): Builder
 
@@ -234,7 +241,7 @@ class Device {
          *
          * @param userAgent the user agent provided by the device WebView
          * @return this builder instance
-         * @see .ua
+         * @see [Device.ua]
          */
         fun userAgent(userAgent: String?): Builder
 
@@ -243,18 +250,19 @@ class Device {
          *
          * @param geo the location information of this device
          * @return this builder instance
-         * @see .geo
-         *
-         * @see Geo
+         * @see [Device.geo]
+         * @see [Geo]
          */
         fun geo(geo: Geo?): Builder
 
         /**
-         * Sets the IP address of the device. This can be omitted as Nimbus will infer it from the inbound request.
+         * Sets the IP address of the device.
+         *
+         * This can be omitted as Nimbus will infer it from the inbound request.
          *
          * @param ipAddress the ipv4 address closest to the device
          * @return this builder instance
-         * @see .ip
+         * @see [Device.ip]
          */
         fun ipAddress(ipAddress: String?): Builder
 
@@ -263,9 +271,8 @@ class Device {
          *
          * @param deviceType the type of device this is
          * @return this builder instance
-         * @see .devicetype
-         *
-         * @see DeviceType
+         * @see [Device.devicetype]
+         * @see [DeviceType]
          */
         fun deviceType(deviceType: Int?): Builder
 
@@ -274,7 +281,7 @@ class Device {
          *
          * @param language the device language using ISO-639-1-alpha-2
          * @return this builder instance
-         * @see .language
+         * @see [Device.language]
          */
         fun language(language: String?): Builder
 
@@ -283,7 +290,7 @@ class Device {
          *
          * @param carrier the carrier of the device (e.g. "Verizon")
          * @return this builder instance
-         * @see .carrier
+         * @see [Device.carrier]
          */
         fun carrier(carrier: String?): Builder
 
@@ -292,9 +299,8 @@ class Device {
          *
          * @param connectionType the latest resolvable connection type
          * @return this builder instance
-         * @see .connectiontype
-         *
-         * @see ConnectionType
+         * @see [Device.connectiontype]
+         * @see [ConnectionType]
          */
         fun connectionType(connectionType: Int?): Builder
 
@@ -303,7 +309,7 @@ class Device {
          *
          * @param ifa the advertising id as returned by the device's operating system
          * @return this builder instance
-         * @see .ifa
+         * @see [Device.ifa]
          */
         fun advertisingId(ifa: String?): Builder
 
@@ -312,7 +318,7 @@ class Device {
          *
          * @param make the manufacturer name
          * @return this builder instance
-         * @see .make
+         * @see [Device.make]
          */
         fun manufacturer(make: String?): Builder
 
@@ -321,7 +327,7 @@ class Device {
          *
          * @param model the name of this device model
          * @return this builder instance
-         * @see .model
+         * @see [Device.model]
          */
         fun model(model: String?): Builder
 
@@ -330,7 +336,7 @@ class Device {
          *
          * @param os the operating system name (e.g. "Android")
          * @return this builder instance
-         * @see .os
+         * @see [Device.os]
          */
         fun osName(os: String?): Builder
 
@@ -339,7 +345,7 @@ class Device {
          *
          * @param osVersion the operating system version (e.g "10", "9", "8.1")
          * @return this builder instance
-         * @see .osv
+         * @see [Device.osv]
          */
         fun osVersion(osVersion: String?): Builder
     }

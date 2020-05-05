@@ -3,7 +3,7 @@ package com.adsbynimbus.openrtb.request
 /**
  * Standard list of creative attributes that can describe an ad being served or serve as restrictions of thereof.
  *
- * @see [OpenRTB Section 5.3](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=50)
+ * [OpenRTB Section 5.3](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=50)
  */
 interface CreativeAttribute {
     companion object {

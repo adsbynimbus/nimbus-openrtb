@@ -1,14 +1,15 @@
 package com.adsbynimbus.openrtb.request
 
 /**
- * This object describes an ad placement or impression being auctioned. A single [BidRequest] can include
- * multiple [Impression] objects, a use case for which might be an exchange that supports selling all ad positions
+ * This object describes an ad placement or impression being auctioned.
+ *
+ * A single [BidRequest] can include multiple Impression objects, a use case for which might be an exchange that supports selling all ad positions
  * on a given page. Each [Impression] object has a required ID so that bids can reference them individually.
  * The presence of [Banner] (Section 3.2.6), [Video] (Section 3.2.7), subordinate to the Imp object
  * indicates the type of impression being offered. The publisher can choose one such type which is the typical case or
  * mix them at their discretion. However, any given bid for the impression must conform to one of the offered types.
  *
- * @see [OpenRTB Section 3.2.4](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=12)
+ * [OpenRTB Section 3.2.4](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=12)
  */
 class Impression {
     /**
@@ -33,10 +34,12 @@ class Impression {
     var video: Video? = null
 
     /**
-     * 1 = the ad is interstitial or full screen, 0 = not interstitial.
+     * An integer flag marking this impression object as an interstitial.
      *
-     * <br></br>
-     * If this value is omitted Nimbus will default to 0
+     * * 1 = the ad is interstitial or full screen,
+     * * 0 = not interstitial.
+     *
+     * If this value is omitted Nimbus will default to 0.
      */
     @JvmField
     var instl: Int? = null
@@ -44,18 +47,17 @@ class Impression {
     /**
      * Minimum bid for this impression expressed in CPM.
      *
-     * <br></br>
-     * If this value is omitted Nimbus defaults to 1.0
-     *
+     * If this value is omitted Nimbus defaults to 1.0.
      */
     @JvmField
     var bidfloor: Float? = null
 
     /**
-     * Flag to indicate if the impression requires secure HTTPS URL creative assets and markup, where 0 = non-secure,
-     * 1 = secure.
+     * Flag to indicate if the impression requires secure HTTPS URL creative assets and markup.
      *
-     * <br></br>
+     * * 0 = non-secure
+     * * 1 = secure
+     *
      * If this value is omitted Nimbus defaults to 1
      */
     @JvmField
@@ -64,7 +66,7 @@ class Impression {
     /**
      * Placeholder for exchange-specific extensions to OpenRTB
      *
-     * @see Extension
+     * @see [Extension]
      */
     @JvmField
     var ext: Extension? = null
@@ -72,7 +74,7 @@ class Impression {
     /**
      * Impression extension unique to Nimbus
      *
-     * @see Impression
+     * @see [Impression]
      */
     class Extension {
         /**
@@ -97,7 +99,7 @@ class Impression {
     /**
      * Builder for constructing an Impression object
      *
-     * @see Impression
+     * @see [Impression]
      */
     interface Builder {
         /**
@@ -105,7 +107,7 @@ class Impression {
          *
          * @param id an optional identifier
          * @return this builder instance
-         * @see .id
+         * @see [Impression.id]
          */
         fun id(id: String?): Builder
 
@@ -114,7 +116,7 @@ class Impression {
          *
          * @param banner a configured banner object
          * @return this builder instance
-         * @see .banner
+         * @see [Impression.banner]
          */
         fun banner(banner: Banner?): Builder
 
@@ -123,19 +125,18 @@ class Impression {
          *
          * @param video a configured video object
          * @return this builder instance
-         * @see .video
+         * @see [Impression.video]
          */
         fun video(video: Video?): Builder
 
         /**
          * Sets the bid floor of this impression.
          *
-         * <br></br>
          * If this value is omitted Nimbus will default to 1.0
          *
          * @param bidFloor bid floor represented in CPM
          * @return this builder instance
-         * @see .bidfloor
+         * @see [Impression.bidfloor]
          */
         fun bidFloor(bidFloor: Float): Builder
 
@@ -144,18 +145,19 @@ class Impression {
          *
          * @param instl true if this placement is an interstitial
          * @return this builder instance
-         * @see .instl
+         * @see [Impression.instl]
          */
         fun interstitial(instl: Boolean): Builder
 
         /**
-         * Set to true if this impression must be served over HTTPS, false to allow HTTP and HTTPS. This call is
-         * optional and Nimbus will default to only serving over HTTPS
+         * Set to true if this impression must be served over HTTPS, false to allow HTTP and HTTPS.
          *
-         * @param secure true if this impression must be served over HTTPS, false to allow HTTP and HTTPS.
-         * [Default: true]
+         * This call is optional and Nimbus will default to only serving over HTTPS
+         *
+         * @param secure defaults to true signalling impression must be served over HTTPS. Set to false to allow HTTP
+         * and HTTPS.
          * @return this builder instance
-         * @see .secure
+         * @see [Impression.secure]
          */
         fun secure(secure: Boolean): Builder
 
@@ -164,6 +166,7 @@ class Impression {
          *
          * @param facebookAppId unique app identifier provided by Facebook
          * @return this builder instance
+         * @see [Extension.facebook_app_id]
          */
         fun facebookAppId(facebookAppId: String?): Builder
 
@@ -172,6 +175,7 @@ class Impression {
          *
          * @param apsParams a list of key value pair maps from the APS sdk
          * @return this builder instance
+         * @see [Extension.aps]
          */
         fun apsParams(apsParams: List<*>?): Builder
     }

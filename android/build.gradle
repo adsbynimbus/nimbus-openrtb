@@ -48,7 +48,7 @@ tasks.named("dokka").configure {
     outputDirectory = "$buildDir/javadoc"
 }
 
-tasks.register("dokkaJar", Jar) {
+def javadocTask = tasks.register("dokkaJar", Jar) {
     archiveClassifier = 'javadoc'
     from tasks.named('dokka')
 }
@@ -62,6 +62,10 @@ artifacts {
     sourcesElements(sourcesTask) {
         builtBy(sourcesJar)
     }
+}
+
+tasks.named("bintrayUpload").configure {
+    dependsOn javadocTask
 }
 
 afterEvaluate {
@@ -79,7 +83,6 @@ afterEvaluate {
             bintray(MavenPublication) {
                 from components.release
 
-                artifact sourcesJar
                 artifact dokkaJar
             }
         }

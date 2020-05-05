@@ -1,16 +1,19 @@
 package com.adsbynimbus.openrtb.request
 
 /**
- * This object encapsulates various methods for specifying a geographic location. When subordinate to a
- * Device object, it indicates the location of the device which can also be interpreted as the user’s current
- * location. When subordinate to a User object, it indicates the location of the user’s home base (i.e., not
- * necessarily their current location).
- * The lat/lon attributes should only be passed if they conform to the accuracy depicted in the type
- * attribute. For example, the centroid of a geographic region such as postal code should not be passed.
+ * This object encapsulates various methods for specifying a geographic location.
  *
- * @see [OpenRTB Section 3.2.19](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=29)
+ * When subordinate to a Device object, it indicates the location of the device which can also be interpreted as the
+ * user’s current location. When subordinate to a User object, it indicates the location of the user’s home base
+ * (i.e., not necessarily their current location).
+ *
+ * The lat/lon attributes should only be passed if they conform to the accuracy depicted in the type attribute.
+ * For example, the centroid of a geographic region such as postal code should not be passed.
+ *
+ * [OpenRTB Section 3.2.19](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=29)
  */
 class Geo {
+
     /**
      * Indicates how the geographic information was determined.
      */
@@ -52,9 +55,11 @@ class Geo {
     var type: Int? = null
 
     /**
-     * Estimated location accuracy in meters; recommended when lat/lon are specified and derived from a
-     * device’s location services (i.e., type = 1). Note that this is the accuracy as reported from the device.
-     * Consult OS specific documentation (e.g., Android, iOS) for exact interpretation.
+     * Estimated location accuracy in meters.
+     *
+     * Recommended when lat/lon are specified and derived from adevice’s location services (i.e., type = 1).
+     * Note that this is the accuracy as reported from the device. Consult OS specific documentation
+     * (e.g., Android, iOS) for exact interpretation.
      */
     @JvmField
     var accuracy: Int? = null
@@ -90,7 +95,7 @@ class Geo {
     /**
      * Builder for constructing a Geo object
      *
-     * @see Geo
+     * @see [Geo]
      */
     interface Builder {
         /**
@@ -98,7 +103,7 @@ class Geo {
          *
          * @param latitude latitude from -90 to +90
          * @return this builder instance
-         * @see .lat
+         * @see [Geo.lat]
          */
         fun latitude(latitude: Float): Builder
 
@@ -107,7 +112,7 @@ class Geo {
          *
          * @param countryCode 3 letter country code
          * @return this builder instance
-         * @see .country
+         * @see [Geo.country]
          */
         fun country(countryCode: String?): Builder
 
@@ -116,7 +121,7 @@ class Geo {
          *
          * @param longitude longitude from -180 to +180
          * @return this builder instance
-         * @see .lon
+         * @see [Geo.lon]
          */
         fun longitude(longitude: Float): Builder
 
@@ -125,7 +130,7 @@ class Geo {
          *
          * @param accuracy the accuracy reported by the device
          * @return this builder instance
-         * @see .accuracy
+         * @see [Geo.accuracy]
          */
         fun accuracy(accuracy: Int): Builder
 
@@ -134,18 +139,17 @@ class Geo {
          *
          * @param locationType the location type
          * @return this builder instance
-         * @see .type
-         *
-         * @see LocationType
+         * @see [Geo.type]
+         * @see [LocationType]
          */
         fun locationType(locationType: Int?): Builder
 
         /**
-         * Sets the city using the United Nations Code for Trade &amp; Transport Locations.
+         * Sets the city using the United Nations Code for Trade & Transport Locations.
          *
          * @param city city code
          * @return this builder instance
-         * @see .city
+         * @see [Geo.city]
          */
         fun city(city: String?): Builder
 
@@ -154,7 +158,7 @@ class Geo {
          *
          * @param metro Google metro code
          * @return this builder instance
-         * @see .metro
+         * @see [Geo.metro]
          */
         fun metro(metro: String?): Builder
 
@@ -163,7 +167,7 @@ class Geo {
          *
          * @param state 2 letter state code
          * @return this builder instance
-         * @see .state
+         * @see [Geo.state]
          */
         fun state(state: String?): Builder
     }

@@ -2,11 +2,12 @@ package com.adsbynimbus.openrtb.request
 
 /**
  * This object contains information known or derived about the human user of the device (i.e., the
- * audience for advertising). The user id is an exchange artifact and may be subject to rotation or other
- * privacy policies. However, this user ID must be stable long enough to serve reasonably as the basis for
- * frequency capping and retargeting.
+ * audience for advertising).
  *
- * @see [OpenRTB Section 3.2.20](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=30)
+ * The user id is an exchange artifact and may be subject to rotation or other privacy policies. However, this user ID
+ * must be stable long enough to serve reasonably as the basis for frequency capping and retargeting.
+ *
+ * [OpenRTB Section 3.2.20](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=30)
  */
 class User {
     /**
@@ -16,8 +17,9 @@ class User {
     var age: Int? = null
 
     /**
-     * Buyer-specific ID for the user as mapped by the exchange for the buyer. Set to Facebook bidder token if
-     * integrating Facebook demand
+     * Buyer-specific ID for the user as mapped by the exchange for the buyer.
+     *
+     * Set to Facebook bidder token if integrating Facebook demand
      */
     @JvmField
     var buyeruid: String? = null
@@ -29,7 +31,12 @@ class User {
     var yob: Int? = null
 
     /**
-     * User gender where "male" = male, "female" = female. If omitted it is assumed to be unknown.
+     * The gender of this user.
+     *
+     * * "male" = male
+     * * "female" = female.
+     *
+     * If omitted it is assumed to be unknown.
      */
     @JvmField
     var gender: String? = null
@@ -41,8 +48,10 @@ class User {
     var keywords: String? = null
 
     /**
-     * Optional feature to pass bidder data that was set in the exchange’s cookie. The string must be in base85 cookie
-     * safe characters and be in any format. Proper JSON encoding must be used to include "escaped" quotation marks.
+     * Optional feature to pass bidder data that was set in the exchange’s cookie.
+     *
+     * The string must be in base85 cookie safe characters and be in any format. Proper JSON encoding must be used to
+     * include "escaped" quotation marks.
      */
     @JvmField
     var custom_data: String? = null
@@ -50,7 +59,7 @@ class User {
     /**
      * Additional user data. Each data object represents a different data source.
      *
-     * @see [OpenRTB Section 3.2.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=31)
+     * [OpenRTB Section 3.2.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
      */
     @JvmField
     var data: Array<Data>? = null
@@ -64,7 +73,7 @@ class User {
     /**
      * User extension object used by Nimbus
      *
-     * @see User
+     * @see [User]
      */
     class Extension {
         /**
@@ -74,7 +83,7 @@ class User {
         var consent: String? = null
 
         /**
-         * Set to 1 if the user has consented to data tracking, 0 if the user has opted out of data tracking
+         * 1 if the user has consented to data tracking, 0 if the user has opted out of data tracking
          */
         @JvmField
         var did_consent = 0
@@ -83,7 +92,7 @@ class User {
     /**
      * Builder for constructing a User object
      *
-     * @see User
+     * @see [User]
      */
     interface Builder {
         /**
@@ -91,7 +100,7 @@ class User {
          *
          * @param age the age of the user in years
          * @return this builder instance
-         * @see .age
+         * @see [User.age]
          */
         fun age(age: Int): Builder
 
@@ -100,7 +109,7 @@ class User {
          *
          * @param buyerUid set to the Facebook bidder token if using Facebook
          * @return this builder instance
-         * @see .buyeruid
+         * @see [User.buyeruid]
          */
         fun buyerUid(buyerUid: String?): Builder
 
@@ -118,7 +127,7 @@ class User {
          *
          * @param gender one of "Male" or "Female"
          * @return this builder instance
-         * @see .gender
+         * @see [User.gender]
          */
         fun gender(gender: String?): Builder
 
@@ -127,7 +136,7 @@ class User {
          *
          * @param keywords a comma delimited String of keywords
          * @return this builder instance
-         * @see .keywords
+         * @see [User.keywords]
          */
         fun keywords(keywords: String?): Builder
 
@@ -136,7 +145,7 @@ class User {
          *
          * @param customData a String representing some custom data
          * @return this builder instance
-         * @see .custom_data
+         * @see [User.custom_data]
          */
         fun customData(customData: String?): Builder
 
@@ -145,9 +154,8 @@ class User {
          *
          * @param data any number of Data objects describing this user
          * @return this builder instance
-         * @see .data
-         *
-         * @see Data
+         * @see [User.data]
+         * @see [Data]
          */
         fun data(vararg data: Data?): Builder
 
@@ -156,16 +164,16 @@ class User {
          *
          * @param consent publisher provided GDPR consent String
          * @return this builder instance
-         * @see Extension.consent
+         * @see [Extension.consent]
          */
         fun gdprConsentString(consent: String?): Builder
 
         /**
          * Sets to true if the user has consented to the publisher's data policy.
          *
-         * @param didConsent true if gave consent [Default: false]
+         * @param didConsent set to true if user gave consent, false otherwise
          * @return this builder instance
-         * @see Extension.did_consent
+         * @see [Extension.did_consent]
          */
         fun gdprDidConsent(didConsent: Boolean): Builder
     }

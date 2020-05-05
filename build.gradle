@@ -52,3 +52,10 @@ subprojects {
         dependsOn bintrayUpload
     }
 }
+
+tasks.register("clean", Delete) {
+    delete buildDir
+    subprojects.each { proj ->
+        dependsOn proj.tasks.named("clean")
+    }
+}

@@ -1,11 +1,13 @@
 package com.adsbynimbus.openrtb.request
 
 /**
- * Segment objects are essentially key-value pairs that convey specific units of data. The parent Data
- * object is a collection of such values from a given data provider. The specific segment names and value
+ * Segment objects are essentially key-value pairs that convey specific units of data.
+ *
+ * The parent Data object is a collection of such values from a given data provider. The specific segment names and value
  * options must be published by the exchange a priori to its bidders.
  *
- * @see [OpenRTB Section 3.2.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=31)
+ * [OpenRTB Section 3.2.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
+ * @see [Data]
  */
 class Segment {
     /**
@@ -29,7 +31,7 @@ class Segment {
     /**
      * Builder for constructing a Segment object
      *
-     * @see Segment
+     * @see [Segment]
      */
     interface Builder {
         /**
@@ -37,7 +39,7 @@ class Segment {
          *
          * @param id any string representing the id of this segment
          * @return this builder instance
-         * @see .id
+         * @see [Segment.id]
          */
         fun id(id: String?): Builder
 
@@ -46,7 +48,7 @@ class Segment {
          *
          * @param name any string representing the name of this segment
          * @return this builder instance
-         * @see .name
+         * @see [Segment.name]
          */
         fun name(name: String?): Builder
 
@@ -55,7 +57,7 @@ class Segment {
          *
          * @param value any string representing this segment value
          * @return this builder instance
-         * @see .value
+         * @see [Segment.value]
          */
         fun value(value: String?): Builder
     }

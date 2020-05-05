@@ -6,7 +6,9 @@ package com.adsbynimbus.openrtb.response
 class BidResponse {
     
     /**
-     * The type of creative returned. ["static", "video", "facebook"]
+     * The type of creative returned.
+     *
+     * This maps to one of "static", "video", or "native"
      */
     @JvmField
     var type: String? = null
@@ -30,7 +32,9 @@ class BidResponse {
     var bid_raw = 0.0
 
     /**
-     * The content type of this creative. "text/html" for static or a mime type for video ads
+     * The content type of this creative.
+     *
+     * "text/html" for static or a mime type for video ads
      */
     @JvmField
     var content_type: String? = null

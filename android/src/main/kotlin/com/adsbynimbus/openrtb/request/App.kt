@@ -5,7 +5,7 @@ package com.adsbynimbus.openrtb.request
  * mobile) as opposed to a website. A bid request must not contain both an App and a Site object. At a
  * minimum, it is useful to provide an App ID or bundle, but this is not strictly required.
  *
- * @see [OpenRTB Section 3.2.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=25)
+ * [OpenRTB Section 3.2.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=25)
  */
 class App {
     /**
@@ -36,7 +36,7 @@ class App {
     /**
      * Array of IAB content categories of the app.
      *
-     * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=39)
+     * [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
      */
     @JvmField
     var cat: Array<String>? = null
@@ -44,7 +44,7 @@ class App {
     /**
      * Array of IAB content categories that describe the current section of the app.
      *
-     * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=39)
+     * [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
      */
     @JvmField
     var sectioncat: Array<String>? = null
@@ -52,7 +52,7 @@ class App {
     /**
      * Array of IAB content categories that describe the current page or view of the app.
      *
-     * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=39)
+     * [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
      */
     @JvmField
     var pagecat: Array<String>? = null
@@ -64,7 +64,11 @@ class App {
     var ver: String? = null
 
     /**
-     * Indicates if the app has a privacy policy, where 0 = no, 1 = yes
+     * Indicates if the app has a privacy policy
+     *
+     *  * 0: no
+     *  * 1: yes
+     *
      */
     @JvmField
     var privacypolicy: Int? = null
@@ -96,7 +100,7 @@ class App {
          *
          * @param name the name of the app
          * @return this builder instance
-         * @see .name
+         * @see [App.name]
          */
         fun name(name: String?): Builder
 
@@ -105,7 +109,7 @@ class App {
          *
          * @param bundle the bundle id
          * @return this builder instance
-         * @see .bundle
+         * @see [App.bundle]
          */
         fun bundle(bundle: String?): Builder
 
@@ -114,7 +118,7 @@ class App {
          *
          * @param domain the domain associated with this app
          * @return this builder instance
-         * @see .domain
+         * @see [App.domain]
          */
         fun domain(domain: String?): Builder
 
@@ -123,7 +127,7 @@ class App {
          *
          * @param storeUrl the store url of this app
          * @return this builder instance
-         * @see .storeurl
+         * @see [App.storeurl]
          */
         fun storeUrl(storeUrl: String?): Builder
 
@@ -132,9 +136,8 @@ class App {
          *
          * @param cat list of IAB content categories
          * @return this builder instance
-         * @see .cat
-         *
-         * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=39)
+         * @see [App.cat]
+         * [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
          */
         fun categories(vararg cat: String?): Builder
 
@@ -143,9 +146,8 @@ class App {
          *
          * @param pageCategories list of IAB content categories
          * @return this builder instance
-         * @see .pagecat
-         *
-         * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=34)
+         * @see [App.pagecat]
+         * [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34)
          */
         fun pageCategories(vararg pageCategories: String?): Builder
 
@@ -154,9 +156,8 @@ class App {
          *
          * @param sectionCategories list of IAB content categories
          * @return this builder instance
-         * @see .sectioncat
-         *
-         * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf.page=34)
+         * @see [App.sectioncat]
+         * [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=34)
          */
         fun sectionCategories(vararg sectionCategories: String?): Builder
 
@@ -165,7 +166,7 @@ class App {
          *
          * @param version the app version friendly name
          * @return this builder instance
-         * @see .ver
+         * @see [App.ver]
          */
         fun version(version: String?): Builder
 
@@ -174,7 +175,7 @@ class App {
          *
          * @param privacyPolicy the privacy policy where 0: no policy; 1: policy
          * @return this builder instance
-         * @see .privacypolicy
+         * @see [App.privacypolicy]
          */
         fun privacyPolicy(privacyPolicy: Boolean): Builder
 
@@ -183,7 +184,7 @@ class App {
          *
          * @param paid true if this app is a paid app, false otherwise
          * @return this builder instance
-         * @see .paid
+         * @see [App.paid]
          */
         fun paid(paid: Boolean): Builder
 
@@ -192,9 +193,7 @@ class App {
          *
          * @param publisher the configured publisher object
          * @return this builder instance
-         * @see .publisher
-         *
-         * @see Publisher
+         * @see [Publisher]
          */
         fun publisher(publisher: Publisher?): Builder
     }
