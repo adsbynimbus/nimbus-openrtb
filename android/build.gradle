@@ -35,26 +35,52 @@ dependencies {
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions_kotlin"
 }
 
-tasks.register("javadoc", Javadoc) {
-    source += android.sourceSets.main.java.sourceFiles
-    classpath += files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += configurations.releaseCompileClasspath
-    exclude '**/BuildConfig.java'
-    exclude '**/R.java'
-    inputs.files(javaPreCompileRelease)
-    outputs.dir(destinationDir)
+configurations {
+    sourcesElements {
+        attributes {
+            attribute(Attribute.of("org.gradle.docstype", String), DocsType.SOURCES)
+        }
+    }
 }
 
-tasks.named('sourcesJar').configure {
+tasks.named("dokka").configure {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+tasks.register("dokkaJar", Jar) {
+    archiveClassifier = 'javadoc'
+    from tasks.named('dokka')
+}
+
+def sourcesTask = tasks.register('sourcesJar', Jar) {
     archiveClassifier = 'sources'
     from android.sourceSets.main.java.srcDirs
 }
 
+artifacts {
+    sourcesElements(sourcesTask) {
+        builtBy(sourcesJar)
+    }
+}
+
 afterEvaluate {
+    components.release.addVariantsFromConfiguration(configurations.sourcesElements) {
+        mapToMavenScope("compile")
+    }
+    components.release.withVariantsFromConfiguration(configurations.releaseApiPublication) {
+        if (configurationVariant.artifacts.isEmpty()) { skip() }
+    }
+    components.release.withVariantsFromConfiguration(configurations.releaseRuntimePublication) {
+        if (configurationVariant.artifacts.isEmpty()) { skip() }
+    }
     publishing {
         publications {
             bintray(MavenPublication) {
                 from components.release
+
+                artifact sourcesJar
+                artifact dokkaJar
             }
         }
     }
