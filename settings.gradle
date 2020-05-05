@@ -9,6 +9,8 @@ pluginManagement {
         eachPlugin {
             if (requested.id.id.startsWith("com.android")) {
                 useModule("com.android.tools.build:gradle:${requested.version}")
+            } else if (requested.id.id.startsWith("kotlin")) {
+                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
             }
         }
     }
