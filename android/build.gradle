@@ -1,5 +1,7 @@
 plugins {
     id "com.android.library" version "$versions_agp"
+    id "kotlin-android" version "$versions_kotlin"
+    id "org.jetbrains.dokka" version "$versions_dokka"
 }
 
 android {
@@ -7,7 +9,6 @@ android {
 
     defaultConfig {
         minSdkVersion 17
-        targetSdkVersion 29
         versionName project.version
         consumerProguardFiles 'consumer-proguard-rules.pro'
 
@@ -18,17 +19,24 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs += "src/main/kotlin"
+        }
+    }
 }
 
 dependencies {
-    api project(':java')
-
-    implementation "androidx.annotation:annotation:$versions_androidx"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions_kotlin"
 }
 
 tasks.register("javadoc", Javadoc) {
     source += android.sourceSets.main.java.sourceFiles
-    source += project(':java').layout.files('src/main/java')
     classpath += files(android.getBootClasspath().join(File.pathSeparator))
     classpath += configurations.releaseCompileClasspath
     exclude '**/BuildConfig.java'
