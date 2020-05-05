@@ -12,7 +12,7 @@ package com.adsbynimbus.openrtb.request
  *
  * [OpenRTB Section 3.2.19](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=29)
  */
-class Geo {
+open class Geo {
 
     /**
      * Indicates how the geographic information was determined.

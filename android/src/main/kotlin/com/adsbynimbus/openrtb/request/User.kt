@@ -9,7 +9,7 @@ package com.adsbynimbus.openrtb.request
  *
  * [OpenRTB Section 3.2.20](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=30)
  */
-class User {
+open class User {
     /**
      * Age of the user
      */
@@ -75,7 +75,7 @@ class User {
      *
      * @see [User]
      */
-    class Extension {
+    open class Extension {
         /**
          * Publisher provided GDPR consent string
          */

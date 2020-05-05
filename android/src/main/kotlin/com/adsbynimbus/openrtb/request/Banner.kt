@@ -14,7 +14,7 @@ package com.adsbynimbus.openrtb.request
  *
  * [OpenRTB Section 3.2.6](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=19)
  */
-class Banner {
+open class Banner {
 
     /**
      * Minimum bid for this banner impression expressed in CPM.
