@@ -88,11 +88,6 @@ public class BidRequest {
     public static class Extension {
 
         /**
-         * The publisher specific api key used to communicate with Nimbus
-         */
-        public String api_key;
-
-        /**
          * Any unique string value to identify the session. Defaults to {@link UUID#randomUUID()} when using the
          * Nimbus SDK
          */
@@ -189,14 +184,6 @@ public class BidRequest {
          * @return this builder instance
          */
          Builder blockedDomains(String... domains);
-
-        /**
-         * Sets the Nimbus API key.
-         *
-         * @param apiKey the publisher specific api key provided by Nimbus
-         * @return this builder instance
-         */
-        Builder apiKey(String apiKey);
 
         /**
          * Sets the Nimbus session id.

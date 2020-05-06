@@ -96,11 +96,6 @@ open class BidRequest {
      * BidRequest extension object unique to Nimbus
      */
     open class Extension {
-        /**
-         * The publisher specific api key used to communicate with Nimbus
-         */
-        @JvmField
-        var api_key: String? = null
 
         /**
          * Any unique string value to identify the session. Defaults to a random UUID when using the Nimbus SDK
@@ -112,9 +107,9 @@ open class BidRequest {
     companion object {
 
         /**
-         * Required header if making a request to Nimbus defining the OpenRTB version
+         * Required header for all requests to Nimbus defining the OpenRTB version
          */
-        const val HEADER_OPEN_RTB = "x-openrtb-version"
+        const val HEADER_OPEN_RTB = "X-Openrtb-Version"
 
         /**
          * The current supported OpenRTB version by this request object
@@ -211,14 +206,6 @@ open class BidRequest {
          * @return this builder instance
          */
         fun blockedDomains(vararg domains: String?): Builder
-
-        /**
-         * Sets the Nimbus API key.
-         *
-         * @param apiKey the publisher specific api key provided by Nimbus
-         * @return this builder instance
-         */
-        fun apiKey(apiKey: String?): Builder
 
         /**
          * Sets the Nimbus session id.
