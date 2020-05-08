@@ -11,13 +11,13 @@ open class NimbusResponse {
      * This maps to one of "static", "video", or "native"
      */
     @JvmField
-    var type: String? = null
+    var type: String = ""
 
     /**
      * This unique auction id. Represented as a GUID
      */
     @JvmField
-    var auction_id: String? = null
+    var auction_id: String = ""
 
     /**
      * This winning auction's bid in cents
@@ -67,7 +67,7 @@ open class NimbusResponse {
      * The network that won this auction
      */
     @JvmField
-    var network: String? = null
+    var network: String = ""
 
     /**
      * An [Trackers] object containing additional urls for measurement
