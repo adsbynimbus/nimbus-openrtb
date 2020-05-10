@@ -2,7 +2,7 @@ package oneone
 
 import (
 	"github.com/francoispqt/gojay"
-	"github.com/timehop/nimbus-openrtb/go/pool"
+	"github.com/timehop/nimbus-openrtb/go/internal/pool"
 	"github.com/timehop/nimbus-openrtb/go/request/native/oneone/request"
 )
 
