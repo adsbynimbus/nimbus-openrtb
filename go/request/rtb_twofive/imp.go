@@ -11,6 +11,7 @@ type Imp struct {
 	ID       string  `json:"id,omitempty"                   valid:"optional"`
 	Banner   *Banner `json:"banner,omitempty"               valid:"optional"`
 	Video    *Video  `json:"video,omitempty"                valid:"optional"`
+	Native   *Native `json:"native,omitempty"                valid:"optional"`
 	Instl    int     `json:"instl"                          valid:"range(0|1),optional"` // 0 = not interstitial, 1 = interstitial
 	BidFloor float64 `json:"bidfloor"                       valid:"optional"`
 	Secure   *int    `json:"secure"                         valid:"range(0|1),optional"`
@@ -29,6 +30,7 @@ func (i *Imp) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.StringKeyOmitEmpty("id", i.ID)
 	enc.ObjectKeyOmitEmpty("banner", i.Banner)
 	enc.ObjectKeyOmitEmpty("video", i.Video)
+	enc.ObjectKeyOmitEmpty("native", i.Native)
 	enc.IntKey("instl", i.Instl)
 	enc.Float64Key("bidfloor", i.BidFloor)
 	if i.Secure != nil {
@@ -63,6 +65,15 @@ func (i *Imp) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 		err := dec.Object(value)
 		if err == nil {
 			i.Video = value
+		}
+
+		return err
+
+	case "native":
+		var value = &Native{}
+		err := dec.Object(value)
+		if err == nil {
+			i.Native = value
 		}
 
 		return err
