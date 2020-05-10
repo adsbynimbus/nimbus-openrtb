@@ -39,7 +39,6 @@ func main() {
 	defer close()
 
 	clientOptional := func(d *client.Driver) {
-		// check the endpoints every 20 minutes
 		d.Client = httpClient
 	}
 
