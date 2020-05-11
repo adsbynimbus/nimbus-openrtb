@@ -21,11 +21,13 @@ class Native {
     /**
      * This ID of this native typed impression object
      */
+    @JvmField
     var id: String? = null
 
     /**
      * Request payload complying with the Native Ad Specification
      */
+    @JvmField
     var request: String = ""
 
     /**
@@ -33,6 +35,7 @@ class Native {
      *
      * Highly recommended for efficient parsing.
      */
+    @JvmField
     var ver: String? = null
 
     /**
@@ -40,10 +43,12 @@ class Native {
      *
      * If an API is not explicitly listed, it is assumed not to be supported.
      */
+    @JvmField
     var api: IntArray? = null
 
     /**
      * Set of creative attributes to block.
      */
+    @JvmField
     var battr: IntArray? = null
 }

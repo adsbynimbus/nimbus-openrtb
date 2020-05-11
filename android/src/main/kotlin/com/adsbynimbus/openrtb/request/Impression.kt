@@ -34,6 +34,13 @@ open class Impression {
     var video: Video? = null
 
     /**
+     * A native object;  required if this impression is offered as a native ad opportunity or is used in a Nimbus
+     * hybrid auction
+     */
+    @JvmField
+    var native: Native? = null
+
+    /**
      * An integer flag marking this impression object as an interstitial.
      *
      * * 1 = the ad is interstitial or full screen,
