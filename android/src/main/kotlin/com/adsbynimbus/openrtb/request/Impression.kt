@@ -35,9 +35,10 @@ open class Impression {
 
     /**
      * A native object;  required if this impression is offered as a native ad opportunity or is used in a Nimbus
-     * hybrid auction
+     * hybrid auction.
+     *
+     * This field is not exposed as a JvmField due to a keyword name clash when writing in Java
      */
-    @JvmField
     var native: Native? = null
 
     /**
