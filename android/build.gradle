@@ -33,6 +33,8 @@ android {
 
 dependencies {
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions_kotlin"
+
+    implementation "androidx.annotation:annotation:$versions_androidx"
 }
 
 configurations {
