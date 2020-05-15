@@ -51,4 +51,12 @@ class Native {
      */
     @JvmField
     var battr: IntArray? = null
+
+    /**
+     * Minimum bid for this native impression expressed in CPM.
+     *
+     * This value should be equal to or higher than the value set on the [Impression] object.
+     */
+    @JvmField
+    var bidfloor: Float? = null
 }
