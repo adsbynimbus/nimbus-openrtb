@@ -6,16 +6,20 @@ import "github.com/francoispqt/gojay"
 // the surrounding content (e.g., a sponsored Twitter or Facebook post). As such, the response must be
 // well-structured to afford the publisher fine-grained control over rendering.
 type Native struct {
-	ID      string `json:"id,omitempty"      valid:"optional"`
-	Request string `json:"request,omitempty" valid:"required"`
-	Ver     string `json:"ver,omitempty"     valid:"optional"`
-	API     []int  `json:"api,omitempty"     valid:"optional"`
-	Battr   []int  `json:"battr,omitempty"   valid:"optional"`
+	ID       string   `json:"id,omitempty"       valid:"optional"`
+	BidFloor *float64 `json:"bidfloor,omitempty" valid:"optional"`
+	Request  string   `json:"request,omitempty"  valid:"required"`
+	Ver      string   `json:"ver,omitempty"      valid:"optional"`
+	API      []int    `json:"api,omitempty"      valid:"optional"`
+	Battr    []int    `json:"battr,omitempty"    valid:"optional"`
 }
 
 // MarshalJSONObject implements MarshalerJSONObject
 func (n *Native) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.StringKeyOmitEmpty("id", n.ID)
+	if n.BidFloor != nil {
+		enc.Float64KeyOmitEmpty("bidfloor", *n.BidFloor)
+	}
 	enc.StringKeyOmitEmpty("request", n.Request)
 	enc.StringKeyOmitEmpty("ver", n.Ver)
 	var aPISlice = Ints(n.API)
@@ -35,6 +39,14 @@ func (n *Native) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 	switch k {
 	case "id":
 		return dec.String(&n.ID)
+
+	case "bidfloor":
+		var value float64
+		err := dec.Float64(&value)
+		if err == nil {
+			n.BidFloor = &value
+		}
+		return err
 
 	case "request":
 		return dec.String(&n.Request)
