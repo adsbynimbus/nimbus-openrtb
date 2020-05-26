@@ -90,7 +90,7 @@ open class NimbusResponse {
     /**
      * Additional tracking urls
      */
-    class Trackers {
+    open class Trackers {
         /**
          * A list of urls to fire a request to when an impression is registered
          */
