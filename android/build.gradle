@@ -17,17 +17,18 @@ android {
     }
 
     buildTypes {
-        r8 {
+        consumer {
             initWith debug
             postprocessing {
                 removeUnusedCode true
                 obfuscate true
                 optimizeCode true
+                proguardFiles 'consumer-proguard-rules.pro'
             }
         }
     }
 
-    testBuildType "r8"
+    testBuildType "consumer"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -59,6 +60,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$versions_junit5"
     testImplementation "org.spekframework.spek2:spek-dsl-jvm:$versions_spek"
     testImplementation "org.spekframework.spek2:spek-runner-junit5:$versions_spek"
+    testImplementation "com.google.code.gson:gson:$versions_gson"
 }
 
 configurations {
