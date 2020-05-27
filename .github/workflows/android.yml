@@ -1,15 +1,15 @@
 name: Android
 
 on:
-  push:
+  pull_request:
+    branches:
+      - master
     tags-ignore:
       - '**'
     paths:
       - 'android/**'
-      - 'java/**'
       - '.github/workflows/android*'
-      - '*.gradle'
-      - 'gradle.properties'
+      - '!**/docs/**'
 
   release:
     types: [published]
