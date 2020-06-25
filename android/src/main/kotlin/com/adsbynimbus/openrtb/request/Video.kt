@@ -166,6 +166,30 @@ open class Video {
     }
 
     /**
+     * CompanionType
+     *
+     * [OpenRTB Section 5.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=54)
+     */
+    interface CompanionType {
+        companion object {
+            /**
+             * URI to a static resource such as an image
+             */
+            const val STATIC = 1
+
+            /**
+             * HTML to display the companion element
+             */
+            const val HTML = 2
+
+            /**
+             * URI source for an IFrame to display the companion element
+             */
+            const val IFRAME = 3
+        }
+    }
+
+    /**
      * Minimum bid for this video impression expressed in CPM.
      *
      * If this value is omitted Nimbus will default to 3.0
@@ -309,6 +333,22 @@ open class Video {
      */
     @JvmField
     var api: IntArray? = null
+
+    /**
+     * Array of Banner objects if companion ads are available
+     */
+    @JvmField
+    var companionad: Array<Banner>? = null
+
+    /**
+     * Supported VAST companion ad types.
+     *
+     * Recommended if requesting companion ads
+     *
+     * @see [CompanionType]
+     */
+    @JvmField
+    var companiontype: IntArray? = null
 
     /**
      * Builder for constructing a Video object
@@ -458,5 +498,22 @@ open class Video {
          * @see [Api]
          */
         fun apis(vararg apis: Int): Builder
+
+        /**
+         * Sets the list of support companion ads
+         *
+         * @param companionAds list of request companion ads
+         * @return this builder instance
+         */
+        fun companionAds(vararg companionAds: Banner?): Builder
+
+        /**
+         * Sets the supported companion ad types
+         *
+         * @param companionAdTypes set of supported api values
+         * @return this builder instance
+         * @see [CompanionType]
+         */
+        fun companionAdTypes(vararg companionAdTypes: Int): Builder
     }
 }

@@ -6,7 +6,10 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.adsbynimbus.openrtb.request.Banner;
 import com.adsbynimbus.openrtb.request.Video;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -143,6 +146,18 @@ public final class AndroidVideoBuilder implements Video.Builder {
     @Override @NonNull
     public AndroidVideoBuilder apis(@ApiInt @Nullable int... apis) {
         video.api = apis;
+        return this;
+    }
+
+    @Override @NonNull
+    public AndroidVideoBuilder companionAds(Banner... companionAds) {
+        video.companionad = companionAds;
+        return this;
+    }
+
+    @Override @NonNull
+    public AndroidVideoBuilder companionAdTypes(@NotNull int... companionAdTypes) {
+        video.companiontype = companionAdTypes;
         return this;
     }
 }
