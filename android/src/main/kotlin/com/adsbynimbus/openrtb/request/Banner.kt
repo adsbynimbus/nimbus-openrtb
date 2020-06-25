@@ -68,6 +68,17 @@ open class Banner {
     var api: IntArray? = null
 
     /**
+     * The type of companion ad if used in a Video object
+     *
+     * * 0 - concurrent
+     * * 1 - end card
+     *
+     * @see [Video.companionad]
+     */
+    @JvmField
+    var vcm: Int? = null
+
+    /**
      * Builder for constructing a Banner object
      *
      * @see Banner
@@ -130,5 +141,14 @@ open class Banner {
          * @see [Banner.battr]
          */
         fun blockedAttributes(vararg battr: Int): Builder
+
+        /**
+         * The type of companion ad if used in a Video object
+         *
+         * @param vcm companion ad type: 0 - concurrent, 1 - end card
+         * @return this builder instance
+         * @see [Video.companionad]
+         */
+        fun vcm(vcm: Int): Builder
     }
 }

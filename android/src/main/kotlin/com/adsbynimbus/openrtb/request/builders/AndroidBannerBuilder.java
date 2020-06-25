@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import com.adsbynimbus.openrtb.request.Banner;
 import com.adsbynimbus.openrtb.request.Format;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Banner builder implementation with Androidx annotations for validation
  */
@@ -58,6 +60,12 @@ public final class AndroidBannerBuilder implements Banner.Builder {
     @Override @NonNull
     public AndroidBannerBuilder blockedAttributes(@CreativeAttributeInt @NonNull int... battr) {
         banner.battr = battr;
+        return this;
+    }
+
+    @Override @NotNull
+    public Banner.Builder vcm(int vcm) {
+        banner.vcm = vcm;
         return this;
     }
 }
