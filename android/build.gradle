@@ -17,6 +17,7 @@ android {
     }
 
     buildTypes {
+        // The following build type is used to test the R8 rules
         consumer {
             initWith debug
             postprocessing {
@@ -39,13 +40,8 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
 
-    sourceSets {
-        main {
-            java.srcDirs += "src/main/kotlin"
-        }
-        test {
-            java.srcDirs += "src/test/kotlin"
-        }
+    sourceSets.each {
+        it.java.srcDirs += "src/$it.name/kotlin"
     }
 }
 
