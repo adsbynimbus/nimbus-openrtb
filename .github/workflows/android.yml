@@ -31,6 +31,6 @@ jobs:
       - name: Publish
         if: success() && github.event_name == 'release'
         env:
-          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
-          BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
+          ORG_GRADLE_PROJECT_nimbusUsername: ${{ secrets.BINTRAY_USER }}
+          ORG_GRADLE_PROJECT_nimbusPassword: ${{ secrets.BINTRAY_API_KEY }}
         run: gradle publish
