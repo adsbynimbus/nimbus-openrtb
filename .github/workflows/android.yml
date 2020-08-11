@@ -23,14 +23,19 @@ jobs:
       TAG_NAME: ${{ github.ref }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
 
       - name: Build
-        run: gradle build
+        run: ./gradlew build
 
       - name: Publish
         if: success() && github.event_name == 'release'
         env:
           ORG_GRADLE_PROJECT_nimbusUsername: ${{ secrets.BINTRAY_USER }}
           ORG_GRADLE_PROJECT_nimbusPassword: ${{ secrets.BINTRAY_API_KEY }}
-        run: gradle publish
+        run: ./gradlew publish
