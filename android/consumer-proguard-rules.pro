@@ -1,7 +1,7 @@
 -keepclassmembers class com.adsbynimbus.openrtb.request.* {
-    public *;
+    public !static <fields>;
 }
 
 -keepclassmembers class com.adsbynimbus.openrtb.response.NimbusResponse** {
-    public *;
+    public <fields>;
 }

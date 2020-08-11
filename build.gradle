@@ -22,11 +22,12 @@ subprojects {
     apply plugin: "com.jfrog.bintray"
 
     tasks.named("publish").configure {
+        def nimbusCredentials = providers.credentials(PasswordCredentials, 'nimbus')
         bintray {
-            user System.getenv("BINTRAY_USER") ?: System.getProperty('bintray.user')
-            key System.getenv("BINTRAY_API_KEY") ?: System.getProperty('bintray.apikey')
-            // Default: false. Whether to run this as dry-run, without deploying
+            user nimbusCredentials.get().username
+            key nimbusCredentials.get().password
             publications = ["bintray"]
+            // Default: false. Whether to run this as dry-run, without deploying
             dryRun = System.getenv('GITHUB_WORKFLOW') == null
             // Default: false. Whether to override version artifacts already published
             override = System.getenv('GITHUB_WORKFLOW') != null
