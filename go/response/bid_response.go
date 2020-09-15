@@ -1,6 +1,8 @@
 package response
 
-import "github.com/francoispqt/gojay"
+import (
+	"github.com/francoispqt/gojay"
+)
 
 // Bid represents what Nimbus responds with and is unique to the Nimbus environment
 type Bid struct {
@@ -16,11 +18,11 @@ type Bid struct {
 	Network        string    `json:"network"`
 	Trackers       *Trackers `json:"trackers,omitempty"`
 	PlacementID    string    `json:"placement_id,omitempty"`
+	Ext            *BidExt   `json:"ext,omitempty"`
 }
 
-// Trackers provides a forward thinking impression structure that clients have to fire
-type Trackers struct {
-	ImpressionTrackers []string `json:"impression_trackers,omitempty"`
+type BidExt struct {
+	Skadn *Skadn `json:"skadn,omitempty"`
 }
 
 // UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
@@ -69,6 +71,15 @@ func (r *Bid) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 	case "placement_id":
 		return dec.String(&r.PlacementID)
 
+	case "ext":
+		var value = &BidExt{}
+		err := dec.Object(value)
+		if err == nil {
+			r.Ext = value
+		}
+
+		return err
+
 	}
 	return nil
 }
@@ -77,15 +88,16 @@ func (r *Bid) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 func (r *Bid) NKeys() int { return 0 }
 
 // UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
-func (t *Trackers) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
+func (e *BidExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	switch k {
-	case "impression_trackers":
-		var aSlice = Strings{}
-		err := dec.Array(&aSlice)
-		if err == nil && len(aSlice) > 0 {
-			t.ImpressionTrackers = []string(aSlice)
+	case "skadn":
+		var value = &Skadn{}
+		err := dec.Object(value)
+		if err == nil {
+			e.Skadn = value
 		}
+
 		return err
 
 	}
@@ -93,4 +105,4 @@ func (t *Trackers) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 }
 
 // NKeys returns the number of keys to unmarshal
-func (t *Trackers) NKeys() int { return 0 }
+func (e *BidExt) NKeys() int { return 0 }
