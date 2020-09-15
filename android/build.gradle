@@ -3,7 +3,10 @@ plugins {
     id "kotlin-android" version "$versions_kotlin"
     id "org.jetbrains.dokka" version "$versions_dokka"
     id "de.mannodermaus.android-junit5" version "$versions_android_junit5"
+    id "maven-publish"
 }
+
+def isCiBuild = System.getenv('GITHUB_WORKFLOW') != null
 
 android {
     compileSdkVersion 29
@@ -88,10 +91,6 @@ artifacts {
     }
 }
 
-tasks.named("bintrayUpload").configure {
-    dependsOn javadocTask
-}
-
 afterEvaluate {
     components.release.addVariantsFromConfiguration(configurations.sourcesElements) {
         mapToMavenScope("compile")
@@ -102,12 +101,20 @@ afterEvaluate {
     components.release.withVariantsFromConfiguration(configurations.releaseRuntimePublication) {
         if (configurationVariant.artifacts.isEmpty()) { skip() }
     }
+
     publishing {
         publications {
-            bintray(MavenPublication) {
+            library(MavenPublication) {
                 from components.release
 
-                artifact dokkaJar
+                artifact javadocTask
+            }
+        }
+        repositories {
+            maven {
+                name "bintray"
+                url "https://api.bintray.com/maven/timehop/$rootProject.name/$project.name/;publish=${isCiBuild ? 1 : 0}"
+                credentials(PasswordCredentials)
             }
         }
     }

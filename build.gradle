@@ -1,7 +1,3 @@
-plugins {
-    id "com.jfrog.bintray" version "$versions_bintray" apply false
-}
-
 allprojects {
     repositories {
         google()
@@ -14,43 +10,6 @@ allprojects {
             return it.substring(1)
         }
         return it
-    }
-}
-
-subprojects {
-    apply plugin: "maven-publish"
-    apply plugin: "com.jfrog.bintray"
-
-    tasks.named("publish").configure {
-        def nimbusCredentials = providers.credentials(PasswordCredentials, 'nimbus')
-        bintray {
-            user nimbusCredentials.get().username
-            key nimbusCredentials.get().password
-            publications = ["bintray"]
-            // Default: false. Whether to run this as dry-run, without deploying
-            dryRun = System.getenv('GITHUB_WORKFLOW') == null
-            // Default: false. Whether to override version artifacts already published
-            override = System.getenv('GITHUB_WORKFLOW') != null
-            // Default: false. Whether version should be auto published after an upload
-            publish = true
-            pkg {
-                repo = rootProject.name // the name of the repository you created on Bintray
-                name = project.name // the name of the package you created inside it
-                userOrg = "timehop"
-                version {
-                    name = project.version
-                    released = new Date()
-                    vcsTag = project.version
-                }
-            }
-        }
-
-        bintrayUpload {
-            dependsOn tasks.named('build')
-            dependsOn tasks.matching({ it.name.startsWith('generatePomFile') })
-        }
-
-        dependsOn bintrayUpload
     }
 }
 
