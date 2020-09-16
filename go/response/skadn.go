@@ -5,10 +5,10 @@ import "github.com/francoispqt/gojay"
 type Skadn struct {
 	Version    string `json:"version"       valid:"optional"`
 	Network    string `json:"network"       valid:"optional"`
-	Campaign   string `json:"campaign"      valid:"optional"`
-	Itunesitem string `json:"itunesitem"    valid:"optional"`
-	Nonce      string `json:"nonce"         valid:"optional"`
-	Sourceapp  string `json:"sourceapp"     valid:"optional"`
+	Campaign   string `json:"campaign"      valid:"required"`
+	Itunesitem string `json:"itunesitem"    valid:"required"`
+	Nonce      string `json:"nonce"         valid:"required"`
+	Sourceapp  string `json:"sourceapp"     valid:"required"`
 	Timestamp  string `json:"timestamp"     valid:"optional"`
 	Signature  string `json:"signature"     valid:"optional"`
 }
