@@ -301,6 +301,11 @@ func TestBidRequestMarshaling(t *testing.T) {
 							},
 							FacebookAppID: "facebook_app_id",
 							Position:      "App Open",
+							Skadn: &Skadn{
+								Version:    "2.0",
+								SourceApp:  "foo.bundle",
+								Skadnetids: []string{"cDkw7geQsH.skadnetwork"},
+							},
 						},
 					},
 				},
