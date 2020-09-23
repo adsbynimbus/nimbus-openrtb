@@ -2,8 +2,8 @@
 
 ## Adding platforms
 1) Create or checkout a branch named platform/{platform-name}
-2) Commit code and open a Pull Request to master
-3) Squash and merge into master
+2) Commit code and open a Pull Request to main
+3) Squash and merge into main
 4) Delete branch platform/{platform-name}
 
 ## Working on platform updates
