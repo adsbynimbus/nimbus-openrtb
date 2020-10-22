@@ -20,10 +20,11 @@ type Imp struct {
 
 // ImpExt ...
 type ImpExt struct {
-	APS           []APS  `json:"aps,omitempty"             valid:"optional"`
-	FacebookAppID string `json:"facebook_app_id,omitempty" valid:"optional"` // needed for pubs that have FB hybrid SDK solution in thier stack
-	Position      string `json:"position,omitempty"        valid:"required"` // flexible optional field for publishers to track on ad position performance
-	Skadn         *Skadn `json:"skadn"                     valid:"optional"`
+	APS                []APS              `json:"aps,omitempty"                   valid:"optional"`
+	FacebookAppID      string             `json:"facebook_app_id,omitempty"       valid:"optional"`
+	FacebookTestAdType FacebookTestAdType `json:"facebook_test_ad_type,omitempty" valid:"optional"` // used of facebook test ads are to be returned https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing
+	Position           string             `json:"position,omitempty"              valid:"required"` // flexible optional field for publishers to track on ad position performance
+	Skadn              *Skadn             `json:"skadn"                           valid:"optional"`
 }
 
 // MarshalJSONObject implements MarshalerJSONObject
@@ -114,6 +115,7 @@ func (e *ImpExt) MarshalJSONObject(enc *gojay.Encoder) {
 	var aPSSlice = APSs(e.APS)
 	enc.ArrayKeyOmitEmpty("aps", aPSSlice)
 	enc.StringKeyOmitEmpty("facebook_app_id", e.FacebookAppID)
+	enc.StringKeyOmitEmpty("facebook_test_ad_type", string(e.FacebookTestAdType))
 	enc.StringKeyOmitEmpty("position", e.Position)
 	enc.ObjectKeyOmitEmpty("skadn", e.Skadn)
 }
@@ -137,6 +139,13 @@ func (e *ImpExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	case "facebook_app_id":
 		return dec.String(&e.FacebookAppID)
+
+	case "facebook_test_ad_type":
+		var value string
+		err := dec.String(&value)
+		if err == nil {
+			e.FacebookTestAdType = FacebookTestAdType(value)
+		}
 
 	case "position":
 		return dec.String(&e.Position)
