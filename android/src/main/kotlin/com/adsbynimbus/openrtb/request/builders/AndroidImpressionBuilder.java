@@ -8,6 +8,8 @@ import com.adsbynimbus.openrtb.request.Banner;
 import com.adsbynimbus.openrtb.request.Impression;
 import com.adsbynimbus.openrtb.request.Video;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 /**
@@ -96,6 +98,15 @@ public final class AndroidImpressionBuilder implements Impression.Builder {
             impression.ext = new Impression.Extension();
         }
         impression.ext.facebook_app_id = facebookAppId;
+        return this;
+    }
+
+    @NotNull @Override
+    public Impression.Builder facebookTestAdType(@Nullable String facebookTestAdType) {
+        if (impression.ext == null) {
+            impression.ext = new Impression.Extension();
+        }
+        impression.ext.facebook_test_ad_type = facebookTestAdType;
         return this;
     }
 

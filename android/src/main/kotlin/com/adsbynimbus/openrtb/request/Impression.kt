@@ -85,11 +85,12 @@ open class Impression {
      * @see [Impression]
      */
     open class Extension {
+
         /**
-         * Required string identifying the name of the placement that will be displayed on the Nimbus dashboard.
+         * The list of key value pairs provided by a DTBRequest from the APS library.
          */
         @JvmField
-        var position: String? = null
+        var aps: List<*>? = null
 
         /**
          * The identifier for this app provided by Facebook. Required if including Facebook demand in this request.
@@ -98,10 +99,18 @@ open class Impression {
         var facebook_app_id: String? = null
 
         /**
-         * The list of key value pairs provided by a DTBRequest from the APS library.
+         * An optional ad type to force a test response for validating integrations.
+         *
+         * https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing
          */
         @JvmField
-        var aps: List<*>? = null
+        var facebook_test_ad_type: String? = null
+
+        /**
+         * Required string identifying the name of the placement that will be displayed on the Nimbus dashboard.
+         */
+        @JvmField
+        var position: String? = null
     }
 
     /**
@@ -177,6 +186,14 @@ open class Impression {
          * @see [Extension.facebook_app_id]
          */
         fun facebookAppId(facebookAppId: String?): Builder
+
+        /**
+         * Sets the Facebook test ad type for this impression
+         *
+         * @param facebookTestAdType a string representing one of Facebook's TestAdType values
+         * @return this builder instance
+         */
+        fun facebookTestAdType(facebookTestAdType: String?): Builder
 
         /**
          * Sets the APS params for this impression
