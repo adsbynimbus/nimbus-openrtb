@@ -71,6 +71,18 @@ kotlin {
     }
 }
 
+tasks.withType(org.jetbrains.dokka.gradle.DokkaTask.class).configureEach {
+    dokkaSourceSets {
+        configureEach {
+            sourceLink {
+                localDirectory.set(file("src/$it/kotlin"))
+                remoteUrl.set(uri("https://github.com/timehop/nimbus-openrtb/kotlin/src/$it/kotlin").toURL())
+                remoteLineSuffix.set("#L")
+            }
+        }
+    }
+}
+
 repositories {
     maven {
         name "bintray"
