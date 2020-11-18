@@ -1,7 +1,7 @@
 plugins {
-    id "com.android.library" version "$versions_agp"
-    id "kotlin-android" version "$versions_kotlin"
-    id "org.jetbrains.dokka" version "$versions_dokka"
+    id "com.android.library" version "$agp"
+    id "kotlin-android" version "$kgp"
+    id "org.jetbrains.dokka" version "$dokka"
     id "de.mannodermaus.android-junit5" version "$versions_android_junit5"
     id "maven-publish"
 }
@@ -49,13 +49,13 @@ android {
 }
 
 dependencies {
-    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions_kotlin"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    implementation "androidx.annotation:annotation:$versions_androidx"
+    implementation "androidx.annotation:annotation:$androidx_annotation"
 
-    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$versions_kotlin"
-    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions_kotlin"
-    testImplementation "org.jetbrains.kotlin:kotlin-test:$versions_kotlin"
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect"
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$versions_junit5"
     testImplementation "org.spekframework.spek2:spek-dsl-jvm:$versions_spek"
     testImplementation "org.spekframework.spek2:spek-runner-junit5:$versions_spek"
