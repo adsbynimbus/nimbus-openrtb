@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlin.jvm.JvmField
+
 /**
  * The data and segment objects together allow additional data about the related object (e.g., user,
  * content) to be specified. This data may be from multiple sources whether from the exchange itself or

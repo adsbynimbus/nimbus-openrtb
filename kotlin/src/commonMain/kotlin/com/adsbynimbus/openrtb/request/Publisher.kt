@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlin.jvm.JvmField
+
 /**
  * This object describes the publisher of the media in which the ad will be displayed.
  *

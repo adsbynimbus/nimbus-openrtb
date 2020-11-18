@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlin.jvm.JvmField
+
 /**
  * This object represents the most general type of impression.
  *

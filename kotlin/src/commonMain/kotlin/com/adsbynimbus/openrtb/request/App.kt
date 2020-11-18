@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlin.jvm.JvmField
+
 /**
  * This object should be included if the ad supported content is a non-browser application (typically in
  * mobile) as opposed to a website. A bid request must not contain both an App and a Site object. At a

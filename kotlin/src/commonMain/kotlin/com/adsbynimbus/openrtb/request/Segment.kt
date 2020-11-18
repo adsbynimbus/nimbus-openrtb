@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlin.jvm.JvmField
+
 /**
  * Segment objects are essentially key-value pairs that convey specific units of data.
  *

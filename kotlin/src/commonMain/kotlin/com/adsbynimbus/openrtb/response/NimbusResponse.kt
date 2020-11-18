@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.response
 
+import kotlin.jvm.JvmField
+
 /**
  * A winning bid response from Nimbus
  */

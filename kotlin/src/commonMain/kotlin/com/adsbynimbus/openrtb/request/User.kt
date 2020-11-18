@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlin.jvm.JvmField
+
 /**
  * This object contains information known or derived about the human user of the device (i.e., the
  * audience for advertising).

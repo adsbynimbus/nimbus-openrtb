@@ -20,4 +20,4 @@ pluginManagement {
 
 rootProject.name = 'nimbus-openrtb'
 
-include 'android'
+include 'kotlin'

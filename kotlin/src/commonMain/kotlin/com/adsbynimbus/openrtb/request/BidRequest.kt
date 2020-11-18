@@ -1,5 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlin.jvm.JvmField
+
 /**
  * The top-level bid request object contains a globally unique bid request or auction ID.
  *
