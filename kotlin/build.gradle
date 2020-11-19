@@ -83,11 +83,25 @@ tasks.withType(org.jetbrains.dokka.gradle.DokkaTask.class).configureEach {
     }
 }
 
-repositories {
-    maven {
-        name "bintray"
-        url "https://api.bintray.com/maven/timehop/$rootProject.name/$project.name/;publish=${isCiBuild ? 1 : 0}"
-        credentials(PasswordCredentials)
+def javadocTask = tasks.register("dokkaJar", Jar) {
+    archiveClassifier = 'javadoc'
+    from tasks.named('dokkaJavadoc')
+}
+
+publishing {
+    afterEvaluate {
+        publications {
+            named("androidRelease").configure {
+                artifact javadocTask
+            }
+        }
+    }
+    repositories {
+        maven {
+            name "bintray"
+            url "https://api.bintray.com/maven/timehop/$rootProject.name/$project.name/;publish=${isCiBuild ? 1 : 0}"
+            credentials(PasswordCredentials)
+        }
     }
 }
 
