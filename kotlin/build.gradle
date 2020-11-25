@@ -92,6 +92,25 @@ def javadocTask = tasks.register("dokkaJar", Jar) {
     from tasks.named('dokkaJavadoc')
 }
 
+configurations {
+    sourcesElements {
+        attributes {
+            attribute(Attribute.of("org.gradle.docstype", String), DocsType.SOURCES)
+        }
+    }
+}
+
+afterEvaluate {
+    artifacts {
+        sourcesElements(tasks.named("androidReleaseSourcesJar")) {
+            builtBy(androidReleaseSourcesJar)
+        }
+    }
+    components.release.addVariantsFromConfiguration(configurations.sourcesElements) {
+        mapToMavenScope("compile")
+    }
+}
+
 publishing {
     afterEvaluate {
         publications {
