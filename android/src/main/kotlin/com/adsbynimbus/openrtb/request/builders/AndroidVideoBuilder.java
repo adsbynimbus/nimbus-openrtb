@@ -9,8 +9,6 @@ import androidx.annotation.Nullable;
 import com.adsbynimbus.openrtb.request.Banner;
 import com.adsbynimbus.openrtb.request.Video;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -156,8 +154,17 @@ public final class AndroidVideoBuilder implements Video.Builder {
     }
 
     @Override @NonNull
-    public AndroidVideoBuilder companionAdTypes(@NotNull int... companionAdTypes) {
+    public AndroidVideoBuilder companionAdTypes(@NonNull int... companionAdTypes) {
         video.companiontype = companionAdTypes;
+        return this;
+    }
+
+    @Override @NonNull
+    public Video.Builder rewarded(boolean rewarded) {
+        if (video.ext == null) {
+            video.ext = new Video.Extension();
+        }
+        video.ext.is_rewarded = rewarded;
         return this;
     }
 }
