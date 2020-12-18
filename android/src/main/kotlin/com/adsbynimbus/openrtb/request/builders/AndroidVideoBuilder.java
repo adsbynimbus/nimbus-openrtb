@@ -160,4 +160,13 @@ public final class AndroidVideoBuilder implements Video.Builder {
         video.companiontype = companionAdTypes;
         return this;
     }
+
+    @Override @NonNull
+    public Video.Builder rewarded(boolean rewarded) {
+        if (video.ext == null) {
+            video.ext = new Video.Extension();
+        }
+        video.ext.is_rewarded = rewarded;
+        return this;
+    }
 }

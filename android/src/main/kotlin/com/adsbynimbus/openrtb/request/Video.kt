@@ -341,14 +341,30 @@ open class Video {
     var companionad: Array<Banner>? = null
 
     /**
-     * Supported VAST companion ad types.
-     *
-     * Recommended if requesting companion ads
+     * Supported VAST companion ad types. Recommended if requesting companion ads
      *
      * @see [CompanionType]
      */
     @JvmField
     var companiontype: IntArray? = null
+
+    /**
+     * Video extensions
+     */
+    @JvmField
+    var ext: Extension? = null
+
+    /**
+     * Video extensions
+     */
+    open class Extension {
+
+        /**
+         * Indicates this video request is for a rewarded video
+         */
+        @JvmField
+        var is_rewarded: Boolean? = null
+    }
 
     /**
      * Builder for constructing a Video object
@@ -515,5 +531,10 @@ open class Video {
          * @see [CompanionType]
          */
         fun companionAdTypes(vararg companionAdTypes: Int): Builder
+
+        /**
+         * Sets the rewarded flag for this video object
+         */
+        fun rewarded(rewarded: Boolean): Builder
     }
 }
