@@ -40,7 +40,6 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = JavaVersion.VERSION_1_8
-                useIR = true
             }
         }
     }
@@ -92,23 +91,14 @@ def javadocTask = tasks.register("dokkaJar", Jar) {
     from tasks.named('dokkaJavadoc')
 }
 
-configurations {
-    sourcesElements {
-        attributes {
-            attribute(Attribute.of("org.gradle.docstype", String), DocsType.SOURCES)
-        }
+configurations.create("sourcesElements") {
+    canBeResolved = true
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.DOCUMENTATION))
+        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType, DocsType.SOURCES))
     }
-}
-
-afterEvaluate {
-    artifacts {
-        sourcesElements(tasks.named("androidReleaseSourcesJar")) {
-            builtBy(androidReleaseSourcesJar)
-        }
-    }
-    components.release.addVariantsFromConfiguration(configurations.sourcesElements) {
-        mapToMavenScope("compile")
-    }
+    kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.forEach { outgoing.artifact(it) }
 }
 
 publishing {

@@ -2,7 +2,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
     group = "com.adsbynimbus.openrtb"
     version = (System.getenv("TAG_NAME") ?: 'development').split('/').last().with {
