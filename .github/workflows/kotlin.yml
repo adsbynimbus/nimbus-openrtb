@@ -35,10 +35,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+            ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
             ${{ runner.os }}-gradle-
+
+      - name: Fix NDK Bug
+        run: echo "ndk.dir=$ANDROID_HOME/ndk-bundle" > local.properties
 
       - name: Build
         run: gradle build
