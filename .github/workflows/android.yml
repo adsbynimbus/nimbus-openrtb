@@ -3,7 +3,7 @@ name: Android
 on:
   pull_request:
     branches:
-      - main
+      - [default]
     tags-ignore:
       - '**'
     paths:
@@ -28,7 +28,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
-          java-version: 8
+          java-version: 11
 
       - name: Build
         run: ./gradlew build

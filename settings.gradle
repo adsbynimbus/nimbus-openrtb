@@ -11,8 +11,6 @@ pluginManagement {
                 useModule("com.android.tools.build:gradle:${requested.version}")
             } else if (requested.id.id.startsWith("kotlin")) {
                 useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
-            } else if (requested.id.id.startsWith("de.mannodermaus.android")) {
-                useModule("de.mannodermaus.gradle.plugins:android-junit5:${requested.version}")
             }
         }
     }
@@ -20,4 +18,4 @@ pluginManagement {
 
 rootProject.name = 'nimbus-openrtb'
 
-include 'android'
+include 'kotlin'

@@ -1,0 +1,30 @@
+.gradle
+.DS_Store
+/android/build
+/captures
+.externalNativeBuild
+local.properties
+
+bin/
+gen/
+classes/
+gen-external-apklibs/
+build/
+schemas/
+
+*.iml
+/.idea/*
+
+# IDEA/Android Studio Ignore exceptions
+!/.idea/vcs.xml
+!/.idea/fileTemplates/
+!/.idea/inspectionProfiles/
+!/.idea/scopes/
+!/.idea/codeStyles/
+!/.idea/encodings.xml
+!/.idea/copyright/
+!/.idea/compiler.xml
+
+#Android build files
+*.apk
+*.aab
