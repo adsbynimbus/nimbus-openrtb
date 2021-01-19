@@ -1,4 +1,4 @@
-name: Android
+name: Kotlin
 
 on:
   pull_request:
