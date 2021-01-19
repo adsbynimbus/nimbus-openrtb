@@ -8,6 +8,11 @@ on:
       - 'kotlin/**'
       - '.github/workflows/kotlin*'
 
+  push:
+    tags-ignore:
+      - '**'
+
+
   release:
     types: [published]
 
