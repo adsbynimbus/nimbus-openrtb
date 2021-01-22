@@ -8,6 +8,11 @@ on:
       - 'kotlin/**'
       - '.github/workflows/kotlin*'
 
+  push:
+    tags-ignore:
+      - '**'
+
+
   release:
     types: [published]
 
@@ -44,8 +49,8 @@ jobs:
         run: echo "ndk.dir=$ANDROID_HOME/ndk-bundle" > local.properties
 
       - name: Build
-        run: gradle build
+        run: ./gradlew build
 
       - name: Publish
         if: success() && github.event_name == 'release'
-        run: gradle publish
+        run: ./gradlew publish
