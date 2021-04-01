@@ -1,13 +1,13 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("com.android.library") version ("4.1.2")
-    kotlin("multiplatform") version ("1.4.21")
-    id("org.jetbrains.dokka") version ("1.4.20")
+    id("com.android.library") version ("4.1.3")
+    kotlin("multiplatform") version ("1.4.32")
+    id("org.jetbrains.dokka") version ("1.4.30")
     `maven-publish`
 }
 
-val publish = if (System.getenv("GITHUB_WORKFLOW") != null) 1 else 0
+val publish = System.getenv("GITHUB_WORKFLOW") != null
 val spek = "2.0.15"
 
 android {
@@ -30,7 +30,7 @@ android {
 
 kotlin {
     android {
-        if (publish == 1) publishLibraryVariants("release") else publishAllLibraryVariants()
+        if (publish) publishLibraryVariants("release") else publishAllLibraryVariants()
         compilations.all {
             kotlinOptions {
                 jvmTarget = JavaVersion.VERSION_1_8.toString()
@@ -52,7 +52,7 @@ kotlin {
         }
         named("androidMain") {
             dependencies {
-                implementation("androidx.annotation:annotation:1.1.0")
+                implementation("androidx.annotation:annotation:1.2.0")
             }
         }
         named("androidTest") {
@@ -105,9 +105,8 @@ publishing {
     }
     repositories {
         maven {
-            name = "bintray"
-            url =
-                uri("https://api.bintray.com/maven/timehop/${rootProject.name}/${project.name}/;publish=$publish")
+            name = "jfrog"
+            url = uri("https://timehop.jfrog.io/artifactory/nimbus.sdk.android")
             credentials(PasswordCredentials::class)
         }
         System.getenv("GITHUB_REPOSITORY")?.let {
