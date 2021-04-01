@@ -23,8 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TAG_NAME: ${{ github.ref }}
-      ORG_GRADLE_PROJECT_bintrayUsername: ${{ secrets.BINTRAY_USER }}
-      ORG_GRADLE_PROJECT_bintrayPassword: ${{ secrets.BINTRAY_API_KEY }}
+      ORG_GRADLE_PROJECT_jfrogUsername: ${{ secrets.JFROG_USER }}
+      ORG_GRADLE_PROJECT_jfrogPassword: ${{ secrets.JFROG_PASSWORD }}
       ORG_GRADLE_PROJECT_githubUsername: ${{ github.actor }}
       ORG_GRADLE_PROJECT_githubPassword: ${{ github.token }}
     steps:

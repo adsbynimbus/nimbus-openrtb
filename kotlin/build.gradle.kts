@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
 }
 
-val publish = if (System.getenv("GITHUB_WORKFLOW") != null) 1 else 0
+val publish = System.getenv("GITHUB_WORKFLOW") != null
 val spek = "2.0.15"
 
 android {
@@ -30,7 +30,7 @@ android {
 
 kotlin {
     android {
-        if (publish == 1) publishLibraryVariants("release") else publishAllLibraryVariants()
+        if (publish) publishLibraryVariants("release") else publishAllLibraryVariants()
         compilations.all {
             kotlinOptions {
                 jvmTarget = JavaVersion.VERSION_1_8.toString()
@@ -105,9 +105,8 @@ publishing {
     }
     repositories {
         maven {
-            name = "bintray"
-            url =
-                uri("https://api.bintray.com/maven/timehop/${rootProject.name}/${project.name}/;publish=$publish")
+            name = "jfrog"
+            url = uri("https://timehop.jfrog.io/artifactory/nimbus.sdk.android")
             credentials(PasswordCredentials::class)
         }
         System.getenv("GITHUB_REPOSITORY")?.let {
