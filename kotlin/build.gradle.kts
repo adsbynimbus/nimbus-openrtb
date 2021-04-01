@@ -1,9 +1,9 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("com.android.library") version ("4.1.2")
-    kotlin("multiplatform") version ("1.4.21")
-    id("org.jetbrains.dokka") version ("1.4.20")
+    id("com.android.library") version ("4.1.3")
+    kotlin("multiplatform") version ("1.4.32")
+    id("org.jetbrains.dokka") version ("1.4.30")
     `maven-publish`
 }
 
@@ -52,7 +52,7 @@ kotlin {
         }
         named("androidMain") {
             dependencies {
-                implementation("androidx.annotation:annotation:1.1.0")
+                implementation("androidx.annotation:annotation:1.2.0")
             }
         }
         named("androidTest") {
