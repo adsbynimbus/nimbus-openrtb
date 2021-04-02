@@ -29,8 +29,17 @@ func main() {
 		defer r.Body.Close()
 
 		if ok, _ := client.IsRequestValid(tr); !ok {
+			w.Write([]byte("the request data was not valid"))
 			w.WriteHeader(http.StatusBadRequest)
+			return
 		}
+
+		if val := r.Header.Get("Nimbus-Sdkv"); val != "1.0.0" {
+			w.Write([]byte("the request did not proxy the nimbus headers"))
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
 		w.Write([]byte(`{"type":"facebook","auction_id":"7d1a4f2b-b7b2-445e-b1f9-61e7ce56ef48","bid_in_cents":100,"content_type":"application/json; charset=utf-8","is_interstitial":1,"markup":"{\"type\":\"ID\",\"bid_id\":\"2762638018393877168\",\"placement_id\":\"IMG_16_9_LINK#191445434271484_1906402376109106\",\"resolved_placement_id\":\"IMG_16_9_LINK#191445434271484_1906402376109106\",\"sdk_version\":\"4.99.1\",\"device_id\":\"0F9DC9F9-C7E7-4579-A945-88A87BDF91E8\",\"template\":200,\"payload\":null}","network":"facebook","trackers":{"impression_trackers":["foobar.com"]},"height":480,"width":320,"placement_id":"IMG_16_9_LINK#191445434271484_1906402376109106"}`))
 		return
 	})
@@ -50,6 +59,9 @@ func main() {
 	incomingRequest := &http.Request{
 		Body: ioutil.NopCloser(bytes.NewReader(bidRequestBody)),
 	}
+	// mock headers coming from the Nimbus SDK
+	incomingRequest.Header = make(http.Header)
+	incomingRequest.Header.Set("Nimbus-Sdkv", "1.0.0")
 
 	var request twofive.Request
 	err := decode.RequestToStruct(incomingRequest, &request)
@@ -60,7 +72,7 @@ func main() {
 	// augment the request if needed
 	request.Imp[0].Banner.BidFloor = twofive.FloatPointer(5.00)
 
-	// validate the structure, validation is slow, so it's not recomended to do it on every request
+	// validate the structure, validation is slow, so it's not recommended to do it on every request
 	if ok, err := client.IsRequestValid(request); !ok {
 		log.Fatal(err)
 	}
@@ -69,7 +81,12 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 	defer cancel()
 
-	res, err := driver.PostNimbusTwoFiveRequestWithContext(ctx, request)
+	// NOTE if the original request came from the Nimbus SDK, then you must call
+	// client.ProxyNimbusSDKHeaders to forward all the Nimbus SDK related headers
+	res, err := driver.PostNimbusTwoFiveRequestWithContext(ctx,
+		request,
+		client.ProxyNimbusSDKHeaders(incomingRequest),
+	)
 	if err != nil {
 		log.Fatal(err)
 	}
