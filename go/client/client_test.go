@@ -267,10 +267,17 @@ func TestPostNimbusTwoFiveRequest(t *testing.T) {
 		Endpoint: "http://foobar.com",
 	}
 
+	type args struct {
+		incomingRequest *http.Request
+		headerKey       string
+	}
+
 	tests := []struct {
-		name       string
-		body       twofive.Request
-		statusCode int
+		name            string
+		body            twofive.Request
+		args            args
+		wantHeaderValue string
+		statusCode      int
 	}{
 
 		{
@@ -360,7 +367,16 @@ func TestPostNimbusTwoFiveRequest(t *testing.T) {
 					},
 				},
 			},
-			statusCode: 200,
+			args: args{
+				incomingRequest: &http.Request{
+					Header: http.Header{
+						sdkHeader: []string{"1.2.3"},
+					},
+				},
+				headerKey: sdkHeader,
+			},
+			wantHeaderValue: "1.2.3",
+			statusCode:      200,
 		},
 		{
 			name: "should have a invalid response, the body is invalid",
@@ -446,17 +462,25 @@ func TestPostNimbusTwoFiveRequest(t *testing.T) {
 					},
 				},
 			},
+			args: args{
+				incomingRequest: &http.Request{},
+			},
 			statusCode: 400,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-
-			// was initialized in the above test, no need to reinit
-			res, err := defaultClient.PostNimbusTwoFiveRequest(tt.body)
+			res, err := defaultClient.PostNimbusTwoFiveRequestWithContext(
+				context.TODO(),
+				tt.body,
+				ProxyNimbusSDKHeaders(tt.args.incomingRequest),
+			)
 			if err != nil {
-				t.Fatalf("PostNimbusTwoFiveRequest failed: %v", err)
+				t.Fatalf("PostNimbusTwoFiveRequestWithContext failed: %v", err)
+			}
 
+			if got := tt.args.incomingRequest.Header.Get(tt.args.headerKey); got != tt.wantHeaderValue {
+				t.Fatalf("PostNimbusTwoFiveRequestWithContext did not get expected proxy header values failed: got %v want: %v", got, tt.wantHeaderValue)
 			}
 
 			if res.StatusCode != tt.statusCode {
@@ -490,10 +514,17 @@ func TestPostNimbusTwoFiveRequestWithContext(t *testing.T) {
 		Endpoint: "http://foobar.com",
 	}
 
+	type args struct {
+		incomingRequest *http.Request
+		headerKey       string
+	}
+
 	tests := []struct {
-		name       string
-		body       twofive.Request
-		statusCode int
+		name            string
+		body            twofive.Request
+		args            args
+		wantHeaderValue string
+		statusCode      int
 	}{
 
 		{
@@ -583,7 +614,16 @@ func TestPostNimbusTwoFiveRequestWithContext(t *testing.T) {
 					},
 				},
 			},
-			statusCode: 200,
+			args: args{
+				incomingRequest: &http.Request{
+					Header: http.Header{
+						sdkHeader: []string{"1.2.3"},
+					},
+				},
+				headerKey: sdkHeader,
+			},
+			wantHeaderValue: "1.2.3",
+			statusCode:      200,
 		},
 		{
 			name: "should have a invalid response, the body is invalid",
@@ -669,16 +709,26 @@ func TestPostNimbusTwoFiveRequestWithContext(t *testing.T) {
 					},
 				},
 			},
+			args: args{
+				incomingRequest: &http.Request{},
+			},
 			statusCode: 400,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			// was initialized in the above test, no need to reinit
-			res, err := defaultClient.PostNimbusTwoFiveRequestWithContext(context.TODO(), tt.body)
+			// was initialized in the above test, no need to re-init
+			res, err := defaultClient.PostNimbusTwoFiveRequestWithContext(
+				context.TODO(),
+				tt.body,
+				ProxyNimbusSDKHeaders(tt.args.incomingRequest),
+			)
 			if err != nil {
 				t.Fatalf("PostNimbusTwoFiveRequestWithContext failed: %v", err)
+			}
 
+			if got := tt.args.incomingRequest.Header.Get(tt.args.headerKey); got != tt.wantHeaderValue {
+				t.Fatalf("PostNimbusTwoFiveRequestWithContext did not get expected proxy header values failed: got %v want: %v", got, tt.wantHeaderValue)
 			}
 
 			if res.StatusCode != tt.statusCode {
@@ -689,7 +739,7 @@ func TestPostNimbusTwoFiveRequestWithContext(t *testing.T) {
 	}
 }
 
-func TestWithHeaders(t *testing.T) {
+func TestProxyNimbusSDKHeaders(t *testing.T) {
 	type args struct {
 		headers http.Header
 		key     string
@@ -702,8 +752,8 @@ func TestWithHeaders(t *testing.T) {
 		{
 			name: "should add headers just fine",
 			args: args{
-				headers: http.Header(map[string][]string{"nimbus-sdkv": []string{"bar"}}),
-				key:     "nimbus-sdkv",
+				headers: http.Header(map[string][]string{"Nimbus-Sdkv": []string{"bar"}}),
+				key:     "Nimbus-Sdkv",
 			},
 			want: "bar",
 		},
@@ -711,11 +761,58 @@ func TestWithHeaders(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			req, _ := http.NewRequest(http.MethodPost, "", nil)
-			option := WithHeaders(tt.args.headers)
+			req.Header = tt.args.headers
+			option := ProxyNimbusSDKHeaders(req)
 			option(req)
-			// https://golang.org/pkg/net/textproto/#MIMEHeader.Get
-			if got, ok := req.Header[tt.args.key]; !ok || (got[0] != tt.want) {
+			if got := req.Header.Get(tt.args.key); got != tt.want {
 				t.Errorf("WithHeaders() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+func Test_headerUtil_setIfEmpty(t *testing.T) {
+	type fields struct {
+		Header http.Header
+	}
+	type args struct {
+		key   string
+		value string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   string
+	}{
+		{
+			name: "should only set headers if the header is missing",
+			args: args{
+				key:   "Foo",
+				value: "bar",
+			},
+			fields: fields{Header: http.Header{}},
+			want:   "bar",
+		},
+		{
+			name: "should not change the value, the header was preset",
+			args: args{
+				key:   "Foo",
+				value: "bar",
+			},
+			fields: fields{Header: http.Header{
+				"Foo": []string{"zip"},
+			}},
+			want: "zip",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			h := headerUtil{
+				Header: tt.fields.Header,
+			}
+			h.setIfEmpty(tt.args.key, tt.args.value)
+			if got := h.Get(tt.args.key); got != tt.want {
+				t.Fatalf("setIfEmpty() got %v want %v", got, tt.want)
 			}
 		})
 	}

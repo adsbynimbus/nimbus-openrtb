@@ -17,6 +17,22 @@ var (
 	createClientOnce sync.Once
 )
 
+const (
+	sdkHeader    = "Nimbus-Sdkv"
+	guidHeader   = "Nimbus-Instance-Id"
+	apiKeyHeader = "Nimbus-Api-Key"
+)
+
+const (
+	contentTypeHeaderKey          = "Content-Type"
+	defaultContentTypeHeaderValue = "application/json; charset=utf-8"
+)
+
+const (
+	rtbHeaderVersionKey   = "X-Openrtb-Version"
+	rtbHeaderVersionValue = "2.5"
+)
+
 // Nimbus interface defines a series of POST request helper methods to communicate s2s
 type Nimbus interface {
 	PostNimbus(body io.Reader, options ...func(*http.Request)) (*http.Response, error)
@@ -31,35 +47,25 @@ type Driver struct {
 	Endpoint string
 }
 
-type nonCanonicalHeader map[string][]string
-
-func (n nonCanonicalHeader) Get(key string) string {
-	if val, ok := n[key]; ok {
-		if len(val) > 0 {
-			return val[0]
-		}
-	}
-	return ""
-}
-
-// WithHeaders allows the caller to mutate and add headers to the new out going Nimbus request
-// this is required to be called if the client is using the Nimbus SDK
-func WithHeaders(headers http.Header) func(*http.Request) {
+// ProxyNimbusSDKHeaders sets all the required Nimbus headers and proxies headers from the Nimbus SDK
+func ProxyNimbusSDKHeaders(incomingRequest *http.Request) func(*http.Request) {
 	return func(r *http.Request) {
-		if headers != nil {
-			const sdkVersionHeader = "nimbus-sdkv"
-			// https://golang.org/pkg/net/textproto/#MIMEHeader.Get
-			// non canonical headers have to be manually retrieved
-			version := nonCanonicalHeader(headers).Get(sdkVersionHeader)
-			if len(version) > 0 {
-				r.Header = make(http.Header)
-				r.Header[sdkVersionHeader] = []string{version}
-			}
-		}
+		sdkVersionHeaderValue := incomingRequest.Header.Get(sdkHeader)
+		guidHeaderValue := incomingRequest.Header.Get(guidHeader)
+		apiKeyHeaderValue := incomingRequest.Header.Get(apiKeyHeader)
+
+		headers := make(http.Header)
+		headers.Set(sdkHeader, sdkVersionHeaderValue)
+		headers.Set(guidHeader, guidHeaderValue)
+		headers.Set(apiKeyHeader, apiKeyHeaderValue)
+		headerUtil{headers}.setIfEmpty(contentTypeHeaderKey, defaultContentTypeHeaderValue)
+		headerUtil{headers}.setIfEmpty(rtbHeaderVersionKey, rtbHeaderVersionValue)
+		// set the Nimbus specific Headers
+		r.Header = headers
 	}
 }
 
-// NewNimbusDriver creates a configured network client and stops recreatation of the client
+// NewNimbusDriver creates a configured network client and stops recreation of the client
 // this prevents the mistake of creating many network clients to communicate with Nimbus preventing
 // to proper recycling of TCP resources
 func NewNimbusDriver(endpoint string, options ...func(*Driver)) *Driver {
@@ -104,8 +110,8 @@ func (d Driver) PostNimbus(body io.Reader, options ...func(*http.Request)) (*htt
 		option(req)
 	}
 
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
-	req.Header.Set("x-openrtb-version", "2.5")
+	headerUtil{req.Header}.setIfEmpty(contentTypeHeaderKey, defaultContentTypeHeaderValue)
+	headerUtil{req.Header}.setIfEmpty(rtbHeaderVersionKey, rtbHeaderVersionValue)
 	return d.Client.Do(req)
 }
 
@@ -116,9 +122,14 @@ func (d Driver) PostNimbusWithContext(ctx context.Context, body io.Reader, optio
 	if err != nil {
 		return nil, err
 	}
+
+	for _, option := range options {
+		option(req)
+	}
+
 	req = req.WithContext(ctx)
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
-	req.Header.Set("x-openrtb-version", "2.5")
+	headerUtil{req.Header}.setIfEmpty(contentTypeHeaderKey, defaultContentTypeHeaderValue)
+	headerUtil{req.Header}.setIfEmpty(rtbHeaderVersionKey, rtbHeaderVersionValue)
 	return d.Client.Do(req)
 }
 
@@ -138,8 +149,8 @@ func (d Driver) PostNimbusTwoFiveRequest(r twofive.Request, options ...func(*htt
 		option(req)
 	}
 
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
-	req.Header.Set("x-openrtb-version", "2.5")
+	headerUtil{req.Header}.setIfEmpty(contentTypeHeaderKey, defaultContentTypeHeaderValue)
+	headerUtil{req.Header}.setIfEmpty(rtbHeaderVersionKey, rtbHeaderVersionValue)
 	return d.Client.Do(req)
 }
 
@@ -161,7 +172,18 @@ func (d Driver) PostNimbusTwoFiveRequestWithContext(ctx context.Context, r twofi
 	}
 
 	req = req.WithContext(ctx)
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
-	req.Header.Set("x-openrtb-version", "2.5")
+	headerUtil{req.Header}.setIfEmpty(contentTypeHeaderKey, defaultContentTypeHeaderValue)
+	headerUtil{req.Header}.setIfEmpty(rtbHeaderVersionKey, rtbHeaderVersionValue)
 	return d.Client.Do(req)
+}
+
+type headerUtil struct {
+	http.Header
+}
+
+// setIfEmpty provides a simple means set values without overriding
+func (h headerUtil) setIfEmpty(key, value string) {
+	if v := h.Get(key); len(v) == 0 {
+		h.Set(key, value)
+	}
 }
