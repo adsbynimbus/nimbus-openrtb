@@ -17,7 +17,7 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 

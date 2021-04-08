@@ -105,9 +105,9 @@ publishing {
     }
     repositories {
         maven {
-            name = "jfrog"
-            url = uri("https://timehop.jfrog.io/artifactory/nimbus.sdk.android")
-            credentials(PasswordCredentials::class)
+            name = "aws"
+            setUrl("s3://adsbynimbus-public/android/sdks")
+            credentials(AwsCredentials::class)
         }
         System.getenv("GITHUB_REPOSITORY")?.let {
             maven {
