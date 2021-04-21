@@ -21,9 +21,7 @@ android {
 
     sourceSets {
         val main by getting {
-            java.srcDirs("src/androidMain/kotlin")
             manifest.srcFile("src/androidMain/AndroidManifest.xml")
-            res.srcDirs("src/androidMain/res")
         }
     }
 }
