@@ -21,7 +21,9 @@ android {
 
     sourceSets {
         val main by getting {
+            java.srcDirs("src/androidMain/kotlin")
             manifest.srcFile("src/androidMain/AndroidManifest.xml")
+            res.srcDirs("src/androidMain/res")
         }
     }
 }
@@ -64,6 +66,11 @@ kotlin {
             }
         }
     }
+}
+
+// Fixes an issue when creating the android sources jar
+tasks.withType<AbstractCopyTask>().configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.withType<DokkaTask>().configureEach {
