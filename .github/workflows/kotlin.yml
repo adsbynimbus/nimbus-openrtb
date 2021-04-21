@@ -19,7 +19,7 @@ on:
 jobs:
 
   build:
-    name: Build, test, and optionally publish Android OpenRTB to Bintray
+    name: Build, test, and optionally publish Android OpenRTB
     runs-on: ubuntu-latest
     env:
       TAG_NAME: ${{ github.ref }}
