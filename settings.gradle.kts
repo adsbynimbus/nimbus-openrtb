@@ -1,5 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
+enableFeaturePreview("VERSION_CATALOGS")
+
 pluginManagement {
     repositories {
         google()
@@ -18,7 +20,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Needed for kotlinx-html-jvm
     }
 }
 
