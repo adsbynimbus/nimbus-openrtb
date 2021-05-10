@@ -3,11 +3,9 @@ import org.jetbrains.dokka.gradle.DokkaTask
 plugins {
     id("com.android.library") version ("4.2.0")
     kotlin("multiplatform") version ("1.5.0")
-    id("org.jetbrains.dokka") version ("1.4.30")
+    id("org.jetbrains.dokka") version ("1.4.32")
     `maven-publish`
 }
-
-val spek = "2.0.15"
 
 android {
     compileSdkVersion(30)
@@ -41,22 +39,22 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("org.spekframework.spek2:spek-dsl-metadata:$spek")
+                implementation(libs.spek.dsl.metadata)
             }
         }
         named("androidMain") {
             dependencies {
-                implementation("androidx.annotation:annotation:1.2.0")
+                implementation(libs.androidx.annotation)
             }
         }
         named("androidTest") {
             dependencies {
                 implementation(kotlin("test-junit5"))
-                implementation("com.google.code.gson:gson:2.8.6")
-                implementation("org.spekframework.spek2:spek-dsl-jvm:$spek")
+                implementation(libs.gson)
+                implementation(libs.spek.dsl.jvm)
 
                 runtimeOnly(kotlin("reflect"))
-                runtimeOnly("org.spekframework.spek2:spek-runner-junit5:$spek")
+                runtimeOnly(libs.spek.runner)
             }
         }
     }

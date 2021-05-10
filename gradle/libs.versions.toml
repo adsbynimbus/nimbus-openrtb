@@ -1,0 +1,11 @@
+[versions]
+annotation = "1.2.0"
+gson = "2.8.6"
+spek = "2.0.15"
+
+[libraries]
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+spek-dsl-metadata = { module = "org.spekframework.spek2:spek-dsl-metadata", version.ref = "spek" }
+spek-dsl-jvm = { module = "org.spekframework.spek2:spek-dsl-jvm", version.ref = "spek" }
+spek-runner = { module = "org.spekframework.spek2:spek-runner-junit5", version.ref = "spek" }
