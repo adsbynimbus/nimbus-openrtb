@@ -1,13 +1,12 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("com.android.library") version ("4.1.3")
-    kotlin("multiplatform") version ("1.4.32")
+    id("com.android.library") version ("4.2.0")
+    kotlin("multiplatform") version ("1.5.0")
     id("org.jetbrains.dokka") version ("1.4.30")
     `maven-publish`
 }
 
-val publish = System.getenv("GITHUB_WORKFLOW") != null
 val spek = "2.0.15"
 
 android {
@@ -30,12 +29,7 @@ android {
 
 kotlin {
     android {
-        if (publish) publishLibraryVariants("release") else publishAllLibraryVariants()
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_1_8.toString()
-            }
-        }
+        publishAllLibraryVariants()
     }
     sourceSets {
         named("commonMain") {
