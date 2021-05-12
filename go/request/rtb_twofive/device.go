@@ -14,6 +14,7 @@ type Device struct {
 	DeviceType     int    `json:"devicetype,omitempty"      valid:"required"`
 	Make           string `json:"make,omitempty"            valid:"optional"`
 	Model          string `json:"model,omitempty"           valid:"optional"`
+	HWV            string `json:"hwv,omitempty"             valid:"optional"`
 	OS             string `json:"os,omitempty"              valid:"in(android|ios),required"`
 	OSV            string `json:"osv,omitempty"             valid:"optional"`
 	H              int    `json:"h,omitempty"               valid:"optional"`
@@ -34,6 +35,7 @@ func (d *Device) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.IntKey("devicetype", d.DeviceType)
 	enc.StringKeyOmitEmpty("make", d.Make)
 	enc.StringKeyOmitEmpty("model", d.Model)
+	enc.StringKeyOmitEmpty("hwv", d.HWV)
 	enc.StringKeyOmitEmpty("os", d.OS)
 	enc.StringKeyOmitEmpty("osv", d.OSV)
 	enc.IntKeyOmitEmpty("h", d.H)
@@ -81,6 +83,9 @@ func (d *Device) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	case "model":
 		return dec.String(&d.Model)
+
+	case "hwv":
+		return dec.String(&d.HWV)
 
 	case "os":
 		return dec.String(&d.OS)
