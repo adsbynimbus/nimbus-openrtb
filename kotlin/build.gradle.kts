@@ -1,8 +1,8 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("com.android.library") version ("4.2.0")
-    kotlin("multiplatform") version ("1.5.0")
+    id("com.android.library") version ("4.2.1")
+    kotlin("multiplatform") version ("1.5.10")
     id("org.jetbrains.dokka") version ("1.4.32")
     `maven-publish`
 }
