@@ -91,4 +91,13 @@ public final class AndroidUserBuilder implements User.Builder {
         user.ext.did_consent = didConsent ? 1 : 0;
         return this;
     }
+
+    @Override @NonNull
+    public AndroidUserBuilder unityBuyerId(@Nullable String token) {
+        if (user.ext == null) {
+            user.ext = new User.Extension();
+        }
+        user.ext.unity_buyeruid = token;
+        return this;
+    }
 }

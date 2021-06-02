@@ -139,6 +139,12 @@ public final class AndroidDeviceBuilder implements Device.Builder {
     }
 
     @Override @NonNull
+    public AndroidDeviceBuilder hardwareVersion(String hardware) {
+        device.hwv = hardware;
+        return this;
+    }
+
+    @Override @NonNull
     public AndroidDeviceBuilder osName(String os) {
         device.os = os;
         return this;

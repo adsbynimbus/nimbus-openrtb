@@ -67,6 +67,12 @@ open class Device {
     var model: String? = null
 
     /**
+     * Device hardware version
+     */
+    @JvmField
+    var hwv: String? = null
+
+    /**
      * Device operating system (e.g., "Android")
      */
     @JvmField
@@ -332,6 +338,11 @@ open class Device {
          * @see [Device.model]
          */
         fun model(model: String?): Builder
+
+        /**
+         * Sets the hardware version of this device
+         */
+        fun hardwareVersion(hardware: String?): Builder
 
         /**
          * Sets the operating system name of this device.
