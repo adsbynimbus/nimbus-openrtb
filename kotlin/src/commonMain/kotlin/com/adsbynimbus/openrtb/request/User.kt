@@ -89,6 +89,15 @@ open class User {
          */
         @JvmField
         var did_consent = 0
+
+        /**
+         * String token provided by the Unity Ads SDK to include Unity demand in the auction.
+         *
+         * Token is initialized when UnityAds is initialized and the token and campaign is
+         * refreshed after the ad playback has started.
+         */
+        @JvmField
+        var unity_buyeruid: String? = null
     }
 
     /**
@@ -178,6 +187,11 @@ open class User {
          * @see [Extension.did_consent]
          */
         fun gdprDidConsent(didConsent: Boolean): Builder
+
+        /**
+         * Sets the buyer id token to include Unity Demand in the auction
+         */
+        fun unityBuyerId(token: String): Builder
     }
 
     companion object {
