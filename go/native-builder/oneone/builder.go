@@ -10,7 +10,7 @@ import (
 func BuildDefaultImageNative(wmin, hmin int) string {
 	// have to allocate this object... in the future we can back this object by a sync pool
 	r := request.Request{
-		Plcmttype: 11,
+		Plcmttype: 1,
 		Plcmtcnt:  1,
 		Ver:       request.Version,
 		Required:  1,
