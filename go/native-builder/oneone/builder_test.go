@@ -23,7 +23,7 @@ func TestBuildDefaultImageNative(t *testing.T) {
 				hmin: 300,
 				wmin: 250,
 			},
-			want: `{"assets":[{"id":1,"img":{"hmin":250,"type":3,"wmin":300,"mimes":["image/jpeg","image/png","image/gif"]},"title":{"len":140},"data":{"type":2,"len":140},"required":1}],"plcmttype":11,"plcmtcnt":1,"required":1,"ver":"1.1"}`,
+			want: `{"assets":[{"id":1,"img":{"hmin":250,"type":3,"wmin":300,"mimes":["image/jpeg","image/png","image/gif"]},"title":{"len":140},"data":{"type":2,"len":140},"required":1}],"plcmttype":1,"plcmtcnt":1,"required":1,"ver":"1.1"}`,
 		},
 	}
 	for _, tt := range tests {
