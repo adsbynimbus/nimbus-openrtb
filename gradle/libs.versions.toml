@@ -1,6 +1,6 @@
 [versions]
 annotation = "1.2.0"
-gson = "2.8.6"
+gson = "2.8.7"
 spek = "2.0.15"
 
 [libraries]
