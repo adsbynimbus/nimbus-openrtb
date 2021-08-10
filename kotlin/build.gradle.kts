@@ -1,33 +1,32 @@
+import groovy.util.Node
+import groovy.util.NodeList
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("com.android.library") version ("4.2.1")
-    kotlin("multiplatform") version ("1.5.20")
-    id("org.jetbrains.dokka") version ("1.4.32")
+    id("com.android.library") version ("7.0.0")
+    kotlin("multiplatform") version ("1.5.30-M1")
+    id("org.jetbrains.dokka") version ("1.5.0")
     `maven-publish`
 }
 
 android {
-    compileSdkVersion(30)
+    buildToolsVersion = "31.0.0"
+    compileSdk = 30
     defaultConfig {
-        minSdkVersion(17)
-        versionName(project.version.toString())
+        minSdk = 17
 
         consumerProguardFiles("consumer-proguard-rules.pro")
     }
-
-    sourceSets {
-        val main by getting {
-            java.srcDirs("src/androidMain/kotlin")
-            manifest.srcFile("src/androidMain/AndroidManifest.xml")
-            res.srcDirs("src/androidMain/res")
-        }
+    sourceSets.getByName("main") {
+        java.srcDirs("src/androidMain/kotlin")
+        manifest.srcFile("src/androidMain/AndroidManifest.xml")
+        res.srcDirs("src/androidMain/res")
     }
 }
 
 kotlin {
     android {
-        publishAllLibraryVariants()
+        publishLibraryVariants("release")
     }
     sourceSets {
         named("commonMain") {
@@ -67,7 +66,7 @@ tasks.withType<AbstractCopyTask>().configureEach {
 
 tasks.withType<DokkaTask>().configureEach {
     dokkaSourceSets {
-        configureEach {
+        matching { it.name in listOf("commonMain", "androidMain")}.configureEach {
             sourceLink {
                 localDirectory.set(file("src/$name/kotlin"))
                 remoteUrl.set(uri("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin").toURL())
@@ -92,10 +91,41 @@ configurations.create("sourcesElements") {
     kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.forEach { outgoing.artifact(it) }
 }
 
+fun MavenPublication.replaceWith(other: MavenPublication) {
+    lateinit var platformXml: XmlProvider
+    other.pom.withXml { platformXml = this }
+
+    pom.withXml {
+        val root: Node = asNode()
+        // Remove the original content and add the content from the platform POM:
+        root.children().toList().forEach { root.remove(it as Node) }
+        platformXml.asNode().children().forEach { root.append(it as Node) }
+
+        // Adjust the self artifact ID, as it should match the root module's coordinates:
+        ((root.get("artifactId") as NodeList)[0] as Node).setValue(artifactId)
+        // Set packaging to POM to indicate that there's no artifact:
+        ((root.get("packaging") as NodeList)[0] as Node).setValue("pom")
+
+        // Remove the original platform dependencies and add a single dependency on the platform module:
+        val dependencies = (root.get("dependencies") as NodeList)[0] as Node
+        dependencies.children().toList().forEach { dependencies.remove(it as Node) }
+        val singleDependency = dependencies.appendNode("dependency")
+        singleDependency.appendNode("groupId", other.groupId)
+        singleDependency.appendNode("artifactId", other.artifactId)
+        singleDependency.appendNode("version", other.version)
+        singleDependency.appendNode("scope", "compile")
+    }
+
+    tasks.matching { it.name == "generatePomFileForKotlinMultiplatformPublication"}.configureEach {
+        dependsOn(tasks["generatePomFileFor${other.name.capitalize()}Publication"])
+    }
+}
+
 publishing {
-    publications {
-        afterEvaluate {
-            named<MavenPublication>("androidRelease") {
+    afterEvaluate {
+        publications {
+            named<MavenPublication>("kotlinMultiplatform") {
+                replaceWith(getByName<MavenPublication>("androidRelease"))
                 artifact(dokkaJar)
             }
         }
