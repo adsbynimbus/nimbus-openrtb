@@ -5,17 +5,88 @@ import kotlin.jvm.JvmField
 /**
  * This object represents an in-stream video impression.
  *
- * Many of the fields are non-essential for minimally viable transactions, but are included to offer fine control when
- * needed. Video in OpenRTB generally assumes compliance with the VAST standard. As such, the notion of companion ads
- * is supported by optionally including an array of Banner objects that define these companion ads. The presence of a
- * Video as a subordinate of the Impression object indicates that this impression is offered as a video type
- * impression. At the publisher’s discretion, that same impression may also be offered as banner, audio, and/or native
- * by also including as Imp subordinates objects of those types. However, any given bid for the impression must conform
- * to one of the offered types.
+ * Many of the fields are non-essential for minimally viable transactions, but are included to offer
+ * fine control when needed. Video in OpenRTB generally assumes compliance with the VAST standard.
+ * As such, the notion of companion ads is supported by optionally including an array of Banner
+ * objects that define these companion ads. The presence of a Video as a subordinate of the
+ * Impression object indicates that this impression is offered as a video type impression. At the
+ * publisher’s discretion, that same impression may also be offered as banner, audio, and/or native
+ * by also including as Imp subordinates objects of those types. However, any given bid for the
+ * impression must conform to one of the offered types.
  *
  * [OpenRTB Section 3.2.7](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=20)
+ *
+ * @property bidfloor Minimum bid for this video impression expressed in CPM.
+ * @property mimes Content MIME types supported (e.g., "video/3gp", "video/mp4").
+ * @property minduration Minimum video ad duration in seconds.
+ * @property maxduration Maximum video ad duration in seconds.
+ * @property protocols Set of supported video protocols
+ * @property w Width of the video player in device independent pixels (DIPS).
+ * @property h Height of the video player in device independent pixels (DIPS).
+ * @property startdelay Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad
+ *                      placements.
+ *                      >0: Mid roll where the value indicates the start delay
+ *                      0: pre roll
+ *                      -1: generic mid roll
+ *                      -2: generic post roll
+ * @property placement Placement type for this video impression
+ * @property linearity Indicates if the impression must be linear, nonlinear, etc.
+ *                     If none specified, assume all are allowed.
+ * @property skip Indicates if the player will allow the video to be skipped. If a bidder sends
+ *                markup/creative that is itself skippable, the Bid object should include the attr
+ *                array with an element of [CreativeAttribute.HAS_SKIP_BUTTON] indicating skippable
+ *                video. Refer to [CreativeAttribute].
+ *                0 = no
+ *                1 = yes.
+ * @property delivery Supported delivery methods; if none specified, assume all are supported.
+ * @property skipmin Videos of total duration greater than this number of seconds can be skippable.
+ *                   Only applicable if the ad is skippable.
+ * @property skipafter Number of seconds a video must play before skipping is enabled; only
+ *                     applicable if the ad is skippable.
+ * @property minbitrate Minimum bit rate in Kbps.
+ * @property maxbitrate Maximum bit rate in Kbps.
+ * @property pos Ad position on screen.
+ * @property playbackmethod The event that causes playback to start
+ * @property api Set of supported API frameworks for this impression. If an API is not explicitly
+ *               listed, it is assumed not to be supported.
+ * @property companionad Array of Banner objects if companion ads are available
+ * @property companiontype Supported VAST companion ad types. Recommended if requesting companion
+ *                         ads.
+ * @property ext Video extensions
  */
-open class Video {
+class Video(
+    @JvmField var bidfloor: Float? = 3f,
+    @JvmField var mimes: Array<String>? = null,
+    @JvmField var minduration: Int? = 0,
+    @JvmField var maxduration: Int? = 60,
+    @JvmField var protocols: IntArray? = null,
+    @JvmField var w: Int = 0,
+    @JvmField var h: Int = 0,
+    @JvmField var startdelay: Int? = null,
+    @JvmField var placement: Int? = null,
+    @JvmField var linearity: Int? = null,
+    @JvmField var skip: Int? = null,
+    @JvmField var delivery: IntArray? = null,
+    @JvmField var skipmin: Int? = 0,
+    @JvmField var skipafter: Int? = 0,
+    @JvmField var minbitrate: Int? = 0,
+    @JvmField var maxbitrate: Int? = 0,
+    @JvmField var pos: Int? = null,
+    @JvmField var playbackmethod: IntArray? = null,
+    @JvmField var api: IntArray? = null,
+    @JvmField var companionad: Array<Banner>? = null,
+    @JvmField var companiontype: IntArray? = null,
+    @JvmField var ext: Extension? = null,
+) {
+    /**
+     * Video extensions
+     *
+     * @property is_rewarded Indicates this video request is for a rewarded video
+     */
+    open class Extension(
+        @JvmField var is_rewarded: Boolean? = null,
+    )
+
     /**
      * Protocols
      *
@@ -189,183 +260,6 @@ open class Video {
              */
             const val IFRAME = 3
         }
-    }
-
-    /**
-     * Minimum bid for this video impression expressed in CPM.
-     *
-     * If this value is omitted Nimbus will default to 3.0
-     */
-    @JvmField
-    var bidfloor: Float? = null
-
-    /**
-     * Content MIME types supported (e.g., "video/3gp", "video/mp4").
-     */
-    @JvmField
-    var mimes: Array<String>? = null
-
-    /**
-     * Minimum video ad duration in seconds.
-     *
-     * If this value is omitted Nimbus defaults to 0
-     */
-    @JvmField
-    var minduration: Int? = null
-
-    /**
-     * Maximum video ad duration in seconds.
-     *
-     * If this value is omitted Nimbus defaults to 60
-     */
-    @JvmField
-    var maxduration: Int? = null
-
-    /**
-     * Set of supported video protocols
-     */
-    @JvmField
-    var protocols: IntArray? = null
-
-    /**
-     * Width of the video player in device independent pixels (DIPS).
-     */
-    @JvmField
-    var w = 0
-
-    /**
-     * Height of the video player in device independent pixels (DIPS).
-     */
-    @JvmField
-    var h = 0
-
-    /**
-     * Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.
-     *
-     *  * <0: Mid roll where the value indicates the start delay
-     *  * 0: pre roll
-     *  * -1: generic mid roll
-     *  * -2: generic post roll
-     *
-     */
-    @JvmField
-    var startdelay: Int? = null
-
-    /**
-     * Placement type for this video impression
-     */
-    @JvmField
-    var placement: Int? = null
-
-    /**
-     * Indicates if the impression must be linear, nonlinear, etc.
-     *
-     * If none specified, assume all are allowed.
-     */
-    @JvmField
-    var linearity: Int? = null
-
-    /**
-     * Indicates if the player will allow the video to be skipped.
-     *
-     *  * 0 = no
-     *  * 1 = yes.
-     *
-     *  If a bidder sends markup/creative that is itself skippable, the Bid object should include the attr array with
-     *  an element of [CreativeAttribute.HAS_SKIP_BUTTON] indicating skippable video. Refer to [CreativeAttribute].
-     */
-    @JvmField
-    var skip: Int? = null
-
-    /**
-     * Supported delivery methods; if none specified, assume all are supported.
-     */
-    @JvmField
-    var delivery: IntArray? = null
-
-    /**
-     * Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is
-     * skippable.
-     *
-     * If this value is omitted Nimbus defaults to 0
-     */
-    @JvmField
-    var skipmin: Int? = null
-
-    /**
-     * Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable.
-     *
-     * If this value is omitted Nimbus defaults to 0
-     */
-    @JvmField
-    var skipafter: Int? = null
-
-    /**
-     * Minimum bit rate in Kbps.
-     *
-     * If this value is omitted Nimbus defaults to 0
-     */
-    @JvmField
-    var minbitrate: Int? = null
-
-    /**
-     * Maximum bit rate in Kbps.
-     *
-     * If this value is omitted Nimbus defaults to 0
-     */
-    @JvmField
-    var maxbitrate: Int? = null
-
-    /**
-     * Ad position on screen.
-     */
-    @JvmField
-    var pos: Int? = null
-
-    /**
-     * The event that causes playback to start
-     */
-    @JvmField
-    var playbackmethod: IntArray? = null
-
-    /**
-     * Set of supported API frameworks for this impression.
-     *
-     * If an API is not explicitly listed, it is assumed not to be supported.
-     */
-    @JvmField
-    var api: IntArray? = null
-
-    /**
-     * Array of Banner objects if companion ads are available
-     */
-    @JvmField
-    var companionad: Array<Banner>? = null
-
-    /**
-     * Supported VAST companion ad types. Recommended if requesting companion ads
-     *
-     * @see [CompanionType]
-     */
-    @JvmField
-    var companiontype: IntArray? = null
-
-    /**
-     * Video extensions
-     */
-    @JvmField
-    var ext: Extension? = null
-
-    /**
-     * Video extensions
-     */
-    open class Extension {
-
-        /**
-         * Indicates this video request is for a rewarded video
-         */
-        @JvmField
-        var is_rewarded: Boolean? = null
     }
 
     /**

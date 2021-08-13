@@ -5,11 +5,15 @@ import kotlin.jvm.JvmField
 /**
  * This object represents an allowed size (i.e., height and width combination)
  *
- * @param w width in device independent pixels (DIPS).
- * @param h height in device independent pixels (DIPS).
  * [OpenRTB Section 3.2.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=23)
+ *
+ * @property w width in device independent pixels (DIPS).
+ * @property h height in device independent pixels (DIPS).
  */
-open class Format(@JvmField val w: Int, @JvmField val h: Int) {
+class Format(
+    @JvmField val w: Int,
+    @JvmField val h: Int,
+) {
 
     companion object {
         /**

@@ -5,81 +5,41 @@ import kotlin.jvm.JvmField
 /**
  * This object represents the most general type of impression.
  *
- * Although the term "banner" may have very specific meaning in other contexts, here it can be many things including a
- * simple static image, an expandable ad unit, or even in-banner video (refer to [Video] for generalized and full
- * featured video ad units). An array of [Banner] objects can also appear within the [Video] to describe optional
- * companion ads defined in the VAST specification. The presence of a [Banner] as a subordinate of the
- * [Impression] object indicates that this impression is offered as a banner type impression. At the publisher’s
- * discretion, that same impression may also be offered as video, audio, and/or native by also including as
- * [Impression] subordinates objects of those types. However, any given bid for the impression must conform to one
- * of the offered types.
+ * Although the term "banner" may have very specific meaning in other contexts, here it can be many
+ * things including a simple static image, an expandable ad unit, or even in-banner video (refer to
+ * [Video] for generalized and full featured video ad units). An array of [Banner] objects can also
+ * appear within the [Video] to describe optional companion ads defined in the VAST specification.
+ * The presence of a [Banner] as a subordinate of the [Impression] object indicates that this
+ * impression is offered as a banner type impression. At the publisher’s discretion, that same
+ * impression may also be offered as video, audio, and/or native by also including as [Impression]
+ * subordinates objects of those types. However, any given bid for the impression must conform to
+ * one of the offered types.
  *
  * [OpenRTB Section 3.2.6](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=19)
+ *
+ * @property bidfloor Minimum bid for this banner impression expressed in CPM. This value should be
+ *                    equal to or higher than the value set on the Impression object. If this value
+ *                    is omitted Nimbus will default to 2.0
+ * @property battr Set of creative attributes to block.
+ * @property format Array of Format objects representing the banner sizes permitted.
+ * @property w Exact width in device independent pixels (DIPS).
+ * @property h Exact height in device independent pixels (DIPS).
+ * @property pos Ad position on screen.
+ * @property api Set of supported Api frameworks for this banner impression. If an Api is not
+ *               explicitly listed, it is assumed not to be supported.
+ * @property vcm The type of companion ad if used in a Video object. (0 - Concurrent, 1 - End Card)
  */
-open class Banner {
-
-    /**
-     * Minimum bid for this banner impression expressed in CPM.
-     *
-     * This value should be equal to or higher than the value set on the [Impression] object.
-     *
-     * If this value is omitted Nimbus will default to 2.0
-     */
-    @JvmField
-    var bidfloor: Float? = null
-
-    /**
-     * Set of creative attributes to block
-     */
-    @JvmField
-    var battr: IntArray? = null
-
-    /**
-     * Array of Format objects representing the banner sizes permitted.
-     *
-     * If none are specified, then use of the h and w attributes is required.
-     */
-    @JvmField
-    var format: Array<Format>? = null
-
-    /**
-     * Exact width in device independent pixels (DIPS); required if the [Format] array is not specified or if this
-     * object is configured for a banner size such as 320x50 or 300x50
-     */
-    @JvmField
-    var w: Int? = null
-
-    /**
-     * Exact height in device independent pixels (DIPS); required if the [Banner] array are specified or if this
-     * object is configured for a banner size such as 320x50 or 300x50
-     */
-    @JvmField
-    var h: Int? = null
-
-    /**
-     * Ad position on screen
-     */
-    @JvmField
-    var pos: Int? = null
-
-    /**
-     * Set of supported Api frameworks for this banner impression. If an Api is not explicitly listed,
-     * it is assumed not to be supported.
-     */
-    @JvmField
-    var api: IntArray? = null
-
-    /**
-     * The type of companion ad if used in a Video object
-     *
-     * * 0 - concurrent
-     * * 1 - end card
-     *
-     * @see [Video.companionad]
-     */
-    @JvmField
-    var vcm: Int? = null
-
+ class Banner(
+    @JvmField var bidfloor: Float? = null,
+    @JvmField var battr: IntArray? = null,
+    @JvmField var format: Array<Format>? = null,
+    @JvmField var w: Int? = null,
+    @JvmField var h: Int? = null,
+    @JvmField var pos: Int? = null,
+    @JvmField var api: IntArray? = null,
+    @JvmField var vcm: Int? = null,
+) {
+    
     /**
      * Builder for constructing a Banner object
      *
