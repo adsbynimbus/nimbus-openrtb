@@ -1,7 +1,15 @@
 [versions]
+android="7.0.0"
 annotation = "1.2.0"
+dokka = "1.5.0"
 gson = "2.8.7"
+kotlin = "1.5.30-RC"
 spek = "2.0.15"
+
+[plugins]
+android = { id = "com.android.library", version.ref = "android" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+kotlin = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 
 [libraries]
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }

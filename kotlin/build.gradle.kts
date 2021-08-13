@@ -3,9 +3,9 @@ import groovy.util.NodeList
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("com.android.library") version ("7.0.0")
-    kotlin("multiplatform") version ("1.5.30-M1")
-    id("org.jetbrains.dokka") version ("1.5.0")
+    alias(libs.plugins.android)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.dokka)
     `maven-publish`
 }
 
