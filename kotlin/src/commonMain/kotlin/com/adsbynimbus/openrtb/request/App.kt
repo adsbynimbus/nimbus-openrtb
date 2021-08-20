@@ -41,16 +41,4 @@ class App(
     @JvmField var privacypolicy: Int? = null,
     @JvmField var paid: Int? = null,
     @JvmField var publisher: Publisher? = null,
-) {
-    companion object {
-        /**
-         * Free App
-         */
-        const val FREE = 0
-
-        /**
-         * Paid App
-         */
-        const val PAID = 1
-    }
-}
+)

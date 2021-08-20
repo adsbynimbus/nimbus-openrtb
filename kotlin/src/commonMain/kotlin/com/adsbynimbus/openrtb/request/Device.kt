@@ -51,92 +51,32 @@ class Device(
     @JvmField var carrier: String? = null,
     @JvmField var connectiontype: Int? = null,
     @JvmField var ifa: String? = null,
-) {
-    /**
-     * Options for the type of device connectivity
-     *
-     * [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
-     */
-    interface ConnectionType {
-        companion object {
-            /**
-             * Unknown
-             */
-            const val UNKNOWN = 0
+)
 
-            /**
-             * Unknown
-             */
-            const val ETHERNET = 1
+/*
+ * Options for the type of device connectivity
+ *
+ * [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
+ */
+const val Ethernet = 1
+const val Wifi = 2
+const val CellularUnknown = 3
+const val Cellular2G = 4
+const val Cellular3G = 5
+const val Cellular4G = 6
 
-            /**
-             * Wifi
-             */
-            const val WIFI = 2
-
-            /**
-             * Cellular Network – Unknown Generation
-             */
-            const val CELLULAR_UNKNOWN = 3
-
-            /**
-             * Cellular Network – 2G
-             */
-            const val CELLULAR_2G = 4
-
-            /**
-             * Cellular Network – 3G
-             */
-            const val CELLULAR_3G = 5
-
-            /**
-             * Cellular Network – 4G
-             */
-            const val CELLULAR_4G = 6
-        }
-    }
-
-    /**
-     * Type of device from which the impression originated.
-     *
-     * [OpenRTB Section 5.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
-     */
-    interface DeviceType {
-        companion object {
-            /**
-             * Mobile/Tablet - Interchangeable with PHONE and Tablet
-             */
-            const val MOBILE_TABLET = 1
-
-            /**
-             * Personal Computer
-             */
-            const val PERSONAL_COMPUTER = 2
-
-            /**
-             * Connected TV
-             */
-            const val CONNECTED_TV = 3
-
-            /**
-             * Phone - Interchangeable with MOBILE_TABLET
-             */
-            const val PHONE = 4
-
-            /**
-             * Tablet - Interchangeable with MOBILE_TABLET
-             */
-            const val TABLET = 5
-
-            /**
-             * Connected Device
-             */
-            const val CONNECTED_DEVICE = 6
-
-            /**
-             * Set Top Box
-             */
-            const val SET_TOP_BOX = 7
-        }
-    }
-}
+/*
+ * Type of device from which the impression originated.
+ *
+ * [OpenRTB Section 5.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
+ */
+/** Interchangeable with Phone and Tablet */
+const val MobileTablet = 1
+const val PersonalComputer = 2
+const val ConnectedTv = 3
+/** Interchangeable with MobileTablet */
+const val Phone = 4
+/** Interchangeable with MobileTablet */
+const val Tablet = 5
+const val ConnectedDevice = 6
+const val SetTopBox = 7

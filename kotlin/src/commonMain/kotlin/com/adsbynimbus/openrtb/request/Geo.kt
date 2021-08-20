@@ -39,27 +39,11 @@ class Geo(
     @JvmField var city: String? = null,
     @JvmField var metro: String? = null,
     @JvmField var state: String? = null,
-) {
+)
 
-    /**
-     * Indicates how the geographic information was determined.
-     */
-    interface LocationType {
-        companion object {
-            /**
-             * GPS/Location Services
-             */
-            const val GPS = 1
-
-            /**
-             * IP Address
-             */
-            const val IP_LOOKUP = 2
-
-            /**
-             * User provided (e.g., registration data)
-             */
-            const val USER_PROVIDED = 3
-        }
-    }
-}
+/*
+ * Indicates how the geographic information was determined.
+ */
+const val GPS = 1
+const val IpLookup = 2
+const val UserProvided = 3

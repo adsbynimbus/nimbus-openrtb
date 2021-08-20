@@ -54,16 +54,8 @@ class User(
         @JvmField var did_consent: Int = 0,
         @JvmField var unity_buyeruid: String? = null,
     )
-
-    companion object {
-        /**
-         * Male User
-         */
-        const val MALE = "male"
-
-        /**
-         * Female
-         */
-        const val FEMAlE = "female"
-    }
 }
+
+const val Male: Char = 'M'
+const val Female: Char = 'F'
+const val Other: Char = 'F'

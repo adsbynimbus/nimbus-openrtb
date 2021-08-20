@@ -87,178 +87,98 @@ class Video(
         @JvmField var is_rewarded: Boolean? = null,
     )
 
-    /**
-     * Protocols
-     *
-     * [OpenRTB Section 5.8](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
-     */
-    interface Protocol {
-        companion object {
-            /**
-             * Vast 2.0
-             */
-            const val VAST_2 = 2
-
-            /**
-             * Vast 3.0
-             */
-            const val VAST_3 = 3
-
-            /**
-             * Vast 2.0 Wrapper
-             */
-            const val VAST_2_WRAPPER = 5
-
-            /**
-             * Vast 3.0 Wrapper
-             */
-            const val VAST_3_WRAPPER = 6
-        }
-    }
-
-    /**
-     * Placements
-     *
-     * [OpenRTB Section 5.9](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
-     */
-    interface Placement {
-        companion object {
-            /**
-             * Played before, during or after the streaming video content that the consumer has requested
-             * (e.g., Pre-roll, Mid-roll, Post-roll).
-             */
-            const val IN_STREAM = 1
-
-            /**
-             * Exists within a web banner that leverages the banner space to deliver a video experience as
-             * opposed to another static or rich media format. The format relies on the existence of display
-             * ad inventory on the page for its delivery
-             */
-            const val IN_BANNER = 2
-
-            /**
-             * Loads and plays dynamically between paragraphs of editorial content; existing as a standalone
-             * branded message
-             */
-            const val IN_ARTICLE = 3
-
-            /**
-             * Found in content, social, or product feeds.
-             */
-            const val IN_FEED = 4
-
-            /**
-             * Covers the entire or a portion of screen area, but is always on screen while displayed (i.e.
-             * cannot be scrolled out of view). Note that a full-screen interstitial (e.g., in mobile) can be
-             * distinguished from a floating/slider unit by the [Impression.instl] field.
-             */
-            const val INTERSTITIAL_SLIDER_FLOATING = 5
-        }
-    }
-
-    /**
-     * Playback methods
-     *
-     * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
-     */
-    interface PlaybackMethod {
-        companion object {
-            /**
-             * Initiates on Page Load with Sound On
-             */
-            const val PAGE_LOAD_SOUND_ON = 1
-
-            /**
-             * Initiates on Page Load with Sound Off by Default
-             */
-            const val PAGE_LOAD_SOUND_OFF = 2
-
-            /**
-             * Initiates on Click with Sound On
-             */
-            const val CLICK_SOUND_ON = 3
-
-            /**
-             * Initiates on Mouse-Over with Sound On
-             */
-            const val MOUSE_OVER_SOUND_ON = 4
-
-            /**
-             * Initiates on Entering Viewport with Sound On
-             */
-            const val ENTER_VIEWPORT_SOUND_ON = 5
-
-            /**
-             * Initiates on Entering Viewport with Sound Off by default
-             */
-            const val ENTER_VIEWPORT_SOUND_OFF = 6
-        }
-    }
-
-    /**
-     * Linearity
-     *
-     * [OpenRTB Section 5.7](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
-     */
-    interface Linearity {
-        companion object {
-            /**
-             * Linear / In-Stream
-             */
-            const val LINEAR = 1
-
-            /**
-             * Non-Linear / Overlay
-             */
-            const val NON_LINEAR = 2
-        }
-    }
-
-    /**
-     * Content Delivery
-     *
-     * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
-     */
-    interface DeliveryMethod {
-        companion object {
-            /**
-             * Streaming
-             */
-            const val STREAMING = 1
-
-            /**
-             * Progressive
-             */
-            const val PROGRESSIVE = 2
-
-            /**
-             * Download
-             */
-            const val DOWNLOAD = 3
-        }
-    }
-
-    /**
-     * CompanionType
-     *
-     * [OpenRTB Section 5.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=54)
-     */
-    interface CompanionType {
-        companion object {
-            /**
-             * URI to a static resource such as an image
-             */
-            const val STATIC = 1
-
-            /**
-             * HTML to display the companion element
-             */
-            const val HTML = 2
-
-            /**
-             * URI source for an IFrame to display the companion element
-             */
-            const val IFRAME = 3
-        }
-    }
 }
+
+/*
+ * Protocols
+ *
+ * [OpenRTB Section 5.8](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
+ */
+const val Vast2 = 2
+const val Vast3 = 3
+const val Vast2Wrapper = 5
+const val Vast3Wrapper = 6
+const val Vast4 = 7
+const val Vast4Wrapper = 8
+
+/*
+ * Placements
+ *
+ * [OpenRTB Section 5.9](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
+ */
+
+/**
+ * Played before, during or after the streaming video content that the consumer has requested
+ * (e.g., Pre-roll, Mid-roll, Post-roll).
+ */
+const val InStream = 1
+
+/**
+ * Exists within a web banner that leverages the banner space to deliver a video experience as
+ * opposed to another static or rich media format. The format relies on the existence of display
+ * ad inventory on the page for its delivery
+ */
+const val InBanner = 2
+
+/**
+ * Loads and plays dynamically between paragraphs of editorial content; existing as a standalone
+ * branded message
+ */
+const val InArticle = 3
+
+/**
+ * Found in content, social, or product feeds.
+ */
+const val InFeed = 4
+
+/**
+ * Covers the entire or a portion of screen area, but is always on screen while displayed (i.e.
+ * cannot be scrolled out of view). Note that a full-screen interstitial (e.g., in mobile) can be
+ * distinguished from a floating/slider unit by the [Impression.instl] field.
+ */
+const val InterstitialSliderFloating = 5
+
+/*
+ * Playback methods
+ *
+ * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
+ */
+const val PageLoadSoundOn = 1
+const val PageLoadSoundOff = 2
+const val ClickSoundOn = 3
+const val MouseOverSoundOn = 4
+const val EnterViewportSoundOn = 5
+const val EnterViewportSoundOff = 6
+
+/*
+ * Linearity
+ *
+ * [OpenRTB Section 5.7](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
+ */
+
+/** In-Stream */
+const val Linear = 1
+
+/** Overlay */
+const val NonLinear = 2
+
+/*
+ * Content Delivery
+ *
+ * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
+ */
+const val Streaming = 1
+const val Progressive = 2
+const val Download = 3
+
+/*
+ * CompanionType
+ *
+ * [OpenRTB Section 5.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=54)
+ */
+/** URI to a static resource such as an image */
+const val Static = 1
+/** HTML to display the companion element */
+const val Html = 2
+/** URI source for an IFrame to display the companion element */
+const val IFrame = 3
