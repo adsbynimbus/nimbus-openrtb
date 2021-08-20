@@ -18,38 +18,4 @@ class Segment(
     @JvmField var id: String? = null,
     @JvmField var name: String? = null,
     @JvmField var value: String? = null,
-) {
-    /**
-     * Builder for constructing a Segment object
-     *
-     * @see [Segment]
-     */
-    interface Builder {
-        /**
-         * Sets the id of this segment object.
-         *
-         * @param id any string representing the id of this segment
-         * @return this builder instance
-         * @see [Segment.id]
-         */
-        fun id(id: String?): Builder
-
-        /**
-         * Sets the name of this segment.
-         *
-         * @param name any string representing the name of this segment
-         * @return this builder instance
-         * @see [Segment.name]
-         */
-        fun name(name: String?): Builder
-
-        /**
-         * Sets the value of this segment.
-         *
-         * @param value any string representing this segment value
-         * @return this builder instance
-         * @see [Segment.value]
-         */
-        fun value(value: String?): Builder
-    }
-}
+)

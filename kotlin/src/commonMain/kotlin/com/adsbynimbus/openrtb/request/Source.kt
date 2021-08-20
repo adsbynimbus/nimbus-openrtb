@@ -28,22 +28,4 @@ class Source(
         @JvmField var omidpn: String? = null,
         @JvmField var omidpv: String? = null,
     )
-
-    /**
-     * Builder for constructing a Source object
-     *
-     * @see [Source]
-     */
-    interface Builder {
-        /**
-         * Sets the OM SDK information for a measurement enabled app.
-         *
-         * @param partnerName should match the partner name field from OM
-         * @param sdkVersion OM SDK version
-         * @return this builder instance
-         * @see [Extension.omidpn]
-         * @see [Extension.omidpv]
-         */
-        fun omSdk(partnerName: String?, sdkVersion: String?): Builder
-    }
 }

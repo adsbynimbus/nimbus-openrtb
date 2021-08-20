@@ -58,5 +58,4 @@ class Format(
         @JvmField
         val LEADERBOARD = Format(728, 90)
     }
-
 }

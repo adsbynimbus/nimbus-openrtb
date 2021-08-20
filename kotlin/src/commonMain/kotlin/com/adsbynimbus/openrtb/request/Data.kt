@@ -19,39 +19,4 @@ class Data(
     @JvmField var id: String? = null,
     @JvmField var name: String? = null,
     @JvmField var segment: Array<Segment>? = null,
-) {
-    /**
-     * Builder for constructing a Data object
-     *
-     * @see [Data]
-     */
-    interface Builder {
-        /**
-         * Sets the id of the data object.
-         *
-         * @param id any string
-         * @return this builder instance
-         * @see [Data.id]
-         */
-        fun id(id: String?): Builder
-
-        /**
-         * Sets the name of the data object.
-         *
-         * @param name any string
-         * @return this builder instance
-         * @see [Data.name]
-         */
-        fun name(name: String?): Builder
-
-        /**
-         * Sets segmenting data.
-         *
-         * @param segments array of segments describing this data object
-         * @return this builder instance
-         * @see [Data.segment]
-         * @see [Segment]
-         */
-        fun segments(vararg segments: Segment?): Builder
-    }
-}
+)
