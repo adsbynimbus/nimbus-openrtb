@@ -19,8 +19,8 @@ import kotlin.jvm.JvmField
  * @see [OpenRTB Section 7.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=76)
  */
 class Regs(
-    @JvmField val coppa: Int? = 0,
-    @JvmField val ext: Extension? = null,
+    @JvmField val coppa: Int = 0,
+    @JvmField val ext: Extension = Extension(),
 ) {
     /**
      * Placeholder for exchange-specific extensions to OpenRTB.
@@ -42,7 +42,7 @@ class Regs(
      * @see [US Privacy String Format](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md.us-privacy-string-format)
      */
     open class Extension(
-        @JvmField val gdpr: Int? = 0,
-        @JvmField val us_privacy: String? = null
+        @JvmField val gdpr: Int = 0,
+        @JvmField val us_privacy: String = ""
     )
 }

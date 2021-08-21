@@ -19,7 +19,7 @@ import kotlin.jvm.JvmField
  * @property lon Longitude from -180.0 to +180.0, where negative is west
  * @property type Source of location data; recommended when passing lat/lon.
  * @property accuracy Estimated location accuracy in meters.
- *                    Recommended when lat/lon are specified and derived from adevice’s location
+ *                    Recommended when lat/lon are specified and derived from a device’s location
  *                    services (i.e., type = 1). Note that this is the accuracy as reported from the
  *                    device. Consult OS specific documentation (e.g., Android, iOS) for exact
  *                    interpretation.

@@ -15,7 +15,7 @@ import kotlin.jvm.JvmField
  * @property value String representation of the data segment value.
  */
 class Segment(
-    @JvmField val id: String? = null,
-    @JvmField val name: String? = null,
-    @JvmField val value: String? = null,
+    @JvmField val id: String,
+    @JvmField val name: String,
+    @JvmField val value: String,
 )

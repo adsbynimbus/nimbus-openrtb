@@ -30,15 +30,15 @@ import kotlin.jvm.JvmField
  * @property publisher Details about the publisher of the app.
  */
 class App(
-    @JvmField val name: String? = null,
-    @JvmField val bundle: String? = null,
-    @JvmField val domain: String? = null,
-    @JvmField val storeurl: String? = null,
-    @JvmField val cat: Array<String>? = null,
-    @JvmField val sectioncat: Array<String>? = null,
-    @JvmField val pagecat: Array<String>? = null,
-    @JvmField val ver: String? = null,
-    @JvmField val privacypolicy: Int? = null,
-    @JvmField val paid: Int? = null,
+    @JvmField val name: String,
+    @JvmField val bundle: String,
+    @JvmField val domain: String,
+    @JvmField val storeurl: String,
+    @JvmField val cat: Array<String> = emptyArray(),
+    @JvmField val sectioncat: Array<String> = emptyArray(),
+    @JvmField val pagecat: Array<String> = emptyArray(),
+    @JvmField val ver: String,
+    @JvmField val privacypolicy: Int = 0,
+    @JvmField val paid: Int = 0,
     @JvmField val publisher: Publisher? = null,
 )

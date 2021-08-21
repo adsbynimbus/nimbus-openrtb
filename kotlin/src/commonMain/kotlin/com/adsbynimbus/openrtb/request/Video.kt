@@ -55,17 +55,17 @@ import kotlin.jvm.JvmField
  * @property ext Video extensions
  */
 class Video(
-    @JvmField val bidfloor: Float? = 3f,
-    @JvmField val mimes: Array<String>? = null,
-    @JvmField val minduration: Int? = 0,
-    @JvmField val maxduration: Int? = 60,
+    @JvmField val bidfloor: Float = 3f,
+    @JvmField val mimes: Array<String> = emptyArray(),
+    @JvmField val minduration: Int = 0,
+    @JvmField val maxduration: Int = 60,
     @JvmField val protocols: IntArray? = null,
     @JvmField val w: Int = 0,
     @JvmField val h: Int = 0,
-    @JvmField val startdelay: Int? = null,
-    @JvmField val placement: Int? = null,
+    @JvmField val startdelay: Int = 0,
+    @JvmField val placement: Int,
     @JvmField val linearity: Int? = null,
-    @JvmField val skip: Int? = null,
+    @JvmField val skip: Int,
     @JvmField val delivery: IntArray? = null,
     @JvmField val skipmin: Int? = 0,
     @JvmField val skipafter: Int? = 0,
@@ -84,9 +84,8 @@ class Video(
      * @property is_rewarded Indicates this video request is for a rewarded video
      */
     open class Extension(
-        @JvmField val is_rewarded: Boolean? = null,
+        @JvmField val is_rewarded: Boolean = false,
     )
-
 }
 
 /*

@@ -15,7 +15,7 @@ import kotlin.jvm.JvmField
  * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
  */
 class Publisher(
-    @JvmField val name: String? = null,
-    @JvmField val domain: String? = null,
-    @JvmField val cat: Array<String>? = null,
+    @JvmField val name: String,
+    @JvmField val domain: String,
+    @JvmField val cat: Array<String> = emptyArray(),
 )

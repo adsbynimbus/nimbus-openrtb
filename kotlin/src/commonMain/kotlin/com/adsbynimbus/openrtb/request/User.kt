@@ -34,7 +34,7 @@ class User(
     @JvmField val gender: String? = null,
     @JvmField val keywords: String? = null,
     @JvmField val custom_data: String? = null,
-    @JvmField val data: Array<Data>? = null,
+    @JvmField val data: Array<Data> = emptyArray(),
     @JvmField val ext: Extension? = null,
 ) {
 
@@ -50,7 +50,7 @@ class User(
      *                          started.
      */
     open class Extension(
-        @JvmField val consent: String? = null,
+        @JvmField val consent: String = "",
         @JvmField val did_consent: Int = 0,
         @JvmField val unity_buyeruid: String? = null,
     )

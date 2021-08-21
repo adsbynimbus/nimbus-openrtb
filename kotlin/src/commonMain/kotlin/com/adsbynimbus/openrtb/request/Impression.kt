@@ -39,28 +39,28 @@ class Impression(
     @JvmField val banner: Banner? = null,
     @JvmField val video: Video? = null,
     @JvmField val native: Native? = null,
-    @JvmField val instl: Int? = 0,
-    @JvmField val bidfloor: Float? = 1f,
-    @JvmField val secure: Int? = null,
-    @JvmField val ext: Extension? = null,
+    @JvmField val instl: Int,
+    @JvmField val bidfloor: Float = 1f,
+    @JvmField val secure: Int = 1,
+    @JvmField val ext: Extension,
 ) {
 
     /**
      * Impression extension unique to Nimbus
      *
+     * @property position Required string identifying the name of the placement that will be
+     *                    displayed on the Nimbus dashboard.
      * @property aps The list of key value pairs provided by a DTBRequest from the APS library.
      * @property facebook_app_id The identifier for this app provided by Facebook. Required if
      *                           including Facebook demand in this request.
      * @property facebook_test_ad_type An optional ad type to force a test response for validating
      *                                 integrations.
-     * @property position Required string identifying the name of the placement that will be
-     *                    displayed on the Nimbus dashboard.
      * @see [Facebook Testing](https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing)
      */
     open class Extension(
+        @JvmField val position: String,
         @JvmField val aps: List<*>? = null,
         @JvmField val facebook_app_id: String? = null,
         @JvmField val facebook_test_ad_type: String? = null,
-        @JvmField val position: String? = null
     )
 }

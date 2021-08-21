@@ -36,16 +36,16 @@ import kotlin.jvm.JvmField
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 class BidRequest(
-    @JvmField val imp: Array<Impression>? = null,
-    @JvmField val app: App? = null,
-    @JvmField val device: Device? = null,
-    @JvmField val format: Format? = null,
+    @JvmField val imp: Array<Impression>,
+    @JvmField val app: App,
+    @JvmField val device: Device,
+    @JvmField val format: Format,
     @JvmField val user: User? = null,
-    @JvmField val test: Int? = null,
-    @JvmField val tmax: Int? = null,
+    @JvmField val test: Int = 0,
+    @JvmField val tmax: Int = 500,
     @JvmField val regs: Regs? = null,
     @JvmField val source: Source? = null,
-    @JvmField val badv: Array<String>? = null,
+    @JvmField val badv: Array<String> = emptyArray(),
     @JvmField val ext: Extension? = null
 ) {
 
@@ -56,7 +56,7 @@ class BidRequest(
      *                      UUID when using the Nimbus SDK
      */
     open class Extension(
-        @JvmField val session_id: String? = null,
+        @JvmField val session_id: String,
     )
 }
 

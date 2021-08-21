@@ -30,12 +30,12 @@ import kotlin.jvm.JvmField
  * @property vcm The type of companion ad if used in a Video object. (0 - Concurrent, 1 - End Card)
  */
  class Banner(
-    @JvmField val bidfloor: Float? = null,
-    @JvmField val battr: IntArray? = null,
-    @JvmField val format: Array<Format>? = null,
-    @JvmField val w: Int? = null,
-    @JvmField val h: Int? = null,
-    @JvmField val pos: Int? = null,
-    @JvmField val api: IntArray? = null,
-    @JvmField val vcm: Int? = null,
+   @JvmField val bidfloor: Float = 2f,
+   @JvmField val battr: IntArray? = null,
+   @JvmField val format: Array<Format> = emptyArray(),
+   @JvmField val w: Int,
+   @JvmField val h: Int,
+   @JvmField val pos: Int = Unknown,
+   @JvmField val api: IntArray,
+   @JvmField val vcm: Int? = null,
 )

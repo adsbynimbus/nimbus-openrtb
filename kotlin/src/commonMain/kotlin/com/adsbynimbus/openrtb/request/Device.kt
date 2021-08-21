@@ -34,23 +34,23 @@ import kotlin.jvm.JvmField
  * @property ifa ID sanctioned for advertiser use in the clear (i.e., not hashed).
  */
 class Device(
-    @JvmField val ua: String? = null,
+    @JvmField val ua: String,
     @JvmField val geo: Geo? = null,
-    @JvmField val dnt: Int? = null,
-    @JvmField val lmt: Int? = null,
+    @JvmField val dnt: Int = 0,
+    @JvmField val lmt: Int = 0,
     @JvmField val ip: String? = null,
-    @JvmField val devicetype: Int? = null,
-    @JvmField val make: String? = null,
-    @JvmField val model: String? = null,
-    @JvmField val hwv: String? = null,
-    @JvmField val os: String = "android",
-    @JvmField val osv: String? = null,
-    @JvmField val h: Int? = null,
-    @JvmField val w: Int? = null,
-    @JvmField val language: String? = null,
-    @JvmField val carrier: String? = null,
-    @JvmField val connectiontype: Int? = null,
-    @JvmField val ifa: String? = null,
+    @JvmField val devicetype: Int = 0,
+    @JvmField val make: String,
+    @JvmField val model: String,
+    @JvmField val hwv: String,
+    @JvmField val os: String, //"android"
+    @JvmField val osv: String,
+    @JvmField val h: Int,
+    @JvmField val w: Int,
+    @JvmField val language: String,
+    @JvmField val carrier: String,
+    @JvmField val connectiontype: Int = 0,
+    @JvmField val ifa: String,
 )
 
 /*

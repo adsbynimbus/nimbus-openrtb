@@ -32,9 +32,9 @@ import kotlin.jvm.JvmField
  */
 class Native(
     @JvmField val id: String? = null,
-    @JvmField val request: String = "",
+    @JvmField val request: String,
     @JvmField val ver: String? = null,
     @JvmField val api: IntArray? = null,
     @JvmField val battr: IntArray? = null,
-    @JvmField val bidfloor: Float? = null,
+    @JvmField val bidfloor: Float = 1f,
 )
