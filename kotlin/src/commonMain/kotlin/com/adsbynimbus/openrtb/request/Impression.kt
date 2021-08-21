@@ -35,14 +35,14 @@ import kotlin.jvm.JvmField
  * @property ext Placeholder for exchange-specific extensions to OpenRTB
  */
 class Impression(
-    @JvmField var id: String? = null,
-    @JvmField var banner: Banner? = null,
-    @JvmField var video: Video? = null,
-    @JvmField var native: Native? = null,
-    @JvmField var instl: Int? = 0,
-    @JvmField var bidfloor: Float? = 1f,
-    @JvmField var secure: Int? = null,
-    @JvmField var ext: Extension? = null,
+    @JvmField val id: String? = null,
+    @JvmField val banner: Banner? = null,
+    @JvmField val video: Video? = null,
+    @JvmField val native: Native? = null,
+    @JvmField val instl: Int? = 0,
+    @JvmField val bidfloor: Float? = 1f,
+    @JvmField val secure: Int? = null,
+    @JvmField val ext: Extension? = null,
 ) {
 
     /**
@@ -58,9 +58,9 @@ class Impression(
      * @see [Facebook Testing](https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing)
      */
     open class Extension(
-        @JvmField var aps: List<*>? = null,
-        @JvmField var facebook_app_id: String? = null,
-        @JvmField var facebook_test_ad_type: String? = null,
-        @JvmField var position: String? = null
+        @JvmField val aps: List<*>? = null,
+        @JvmField val facebook_app_id: String? = null,
+        @JvmField val facebook_test_ad_type: String? = null,
+        @JvmField val position: String? = null
     )
 }

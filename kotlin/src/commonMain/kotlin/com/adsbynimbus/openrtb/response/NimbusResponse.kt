@@ -23,19 +23,19 @@ import kotlin.jvm.JvmField
  *                    creative markup
  */
 class NimbusResponse(
-    @JvmField var type: String = "",
-    @JvmField var auction_id: String = "",
-    @JvmField var bid_in_cents: Int = 0,
-    @JvmField var bid_raw: Float = 0f,
-    @JvmField var content_type: String? = null,
-    @JvmField var height: Int = 0,
-    @JvmField var width: Int = 0,
-    @JvmField var is_interstitial: Int = 0,
-    @JvmField var markup: String? = null,
-    @JvmField var network: String = "",
-    @JvmField var trackers: Trackers? = null,
-    @JvmField var placement_id: String? = null,
-    @JvmField var is_mraid: Int = 0,
+    @JvmField val type: String = "",
+    @JvmField val auction_id: String = "",
+    @JvmField val bid_in_cents: Int = 0,
+    @JvmField val bid_raw: Float = 0f,
+    @JvmField val content_type: String? = null,
+    @JvmField val height: Int = 0,
+    @JvmField val width: Int = 0,
+    @JvmField val is_interstitial: Int = 0,
+    @JvmField val markup: String? = null,
+    @JvmField val network: String = "",
+    @JvmField val trackers: Trackers? = null,
+    @JvmField val placement_id: String? = null,
+    @JvmField val is_mraid: Int = 0,
 )
 
 /**
@@ -45,6 +45,6 @@ class NimbusResponse(
  * @property click_trackers Urls to fire a request to when a click is registered
  */
 open class Trackers(
-    @JvmField var impression_trackers: Array<String>? = null,
-    @JvmField var click_trackers: Array<String>? = null,
+    @JvmField val impression_trackers: Array<String>? = null,
+    @JvmField val click_trackers: Array<String>? = null,
 )

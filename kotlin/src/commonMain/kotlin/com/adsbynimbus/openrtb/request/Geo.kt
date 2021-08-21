@@ -3,7 +3,7 @@ package com.adsbynimbus.openrtb.request
 import kotlin.jvm.JvmField
 
 /**
- * This object encapsulates various methods for specifying a geographic location.
+ * This object encapsulates valious methods for specifying a geographic location.
  *
  * When subordinate to a Device object, it indicates the location of the device which can also be
  * interpreted as the user’s current location. When subordinate to a User object, it indicates the
@@ -31,14 +31,14 @@ import kotlin.jvm.JvmField
  * @see [Google Metro codes](code.google.com/apis/adwords/docs/appendix/metrocodes.html)
  */
 class Geo(
-    @JvmField var lat: Float? = null,
-    @JvmField var lon: Float? = null,
-    @JvmField var type: Int? = null,
-    @JvmField var accuracy: Int? = null,
-    @JvmField var country: String? = null,
-    @JvmField var city: String? = null,
-    @JvmField var metro: String? = null,
-    @JvmField var state: String? = null,
+    @JvmField val lat: Float? = null,
+    @JvmField val lon: Float? = null,
+    @JvmField val type: Int? = null,
+    @JvmField val accuracy: Int? = null,
+    @JvmField val country: String? = null,
+    @JvmField val city: String? = null,
+    @JvmField val metro: String? = null,
+    @JvmField val state: String? = null,
 )
 
 /*

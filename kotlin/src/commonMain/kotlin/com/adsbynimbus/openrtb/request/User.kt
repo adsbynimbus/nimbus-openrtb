@@ -28,14 +28,14 @@ import kotlin.jvm.JvmField
  * @see [OpenRTB Section 3.2.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
  */
 class User(
-    @JvmField var age: Int? = null,
-    @JvmField var buyeruid: String? = null,
-    @JvmField var yob: Int? = null,
-    @JvmField var gender: String? = null,
-    @JvmField var keywords: String? = null,
-    @JvmField var custom_data: String? = null,
-    @JvmField var data: Array<Data>? = null,
-    @JvmField var ext: Extension? = null,
+    @JvmField val age: Int? = null,
+    @JvmField val buyeruid: String? = null,
+    @JvmField val yob: Int? = null,
+    @JvmField val gender: String? = null,
+    @JvmField val keywords: String? = null,
+    @JvmField val custom_data: String? = null,
+    @JvmField val data: Array<Data>? = null,
+    @JvmField val ext: Extension? = null,
 ) {
 
     /**
@@ -50,9 +50,9 @@ class User(
      *                          started.
      */
     open class Extension(
-        @JvmField var consent: String? = null,
-        @JvmField var did_consent: Int = 0,
-        @JvmField var unity_buyeruid: String? = null,
+        @JvmField val consent: String? = null,
+        @JvmField val did_consent: Int = 0,
+        @JvmField val unity_buyeruid: String? = null,
     )
 }
 

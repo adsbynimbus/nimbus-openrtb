@@ -16,7 +16,7 @@ import kotlin.jvm.JvmField
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 class Source(
-    @JvmField var ext: Extension? = null,
+    @JvmField val ext: Extension? = null,
 ) {
     /**
      * Source extension object unique to Nimbus
@@ -25,7 +25,7 @@ class Source(
      * @property omidpv Current version of the OM SDK integration
      */
     open class Extension(
-        @JvmField var omidpn: String? = null,
-        @JvmField var omidpv: String? = null,
+        @JvmField val omidpn: String? = null,
+        @JvmField val omidpv: String? = null,
     )
 }

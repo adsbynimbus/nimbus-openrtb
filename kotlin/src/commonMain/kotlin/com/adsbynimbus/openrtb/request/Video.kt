@@ -55,28 +55,28 @@ import kotlin.jvm.JvmField
  * @property ext Video extensions
  */
 class Video(
-    @JvmField var bidfloor: Float? = 3f,
-    @JvmField var mimes: Array<String>? = null,
-    @JvmField var minduration: Int? = 0,
-    @JvmField var maxduration: Int? = 60,
-    @JvmField var protocols: IntArray? = null,
-    @JvmField var w: Int = 0,
-    @JvmField var h: Int = 0,
-    @JvmField var startdelay: Int? = null,
-    @JvmField var placement: Int? = null,
-    @JvmField var linearity: Int? = null,
-    @JvmField var skip: Int? = null,
-    @JvmField var delivery: IntArray? = null,
-    @JvmField var skipmin: Int? = 0,
-    @JvmField var skipafter: Int? = 0,
-    @JvmField var minbitrate: Int? = 0,
-    @JvmField var maxbitrate: Int? = 0,
-    @JvmField var pos: Int? = null,
-    @JvmField var playbackmethod: IntArray? = null,
-    @JvmField var api: IntArray? = null,
-    @JvmField var companionad: Array<Banner>? = null,
-    @JvmField var companiontype: IntArray? = null,
-    @JvmField var ext: Extension? = null,
+    @JvmField val bidfloor: Float? = 3f,
+    @JvmField val mimes: Array<String>? = null,
+    @JvmField val minduration: Int? = 0,
+    @JvmField val maxduration: Int? = 60,
+    @JvmField val protocols: IntArray? = null,
+    @JvmField val w: Int = 0,
+    @JvmField val h: Int = 0,
+    @JvmField val startdelay: Int? = null,
+    @JvmField val placement: Int? = null,
+    @JvmField val linearity: Int? = null,
+    @JvmField val skip: Int? = null,
+    @JvmField val delivery: IntArray? = null,
+    @JvmField val skipmin: Int? = 0,
+    @JvmField val skipafter: Int? = 0,
+    @JvmField val minbitrate: Int? = 0,
+    @JvmField val maxbitrate: Int? = 0,
+    @JvmField val pos: Int? = null,
+    @JvmField val playbackmethod: IntArray? = null,
+    @JvmField val api: IntArray? = null,
+    @JvmField val companionad: Array<Banner>? = null,
+    @JvmField val companiontype: IntArray? = null,
+    @JvmField val ext: Extension? = null,
 ) {
     /**
      * Video extensions
@@ -84,7 +84,7 @@ class Video(
      * @property is_rewarded Indicates this video request is for a rewarded video
      */
     open class Extension(
-        @JvmField var is_rewarded: Boolean? = null,
+        @JvmField val is_rewarded: Boolean? = null,
     )
 
 }

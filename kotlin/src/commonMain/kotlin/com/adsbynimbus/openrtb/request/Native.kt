@@ -31,10 +31,10 @@ import kotlin.jvm.JvmField
  *                    equal to or higher than the value set on the Impression object.
  */
 class Native(
-    @JvmField var id: String? = null,
-    @JvmField var request: String = "",
-    @JvmField var ver: String? = null,
-    @JvmField var api: IntArray? = null,
-    @JvmField var battr: IntArray? = null,
-    @JvmField var bidfloor: Float? = null,
+    @JvmField val id: String? = null,
+    @JvmField val request: String = "",
+    @JvmField val ver: String? = null,
+    @JvmField val api: IntArray? = null,
+    @JvmField val battr: IntArray? = null,
+    @JvmField val bidfloor: Float? = null,
 )

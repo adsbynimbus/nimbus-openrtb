@@ -16,7 +16,7 @@ import kotlin.jvm.JvmField
  * @see [OpenRTB Section 3.2.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
  */
 class Data(
-    @JvmField var id: String? = null,
-    @JvmField var name: String? = null,
-    @JvmField var segment: Array<Segment>? = null,
+    @JvmField val id: String? = null,
+    @JvmField val name: String? = null,
+    @JvmField val segment: Array<Segment>? = null,
 )
