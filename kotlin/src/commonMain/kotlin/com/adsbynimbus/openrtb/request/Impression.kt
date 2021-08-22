@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -34,6 +35,7 @@ import kotlin.jvm.JvmField
  *                  1 = secure
  * @property ext Placeholder for exchange-specific extensions to OpenRTB
  */
+@Serializable
 class Impression(
     @JvmField val id: String? = null,
     @JvmField val banner: Banner? = null,
@@ -57,10 +59,22 @@ class Impression(
      *                                 integrations.
      * @see [Facebook Testing](https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing)
      */
+    @Serializable
     open class Extension(
         @JvmField val position: String,
-        @JvmField val aps: List<*>? = null,
+        @JvmField val aps: List<Aps> = emptyList(),
         @JvmField val facebook_app_id: String? = null,
         @JvmField val facebook_test_ad_type: String? = null,
     )
 }
+
+@Serializable
+class Aps(
+    @JvmField val amzn_b: Array<String>,
+    @JvmField val amzn_vid: Array<String>,
+    @JvmField val amzn_h: Array<String>,
+    @JvmField val amznp: Array<String>,
+    @JvmField val amznrdr: Array<String>,
+    @JvmField val amznslots: Array<String>,
+    @JvmField val dc: Array<String>,
+)

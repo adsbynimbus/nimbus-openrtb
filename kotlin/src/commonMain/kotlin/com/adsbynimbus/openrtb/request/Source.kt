@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -15,6 +16,7 @@ import kotlin.jvm.JvmField
  *
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
+@Serializable
 class Source(
     @JvmField val ext: Extension,
 ) {
@@ -24,6 +26,7 @@ class Source(
      * @property omidpn Partner name that identifies the OM SDK integration
      * @property omidpv Current version of the OM SDK integration
      */
+    @Serializable
     open class Extension(
         @JvmField val omidpn: String,
         @JvmField val omidpv: String,

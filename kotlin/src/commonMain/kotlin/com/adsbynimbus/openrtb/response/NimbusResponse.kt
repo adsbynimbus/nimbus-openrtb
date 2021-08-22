@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.response
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -22,6 +23,7 @@ import kotlin.jvm.JvmField
  * @property is_mraid Set to 1 if Nimbus has determined the creative returned requests MRAID in the
  *                    creative markup
  */
+@Serializable
 class NimbusResponse(
     @JvmField val type: String,
     @JvmField val auction_id: String,
@@ -44,6 +46,7 @@ class NimbusResponse(
  * @property impression_trackers Urls to fire a request to when an impression is registered
  * @property click_trackers Urls to fire a request to when a click is registered
  */
+@Serializable
 open class Trackers(
     @JvmField val impression_trackers: Array<String> = emptyArray(),
     @JvmField val click_trackers: Array<String> = emptyArray(),

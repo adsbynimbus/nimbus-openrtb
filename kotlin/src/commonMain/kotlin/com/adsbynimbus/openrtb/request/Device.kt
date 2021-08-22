@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -33,6 +34,7 @@ import kotlin.jvm.JvmField
  * @property connectiontype Network connection type.
  * @property ifa ID sanctioned for advertiser use in the clear (i.e., not hashed).
  */
+@Serializable
 class Device(
     @JvmField val ua: String,
     @JvmField val geo: Geo? = null,

@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -30,6 +31,7 @@ import kotlin.jvm.JvmField
  * @property bidfloor Minimum bid for this native impression expressed in CPM. This value should be
  *                    equal to or higher than the value set on the Impression object.
  */
+@Serializable
 class Native(
     @JvmField val id: String? = null,
     @JvmField val request: String,

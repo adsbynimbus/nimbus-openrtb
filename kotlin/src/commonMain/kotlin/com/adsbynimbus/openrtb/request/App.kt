@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -29,6 +30,7 @@ import kotlin.jvm.JvmField
  * @property paid Indicates if the app is free or paid. (0 = Free, 1 = Paid)
  * @property publisher Details about the publisher of the app.
  */
+@Serializable
 class App(
     @JvmField val name: String,
     @JvmField val bundle: String,

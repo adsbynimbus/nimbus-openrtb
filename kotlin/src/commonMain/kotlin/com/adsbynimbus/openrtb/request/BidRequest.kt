@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -35,6 +36,7 @@ import kotlin.jvm.JvmField
  * @property badv   Block list of advertisers by their domains (e.g., "ford.com").
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
+@Serializable
 class BidRequest(
     @JvmField val imp: Array<Impression>,
     @JvmField val app: App,
@@ -55,6 +57,7 @@ class BidRequest(
      * @property session_id Any unique string value to identify the session. Defaults to a random
      *                      UUID when using the Nimbus SDK
      */
+    @Serializable
     open class Extension(
         @JvmField val session_id: String,
     )

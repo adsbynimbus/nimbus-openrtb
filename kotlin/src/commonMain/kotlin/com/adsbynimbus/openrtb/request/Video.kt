@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -54,6 +55,7 @@ import kotlin.jvm.JvmField
  *                         ads.
  * @property ext Video extensions
  */
+@Serializable
 class Video(
     @JvmField val bidfloor: Float = 3f,
     @JvmField val mimes: Array<String> = emptyArray(),
@@ -83,6 +85,7 @@ class Video(
      *
      * @property is_rewarded Indicates this video request is for a rewarded video
      */
+    @Serializable
     open class Extension(
         @JvmField val is_rewarded: Boolean = false,
     )

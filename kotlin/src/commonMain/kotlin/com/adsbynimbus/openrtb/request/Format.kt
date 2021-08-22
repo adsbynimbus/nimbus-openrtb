@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -10,6 +11,7 @@ import kotlin.jvm.JvmField
  * @property w width in device independent pixels (DIPS).
  * @property h height in device independent pixels (DIPS).
  */
+@Serializable
 sealed class Format(
     @JvmField val w: Int,
     @JvmField val h: Int,

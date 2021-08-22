@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -18,6 +19,7 @@ import kotlin.jvm.JvmField
  * @property ext Regs extension object unique to Nimbus
  * @see [OpenRTB Section 7.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=76)
  */
+@Serializable
 class Regs(
     @JvmField val coppa: Int = 0,
     @JvmField val ext: Extension = Extension(),
@@ -41,6 +43,7 @@ class Regs(
      *                      string: "1---"
      * @see [US Privacy String Format](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md.us-privacy-string-format)
      */
+    @Serializable
     open class Extension(
         @JvmField val gdpr: Int = 0,
         @JvmField val us_privacy: String = ""

@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -14,6 +15,7 @@ import kotlin.jvm.JvmField
  * @property name Name of the data segment specific to the data provider.
  * @property value String representation of the data segment value.
  */
+@Serializable
 class Segment(
     @JvmField val id: String,
     @JvmField val name: String,

@@ -1,19 +1,28 @@
 [versions]
-android="7.0.0"
-annotation = "1.2.0"
+android = "7.0.1"
+android-buildtools = "31.0.0"
 dokka = "1.5.0"
-gson = "2.8.7"
-kotlin = "1.5.30-RC"
-spek = "2.0.15"
+junit = "5.7.2"
+kotlin = "1.5.30"
+kotlin-api = "1.4"
+serialization = "1.2.2"
+spek = "2.0.17"
 
 [plugins]
 android = { id = "com.android.library", version.ref = "android" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlin = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [libraries]
-androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
-spek-dsl-metadata = { module = "org.spekframework.spek2:spek-dsl-metadata", version.ref = "spek" }
-spek-dsl-jvm = { module = "org.spekframework.spek2:spek-dsl-jvm", version.ref = "spek" }
-spek-runner = { module = "org.spekframework.spek2:spek-runner-junit5", version.ref = "spek" }
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+spek-dsl = { module = "org.spekframework.spek2:spek-dsl", version.ref = "spek" }
+spek-runtime = { module = "org.spekframework.spek2:spek-runtime", version.ref = "spek" }
+spek-junit5runner = { module = "org.spekframework.spek2:spek-runner-junit5", version.ref = "spek" }
+
+[bundles]
+test-common = [
+    "junit-api",
+    "spek-dsl"
+]

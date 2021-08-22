@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -15,6 +16,7 @@ import kotlin.jvm.JvmField
  * @property segment Array of [Segment] objects that contain the actual data values.
  * @see [OpenRTB Section 3.2.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
  */
+@Serializable
 class Data(
     @JvmField val id: String,
     @JvmField val name: String,

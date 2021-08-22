@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -30,6 +31,7 @@ import kotlin.jvm.JvmField
  * @see [United Nations Location Codes](http://www.unece.org/cefact/locode/service/location.htm)
  * @see [Google Metro codes](code.google.com/apis/adwords/docs/appendix/metrocodes.html)
  */
+@Serializable
 class Geo(
     @JvmField val lat: Float? = null,
     @JvmField val lon: Float? = null,

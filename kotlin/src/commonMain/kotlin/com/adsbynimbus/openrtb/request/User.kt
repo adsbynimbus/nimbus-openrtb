@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -27,6 +28,7 @@ import kotlin.jvm.JvmField
  * @property ext User extension object unique to Nimbus
  * @see [OpenRTB Section 3.2.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
  */
+@Serializable
 class User(
     @JvmField val age: Int? = null,
     @JvmField val buyeruid: String? = null,
@@ -49,6 +51,7 @@ class User(
      *                          and the token and campaign is refreshed after the ad playback has
      *                          started.
      */
+    @Serializable
     open class Extension(
         @JvmField val consent: String = "",
         @JvmField val did_consent: Int = 0,
@@ -58,4 +61,4 @@ class User(
 
 const val Male: Char = 'M'
 const val Female: Char = 'F'
-const val Other: Char = 'F'
+const val Other: Char = 'O'

@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -14,6 +15,7 @@ import kotlin.jvm.JvmField
  * @property cat Array of IAB content categories that describe the publisher.
  * @see [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
  */
+@Serializable
 class Publisher(
     @JvmField val name: String,
     @JvmField val domain: String,

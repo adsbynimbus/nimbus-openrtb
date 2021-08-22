@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
@@ -29,6 +30,7 @@ import kotlin.jvm.JvmField
  *               explicitly listed, it is assumed not to be supported.
  * @property vcm The type of companion ad if used in a Video object. (0 - Concurrent, 1 - End Card)
  */
+@Serializable
  class Banner(
    @JvmField val bidfloor: Float = 2f,
    @JvmField val battr: IntArray? = null,

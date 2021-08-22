@@ -6,11 +6,12 @@ plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.serialization)
     `maven-publish`
 }
 
 android {
-    buildToolsVersion = "31.0.0"
+    buildToolsVersion = libs.versions.android.buildtools.get()
     compileSdk = 30
     defaultConfig {
         minSdk = 17
@@ -28,34 +29,40 @@ kotlin {
     android {
         publishLibraryVariants("release")
     }
+    jvm {
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform {
+                includeEngines("spek2")
+            }
+        }
+    }
     sourceSets {
-        named("commonMain") {
-            dependencies {
-                compileOnly(kotlin("stdlib"))
+        all {
+            languageSettings {
+                apiVersion = libs.versions.kotlin.api.get()
+                optIn("kotlinx.serialization.ExperimentalSerializationApi")
+                progressiveMode = true
             }
         }
-        named("commonTest") {
+        val commonMain by getting {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-                implementation(libs.spek.dsl.metadata)
+                implementation(libs.serialization.json)
             }
         }
-        named("androidMain") {
+        val commonTest by getting {
             dependencies {
-                implementation(libs.androidx.annotation)
+                implementation(kotlin("test"))
+                implementation(libs.bundles.test.common)
+                runtimeOnly(libs.spek.runtime)
             }
         }
-        named("androidTest") {
+        val jvmTest by getting {
             dependencies {
-                implementation(kotlin("test-junit5"))
-                implementation(libs.gson)
-                implementation(libs.spek.dsl.jvm)
-
-                runtimeOnly(kotlin("reflect"))
-                runtimeOnly(libs.spek.runner)
+                runtimeOnly(libs.spek.junit5runner)
             }
         }
+        val androidMain by getting
+        val androidTest by getting
     }
 }
 
@@ -66,7 +73,7 @@ tasks.withType<AbstractCopyTask>().configureEach {
 
 tasks.withType<DokkaTask>().configureEach {
     dokkaSourceSets {
-        matching { it.name in listOf("commonMain", "androidMain")}.configureEach {
+        matching { it.name in listOf("commonMain")}.configureEach {
             sourceLink {
                 localDirectory.set(file("src/$name/kotlin"))
                 remoteUrl.set(uri("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin").toURL())
