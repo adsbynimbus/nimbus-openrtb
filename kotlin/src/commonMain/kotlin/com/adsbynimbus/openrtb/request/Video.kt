@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import com.adsbynimbus.openrtb.request.Creative.Position.Companion.Unknown
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -73,7 +74,7 @@ class Video(
     @JvmField val skipafter: Int? = 0,
     @JvmField val minbitrate: Int? = 0,
     @JvmField val maxbitrate: Int? = 0,
-    @JvmField val pos: Int? = null,
+    @JvmField val pos: Int = Unknown,
     @JvmField val playbackmethod: IntArray? = null,
     @JvmField val api: IntArray? = null,
     @JvmField val companionad: Array<Banner>? = null,
@@ -89,130 +90,130 @@ class Video(
     open class Extension(
         @JvmField val is_rewarded: Boolean = false,
     )
-}
 
-/**
- * Protocols
- *
- * [OpenRTB Section 5.8](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
- */
-@JvmInline @Serializable
-value class Protocol(val value: Int) {
-    companion object {
-        const val Vast2 = 2
-        const val Vast3 = 3
-        const val Vast2Wrapper = 5
-        const val Vast3Wrapper = 6
-        const val Vast4 = 7
-        const val Vast4Wrapper = 8
+    /**
+     * Protocols
+     *
+     * [OpenRTB Section 5.8](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
+     */
+    @JvmInline @Serializable
+    value class Protocol(val value: Int) {
+        companion object {
+            const val Vast2 = 2
+            const val Vast3 = 3
+            const val Vast2Wrapper = 5
+            const val Vast3Wrapper = 6
+            const val Vast4 = 7
+            const val Vast4Wrapper = 8
+        }
     }
-}
 
 
-/**
- * Placements
- *
- * [OpenRTB Section 5.9](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
- */
-@JvmInline @Serializable
-value class Placement(val value: Int) {
-    companion object {
-        /**
-         * Played before, during or after the streaming video content that the consumer has requested
-         * (e.g., Pre-roll, Mid-roll, Post-roll).
-         */
-        const val InStream = 1
+    /**
+     * Placements
+     *
+     * [OpenRTB Section 5.9](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
+     */
+    @JvmInline @Serializable
+    value class Placement(val value: Int) {
+        companion object {
+            /**
+             * Played before, during or after the streaming video content that the consumer has requested
+             * (e.g., Pre-roll, Mid-roll, Post-roll).
+             */
+            const val InStream = 1
 
-        /**
-         * Exists within a web banner that leverages the banner space to deliver a video experience as
-         * opposed to another static or rich media format. The format relies on the existence of display
-         * ad inventory on the page for its delivery
-         */
-        const val InBanner = 2
+            /**
+             * Exists within a web banner that leverages the banner space to deliver a video experience as
+             * opposed to another static or rich media format. The format relies on the existence of display
+             * ad inventory on the page for its delivery
+             */
+            const val InBanner = 2
 
-        /**
-         * Loads and plays dynamically between paragraphs of editorial content; existing as a standalone
-         * branded message
-         */
-        const val InArticle = 3
+            /**
+             * Loads and plays dynamically between paragraphs of editorial content; existing as a standalone
+             * branded message
+             */
+            const val InArticle = 3
 
-        /**
-         * Found in content, social, or product feeds.
-         */
-        const val InFeed = 4
+            /**
+             * Found in content, social, or product feeds.
+             */
+            const val InFeed = 4
 
-        /**
-         * Covers the entire or a portion of screen area, but is always on screen while displayed (i.e.
-         * cannot be scrolled out of view). Note that a full-screen interstitial (e.g., in mobile) can be
-         * distinguished from a floating/slider unit by the [Impression.instl] field.
-         */
-        const val InterstitialSliderFloating = 5
+            /**
+             * Covers the entire or a portion of screen area, but is always on screen while displayed (i.e.
+             * cannot be scrolled out of view). Note that a full-screen interstitial (e.g., in mobile) can be
+             * distinguished from a floating/slider unit by the [Impression.instl] field.
+             */
+            const val InterstitialSliderFloating = 5
+        }
     }
-}
 
-/**
- * Playback Methods
- *
- * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
- */
-@JvmInline @Serializable
-value class PlaybackMethod(val value: Int) {
-    companion object {
-        const val PageLoadSoundOn = 1
-        const val PageLoadSoundOff = 2
-        const val ClickSoundOn = 3
-        const val MouseOverSoundOn = 4
-        const val EnterViewportSoundOn = 5
-        const val EnterViewportSoundOff = 6
+    /**
+     * Playback Methods
+     *
+     * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
+     */
+    @JvmInline @Serializable
+    value class PlaybackMethod(val value: Int) {
+        companion object {
+            const val PageLoadSoundOn = 1
+            const val PageLoadSoundOff = 2
+            const val ClickSoundOn = 3
+            const val MouseOverSoundOn = 4
+            const val EnterViewportSoundOn = 5
+            const val EnterViewportSoundOff = 6
+        }
     }
-}
 
 
-/**
- * Linearity
- *
- * [OpenRTB Section 5.7](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
- */
-@JvmInline @Serializable
-value class Linearity(val value: Int) {
-    companion object {
-        /** In-Stream */
-        const val Linear = 1
+    /**
+     * Linearity
+     *
+     * [OpenRTB Section 5.7](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
+     */
+    @JvmInline @Serializable
+    value class Linearity(val value: Int) {
+        companion object {
+            /** In-Stream */
+            const val Linear = 1
 
-        /** Overlay */
-        const val NonLinear = 2
+            /** Overlay */
+            const val NonLinear = 2
+        }
     }
-}
 
 
-/**
- * Content Delivery
- *
- * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
- */
-@JvmInline @Serializable
-value class ContentDelivery(val value: Int) {
-    companion object {
-        const val Streaming = 1
-        const val Progressive = 2
-        const val Download = 3
+    /**
+     * Content Delivery
+     *
+     * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
+     */
+    @JvmInline @Serializable
+    value class ContentDelivery(val value: Int) {
+        companion object {
+            const val Streaming = 1
+            const val Progressive = 2
+            const val Download = 3
+        }
     }
-}
 
 
-/**
- * CompanionType
- *
- * [OpenRTB Section 5.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=54)
- */
-@JvmInline @Serializable
-value class CompanionType(val value: Int) {
-    companion object {
-        /** URI to a static resource such as an image */
-        const val Static = 1
-        /** HTML to display the companion element */
-        const val Html = 2
-        /** URI source for an IFrame to display the companion element */
-        const val IFrame = 3
+    /**
+     * CompanionType
+     *
+     * [OpenRTB Section 5.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=54)
+     */
+    @JvmInline @Serializable
+    value class CompanionType(val value: Int) {
+        companion object {
+            /** URI to a static resource such as an image */
+            const val Static = 1
+            /** HTML to display the companion element */
+            const val Html = 2
+            /** URI source for an IFrame to display the companion element */
+            const val IFrame = 3
+        }
     }
 }

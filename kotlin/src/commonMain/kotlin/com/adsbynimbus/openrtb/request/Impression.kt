@@ -66,15 +66,15 @@ class Impression(
         @JvmField val facebook_app_id: String? = null,
         @JvmField val facebook_test_ad_type: String? = null,
     )
-}
 
-@Serializable
-class Aps(
-    @JvmField val amzn_b: Array<String>,
-    @JvmField val amzn_vid: Array<String>,
-    @JvmField val amzn_h: Array<String>,
-    @JvmField val amznp: Array<String>,
-    @JvmField val amznrdr: Array<String>,
-    @JvmField val amznslots: Array<String>,
-    @JvmField val dc: Array<String>,
-)
+    @Serializable
+    class Aps(
+        @JvmField val amzn_b: Array<String>,
+        @JvmField val amzn_vid: Array<String>,
+        @JvmField val amzn_h: Array<String>,
+        @JvmField val amznp: Array<String>,
+        @JvmField val amznrdr: Array<String>,
+        @JvmField val amznslots: Array<String>,
+        @JvmField val dc: Array<String>,
+    )
+}

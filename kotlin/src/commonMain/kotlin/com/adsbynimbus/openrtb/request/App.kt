@@ -5,8 +5,8 @@ import kotlin.jvm.JvmField
 
 /**
  * This object should be included if the ad supported content is a non-browser application
- * (typically inmobile) as opposed to a website. A bid request must not contain both an App and a
- * Site object. At aminimum, it is useful to provide an App ID or bundle, but this is not strictly
+ * (typically in mobile) as opposed to a website. A bid request must not contain both an App and a
+ * Site object. At a minimum, it is useful to provide an App ID or bundle, but this is not strictly
  * required.
  *
  * [OpenRTB Section 3.2.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=25)
@@ -18,13 +18,10 @@ import kotlin.jvm.JvmField
  * @property domain Domain of the app (e.g., "adsbynimbus.com").
  * @property storeurl App store URL for an installed app; for IQG 2.1 compliance.
  * @property cat Array of IAB content categories of the app.
- *              [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
  * @property sectioncat Array of IAB content categories that describe the current section of the
  *                      app.
- *              [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
  * @property pagecat Array of IAB content categories that describe the current page or view of the
  *                   app.
- *              [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
  * @property ver Application version.
  * @property privacypolicy Indicates if the app has a privacy policy. (0 = No, 1 = Yes)
  * @property paid Indicates if the app is free or paid. (0 = Free, 1 = Paid)
@@ -36,14 +33,20 @@ class App(
     @JvmField val bundle: String,
     @JvmField val domain: String,
     @JvmField val storeurl: String,
-    @JvmField val cat: Array<Category> = emptyArray(),
-    @JvmField val sectioncat: Array<String> = emptyArray(),
-    @JvmField val pagecat: Array<String> = emptyArray(),
+    @JvmField val cat: Array<ContentCategory> = emptyArray(),
+    @JvmField val sectioncat: Array<ContentCategory> = emptyArray(),
+    @JvmField val pagecat: Array<ContentCategory> = emptyArray(),
     @JvmField val ver: String,
     @JvmField val privacypolicy: Int = 0,
     @JvmField val paid: Int = 0,
-    @JvmField val publisher: Publisher? = null,
-)
+    @JvmField val publisher: Publisher,
+) {
 
-@JvmInline @Serializable
-value class Category(val iabCode: String)
+    /**
+     * IAB Content Category.
+     *
+     * [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
+     */
+    @JvmInline @Serializable
+    value class ContentCategory(val value: String)
+}

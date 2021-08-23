@@ -38,16 +38,17 @@ class NimbusResponse(
     @JvmField val trackers: Trackers = Trackers(),
     @JvmField val placement_id: String,
     @JvmField val is_mraid: Int = 0,
-)
+) {
 
-/**
- * Additional tracking urls
- *
- * @property impression_trackers Urls to fire a request to when an impression is registered
- * @property click_trackers Urls to fire a request to when a click is registered
- */
-@Serializable
-open class Trackers(
-    @JvmField val impression_trackers: Array<String> = emptyArray(),
-    @JvmField val click_trackers: Array<String> = emptyArray(),
-)
+    /**
+     * Additional tracking urls
+     *
+     * @property impression_trackers Urls to fire a request to when an impression is registered
+     * @property click_trackers Urls to fire a request to when a click is registered
+     */
+    @Serializable
+    open class Trackers(
+        @JvmField val impression_trackers: Array<String> = emptyArray(),
+        @JvmField val click_trackers: Array<String> = emptyArray(),
+    )
+}

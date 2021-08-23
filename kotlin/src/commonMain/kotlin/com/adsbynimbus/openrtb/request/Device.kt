@@ -53,42 +53,44 @@ class Device(
     @JvmField val carrier: String,
     @JvmField val connectiontype: Int = 0,
     @JvmField val ifa: String,
-)
-
-/*
- * Options for the type of device connectivity
- *
- * [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
- */
-@JvmInline @Serializable
-value class ConnectionType(val type: Int) {
-    companion object {
-        const val Ethernet = 1
-        const val Wifi = 2
-        const val CellularUnknown = 3
-        const val Cellular2G = 4
-        const val Cellular3G = 5
-        const val Cellular4G = 6
+) {
+    /**
+     * Options for the type of device connectivity
+     *
+     * [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
+     */
+    @JvmInline @Serializable
+    value class ConnectionType(val type: Int) {
+        companion object {
+            const val Ethernet = 1
+            const val Wifi = 2
+            const val CellularUnknown = 3
+            const val Cellular2G = 4
+            const val Cellular3G = 5
+            const val Cellular4G = 6
+        }
     }
-}
 
-/**
- * Type of device from which the impression originated.
- *
- * [OpenRTB Section 5.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
- */
-@JvmInline @Serializable
-value class DeviceType(val type: Int) {
-    companion object {
-        /** Interchangeable with Phone and Tablet */
-        const val MobileTablet = 1
-        const val PersonalComputer = 2
-        const val ConnectedTv = 3
-        /** Interchangeable with MobileTablet */
-        const val Phone = 4
-        /** Interchangeable with MobileTablet */
-        const val Tablet = 5
-        const val ConnectedDevice = 6
-        const val SetTopBox = 7
+    /**
+     * Type of device from which the impression originated.
+     *
+     * [OpenRTB Section 5.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
+     */
+    @JvmInline @Serializable
+    value class DeviceType(val type: Int) {
+        companion object {
+            /** Interchangeable with Phone and Tablet */
+            const val MobileTablet = 1
+            const val PersonalComputer = 2
+            const val ConnectedTv = 3
+
+            /** Interchangeable with MobileTablet */
+            const val Phone = 4
+
+            /** Interchangeable with MobileTablet */
+            const val Tablet = 5
+            const val ConnectedDevice = 6
+            const val SetTopBox = 7
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import com.adsbynimbus.openrtb.request.Creative.Position.Companion.Unknown
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -37,7 +38,7 @@ class Banner(
   @JvmField val format: Array<Format> = emptyArray(),
   @JvmField val w: Int,
   @JvmField val h: Int,
-  @JvmField val pos: Int = Position.Unknown,
+  @JvmField val pos: Int = Unknown,
   @JvmField val api: IntArray,
   @JvmField val vcm: Int? = null,
 )

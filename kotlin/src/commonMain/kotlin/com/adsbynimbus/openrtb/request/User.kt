@@ -57,13 +57,13 @@ class User(
         @JvmField val did_consent: Int = 0,
         @JvmField val unity_buyeruid: String? = null,
     )
-}
 
-@JvmInline @Serializable
-value class Gender(val gender: Char) {
-    companion object {
-        const val Male: Char = 'M'
-        const val Female: Char = 'F'
-        const val Other: Char = 'O'
+    @JvmInline @Serializable
+    value class Gender(val gender: Char) {
+        companion object {
+            const val Male: Char = 'M'
+            const val Female: Char = 'F'
+            const val Other: Char = 'O'
+        }
     }
 }
