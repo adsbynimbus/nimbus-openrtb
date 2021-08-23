@@ -36,7 +36,7 @@ class App(
     @JvmField val bundle: String,
     @JvmField val domain: String,
     @JvmField val storeurl: String,
-    @JvmField val cat: Array<String> = emptyArray(),
+    @JvmField val cat: Array<Category> = emptyArray(),
     @JvmField val sectioncat: Array<String> = emptyArray(),
     @JvmField val pagecat: Array<String> = emptyArray(),
     @JvmField val ver: String,
@@ -44,3 +44,6 @@ class App(
     @JvmField val paid: Int = 0,
     @JvmField val publisher: Publisher? = null,
 )
+
+@JvmInline @Serializable
+value class Category(val iabCode: String)

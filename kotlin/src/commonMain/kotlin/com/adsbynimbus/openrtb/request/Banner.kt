@@ -31,13 +31,13 @@ import kotlin.jvm.JvmField
  * @property vcm The type of companion ad if used in a Video object. (0 - Concurrent, 1 - End Card)
  */
 @Serializable
- class Banner(
-   @JvmField val bidfloor: Float = 2f,
-   @JvmField val battr: IntArray? = null,
-   @JvmField val format: Array<Format> = emptyArray(),
-   @JvmField val w: Int,
-   @JvmField val h: Int,
-   @JvmField val pos: Int = Unknown,
-   @JvmField val api: IntArray,
-   @JvmField val vcm: Int? = null,
+class Banner(
+  @JvmField val bidfloor: Float = 2f,
+  @JvmField val battr: IntArray? = null,
+  @JvmField val format: Array<Format> = emptyArray(),
+  @JvmField val w: Int,
+  @JvmField val h: Int,
+  @JvmField val pos: Int = Position.Unknown,
+  @JvmField val api: IntArray,
+  @JvmField val vcm: Int? = null,
 )

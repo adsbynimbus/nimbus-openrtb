@@ -59,6 +59,11 @@ class User(
     )
 }
 
-const val Male: Char = 'M'
-const val Female: Char = 'F'
-const val Other: Char = 'O'
+@JvmInline @Serializable
+value class Gender(val gender: Char) {
+    companion object {
+        const val Male: Char = 'M'
+        const val Female: Char = 'F'
+        const val Other: Char = 'O'
+    }
+}

@@ -12,16 +12,16 @@ import kotlin.jvm.JvmField
  * @property h height in device independent pixels (DIPS).
  */
 @Serializable
-sealed class Format(
+class Format(
     @JvmField val w: Int,
     @JvmField val h: Int,
-)
-
-object InterstitialPortrait : Format(320, 480)
-object InterstitialLandscape : Format(480, 320)
-object MobileBanner : Format(320, 50)
-object MediumRectangle : Format(300, 250)
-object HalfScreen : Format(300, 600)
-object Leaderboard : Format(728, 90)
-
-class Custom(w: Int, h: Int) : Format(w, h)
+) {
+    companion object {
+        @JvmField val InterstitialPortrait = Format(320, 480)
+        @JvmField val InterstitialLandscape = Format(480, 320)
+        @JvmField val MobileBanner = Format(320, 50)
+        @JvmField val MediumRectangle = Format(300, 250)
+        @JvmField val HalfScreen = Format(300, 600)
+        @JvmField val Leaderboard = Format(728, 90)
+    }
+}

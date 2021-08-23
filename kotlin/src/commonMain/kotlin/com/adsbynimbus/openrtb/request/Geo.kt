@@ -43,9 +43,14 @@ class Geo(
     @JvmField val state: String? = null,
 )
 
-/*
+/**
  * Indicates how the geographic information was determined.
  */
-const val GPS = 1
-const val IpLookup = 2
-const val UserProvided = 3
+@JvmInline @Serializable
+value class LocationSource(val source: Int) {
+    companion object {
+        const val GPS = 1
+        const val IpLookup = 2
+        const val UserProvided = 3
+    }
+}

@@ -61,14 +61,16 @@ class BidRequest(
     open class Extension(
         @JvmField val session_id: String,
     )
+
+    companion object {
+        /**
+         * Required header for all requests to Nimbus defining the OpenRTB version
+         */
+        const val HEADER_OPEN_RTB = "X-Openrtb-Version"
+
+        /**
+         * The current supported OpenRTB version by this request object
+         */
+        const val OPEN_RTB_VERSION = "2.5"
+    }
 }
-
-/**
- * Required header for all requests to Nimbus defining the OpenRTB version
- */
-const val HEADER_OPEN_RTB = "X-Openrtb-Version"
-
-/**
- * The current supported OpenRTB version by this request object
- */
-const val OPEN_RTB_VERSION = "2.5"
