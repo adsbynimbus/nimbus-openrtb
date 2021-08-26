@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier", "INLINE_CLASS_DEPRECATED")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -29,18 +31,18 @@ import kotlin.jvm.JvmField
  * @property publisher Details about the publisher of the app.
  */
 @Serializable
-class App(
-    @JvmField @SerialName("name") val name: String,
-    @JvmField @SerialName("bundle") val bundle: String,
-    @JvmField @SerialName("domain") val domain: String,
-    @JvmField @SerialName("storeurl") val storeurl: String,
-    @JvmField @SerialName("cat") val cat: Array<ContentCategory> = emptyArray(),
-    @JvmField @SerialName("sectioncat") val sectioncat: Array<ContentCategory> = emptyArray(),
-    @JvmField @SerialName("pagecat") val pagecat: Array<ContentCategory> = emptyArray(),
-    @JvmField @SerialName("ver") val ver: String,
-    @JvmField @SerialName("privacypolicy") val privacypolicy: Int = 0,
-    @JvmField @SerialName("paid") val paid: Int = 0,
-    @JvmField @SerialName("publisher") val publisher: Publisher,
+public class App(
+    @JvmField @SerialName("name") public val name: String,
+    @JvmField @SerialName("bundle") public val bundle: String,
+    @JvmField @SerialName("domain") public val domain: String,
+    @JvmField @SerialName("storeurl") public val storeurl: String,
+    @JvmField @SerialName("cat") public val cat: Array<String> = emptyArray(),
+    @JvmField @SerialName("sectioncat") public val sectioncat: Array<String> = emptyArray(),
+    @JvmField @SerialName("pagecat") public val pagecat: Array<String> = emptyArray(),
+    @JvmField @SerialName("ver") public val ver: String,
+    @JvmField @SerialName("privacypolicy") public val privacypolicy: Int = 0,
+    @JvmField @SerialName("paid") public val paid: Int = 0,
+    @JvmField @SerialName("publisher") public val publisher: Publisher,
 ) {
 
     /**
@@ -48,6 +50,5 @@ class App(
      *
      * [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
      */
-    @JvmInline @Serializable
-    value class ContentCategory(val value: String)
+    public inline class ContentCategory(public val value: String)
 }

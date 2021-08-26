@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -17,8 +19,8 @@ import kotlin.jvm.JvmField
  * @property value String representation of the data segment value.
  */
 @Serializable
-class Segment(
-    @JvmField @SerialName("id") val id: String,
-    @JvmField @SerialName("name") val name: String,
-    @JvmField @SerialName("value") val value: String,
+public class Segment(
+    @JvmField @SerialName("id") public val id: String,
+    @JvmField @SerialName("name") public val name: String,
+    @JvmField @SerialName("value") public val value: String,
 )

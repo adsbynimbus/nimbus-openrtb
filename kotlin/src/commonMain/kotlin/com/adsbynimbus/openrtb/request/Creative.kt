@@ -1,10 +1,12 @@
+@file:Suppress("RedundantVisibilityModifier", "INLINE_CLASS_DEPRECATED")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class Creative {
+public enum class Creative {
     @SerialName("static") Static,
     @SerialName("video") Video,
     @SerialName("native") Native;
@@ -14,16 +16,15 @@ enum class Creative {
      *
      * [OpenRTB Section 5.6](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=51)
      */
-    @JvmInline @Serializable
-    value class Api(val value: Int) {
-        companion object {
-            const val Vpaid1 = 1
-            const val Vpaid2 = 2
-            const val Mraid1 = 3
-            const val Ormma = 4
-            const val Mraid2 = 5
-            const val Mraid3 = 6
-            const val Omid = 7
+    public inline class Api(public val value: Int) {
+        public companion object {
+            public const val Vpaid1: Int = 1
+            public const val Vpaid2: Int = 2
+            public const val Mraid1: Int = 3
+            public const val Ormma: Int = 4
+            public const val Mraid2: Int = 5
+            public const val Mraid3: Int = 6
+            public const val Omid: Int = 7
         }
     }
 
@@ -33,26 +34,25 @@ enum class Creative {
      *
      * [OpenRTB Section 5.3](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=50)
      */
-    @JvmInline @Serializable
-    value class Attribute(val value: Int) {
-        companion object {
-            const val AudioAdAutoPlay = 1
-            const val AudioAdUserInitiated = 2
-            const val ExpandableAutomatic = 3
-            const val ExpandableUserClick = 4
-            const val ExpandableUserRollover = 5
-            const val BannerVideoAutoPlay = 6
-            const val BannerVideoUserInitiated = 7
-            const val HasPopup = 8
-            const val ProvocativeOrSuggestive = 9
-            const val ExtremeAnimation = 10
-            const val Surveys = 11
-            const val TextOnly = 12
-            const val UserInteractiveAndGames = 13
-            const val DialogOrAlertStyle = 14
-            const val HasVolumeToggle = 15
-            const val HasSkipButton = 16
-            const val AdobeFlash = 17
+    public inline class Attribute(public val value: Int) {
+        public companion object {
+            public const val AudioAdAutoPlay: Int = 1
+            public const val AudioAdUserInitiated: Int = 2
+            public const val ExpandableAutomatic: Int = 3
+            public const val ExpandableUserClick: Int = 4
+            public const val ExpandableUserRollover: Int = 5
+            public const val BannerVideoAutoPlay: Int = 6
+            public const val BannerVideoUserInitiated: Int = 7
+            public const val HasPopup: Int = 8
+            public const val ProvocativeOrSuggestive: Int = 9
+            public const val ExtremeAnimation: Int = 10
+            public const val Surveys: Int = 11
+            public const val TextOnly: Int = 12
+            public const val UserInteractiveAndGames: Int = 13
+            public const val DialogOrAlertStyle: Int = 14
+            public const val HasVolumeToggle: Int = 15
+            public const val HasSkipButton: Int = 16
+            public const val AdobeFlash: Int = 17
         }
     }
 
@@ -62,16 +62,15 @@ enum class Creative {
      *
      * [OpenRTB Section 5.4](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=51)
      */
-    @JvmInline @Serializable
-    value class Position(val value: Int) {
-        companion object {
-            const val Unknown = 0
-            const val AboveTheFold = 1
-            const val BelowTheFold = 3
-            const val Header = 4
-            const val Footer = 5
-            const val Sidebar = 6
-            const val Fullscreen = 7
+    public inline class Position(public val value: Int) {
+        public companion object {
+            public const val Unknown: Int = 0
+            public const val AboveTheFold: Int = 1
+            public const val BelowTheFold: Int = 3
+            public const val Header: Int = 4
+            public const val Footer: Int = 5
+            public const val Sidebar: Int = 6
+            public const val Fullscreen: Int = 7
         }
     }
 }

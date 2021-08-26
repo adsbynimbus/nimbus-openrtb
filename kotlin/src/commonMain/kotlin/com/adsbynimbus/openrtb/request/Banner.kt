@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package com.adsbynimbus.openrtb.request
 
 import com.adsbynimbus.openrtb.request.Creative.Position.Companion.Unknown
@@ -33,13 +35,13 @@ import kotlin.jvm.JvmField
  * @property vcm The type of companion ad if used in a Video object. (0 - Concurrent, 1 - End Card)
  */
 @Serializable
-class Banner(
-  @JvmField @SerialName("bidfloor") val bidfloor: Float = 2f,
-  @JvmField @SerialName("battr") val battr: IntArray? = null,
-  @JvmField @SerialName("format") val format: Array<Format> = emptyArray(),
-  @JvmField @SerialName("w") val w: Int,
-  @JvmField @SerialName("h") val h: Int,
-  @JvmField @SerialName("pos") val pos: Int = Unknown,
-  @JvmField @SerialName("api") val api: IntArray,
-  @JvmField @SerialName("vcm") val vcm: Int? = null,
+public class Banner(
+  @JvmField @SerialName("bidfloor") public val bidfloor: Float = 2f,
+  @JvmField @SerialName("battr") public val battr: IntArray? = null,
+  @JvmField @SerialName("format") public val format: Array<Format> = emptyArray(),
+  @JvmField @SerialName("w") public val w: Int,
+  @JvmField @SerialName("h") public val h: Int,
+  @JvmField @SerialName("pos") public val pos: Int = Unknown,
+  @JvmField @SerialName("api") public val api: IntArray,
+  @JvmField @SerialName("vcm") public val vcm: Int? = null,
 )

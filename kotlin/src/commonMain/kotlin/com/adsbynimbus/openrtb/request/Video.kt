@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier", "INLINE_CLASS_DEPRECATED")
+
 package com.adsbynimbus.openrtb.request
 
 import com.adsbynimbus.openrtb.request.Creative.Position.Companion.Unknown
@@ -58,29 +60,29 @@ import kotlin.jvm.JvmField
  * @property ext Video extensions
  */
 @Serializable
-class Video(
-    @JvmField @SerialName("bidfloor") val bidfloor: Float = 3f,
-    @JvmField @SerialName("mimes") val mimes: Array<String> = emptyArray(),
-    @JvmField @SerialName("minduration") val minduration: Int = 0,
-    @JvmField @SerialName("maxduration") val maxduration: Int = 60,
-    @JvmField @SerialName("protocols") val protocols: IntArray? = null,
-    @JvmField @SerialName("w") val w: Int = 0,
-    @JvmField @SerialName("h") val h: Int = 0,
-    @JvmField @SerialName("startdelay") val startdelay: Int = 0,
-    @JvmField @SerialName("placement") val placement: Int,
-    @JvmField @SerialName("linearity") val linearity: Int? = null,
-    @JvmField @SerialName("skip") val skip: Int,
-    @JvmField @SerialName("delivery") val delivery: IntArray? = null,
-    @JvmField @SerialName("skipmin") val skipmin: Int? = 0,
-    @JvmField @SerialName("skipafter") val skipafter: Int? = 0,
-    @JvmField @SerialName("minbitrate") val minbitrate: Int? = 0,
-    @JvmField @SerialName("maxbitrate") val maxbitrate: Int? = 0,
-    @JvmField @SerialName("pos") val pos: Int = Unknown,
-    @JvmField @SerialName("playbackmethod") val playbackmethod: IntArray? = null,
-    @JvmField @SerialName("api") val api: IntArray? = null,
-    @JvmField @SerialName("companionad") val companionad: Array<Banner>? = null,
-    @JvmField @SerialName("companiontype") val companiontype: IntArray? = null,
-    @JvmField @SerialName("ext") val ext: Extension? = null,
+public class Video(
+    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 3f,
+    @JvmField @SerialName("mimes") public val mimes: Array<String> = emptyArray(),
+    @JvmField @SerialName("minduration") public val minduration: Int = 0,
+    @JvmField @SerialName("maxduration") public val maxduration: Int = 60,
+    @JvmField @SerialName("protocols") public val protocols: IntArray? = null,
+    @JvmField @SerialName("w") public val w: Int = 0,
+    @JvmField @SerialName("h") public val h: Int = 0,
+    @JvmField @SerialName("startdelay") public val startdelay: Int = 0,
+    @JvmField @SerialName("placement") public val placement: Int,
+    @JvmField @SerialName("linearity") public val linearity: Int? = null,
+    @JvmField @SerialName("skip") public val skip: Int,
+    @JvmField @SerialName("delivery") public val delivery: IntArray? = null,
+    @JvmField @SerialName("skipmin") public val skipmin: Int? = 0,
+    @JvmField @SerialName("skipafter") public val skipafter: Int? = 0,
+    @JvmField @SerialName("minbitrate") public val minbitrate: Int? = 0,
+    @JvmField @SerialName("maxbitrate") public val maxbitrate: Int? = 0,
+    @JvmField @SerialName("pos") public val pos: Int = Unknown,
+    @JvmField @SerialName("playbackmethod") public val playbackmethod: IntArray? = null,
+    @JvmField @SerialName("api") public val api: IntArray? = null,
+    @JvmField @SerialName("companionad") public val companionad: Array<Banner>? = null,
+    @JvmField @SerialName("companiontype") public val companiontype: IntArray? = null,
+    @JvmField @SerialName("ext") public val ext: Extension? = null,
 ) {
     /**
      * Video extensions
@@ -88,8 +90,8 @@ class Video(
      * @property is_rewarded Indicates this video request is for a rewarded video
      */
     @Serializable
-    open class Extension(
-        @JvmField @SerialName("is_rewarded") val is_rewarded: Boolean = false,
+    public open class Extension(
+        @JvmField @SerialName("is_rewarded") public val is_rewarded: Boolean = false,
     )
 
     /**
@@ -97,15 +99,14 @@ class Video(
      *
      * [OpenRTB Section 5.8](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
      */
-    @JvmInline @Serializable
-    value class Protocol(val value: Int) {
-        companion object {
-            const val Vast2 = 2
-            const val Vast3 = 3
-            const val Vast2Wrapper = 5
-            const val Vast3Wrapper = 6
-            const val Vast4 = 7
-            const val Vast4Wrapper = 8
+    public inline class Protocol(public val value: Int) {
+        public companion object {
+            public const val Vast2: Int = 2
+            public const val Vast3: Int = 3
+            public const val Vast2Wrapper: Int = 5
+            public const val Vast3Wrapper: Int = 6
+            public const val Vast4: Int = 7
+            public const val Vast4Wrapper: Int = 8
         }
     }
 
@@ -115,39 +116,38 @@ class Video(
      *
      * [OpenRTB Section 5.9](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
      */
-    @JvmInline @Serializable
-    value class Placement(val value: Int) {
-        companion object {
+    public inline class Placement(public val value: Int) {
+        public companion object {
             /**
              * Played before, during or after the streaming video content that the consumer has requested
              * (e.g., Pre-roll, Mid-roll, Post-roll).
              */
-            const val InStream = 1
+            public const val InStream: Int = 1
 
             /**
              * Exists within a web banner that leverages the banner space to deliver a video experience as
              * opposed to another static or rich media format. The format relies on the existence of display
              * ad inventory on the page for its delivery
              */
-            const val InBanner = 2
+            public const val InBanner: Int = 2
 
             /**
              * Loads and plays dynamically between paragraphs of editorial content; existing as a standalone
              * branded message
              */
-            const val InArticle = 3
+            public const val InArticle: Int = 3
 
             /**
              * Found in content, social, or product feeds.
              */
-            const val InFeed = 4
+            public const val InFeed: Int = 4
 
             /**
              * Covers the entire or a portion of screen area, but is always on screen while displayed (i.e.
              * cannot be scrolled out of view). Note that a full-screen interstitial (e.g., in mobile) can be
              * distinguished from a floating/slider unit by the [Impression.instl] field.
              */
-            const val InterstitialSliderFloating = 5
+            public const val InterstitialSliderFloating: Int = 5
         }
     }
 
@@ -156,15 +156,14 @@ class Video(
      *
      * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
      */
-    @JvmInline @Serializable
-    value class PlaybackMethod(val value: Int) {
-        companion object {
-            const val PageLoadSoundOn = 1
-            const val PageLoadSoundOff = 2
-            const val ClickSoundOn = 3
-            const val MouseOverSoundOn = 4
-            const val EnterViewportSoundOn = 5
-            const val EnterViewportSoundOff = 6
+    public inline class PlaybackMethod(public val value: Int) {
+        public companion object {
+            public const val PageLoadSoundOn: Int = 1
+            public const val PageLoadSoundOff: Int = 2
+            public const val ClickSoundOn: Int = 3
+            public const val MouseOverSoundOn: Int = 4
+            public const val EnterViewportSoundOn: Int = 5
+            public const val EnterViewportSoundOff: Int = 6
         }
     }
 
@@ -174,14 +173,13 @@ class Video(
      *
      * [OpenRTB Section 5.7](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
      */
-    @JvmInline @Serializable
-    value class Linearity(val value: Int) {
-        companion object {
+    public inline class Linearity(public val value: Int) {
+        public companion object {
             /** In-Stream */
-            const val Linear = 1
+            public const val Linear: Int = 1
 
             /** Overlay */
-            const val NonLinear = 2
+            public const val NonLinear: Int = 2
         }
     }
 
@@ -191,12 +189,11 @@ class Video(
      *
      * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
      */
-    @JvmInline @Serializable
-    value class ContentDelivery(val value: Int) {
-        companion object {
-            const val Streaming = 1
-            const val Progressive = 2
-            const val Download = 3
+    public inline class ContentDelivery(public val value: Int) {
+        public companion object {
+            public const val Streaming: Int = 1
+            public const val Progressive: Int = 2
+            public const val Download: Int = 3
         }
     }
 
@@ -206,15 +203,14 @@ class Video(
      *
      * [OpenRTB Section 5.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=54)
      */
-    @JvmInline @Serializable
-    value class CompanionType(val value: Int) {
-        companion object {
+    public inline class CompanionType(public val value: Int) {
+        public companion object {
             /** URI to a static resource such as an image */
-            const val Static = 1
+            public const val Static: Int = 1
             /** HTML to display the companion element */
-            const val Html = 2
+            public const val Html: Int = 2
             /** URI source for an IFrame to display the companion element */
-            const val IFrame = 3
+            public const val IFrame: Int = 3
         }
     }
 }

@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -38,18 +40,18 @@ import kotlin.jvm.JvmField
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
-class BidRequest(
-    @JvmField @SerialName("imp") val imp: Array<Impression>,
-    @JvmField @SerialName("app") val app: App,
-    @JvmField @SerialName("device") val device: Device,
-    @JvmField @SerialName("format") val format: Format,
-    @JvmField @SerialName("user") val user: User? = null,
-    @JvmField @SerialName("test") val test: Int = 0,
-    @JvmField @SerialName("tmax") val tmax: Int = 500,
-    @JvmField @SerialName("regs") val regs: Regs? = null,
-    @JvmField @SerialName("source") val source: Source? = null,
-    @JvmField @SerialName("badv") val badv: Array<String> = emptyArray(),
-    @JvmField @SerialName("ext") val ext: Extension? = null
+public class BidRequest(
+    @JvmField @SerialName("imp") public val imp: Array<Impression>,
+    @JvmField @SerialName("app") public val app: App,
+    @JvmField @SerialName("device") public val device: Device,
+    @JvmField @SerialName("format") public val format: Format,
+    @JvmField @SerialName("user") public val user: User? = null,
+    @JvmField @SerialName("test") public val test: Int = 0,
+    @JvmField @SerialName("tmax") public val tmax: Int = 500,
+    @JvmField @SerialName("regs") public val regs: Regs? = null,
+    @JvmField @SerialName("source") public val source: Source? = null,
+    @JvmField @SerialName("badv") public val badv: Array<String> = emptyArray(),
+    @JvmField @SerialName("ext") public val ext: Extension? = null
 ) {
 
     /**
@@ -59,19 +61,19 @@ class BidRequest(
      *                      UUID when using the Nimbus SDK
      */
     @Serializable
-    open class Extension(
-        @JvmField @SerialName("session_id") val session_id: String,
+    public open class Extension(
+        @JvmField @SerialName("session_id") public val session_id: String,
     )
 
-    companion object {
+    public companion object {
         /**
          * Required header for all requests to Nimbus defining the OpenRTB version
          */
-        const val HEADER_OPEN_RTB = "X-Openrtb-Version"
+        public const val OpenRTBVersionHeader: String = "X-Openrtb-Version"
 
         /**
          * The current supported OpenRTB version by this request object
          */
-        const val OPEN_RTB_VERSION = "2.5"
+        public const val OpenRTBVersion: String = "2.5"
     }
 }

@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -18,8 +20,8 @@ import kotlin.jvm.JvmField
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
-class Source(
-    @JvmField @SerialName("ext") val ext: Extension,
+public class Source(
+    @JvmField @SerialName("ext") public val ext: Extension,
 ) {
     /**
      * Source extension object unique to Nimbus
@@ -28,8 +30,8 @@ class Source(
      * @property omidpv Current version of the OM SDK integration
      */
     @Serializable
-    open class Extension(
-        @JvmField @SerialName("omidpn") val omidpn: String,
-        @JvmField @SerialName("omidpv") val omidpv: String,
+    public open class Extension(
+        @JvmField @SerialName("omidpn") public val omidpn: String,
+        @JvmField @SerialName("omidpv") public val omidpv: String,
     )
 }

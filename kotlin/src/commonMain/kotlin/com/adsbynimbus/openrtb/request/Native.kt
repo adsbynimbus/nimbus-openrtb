@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -5,7 +7,7 @@ import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
- * This class represents a native type impression.
+ * This public class represents a native type impression.
  *
  * Native ad units are intended to blend seamlessly into the surrounding content (e.g., a sponsored
  * Twitter or Facebook post). As such, the response must be well-structured to afford the publisher
@@ -33,11 +35,11 @@ import kotlin.jvm.JvmField
  *                    equal to or higher than the value set on the Impression object.
  */
 @Serializable
-class Native(
-    @JvmField @SerialName("id") val id: String? = null,
-    @JvmField @SerialName("request") val request: String,
-    @JvmField @SerialName("ver") val ver: String? = null,
-    @JvmField @SerialName("api") val api: IntArray? = null,
-    @JvmField @SerialName("battr") val battr: IntArray? = null,
-    @JvmField @SerialName("bidfloor") val bidfloor: Float = 1f,
+public class Native(
+    @JvmField @SerialName("id") public val id: String? = null,
+    @JvmField @SerialName("request") public val request: String,
+    @JvmField @SerialName("ver") public val ver: String? = null,
+    @JvmField @SerialName("api") public val api: IntArray? = null,
+    @JvmField @SerialName("battr") public val battr: IntArray? = null,
+    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 1f,
 )

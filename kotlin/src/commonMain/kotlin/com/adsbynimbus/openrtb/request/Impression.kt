@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -37,15 +39,15 @@ import kotlin.jvm.JvmField
  * @property ext Placeholder for exchange-specific extensions to OpenRTB
  */
 @Serializable
-class Impression(
-    @JvmField @SerialName("id") val id: String? = null,
-    @JvmField @SerialName("banner") val banner: Banner? = null,
-    @JvmField @SerialName("video") val video: Video? = null,
-    @JvmField @SerialName("native") val native: Native? = null,
-    @JvmField @SerialName("instl") val instl: Int,
-    @JvmField @SerialName("bidfloor") val bidfloor: Float = 1f,
-    @JvmField @SerialName("secure") val secure: Int = 1,
-    @JvmField @SerialName("ext") val ext: Extension,
+public class Impression(
+    @JvmField @SerialName("id") public val id: String? = null,
+    @JvmField @SerialName("banner") public val banner: Banner? = null,
+    @JvmField @SerialName("video") public val video: Video? = null,
+    @JvmField @SerialName("native") public val native: Native? = null,
+    @JvmField @SerialName("instl") public val instl: Int,
+    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 1f,
+    @JvmField @SerialName("secure") public val secure: Int = 1,
+    @JvmField @SerialName("ext") public val ext: Extension,
 ) {
 
     /**
@@ -61,21 +63,21 @@ class Impression(
      * @see [Facebook Testing](https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing)
      */
     @Serializable
-    open class Extension(
-        @JvmField @SerialName("position") val position: String,
-        @JvmField @SerialName("aps") val aps: List<Aps> = emptyList(),
-        @JvmField @SerialName("facebook_app_id") val facebook_app_id: String? = null,
-        @JvmField @SerialName("facebook_test_ad_type") val facebook_test_ad_type: String? = null,
+    public open class Extension(
+        @JvmField @SerialName("position") public val position: String,
+        @JvmField @SerialName("aps") public val aps: List<Aps> = emptyList(),
+        @JvmField @SerialName("facebook_app_id") public val facebook_app_id: String? = null,
+        @JvmField @SerialName("facebook_test_ad_type") public val facebook_test_ad_type: String? = null,
     )
 
     @Serializable
-    class Aps(
-        @JvmField @SerialName("amzn_b") val amzn_b: Array<String>,
-        @JvmField @SerialName("amzn_vid") val amzn_vid: Array<String>,
-        @JvmField @SerialName("amzn_h") val amzn_h: Array<String>,
-        @JvmField @SerialName("amznp") val amznp: Array<String>,
-        @JvmField @SerialName("amznrdr") val amznrdr: Array<String>,
-        @JvmField @SerialName("amznslots") val amznslots: Array<String>,
-        @JvmField @SerialName("dc") val dc: Array<String>,
+    public class Aps(
+        @JvmField @SerialName("amzn_b") public val amzn_b: Array<String>,
+        @JvmField @SerialName("amzn_vid") public val amzn_vid: Array<String>,
+        @JvmField @SerialName("amzn_h") public val amzn_h: Array<String>,
+        @JvmField @SerialName("amznp") public val amznp: Array<String>,
+        @JvmField @SerialName("amznrdr") public val amznrdr: Array<String>,
+        @JvmField @SerialName("amznslots") public val amznslots: Array<String>,
+        @JvmField @SerialName("dc") public val dc: Array<String>,
     )
 }

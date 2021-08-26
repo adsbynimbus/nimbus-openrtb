@@ -7,7 +7,7 @@ import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-const val testJson = """
+const public val testJson = """
 {
   "type": "native",
   "auction_id": "d07668d6-35ba-4870-a3cd-02b18fec1a12",

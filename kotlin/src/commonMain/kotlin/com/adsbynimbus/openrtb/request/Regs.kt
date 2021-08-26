@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -21,9 +23,9 @@ import kotlin.jvm.JvmField
  * @see [OpenRTB Section 7.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=76)
  */
 @Serializable
-class Regs(
-    @JvmField @SerialName("coppa") val coppa: Int = 0,
-    @JvmField @SerialName("ext") val ext: Extension = Extension(),
+public class Regs(
+    @JvmField @SerialName("coppa") public val coppa: Int = 0,
+    @JvmField @SerialName("ext") public val ext: Extension = Extension(),
 ) {
     /**
      * Placeholder for exchange-specific extensions to OpenRTB.
@@ -45,8 +47,8 @@ class Regs(
      * @see [US Privacy String Format](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md.us-privacy-string-format)
      */
     @Serializable
-    open class Extension(
-        @JvmField @SerialName("gdpr") val gdpr: Int = 0,
-        @JvmField @SerialName("us_privacy") val us_privacy: String = ""
+    public open class Extension(
+        @JvmField @SerialName("gdpr") public val gdpr: Int = 0,
+        @JvmField @SerialName("us_privacy") public val us_privacy: String = ""
     )
 }

@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -13,16 +15,16 @@ import kotlin.jvm.JvmField
  * @property h height in device independent pixels (DIPS).
  */
 @Serializable
-class Format(
-    @JvmField @SerialName("w") val w: Int,
-    @JvmField @SerialName("h") val h: Int,
+public class Format(
+    @JvmField @SerialName("w") public val w: Int,
+    @JvmField @SerialName("h") public val h: Int,
 ) {
-    companion object {
-        @JvmField val InterstitialPortrait = Format(320, 480)
-        @JvmField val InterstitialLandscape = Format(480, 320)
-        @JvmField val MobileBanner = Format(320, 50)
-        @JvmField val MediumRectangle = Format(300, 250)
-        @JvmField val HalfScreen = Format(300, 600)
-        @JvmField val Leaderboard = Format(728, 90)
+    public companion object {
+        @JvmField public val InterstitialPortrait: Format = Format(320, 480)
+        @JvmField public val InterstitialLandscape: Format = Format(480, 320)
+        @JvmField public val MobileBanner: Format = Format(320, 50)
+        @JvmField public val MediumRectangle: Format = Format(300, 250)
+        @JvmField public val HalfScreen: Format = Format(300, 600)
+        @JvmField public val Leaderboard: Format = Format(728, 90)
     }
 }

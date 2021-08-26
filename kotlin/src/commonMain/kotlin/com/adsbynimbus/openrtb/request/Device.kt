@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier", "INLINE_CLASS_DEPRECATED")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -36,39 +38,38 @@ import kotlin.jvm.JvmField
  * @property ifa ID sanctioned for advertiser use in the clear (i.e., not hashed).
  */
 @Serializable
-class Device(
-    @JvmField @SerialName("ua") val ua: String,
-    @JvmField @SerialName("geo") val geo: Geo? = null,
-    @JvmField @SerialName("dnt") val dnt: Int = 0,
-    @JvmField @SerialName("lmt") val lmt: Int = 0,
-    @JvmField @SerialName("ip") val ip: String? = null,
-    @JvmField @SerialName("devicetype") val devicetype: Int = 0,
-    @JvmField @SerialName("make") val make: String,
-    @JvmField @SerialName("model") val model: String,
-    @JvmField @SerialName("hwv") val hwv: String,
-    @JvmField @SerialName("os") val os: String, //"android"
-    @JvmField @SerialName("osv") val osv: String,
-    @JvmField @SerialName("h") val h: Int,
-    @JvmField @SerialName("w") val w: Int,
-    @JvmField @SerialName("language") val language: String,
-    @JvmField @SerialName("carrier") val carrier: String,
-    @JvmField @SerialName("connectiontype") val connectiontype: Int = 0,
-    @JvmField @SerialName("ifa") val ifa: String,
+public class Device(
+    @JvmField @SerialName("ua") public val ua: String,
+    @JvmField @SerialName("geo") public val geo: Geo? = null,
+    @JvmField @SerialName("dnt") public val dnt: Int = 0,
+    @JvmField @SerialName("lmt") public val lmt: Int = 0,
+    @JvmField @SerialName("ip") public val ip: String? = null,
+    @JvmField @SerialName("devicetype") public val devicetype: Int = 0,
+    @JvmField @SerialName("make") public val make: String,
+    @JvmField @SerialName("model") public val model: String,
+    @JvmField @SerialName("hwv") public val hwv: String,
+    @JvmField @SerialName("os") public val os: String, //"android"
+    @JvmField @SerialName("osv") public val osv: String,
+    @JvmField @SerialName("h") public val h: Int,
+    @JvmField @SerialName("w") public val w: Int,
+    @JvmField @SerialName("language") public val language: String,
+    @JvmField @SerialName("carrier") public val carrier: String,
+    @JvmField @SerialName("connectiontype") public val connectiontype: Int = 0,
+    @JvmField @SerialName("ifa") public val ifa: String,
 ) {
     /**
      * Options for the type of device connectivity
      *
      * [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
      */
-    @JvmInline @Serializable
-    value class ConnectionType(val type: Int) {
-        companion object {
-            const val Ethernet = 1
-            const val Wifi = 2
-            const val CellularUnknown = 3
-            const val Cellular2G = 4
-            const val Cellular3G = 5
-            const val Cellular4G = 6
+    public inline class ConnectionType(public val type: Int) {
+        public companion object {
+            public const val Ethernet: Int = 1
+            public const val Wifi: Int = 2
+            public const val CellularUnknown: Int = 3
+            public const val Cellular2G: Int = 4
+            public const val Cellular3G: Int = 5
+            public const val Cellular4G: Int = 6
         }
     }
 
@@ -77,21 +78,20 @@ class Device(
      *
      * [OpenRTB Section 5.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
      */
-    @JvmInline @Serializable
-    value class DeviceType(val type: Int) {
-        companion object {
+    public inline class DeviceType(public val type: Int) {
+        public companion object {
             /** Interchangeable with Phone and Tablet */
-            const val MobileTablet = 1
-            const val PersonalComputer = 2
-            const val ConnectedTv = 3
+            public const val MobileTablet: Int = 1
+            public const val PersonalComputer: Int = 2
+            public const val ConnectedTv: Int = 3
 
             /** Interchangeable with MobileTablet */
-            const val Phone = 4
+            public const val Phone: Int = 4
 
             /** Interchangeable with MobileTablet */
-            const val Tablet = 5
-            const val ConnectedDevice = 6
-            const val SetTopBox = 7
+            public const val Tablet: Int = 5
+            public const val ConnectedDevice: Int = 6
+            public const val SetTopBox: Int = 7
         }
     }
 }

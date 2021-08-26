@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -18,8 +20,8 @@ import kotlin.jvm.JvmField
  * @see [OpenRTB Section 3.2.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
  */
 @Serializable
-class Data(
-    @JvmField @SerialName("id") val id: String,
-    @JvmField @SerialName("name") val name: String,
-    @JvmField @SerialName("segment") val segment: Array<Segment> = emptyArray(),
+public class Data(
+    @JvmField @SerialName("id") public val id: String,
+    @JvmField @SerialName("name") public val name: String,
+    @JvmField @SerialName("segment") public val segment: Array<Segment> = emptyArray(),
 )

@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier", "INLINE_CLASS_DEPRECATED")
+
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -33,25 +35,24 @@ import kotlin.jvm.JvmField
  * @see [Google Metro codes](code.google.com/apis/adwords/docs/appendix/metrocodes.html)
  */
 @Serializable
-class Geo(
-    @JvmField @SerialName("lat") val lat: Float? = null,
-    @JvmField @SerialName("lon") val lon: Float? = null,
-    @JvmField @SerialName("type") val type: Int? = null,
-    @JvmField @SerialName("accuracy") val accuracy: Int? = null,
-    @JvmField @SerialName("country") val country: String? = null,
-    @JvmField @SerialName("city") val city: String? = null,
-    @JvmField @SerialName("metro") val metro: String? = null,
-    @JvmField @SerialName("state") val state: String? = null,
+public class Geo(
+    @JvmField @SerialName("lat") public val lat: Float? = null,
+    @JvmField @SerialName("lon") public val lon: Float? = null,
+    @JvmField @SerialName("type") public val type: Int? = null,
+    @JvmField @SerialName("accuracy") public val accuracy: Int? = null,
+    @JvmField @SerialName("country") public val country: String? = null,
+    @JvmField @SerialName("city") public val city: String? = null,
+    @JvmField @SerialName("metro") public val metro: String? = null,
+    @JvmField @SerialName("state") public val state: String? = null,
 ) {
     /**
      * Indicates how the geographic information was determined.
      */
-    @JvmInline @Serializable
-    value class LocationType(val value: Int) {
-        companion object {
-            const val GPS = 1
-            const val IpLookup = 2
-            const val UserProvided = 3
+    public inline class LocationType(public val value: Int) {
+        public companion object {
+            public const val GPS: Int = 1
+            public const val IpLookup: Int = 2
+            public const val UserProvided: Int = 3
         }
     }
 }
