@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -21,8 +22,8 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Regs(
-    @JvmField val coppa: Int = 0,
-    @JvmField val ext: Extension = Extension(),
+    @JvmField @SerialName("coppa") val coppa: Int = 0,
+    @JvmField @SerialName("ext") val ext: Extension = Extension(),
 ) {
     /**
      * Placeholder for exchange-specific extensions to OpenRTB.
@@ -45,7 +46,7 @@ class Regs(
      */
     @Serializable
     open class Extension(
-        @JvmField val gdpr: Int = 0,
-        @JvmField val us_privacy: String = ""
+        @JvmField @SerialName("gdpr") val gdpr: Int = 0,
+        @JvmField @SerialName("us_privacy") val us_privacy: String = ""
     )
 }

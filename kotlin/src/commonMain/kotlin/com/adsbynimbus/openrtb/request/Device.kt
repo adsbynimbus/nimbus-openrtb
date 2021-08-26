@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -36,23 +37,23 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Device(
-    @JvmField val ua: String,
-    @JvmField val geo: Geo? = null,
-    @JvmField val dnt: Int = 0,
-    @JvmField val lmt: Int = 0,
-    @JvmField val ip: String? = null,
-    @JvmField val devicetype: Int = 0,
-    @JvmField val make: String,
-    @JvmField val model: String,
-    @JvmField val hwv: String,
-    @JvmField val os: String, //"android"
-    @JvmField val osv: String,
-    @JvmField val h: Int,
-    @JvmField val w: Int,
-    @JvmField val language: String,
-    @JvmField val carrier: String,
-    @JvmField val connectiontype: Int = 0,
-    @JvmField val ifa: String,
+    @JvmField @SerialName("ua") val ua: String,
+    @JvmField @SerialName("geo") val geo: Geo? = null,
+    @JvmField @SerialName("dnt") val dnt: Int = 0,
+    @JvmField @SerialName("lmt") val lmt: Int = 0,
+    @JvmField @SerialName("ip") val ip: String? = null,
+    @JvmField @SerialName("devicetype") val devicetype: Int = 0,
+    @JvmField @SerialName("make") val make: String,
+    @JvmField @SerialName("model") val model: String,
+    @JvmField @SerialName("hwv") val hwv: String,
+    @JvmField @SerialName("os") val os: String, //"android"
+    @JvmField @SerialName("osv") val osv: String,
+    @JvmField @SerialName("h") val h: Int,
+    @JvmField @SerialName("w") val w: Int,
+    @JvmField @SerialName("language") val language: String,
+    @JvmField @SerialName("carrier") val carrier: String,
+    @JvmField @SerialName("connectiontype") val connectiontype: Int = 0,
+    @JvmField @SerialName("ifa") val ifa: String,
 ) {
     /**
      * Options for the type of device connectivity

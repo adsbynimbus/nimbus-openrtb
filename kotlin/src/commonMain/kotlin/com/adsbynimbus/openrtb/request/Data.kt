@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -18,7 +19,7 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Data(
-    @JvmField val id: String,
-    @JvmField val name: String,
-    @JvmField val segment: Array<Segment> = emptyArray(),
+    @JvmField @SerialName("id") val id: String,
+    @JvmField @SerialName("name") val name: String,
+    @JvmField @SerialName("segment") val segment: Array<Segment> = emptyArray(),
 )

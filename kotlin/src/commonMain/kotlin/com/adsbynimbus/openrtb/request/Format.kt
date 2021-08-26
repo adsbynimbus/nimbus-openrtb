@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -13,8 +14,8 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Format(
-    @JvmField val w: Int,
-    @JvmField val h: Int,
+    @JvmField @SerialName("w") val w: Int,
+    @JvmField @SerialName("h") val h: Int,
 ) {
     companion object {
         @JvmField val InterstitialPortrait = Format(320, 480)

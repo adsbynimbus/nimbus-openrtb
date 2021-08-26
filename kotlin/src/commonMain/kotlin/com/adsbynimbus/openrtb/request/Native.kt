@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -33,10 +34,10 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Native(
-    @JvmField val id: String? = null,
-    @JvmField val request: String,
-    @JvmField val ver: String? = null,
-    @JvmField val api: IntArray? = null,
-    @JvmField val battr: IntArray? = null,
-    @JvmField val bidfloor: Float = 1f,
+    @JvmField @SerialName("id") val id: String? = null,
+    @JvmField @SerialName("request") val request: String,
+    @JvmField @SerialName("ver") val ver: String? = null,
+    @JvmField @SerialName("api") val api: IntArray? = null,
+    @JvmField @SerialName("battr") val battr: IntArray? = null,
+    @JvmField @SerialName("bidfloor") val bidfloor: Float = 1f,
 )

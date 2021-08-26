@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -18,7 +19,7 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Source(
-    @JvmField val ext: Extension,
+    @JvmField @SerialName("ext") val ext: Extension,
 ) {
     /**
      * Source extension object unique to Nimbus
@@ -28,7 +29,7 @@ class Source(
      */
     @Serializable
     open class Extension(
-        @JvmField val omidpn: String,
-        @JvmField val omidpv: String,
+        @JvmField @SerialName("omidpn") val omidpn: String,
+        @JvmField @SerialName("omidpv") val omidpv: String,
     )
 }

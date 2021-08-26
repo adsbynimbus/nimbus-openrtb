@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -30,14 +31,14 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class User(
-    @JvmField val age: Int? = null,
-    @JvmField val buyeruid: String? = null,
-    @JvmField val yob: Int? = null,
-    @JvmField val gender: String? = null,
-    @JvmField val keywords: String? = null,
-    @JvmField val custom_data: String? = null,
-    @JvmField val data: Array<Data> = emptyArray(),
-    @JvmField val ext: Extension? = null,
+    @JvmField @SerialName("age") val age: Int? = null,
+    @JvmField @SerialName("buyeruid") val buyeruid: String? = null,
+    @JvmField @SerialName("yob") val yob: Int? = null,
+    @JvmField @SerialName("gender") val gender: String? = null,
+    @JvmField @SerialName("keywords") val keywords: String? = null,
+    @JvmField @SerialName("custom_data") val custom_data: String? = null,
+    @JvmField @SerialName("data") val data: Array<Data> = emptyArray(),
+    @JvmField @SerialName("ext") val ext: Extension? = null,
 ) {
 
     /**
@@ -53,9 +54,9 @@ class User(
      */
     @Serializable
     open class Extension(
-        @JvmField val consent: String = "",
-        @JvmField val did_consent: Int = 0,
-        @JvmField val unity_buyeruid: String? = null,
+        @JvmField @SerialName("consent") val consent: String = "",
+        @JvmField @SerialName("did_consent") val did_consent: Int = 0,
+        @JvmField @SerialName("unity_buyeruid") val unity_buyeruid: String? = null,
     )
 
     @JvmInline @Serializable

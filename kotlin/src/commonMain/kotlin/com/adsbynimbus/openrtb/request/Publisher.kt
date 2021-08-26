@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -17,7 +18,7 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Publisher(
-    @JvmField val name: String,
-    @JvmField val domain: String,
-    @JvmField val cat: Array<String> = emptyArray(),
+    @JvmField @SerialName("name") val name: String,
+    @JvmField @SerialName("domain") val domain: String,
+    @JvmField @SerialName("cat") val cat: Array<String> = emptyArray(),
 )

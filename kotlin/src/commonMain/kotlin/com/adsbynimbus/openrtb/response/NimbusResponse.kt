@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.response
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -25,19 +26,19 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class NimbusResponse(
-    @JvmField val type: String,
-    @JvmField val auction_id: String,
-    @JvmField val bid_in_cents: Int = 0,
-    @JvmField val bid_raw: Float = 0f,
-    @JvmField val content_type: String? = null,
-    @JvmField val height: Int = 0,
-    @JvmField val width: Int = 0,
-    @JvmField val is_interstitial: Int = 0,
-    @JvmField val markup: String,
-    @JvmField val network: String = "",
-    @JvmField val trackers: Trackers = Trackers(),
-    @JvmField val placement_id: String,
-    @JvmField val is_mraid: Int = 0,
+    @JvmField @SerialName("type") val type: String,
+    @JvmField @SerialName("auction_id") val auction_id: String,
+    @JvmField @SerialName("bid_in_cents") val bid_in_cents: Int = 0,
+    @JvmField @SerialName("bid_raw") val bid_raw: Float = 0f,
+    @JvmField @SerialName("content_type") val content_type: String? = null,
+    @JvmField @SerialName("height") val height: Int = 0,
+    @JvmField @SerialName("width") val width: Int = 0,
+    @JvmField @SerialName("is_interstitial") val is_interstitial: Int = 0,
+    @JvmField @SerialName("markup") val markup: String,
+    @JvmField @SerialName("network") val network: String = "",
+    @JvmField @SerialName("trackers") val trackers: Trackers = Trackers(),
+    @JvmField @SerialName("placement_id") val placement_id: String,
+    @JvmField @SerialName("is_mraid") val is_mraid: Int = 0,
 ) {
 
     /**
@@ -48,7 +49,7 @@ class NimbusResponse(
      */
     @Serializable
     open class Trackers(
-        @JvmField val impression_trackers: Array<String> = emptyArray(),
-        @JvmField val click_trackers: Array<String> = emptyArray(),
+        @JvmField @SerialName("impression_trackers") val impression_trackers: Array<String> = emptyArray(),
+        @JvmField @SerialName("click_trackers") val click_trackers: Array<String> = emptyArray(),
     )
 }

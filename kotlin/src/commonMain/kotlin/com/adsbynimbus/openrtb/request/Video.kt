@@ -1,6 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
 import com.adsbynimbus.openrtb.request.Creative.Position.Companion.Unknown
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -58,28 +59,28 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Video(
-    @JvmField val bidfloor: Float = 3f,
-    @JvmField val mimes: Array<String> = emptyArray(),
-    @JvmField val minduration: Int = 0,
-    @JvmField val maxduration: Int = 60,
-    @JvmField val protocols: IntArray? = null,
-    @JvmField val w: Int = 0,
-    @JvmField val h: Int = 0,
-    @JvmField val startdelay: Int = 0,
-    @JvmField val placement: Int,
-    @JvmField val linearity: Int? = null,
-    @JvmField val skip: Int,
-    @JvmField val delivery: IntArray? = null,
-    @JvmField val skipmin: Int? = 0,
-    @JvmField val skipafter: Int? = 0,
-    @JvmField val minbitrate: Int? = 0,
-    @JvmField val maxbitrate: Int? = 0,
-    @JvmField val pos: Int = Unknown,
-    @JvmField val playbackmethod: IntArray? = null,
-    @JvmField val api: IntArray? = null,
-    @JvmField val companionad: Array<Banner>? = null,
-    @JvmField val companiontype: IntArray? = null,
-    @JvmField val ext: Extension? = null,
+    @JvmField @SerialName("bidfloor") val bidfloor: Float = 3f,
+    @JvmField @SerialName("mimes") val mimes: Array<String> = emptyArray(),
+    @JvmField @SerialName("minduration") val minduration: Int = 0,
+    @JvmField @SerialName("maxduration") val maxduration: Int = 60,
+    @JvmField @SerialName("protocols") val protocols: IntArray? = null,
+    @JvmField @SerialName("w") val w: Int = 0,
+    @JvmField @SerialName("h") val h: Int = 0,
+    @JvmField @SerialName("startdelay") val startdelay: Int = 0,
+    @JvmField @SerialName("placement") val placement: Int,
+    @JvmField @SerialName("linearity") val linearity: Int? = null,
+    @JvmField @SerialName("skip") val skip: Int,
+    @JvmField @SerialName("delivery") val delivery: IntArray? = null,
+    @JvmField @SerialName("skipmin") val skipmin: Int? = 0,
+    @JvmField @SerialName("skipafter") val skipafter: Int? = 0,
+    @JvmField @SerialName("minbitrate") val minbitrate: Int? = 0,
+    @JvmField @SerialName("maxbitrate") val maxbitrate: Int? = 0,
+    @JvmField @SerialName("pos") val pos: Int = Unknown,
+    @JvmField @SerialName("playbackmethod") val playbackmethod: IntArray? = null,
+    @JvmField @SerialName("api") val api: IntArray? = null,
+    @JvmField @SerialName("companionad") val companionad: Array<Banner>? = null,
+    @JvmField @SerialName("companiontype") val companiontype: IntArray? = null,
+    @JvmField @SerialName("ext") val ext: Extension? = null,
 ) {
     /**
      * Video extensions
@@ -88,7 +89,7 @@ class Video(
      */
     @Serializable
     open class Extension(
-        @JvmField val is_rewarded: Boolean = false,
+        @JvmField @SerialName("is_rewarded") val is_rewarded: Boolean = false,
     )
 
     /**

@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -38,17 +39,17 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class BidRequest(
-    @JvmField val imp: Array<Impression>,
-    @JvmField val app: App,
-    @JvmField val device: Device,
-    @JvmField val format: Format,
-    @JvmField val user: User? = null,
-    @JvmField val test: Int = 0,
-    @JvmField val tmax: Int = 500,
-    @JvmField val regs: Regs? = null,
-    @JvmField val source: Source? = null,
-    @JvmField val badv: Array<String> = emptyArray(),
-    @JvmField val ext: Extension? = null
+    @JvmField @SerialName("imp") val imp: Array<Impression>,
+    @JvmField @SerialName("app") val app: App,
+    @JvmField @SerialName("device") val device: Device,
+    @JvmField @SerialName("format") val format: Format,
+    @JvmField @SerialName("user") val user: User? = null,
+    @JvmField @SerialName("test") val test: Int = 0,
+    @JvmField @SerialName("tmax") val tmax: Int = 500,
+    @JvmField @SerialName("regs") val regs: Regs? = null,
+    @JvmField @SerialName("source") val source: Source? = null,
+    @JvmField @SerialName("badv") val badv: Array<String> = emptyArray(),
+    @JvmField @SerialName("ext") val ext: Extension? = null
 ) {
 
     /**
@@ -59,7 +60,7 @@ class BidRequest(
      */
     @Serializable
     open class Extension(
-        @JvmField val session_id: String,
+        @JvmField @SerialName("session_id") val session_id: String,
     )
 
     companion object {

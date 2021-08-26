@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -37,14 +38,14 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Impression(
-    @JvmField val id: String? = null,
-    @JvmField val banner: Banner? = null,
-    @JvmField val video: Video? = null,
-    @JvmField val native: Native? = null,
-    @JvmField val instl: Int,
-    @JvmField val bidfloor: Float = 1f,
-    @JvmField val secure: Int = 1,
-    @JvmField val ext: Extension,
+    @JvmField @SerialName("id") val id: String? = null,
+    @JvmField @SerialName("banner") val banner: Banner? = null,
+    @JvmField @SerialName("video") val video: Video? = null,
+    @JvmField @SerialName("native") val native: Native? = null,
+    @JvmField @SerialName("instl") val instl: Int,
+    @JvmField @SerialName("bidfloor") val bidfloor: Float = 1f,
+    @JvmField @SerialName("secure") val secure: Int = 1,
+    @JvmField @SerialName("ext") val ext: Extension,
 ) {
 
     /**
@@ -61,20 +62,20 @@ class Impression(
      */
     @Serializable
     open class Extension(
-        @JvmField val position: String,
-        @JvmField val aps: List<Aps> = emptyList(),
-        @JvmField val facebook_app_id: String? = null,
-        @JvmField val facebook_test_ad_type: String? = null,
+        @JvmField @SerialName("position") val position: String,
+        @JvmField @SerialName("aps") val aps: List<Aps> = emptyList(),
+        @JvmField @SerialName("facebook_app_id") val facebook_app_id: String? = null,
+        @JvmField @SerialName("facebook_test_ad_type") val facebook_test_ad_type: String? = null,
     )
 
     @Serializable
     class Aps(
-        @JvmField val amzn_b: Array<String>,
-        @JvmField val amzn_vid: Array<String>,
-        @JvmField val amzn_h: Array<String>,
-        @JvmField val amznp: Array<String>,
-        @JvmField val amznrdr: Array<String>,
-        @JvmField val amznslots: Array<String>,
-        @JvmField val dc: Array<String>,
+        @JvmField @SerialName("amzn_b") val amzn_b: Array<String>,
+        @JvmField @SerialName("amzn_vid") val amzn_vid: Array<String>,
+        @JvmField @SerialName("amzn_h") val amzn_h: Array<String>,
+        @JvmField @SerialName("amznp") val amznp: Array<String>,
+        @JvmField @SerialName("amznrdr") val amznrdr: Array<String>,
+        @JvmField @SerialName("amznslots") val amznslots: Array<String>,
+        @JvmField @SerialName("dc") val dc: Array<String>,
     )
 }

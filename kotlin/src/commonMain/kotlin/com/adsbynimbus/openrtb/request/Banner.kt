@@ -1,6 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
 import com.adsbynimbus.openrtb.request.Creative.Position.Companion.Unknown
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -33,12 +34,12 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Banner(
-  @JvmField val bidfloor: Float = 2f,
-  @JvmField val battr: IntArray? = null,
-  @JvmField val format: Array<Format> = emptyArray(),
-  @JvmField val w: Int,
-  @JvmField val h: Int,
-  @JvmField val pos: Int = Unknown,
-  @JvmField val api: IntArray,
-  @JvmField val vcm: Int? = null,
+  @JvmField @SerialName("bidfloor") val bidfloor: Float = 2f,
+  @JvmField @SerialName("battr") val battr: IntArray? = null,
+  @JvmField @SerialName("format") val format: Array<Format> = emptyArray(),
+  @JvmField @SerialName("w") val w: Int,
+  @JvmField @SerialName("h") val h: Int,
+  @JvmField @SerialName("pos") val pos: Int = Unknown,
+  @JvmField @SerialName("api") val api: IntArray,
+  @JvmField @SerialName("vcm") val vcm: Int? = null,
 )

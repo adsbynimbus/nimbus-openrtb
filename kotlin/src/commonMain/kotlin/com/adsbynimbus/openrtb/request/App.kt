@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -29,17 +30,17 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class App(
-    @JvmField val name: String,
-    @JvmField val bundle: String,
-    @JvmField val domain: String,
-    @JvmField val storeurl: String,
-    @JvmField val cat: Array<ContentCategory> = emptyArray(),
-    @JvmField val sectioncat: Array<ContentCategory> = emptyArray(),
-    @JvmField val pagecat: Array<ContentCategory> = emptyArray(),
-    @JvmField val ver: String,
-    @JvmField val privacypolicy: Int = 0,
-    @JvmField val paid: Int = 0,
-    @JvmField val publisher: Publisher,
+    @JvmField @SerialName("name") val name: String,
+    @JvmField @SerialName("bundle") val bundle: String,
+    @JvmField @SerialName("domain") val domain: String,
+    @JvmField @SerialName("storeurl") val storeurl: String,
+    @JvmField @SerialName("cat") val cat: Array<ContentCategory> = emptyArray(),
+    @JvmField @SerialName("sectioncat") val sectioncat: Array<ContentCategory> = emptyArray(),
+    @JvmField @SerialName("pagecat") val pagecat: Array<ContentCategory> = emptyArray(),
+    @JvmField @SerialName("ver") val ver: String,
+    @JvmField @SerialName("privacypolicy") val privacypolicy: Int = 0,
+    @JvmField @SerialName("paid") val paid: Int = 0,
+    @JvmField @SerialName("publisher") val publisher: Publisher,
 ) {
 
     /**

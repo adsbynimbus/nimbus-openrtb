@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
@@ -33,14 +34,14 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 class Geo(
-    @JvmField val lat: Float? = null,
-    @JvmField val lon: Float? = null,
-    @JvmField val type: Int? = null,
-    @JvmField val accuracy: Int? = null,
-    @JvmField val country: String? = null,
-    @JvmField val city: String? = null,
-    @JvmField val metro: String? = null,
-    @JvmField val state: String? = null,
+    @JvmField @SerialName("lat") val lat: Float? = null,
+    @JvmField @SerialName("lon") val lon: Float? = null,
+    @JvmField @SerialName("type") val type: Int? = null,
+    @JvmField @SerialName("accuracy") val accuracy: Int? = null,
+    @JvmField @SerialName("country") val country: String? = null,
+    @JvmField @SerialName("city") val city: String? = null,
+    @JvmField @SerialName("metro") val metro: String? = null,
+    @JvmField @SerialName("state") val state: String? = null,
 ) {
     /**
      * Indicates how the geographic information was determined.
