@@ -1,10 +1,12 @@
 import groovy.util.Node
 import groovy.util.NodeList
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.cocoapods)
     alias(libs.plugins.dokka)
     alias(libs.plugins.serialization)
     `maven-publish`
@@ -28,14 +30,39 @@ android {
 kotlin {
     explicitApi()
 
-    android {
-        publishLibraryVariants("release")
-    }
+    // JVM based deployments in dependency order
     jvm {
         testRuns["test"].executionTask.configure {
             useJUnitPlatform {
                 includeEngines("spek2")
             }
+        }
+    }
+    android {
+        publishLibraryVariants("release")
+    }
+
+    // Apple deployments in rough dependency order
+    val xcf = XCFramework()
+
+    cocoapods {
+        framework {
+            baseName = "shared"
+            // Dynamic framework support
+            isStatic = false
+        }
+    }
+
+    ios {
+        binaries.framework {
+            baseName = "shared"
+            xcf.add(this)
+        }
+    }
+    tvos {
+        binaries.framework {
+            baseName = "shared"
+            xcf.add(this)
         }
     }
     sourceSets {
@@ -85,11 +112,6 @@ tasks.withType<DokkaTask>().configureEach {
     }
 }
 
-val dokkaJar by tasks.registering(Jar::class) {
-    archiveClassifier.set("javadoc")
-    from(tasks.named("dokkaJavadoc"))
-}
-
 configurations.create("sourcesElements") {
     isCanBeResolved = true
     attributes {
@@ -135,7 +157,6 @@ publishing {
         publications {
             named<MavenPublication>("kotlinMultiplatform") {
                 replaceWith(getByName<MavenPublication>("androidRelease"))
-                artifact(dokkaJar)
             }
         }
     }
