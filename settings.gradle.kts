@@ -5,6 +5,7 @@ enableFeaturePreview("VERSION_CATALOGS")
 pluginManagement {
     repositories {
         google()
+        mavenCentral()
         gradlePluginPortal()
     }
 }
