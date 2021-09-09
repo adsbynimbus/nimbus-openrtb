@@ -30,16 +30,18 @@ import kotlin.jvm.JvmField
 public class BidResponse(
     @JvmField @SerialName("type") public val type: String,
     @JvmField @SerialName("auction_id") public val auction_id: String,
+    @JvmField @SerialName("adomain") public val adomain: Array<String> = emptyArray(),
     @JvmField @SerialName("bid_in_cents") public val bid_in_cents: Int = 0,
     @JvmField @SerialName("bid_raw") public val bid_raw: Float = 0f,
     @JvmField @SerialName("content_type") public val content_type: String = "",
+    @JvmField @SerialName("crid") public val crid: String? = null,
     @JvmField @SerialName("height") public val height: Int = 0,
     @JvmField @SerialName("width") public val width: Int = 0,
     @JvmField @SerialName("is_interstitial") public val is_interstitial: Int = 0,
     @JvmField @SerialName("markup") public val markup: String,
     @JvmField @SerialName("network") public val network: String = "",
     @JvmField @SerialName("trackers") public val trackers: Trackers = Trackers(),
-    @JvmField @SerialName("placement_id") public val placement_id: String,
+    @JvmField @SerialName("placement_id") public val placement_id: String? = null,
     @JvmField @SerialName("is_mraid") public val is_mraid: Int = 0,
 ) {
 
