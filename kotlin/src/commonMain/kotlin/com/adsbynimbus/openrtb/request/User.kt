@@ -33,14 +33,14 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class User(
-    @JvmField @SerialName("age") public val age: Int? = null,
-    @JvmField @SerialName("buyeruid") public val buyeruid: String? = null,
-    @JvmField @SerialName("yob") public val yob: Int? = null,
-    @JvmField @SerialName("gender") public val gender: String? = null,
-    @JvmField @SerialName("keywords") public val keywords: String? = null,
-    @JvmField @SerialName("custom_data") public val custom_data: String? = null,
+    @JvmField @SerialName("age") public val age: Int = 0,
+    @JvmField @SerialName("buyeruid") public val buyeruid: String = "",
+    @JvmField @SerialName("yob") public val yob: Int = 0,
+    @JvmField @SerialName("gender") public val gender: String = "",
+    @JvmField @SerialName("keywords") public val keywords: String = "",
+    @JvmField @SerialName("custom_data") public val custom_data: String = "",
     @JvmField @SerialName("data") public val data: Array<Data> = emptyArray(),
-    @JvmField @SerialName("ext") public val ext: Extension? = null,
+    @JvmField @SerialName("ext") public val ext: Extension = Extension(),
 ) {
 
     /**
@@ -58,7 +58,7 @@ public class User(
     public open class Extension(
         @JvmField @SerialName("consent") public val consent: String = "",
         @JvmField @SerialName("did_consent") public val did_consent: Int = 0,
-        @JvmField @SerialName("unity_buyeruid") public val unity_buyeruid: String? = null,
+        @JvmField @SerialName("unity_buyeruid") public val unity_buyeruid: String = "",
     )
 
     public inline class Gender(public val gender: Char) {

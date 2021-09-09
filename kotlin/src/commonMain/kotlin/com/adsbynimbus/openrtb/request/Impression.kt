@@ -40,7 +40,7 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Impression(
-    @JvmField @SerialName("id") public val id: String? = null,
+    @JvmField @SerialName("id") public val id: String = "",
     @JvmField @SerialName("banner") public val banner: Banner? = null,
     @JvmField @SerialName("video") public val video: Video? = null,
     @JvmField @SerialName("native") public val native: Native? = null,
@@ -66,8 +66,8 @@ public class Impression(
     public open class Extension(
         @JvmField @SerialName("position") public val position: String,
         @JvmField @SerialName("aps") public val aps: List<Aps> = emptyList(),
-        @JvmField @SerialName("facebook_app_id") public val facebook_app_id: String? = null,
-        @JvmField @SerialName("facebook_test_ad_type") public val facebook_test_ad_type: String? = null,
+        @JvmField @SerialName("facebook_app_id") public val facebook_app_id: String = "",
+        @JvmField @SerialName("facebook_test_ad_type") public val facebook_test_ad_type: String = "",
     )
 
     @Serializable

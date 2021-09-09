@@ -43,7 +43,7 @@ public class Device(
     @JvmField @SerialName("geo") public val geo: Geo? = null,
     @JvmField @SerialName("dnt") public val dnt: Int = 0,
     @JvmField @SerialName("lmt") public val lmt: Int = 0,
-    @JvmField @SerialName("ip") public val ip: String? = null,
+    @JvmField @SerialName("ip") public val ip: String = "",
     @JvmField @SerialName("devicetype") public val devicetype: Int = 0,
     @JvmField @SerialName("make") public val make: String,
     @JvmField @SerialName("model") public val model: String,

@@ -27,12 +27,12 @@ import kotlin.jvm.JvmField
  *                    creative markup
  */
 @Serializable
-public class NimbusResponse(
+public class BidResponse(
     @JvmField @SerialName("type") public val type: String,
     @JvmField @SerialName("auction_id") public val auction_id: String,
     @JvmField @SerialName("bid_in_cents") public val bid_in_cents: Int = 0,
     @JvmField @SerialName("bid_raw") public val bid_raw: Float = 0f,
-    @JvmField @SerialName("content_type") public val content_type: String? = null,
+    @JvmField @SerialName("content_type") public val content_type: String = "",
     @JvmField @SerialName("height") public val height: Int = 0,
     @JvmField @SerialName("width") public val width: Int = 0,
     @JvmField @SerialName("is_interstitial") public val is_interstitial: Int = 0,

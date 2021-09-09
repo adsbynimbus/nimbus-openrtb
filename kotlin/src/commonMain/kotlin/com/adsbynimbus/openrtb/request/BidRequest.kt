@@ -51,7 +51,7 @@ public class BidRequest(
     @JvmField @SerialName("regs") public val regs: Regs? = null,
     @JvmField @SerialName("source") public val source: Source? = null,
     @JvmField @SerialName("badv") public val badv: Array<String> = emptyArray(),
-    @JvmField @SerialName("ext") public val ext: Extension? = null
+    @JvmField @SerialName("ext") public val ext: Extension,
 ) {
 
     /**
