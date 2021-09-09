@@ -24,7 +24,6 @@ import kotlin.jvm.JvmField
  *
  * [OpenRTB Section 3.2.9](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=23)
  *
- * @property id This ID of this native typed impression object
  * @property request Request payload complying with the Native Ad Specification
  * @property ver Version of the Dynamic Native Ads API to which request complies. Highly recommended
  *               for efficient parsing.
@@ -36,7 +35,6 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Native(
-    @JvmField @SerialName("id") public val id: String = "",
     @JvmField @SerialName("request") public val request: String,
     @JvmField @SerialName("ver") public val ver: String = "",
     @JvmField @SerialName("api") public val api: IntArray = IntArray(0),
