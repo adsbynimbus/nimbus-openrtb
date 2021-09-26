@@ -1,5 +1,3 @@
-@file:Suppress("RedundantVisibilityModifier")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -40,7 +38,7 @@ public class Banner(
   @JvmField @SerialName("format") public val format: Array<Format> = emptyArray(),
   @JvmField @SerialName("w") public val w: Int,
   @JvmField @SerialName("h") public val h: Int,
-  @JvmField @SerialName("pos") public val pos: Int = Position.Unknown,
+  @JvmField @SerialName("pos") public val pos: Int = 0,
   @JvmField @SerialName("api") public val api: IntArray = IntArray(0),
   @JvmField @SerialName("vcm") public val vcm: Int? = null,
 )

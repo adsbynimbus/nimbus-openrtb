@@ -1,5 +1,3 @@
-@file:Suppress("RedundantVisibilityModifier", "INLINE_CLASS_DEPRECATED")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -76,7 +74,7 @@ public class Video(
     @JvmField @SerialName("skipafter") public val skipafter: Int = 0,
     @JvmField @SerialName("minbitrate") public val minbitrate: Int = 0,
     @JvmField @SerialName("maxbitrate") public val maxbitrate: Int = 0,
-    @JvmField @SerialName("pos") public val pos: Int = Position.Unknown,
+    @JvmField @SerialName("pos") public val pos: Int = 0,
     @JvmField @SerialName("playbackmethod") public val playbackmethod: IntArray = IntArray(0),
     @JvmField @SerialName("api") public val api: IntArray = IntArray(0),
     @JvmField @SerialName("companionad") public val companionad: Array<Banner> = emptyArray(),
@@ -98,15 +96,13 @@ public class Video(
      *
      * [OpenRTB Section 5.8](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
      */
-    public inline class Protocol(public val value: Int) {
-        public companion object {
-            public const val Vast2: Int = 2
-            public const val Vast3: Int = 3
-            public const val Vast2Wrapper: Int = 5
-            public const val Vast3Wrapper: Int = 6
-            public const val Vast4: Int = 7
-            public const val Vast4Wrapper: Int = 8
-        }
+    public object Protocol {
+        public const val Vast2: Int = 2
+        public const val Vast3: Int = 3
+        public const val Vast2Wrapper: Int = 5
+        public const val Vast3Wrapper: Int = 6
+        public const val Vast4: Int = 7
+        public const val Vast4Wrapper: Int = 8
     }
 
     /**
@@ -114,39 +110,37 @@ public class Video(
      *
      * [OpenRTB Section 5.9](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
      */
-    public inline class Placement(public val value: Int) {
-        public companion object {
-            /**
-             * Played before, during or after the streaming video content that the consumer has requested
-             * (e.g., Pre-roll, Mid-roll, Post-roll).
-             */
-            public const val InStream: Int = 1
+    public object PlacementType {
+        /**
+         * Played before, during or after the streaming video content that the consumer has requested
+         * (e.g., Pre-roll, Mid-roll, Post-roll).
+         */
+        public const val InStream: Int = 1
 
-            /**
-             * Exists within a web banner that leverages the banner space to deliver a video experience as
-             * opposed to another static or rich media format. The format relies on the existence of display
-             * ad inventory on the page for its delivery
-             */
-            public const val InBanner: Int = 2
+        /**
+         * Exists within a web banner that leverages the banner space to deliver a video experience as
+         * opposed to another static or rich media format. The format relies on the existence of display
+         * ad inventory on the page for its delivery
+         */
+        public const val InBanner: Int = 2
 
-            /**
-             * Loads and plays dynamically between paragraphs of editorial content; existing as a standalone
-             * branded message
-             */
-            public const val InArticle: Int = 3
+        /**
+         * Loads and plays dynamically between paragraphs of editorial content; existing as a standalone
+         * branded message
+         */
+        public const val InArticle: Int = 3
 
-            /**
-             * Found in content, social, or product feeds.
-             */
-            public const val InFeed: Int = 4
+        /**
+         * Found in content, social, or product feeds.
+         */
+        public const val InFeed: Int = 4
 
-            /**
-             * Covers the entire or a portion of screen area, but is always on screen while displayed (i.e.
-             * cannot be scrolled out of view). Note that a full-screen interstitial (e.g., in mobile) can be
-             * distinguished from a floating/slider unit by the [Impression.instl] field.
-             */
-            public const val InterstitialSliderFloating: Int = 5
-        }
+        /**
+         * Covers the entire or a portion of screen area, but is always on screen while displayed (i.e.
+         * cannot be scrolled out of view). Note that a full-screen interstitial (e.g., in mobile) can be
+         * distinguished from a floating/slider unit by the [Impression.instl] field.
+         */
+        public const val InterstitialSliderFloating: Int = 5
     }
 
     /**
@@ -154,15 +148,13 @@ public class Video(
      *
      * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
      */
-    public inline class PlaybackMethod(public val value: Int) {
-        public companion object {
-            public const val PageLoadSoundOn: Int = 1
-            public const val PageLoadSoundOff: Int = 2
-            public const val ClickSoundOn: Int = 3
-            public const val MouseOverSoundOn: Int = 4
-            public const val EnterViewportSoundOn: Int = 5
-            public const val EnterViewportSoundOff: Int = 6
-        }
+    public object PlaybackMethod {
+        public const val PageLoadSoundOn: Int = 1
+        public const val PageLoadSoundOff: Int = 2
+        public const val ClickSoundOn: Int = 3
+        public const val MouseOverSoundOn: Int = 4
+        public const val EnterViewportSoundOn: Int = 5
+        public const val EnterViewportSoundOff: Int = 6
     }
 
     /**
@@ -170,14 +162,12 @@ public class Video(
      *
      * [OpenRTB Section 5.7](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=52)
      */
-    public inline class Linearity(public val value: Int) {
-        public companion object {
-            /** In-Stream */
-            public const val Linear: Int = 1
+    public object Linearity {
+        /** In-Stream */
+        public const val Linear: Int = 1
 
-            /** Overlay */
-            public const val NonLinear: Int = 2
-        }
+        /** Overlay */
+        public const val NonLinear: Int = 2
     }
 
     /**
@@ -185,12 +175,10 @@ public class Video(
      *
      * [OpenRTB Section 5.10](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=53)
      */
-    public inline class ContentDelivery(public val value: Int) {
-        public companion object {
-            public const val Streaming: Int = 1
-            public const val Progressive: Int = 2
-            public const val Download: Int = 3
-        }
+    public object Delivery {
+        public const val Streaming: Int = 1
+        public const val Progressive: Int = 2
+        public const val Download: Int = 3
     }
 
     /**
@@ -198,14 +186,14 @@ public class Video(
      *
      * [OpenRTB Section 5.14](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=54)
      */
-    public inline class CompanionType(public val value: Int) {
-        public companion object {
-            /** URI to a static resource such as an image */
-            public const val Static: Int = 1
-            /** HTML to display the companion element */
-            public const val Html: Int = 2
-            /** URI source for an IFrame to display the companion element */
-            public const val IFrame: Int = 3
-        }
+    public object CompanionType {
+        /** URI to a static resource such as an image */
+        public const val Static: Int = 1
+
+        /** HTML to display the companion element */
+        public const val Html: Int = 2
+
+        /** URI source for an IFrame to display the companion element */
+        public const val IFrame: Int = 3
     }
 }

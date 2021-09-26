@@ -1,5 +1,3 @@
-@file:Suppress("RedundantVisibilityModifier", "INLINE_CLASS_DEPRECATED")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -62,15 +60,13 @@ public class Device(
      *
      * [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
      */
-    public inline class ConnectionType(public val type: Int) {
-        public companion object {
-            public const val Ethernet: Int = 1
-            public const val Wifi: Int = 2
-            public const val CellularUnknown: Int = 3
-            public const val Cellular2G: Int = 4
-            public const val Cellular3G: Int = 5
-            public const val Cellular4G: Int = 6
-        }
+    public object ConnectionType {
+        public const val Ethernet: Int = 1
+        public const val Wifi: Int = 2
+        public const val CellularUnknown: Int = 3
+        public const val Cellular2G: Int = 4
+        public const val Cellular3G: Int = 5
+        public const val Cellular4G: Int = 6
     }
 
     /**
@@ -78,20 +74,18 @@ public class Device(
      *
      * [OpenRTB Section 5.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
      */
-    public inline class DeviceType(public val type: Int) {
-        public companion object {
-            /** Interchangeable with Phone and Tablet */
-            public const val MobileTablet: Int = 1
-            public const val PersonalComputer: Int = 2
-            public const val ConnectedTv: Int = 3
+    public object DeviceType {
+        /** Interchangeable with Phone and Tablet */
+        public const val MobileTablet: Int = 1
+        public const val PersonalComputer: Int = 2
+        public const val ConnectedTv: Int = 3
 
-            /** Interchangeable with MobileTablet */
-            public const val Phone: Int = 4
+        /** Interchangeable with MobileTablet */
+        public const val Phone: Int = 4
 
-            /** Interchangeable with MobileTablet */
-            public const val Tablet: Int = 5
-            public const val ConnectedDevice: Int = 6
-            public const val SetTopBox: Int = 7
-        }
+        /** Interchangeable with MobileTablet */
+        public const val Tablet: Int = 5
+        public const val ConnectedDevice: Int = 6
+        public const val SetTopBox: Int = 7
     }
 }

@@ -1,5 +1,3 @@
-@file:Suppress("RedundantVisibilityModifier")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -20,11 +18,11 @@ public class Format(
     @JvmField @SerialName("h") public val h: Int,
 ) {
     public companion object {
-        @JvmField public val InterstitialPortrait: Format = Format(320, 480)
-        @JvmField public val InterstitialLandscape: Format = Format(480, 320)
-        @JvmField public val MobileBanner: Format = Format(320, 50)
-        @JvmField public val MediumRectangle: Format = Format(300, 250)
-        @JvmField public val HalfScreen: Format = Format(300, 600)
-        @JvmField public val Leaderboard: Format = Format(728, 90)
+        @JvmField public val INTERSTITIAL_PORT: Format = Format(320, 480)
+        @JvmField public val INTERSTITIAL_LAND: Format = Format(480, 320)
+        @JvmField public val BANNER_320_50: Format = Format(320, 50)
+        @JvmField public val LETTERBOX: Format = Format(300, 250)
+        @JvmField public val HALF_SCREEN: Format = Format(300, 600)
+        @JvmField public val LEADERBOARD: Format = Format(728, 90)
     }
 }

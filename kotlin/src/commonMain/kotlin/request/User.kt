@@ -1,5 +1,3 @@
-@file:Suppress("RedundantVisibilityModifier", "INLINE_CLASS_DEPRECATED")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -61,11 +59,9 @@ public class User(
         @JvmField @SerialName("unity_buyeruid") public val unity_buyeruid: String = "",
     )
 
-    public inline class Gender(public val gender: Char) {
-        public companion object {
-            public const val Male: Char = 'M'
-            public const val Female: Char = 'F'
-            public const val Other: Char = 'O'
-        }
+    public companion object {
+        public const val Male: Char = 'M'
+        public const val Female: Char = 'F'
+        public const val Other: Char = 'O'
     }
 }
