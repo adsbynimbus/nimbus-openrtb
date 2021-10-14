@@ -1,10 +1,11 @@
-@file:Suppress("RedundantVisibilityModifier")
+@file:JvmName("OpenRTB")
 
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
+import kotlin.jvm.JvmName
 
 /**
  * The top-level bid request object contains a globally unique bid request or auction ID.
@@ -21,12 +22,12 @@ import kotlin.jvm.JvmField
  *
  * @property imp Array of impression objects representing the impressions offered.
  *               Only 1 impression object is supported.
- * @property app Details about the publisher’s app (i.e., non-browser applications).
  * @property device Details about the user’s device to which the impression will be delivered.
  * @property format A [Format] object representing the width and height of the device.
  *                  This is not part of the spec, adding this here for convenience allows height and
  *                  width to be passed without the video/banner object to backwards support the GET
  * @property user Details about the human user of the device; the advertising audience.
+ * @property app Details about the publisher’s app (i.e., non-browser applications).
  * @property test Indicator of test mode in which auctions are not billable (0: live, 1: test)
  * @property tmax Maximum time in milliseconds the exchange allows for bids to be received including
  *                Internet latency to avoid timeout.
@@ -42,10 +43,10 @@ import kotlin.jvm.JvmField
 @Serializable
 public class BidRequest(
     @JvmField @SerialName("imp") public val imp: Array<Impression>,
-    @JvmField @SerialName("app") public val app: App,
     @JvmField @SerialName("device") public val device: Device,
-    @JvmField @SerialName("format") public val format: Format,
+    @JvmField @SerialName("format") public val format: Format = Format(device.w, device.h),
     @JvmField @SerialName("user") public val user: User? = null,
+    @JvmField @SerialName("app") public val app: App? = null,
     @JvmField @SerialName("test") public val test: Int = 0,
     @JvmField @SerialName("tmax") public val tmax: Int = 500,
     @JvmField @SerialName("regs") public val regs: Regs? = null,
@@ -69,9 +70,9 @@ public class BidRequest(
 /**
  * Required header for all requests to Nimbus defining the OpenRTB version
  */
-public const val OpenRTBVersionHeader: String = "X-Openrtb-Version"
+public const val VERSION_HEADER: String = "X-Openrtb-Version"
 
 /**
  * The current supported OpenRTB version by this request object
  */
-public const val OpenRTBVersion: String = "2.5"
+public const val VERSION: String = "2.5"

@@ -38,20 +38,20 @@ import kotlin.jvm.JvmField
 @Serializable
 public class Device(
     @JvmField @SerialName("ua") public val ua: String,
-    @JvmField @SerialName("geo") public val geo: Geo? = null,
-    @JvmField @SerialName("dnt") public val dnt: Int = 0,
-    @JvmField @SerialName("lmt") public val lmt: Int = 0,
-    @JvmField @SerialName("ip") public val ip: String? = null,
-    @JvmField @SerialName("devicetype") public val devicetype: Int = 0,
+    @JvmField @SerialName("ifa") public val ifa: String,
     @JvmField @SerialName("make") public val make: String,
     @JvmField @SerialName("model") public val model: String,
     @JvmField @SerialName("hwv") public val hwv: String,
-    @JvmField @SerialName("os") public val os: String, //"android"
+    @JvmField @SerialName("os") public val os: String,
     @JvmField @SerialName("osv") public val osv: String,
     @JvmField @SerialName("h") public val h: Int,
     @JvmField @SerialName("w") public val w: Int,
     @JvmField @SerialName("language") public val language: String,
-    @JvmField @SerialName("carrier") public val carrier: String,
+    @JvmField @SerialName("devicetype") public val devicetype: Int = 0,
     @JvmField @SerialName("connectiontype") public val connectiontype: Int = 0,
-    @JvmField @SerialName("ifa") public val ifa: String,
+    @JvmField @SerialName("dnt") public val dnt: Int = 0,
+    @JvmField @SerialName("lmt") public val lmt: Int = 0,
+    @JvmField @SerialName("geo") public val geo: Geo? = null,
+    @JvmField @SerialName("ip") public val ip: String? = null,
+    @JvmField @SerialName("carrier") public val carrier: String? = null,
 )

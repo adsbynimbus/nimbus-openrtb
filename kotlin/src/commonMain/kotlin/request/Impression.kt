@@ -55,7 +55,7 @@ public class Impression(
      * @see [Facebook Testing](https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing)
      */
     @Serializable
-    public open class Extension(
+    public class Extension(
         @JvmField @SerialName("position") public val position: String,
         @JvmField @SerialName("aps") public var aps: List<Map<String, List<String>>> = emptyList(),
         @JvmField @SerialName("facebook_app_id") public var facebook_app_id: String = "",

@@ -1,5 +1,3 @@
-@file:Suppress("RedundantVisibilityModifier")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName

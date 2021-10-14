@@ -87,7 +87,7 @@ public class Video(
      * @property is_rewarded Indicates this video request is for a rewarded video
      */
     @Serializable
-    public open class Extension(
+    public class Extension(
         @JvmField @SerialName("is_rewarded") public val is_rewarded: Int = 0,
     )
 }

@@ -1,5 +1,3 @@
-@file:Suppress("RedundantVisibilityModifier", "INLINE_CLASS_DEPRECATED")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -20,12 +18,13 @@ import kotlin.jvm.JvmField
  *                  (e.g., com.foo.mygame). On iOS, it is typically a numeric ID.
  * @property domain Domain of the app (e.g., "adsbynimbus.com").
  * @property storeurl App store URL for an installed app; for IQG 2.1 compliance.
+ * @property ver Application version.
+ * @property keywords A list of keywords describing the app.
  * @property cat Array of IAB content categories of the app.
  * @property sectioncat Array of IAB content categories that describe the current section of the
  *                      app.
  * @property pagecat Array of IAB content categories that describe the current page or view of the
  *                   app.
- * @property ver Application version.
  * @property privacypolicy Indicates if the app has a privacy policy. (0 = No, 1 = Yes)
  * @property paid Indicates if the app is free or paid. (0 = Free, 1 = Paid)
  * @property publisher Details about the publisher of the app.

@@ -1,5 +1,3 @@
-@file:Suppress("RedundantVisibilityModifier")
-
 package com.adsbynimbus.openrtb.response
 
 import kotlinx.serialization.SerialName
@@ -27,7 +25,7 @@ import kotlin.jvm.JvmField
  *                    creative markup
  */
 @Serializable
-public open class BidResponse(
+public class BidResponse(
     @JvmField @SerialName("type") public val type: String,
     @JvmField @SerialName("auction_id") public val auction_id: String,
     @JvmField @SerialName("adomain") public val adomain: Array<String> = emptyArray(),
@@ -43,16 +41,17 @@ public open class BidResponse(
     @JvmField @SerialName("trackers") public val trackers: Trackers = Trackers(),
     @JvmField @SerialName("placement_id") public val placement_id: String? = null,
     @JvmField @SerialName("is_mraid") public val is_mraid: Int = 0,
-)
+) {
+    /**
+     * Additional tracking urls
+     *
+     * @property impression_trackers Urls to fire a request to when an impression is registered
+     * @property click_trackers Urls to fire a request to when a click is registered
+     */
+    @Serializable
+    public class Trackers(
+        @JvmField @SerialName("impression_trackers") public val impression_trackers: Array<String> = emptyArray(),
+        @JvmField @SerialName("click_trackers") public val click_trackers: Array<String> = emptyArray(),
+    )
+}
 
-/**
- * Additional tracking urls
- *
- * @property impression_trackers Urls to fire a request to when an impression is registered
- * @property click_trackers Urls to fire a request to when a click is registered
- */
-@Serializable
-public class Trackers(
-    @JvmField @SerialName("impression_trackers") public val impression_trackers: Array<String> = emptyArray(),
-    @JvmField @SerialName("click_trackers") public val click_trackers: Array<String> = emptyArray(),
-)
