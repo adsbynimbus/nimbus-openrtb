@@ -1,5 +1,3 @@
-@file:Suppress("RedundantVisibilityModifier")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
@@ -18,10 +16,6 @@ import kotlin.jvm.JvmField
  *
  * [OpenRTB Section 3.2.4](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=12)
  *
- * @property id A unique identifier for this impression within the context of the bid request
- *              (typically, starts with 1and increments).
- *
- *              This field is optional as only 1 impression object is currently supported by Nimbus.
  * @property banner A banner object; required if this impression is offered as a banner ad
  *                  opportunity or is used in the Nimbus hybrid auction.
  * @property video A video object; required if this impression is offered as a video ad opportunity
@@ -40,16 +34,14 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Impression(
-    @JvmField @SerialName("id") public val id: String = "",
     @JvmField @SerialName("banner") public val banner: Banner? = null,
     @JvmField @SerialName("video") public val video: Video? = null,
     @JvmField @SerialName("native") public val native: Native? = null,
-    @JvmField @SerialName("instl") public val instl: Int,
+    @JvmField @SerialName("instl") public val instl: Int = 0,
     @JvmField @SerialName("bidfloor") public val bidfloor: Float = 1f,
     @JvmField @SerialName("secure") public val secure: Int = 1,
     @JvmField @SerialName("ext") public val ext: Extension,
 ) {
-
     /**
      * Impression extension unique to Nimbus
      *
@@ -65,19 +57,8 @@ public class Impression(
     @Serializable
     public open class Extension(
         @JvmField @SerialName("position") public val position: String,
-        @JvmField @SerialName("aps") public val aps: List<Aps> = emptyList(),
-        @JvmField @SerialName("facebook_app_id") public val facebook_app_id: String = "",
-        @JvmField @SerialName("facebook_test_ad_type") public val facebook_test_ad_type: String = "",
-    )
-
-    @Serializable
-    public class Aps(
-        @JvmField @SerialName("amzn_b") public val amzn_b: Array<String>,
-        @JvmField @SerialName("amzn_vid") public val amzn_vid: Array<String>,
-        @JvmField @SerialName("amzn_h") public val amzn_h: Array<String>,
-        @JvmField @SerialName("amznp") public val amznp: Array<String>,
-        @JvmField @SerialName("amznrdr") public val amznrdr: Array<String>,
-        @JvmField @SerialName("amznslots") public val amznslots: Array<String>,
-        @JvmField @SerialName("dc") public val dc: Array<String>,
+        @JvmField @SerialName("aps") public var aps: List<Map<String, List<String>>> = emptyList(),
+        @JvmField @SerialName("facebook_app_id") public var facebook_app_id: String = "",
+        @JvmField @SerialName("facebook_test_ad_type") public var facebook_test_ad_type: String = "",
     )
 }

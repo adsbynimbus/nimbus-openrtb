@@ -36,19 +36,12 @@ public class App(
     @JvmField @SerialName("bundle") public val bundle: String,
     @JvmField @SerialName("domain") public val domain: String,
     @JvmField @SerialName("storeurl") public val storeurl: String,
+    @JvmField @SerialName("ver") public val ver: String,
+    @JvmField @SerialName("keywords") public val keywords: String = "",
     @JvmField @SerialName("cat") public val cat: Array<String> = emptyArray(),
     @JvmField @SerialName("sectioncat") public val sectioncat: Array<String> = emptyArray(),
     @JvmField @SerialName("pagecat") public val pagecat: Array<String> = emptyArray(),
-    @JvmField @SerialName("ver") public val ver: String,
     @JvmField @SerialName("privacypolicy") public val privacypolicy: Int = 0,
     @JvmField @SerialName("paid") public val paid: Int = 0,
-    @JvmField @SerialName("publisher") public val publisher: Publisher,
-) {
-
-    /**
-     * IAB Content Category.
-     *
-     * [OpenRTB Section 5.1](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=39)
-     */
-    public inline class ContentCategory(public val value: String)
-}
+    @JvmField @SerialName("publisher") public val publisher: Publisher = Publisher(name, domain, cat),
+)

@@ -33,7 +33,7 @@ const public val testJson = """
 object NimbusResponseTest : Spek({
     describe("NimbusResponse") {
         it("when deserialized has the correct values") {
-            val response = Json.decodeFromString<NimbusResponse>(testJson)
+            val response = Json.decodeFromString<BidResponse>(testJson)
             assertEquals(
                 expected = "native",
                 actual = response.type,

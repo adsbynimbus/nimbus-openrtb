@@ -61,19 +61,17 @@ public class BidRequest(
      *                      UUID when using the Nimbus SDK
      */
     @Serializable
-    public open class Extension(
+    public class Extension(
         @JvmField @SerialName("session_id") public val session_id: String,
     )
-
-    public companion object {
-        /**
-         * Required header for all requests to Nimbus defining the OpenRTB version
-         */
-        public const val OpenRTBVersionHeader: String = "X-Openrtb-Version"
-
-        /**
-         * The current supported OpenRTB version by this request object
-         */
-        public const val OpenRTBVersion: String = "2.5"
-    }
 }
+
+/**
+ * Required header for all requests to Nimbus defining the OpenRTB version
+ */
+public const val OpenRTBVersionHeader: String = "X-Openrtb-Version"
+
+/**
+ * The current supported OpenRTB version by this request object
+ */
+public const val OpenRTBVersion: String = "2.5"

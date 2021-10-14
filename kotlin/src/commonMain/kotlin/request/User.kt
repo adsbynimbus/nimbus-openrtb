@@ -34,7 +34,7 @@ public class User(
     @JvmField @SerialName("age") public val age: Int = 0,
     @JvmField @SerialName("buyeruid") public val buyeruid: String = "",
     @JvmField @SerialName("yob") public val yob: Int = 0,
-    @JvmField @SerialName("gender") public val gender: String = "",
+    @JvmField @SerialName("gender") public val gender: String? = null,
     @JvmField @SerialName("keywords") public val keywords: String = "",
     @JvmField @SerialName("custom_data") public val custom_data: String = "",
     @JvmField @SerialName("data") public val data: Array<Data> = emptyArray(),
@@ -53,15 +53,9 @@ public class User(
      *                          started.
      */
     @Serializable
-    public open class Extension(
+    public class Extension(
         @JvmField @SerialName("consent") public val consent: String = "",
         @JvmField @SerialName("did_consent") public val did_consent: Int = 0,
         @JvmField @SerialName("unity_buyeruid") public val unity_buyeruid: String = "",
     )
-
-    public companion object {
-        public const val Male: Char = 'M'
-        public const val Female: Char = 'F'
-        public const val Other: Char = 'O'
-    }
 }

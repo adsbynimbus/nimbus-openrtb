@@ -27,13 +27,13 @@ import kotlin.jvm.JvmField
  *                    creative markup
  */
 @Serializable
-public class BidResponse(
+public open class BidResponse(
     @JvmField @SerialName("type") public val type: String,
     @JvmField @SerialName("auction_id") public val auction_id: String,
     @JvmField @SerialName("adomain") public val adomain: Array<String> = emptyArray(),
     @JvmField @SerialName("bid_in_cents") public val bid_in_cents: Int = 0,
     @JvmField @SerialName("bid_raw") public val bid_raw: Float = 0f,
-    @JvmField @SerialName("content_type") public val content_type: String = "",
+    @JvmField @SerialName("content_type") public val content_type: String? = null,
     @JvmField @SerialName("crid") public val crid: String? = null,
     @JvmField @SerialName("height") public val height: Int = 0,
     @JvmField @SerialName("width") public val width: Int = 0,
@@ -43,17 +43,16 @@ public class BidResponse(
     @JvmField @SerialName("trackers") public val trackers: Trackers = Trackers(),
     @JvmField @SerialName("placement_id") public val placement_id: String? = null,
     @JvmField @SerialName("is_mraid") public val is_mraid: Int = 0,
-) {
+)
 
-    /**
-     * Additional tracking urls
-     *
-     * @property impression_trackers Urls to fire a request to when an impression is registered
-     * @property click_trackers Urls to fire a request to when a click is registered
-     */
-    @Serializable
-    public open class Trackers(
-        @JvmField @SerialName("impression_trackers") public val impression_trackers: Array<String> = emptyArray(),
-        @JvmField @SerialName("click_trackers") public val click_trackers: Array<String> = emptyArray(),
-    )
-}
+/**
+ * Additional tracking urls
+ *
+ * @property impression_trackers Urls to fire a request to when an impression is registered
+ * @property click_trackers Urls to fire a request to when a click is registered
+ */
+@Serializable
+public class Trackers(
+    @JvmField @SerialName("impression_trackers") public val impression_trackers: Array<String> = emptyArray(),
+    @JvmField @SerialName("click_trackers") public val click_trackers: Array<String> = emptyArray(),
+)

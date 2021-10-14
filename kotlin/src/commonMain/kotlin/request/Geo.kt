@@ -44,15 +44,4 @@ public class Geo(
     @JvmField @SerialName("city") public val city: String? = null,
     @JvmField @SerialName("metro") public val metro: String? = null,
     @JvmField @SerialName("state") public val state: String? = null,
-) {
-    /**
-     * Indicates how the geographic information was determined.
-     */
-    public inline class LocationType(public val value: Int) {
-        public companion object {
-            public const val GPS: Int = 1
-            public const val IpLookup: Int = 2
-            public const val UserProvided: Int = 3
-        }
-    }
-}
+)

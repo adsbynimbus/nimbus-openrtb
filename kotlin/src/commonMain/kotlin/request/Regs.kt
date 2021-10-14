@@ -47,7 +47,7 @@ public class Regs(
      * @see [US Privacy String Format](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md.us-privacy-string-format)
      */
     @Serializable
-    public open class Extension(
+    public class Extension(
         @JvmField @SerialName("gdpr") public val gdpr: Int = 0,
         @JvmField @SerialName("us_privacy") public val us_privacy: String = ""
     )

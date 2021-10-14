@@ -30,7 +30,7 @@ public class Source(
      * @property omidpv Current version of the OM SDK integration
      */
     @Serializable
-    public open class Extension(
+    public class Extension(
         @JvmField @SerialName("omidpn") public val omidpn: String,
         @JvmField @SerialName("omidpv") public val omidpv: String,
     )

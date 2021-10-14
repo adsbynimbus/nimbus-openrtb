@@ -41,7 +41,7 @@ public class Device(
     @JvmField @SerialName("geo") public val geo: Geo? = null,
     @JvmField @SerialName("dnt") public val dnt: Int = 0,
     @JvmField @SerialName("lmt") public val lmt: Int = 0,
-    @JvmField @SerialName("ip") public val ip: String = "",
+    @JvmField @SerialName("ip") public val ip: String? = null,
     @JvmField @SerialName("devicetype") public val devicetype: Int = 0,
     @JvmField @SerialName("make") public val make: String,
     @JvmField @SerialName("model") public val model: String,
@@ -54,38 +54,4 @@ public class Device(
     @JvmField @SerialName("carrier") public val carrier: String,
     @JvmField @SerialName("connectiontype") public val connectiontype: Int = 0,
     @JvmField @SerialName("ifa") public val ifa: String,
-) {
-    /**
-     * Options for the type of device connectivity
-     *
-     * [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
-     */
-    public object ConnectionType {
-        public const val Ethernet: Int = 1
-        public const val Wifi: Int = 2
-        public const val CellularUnknown: Int = 3
-        public const val Cellular2G: Int = 4
-        public const val Cellular3G: Int = 5
-        public const val Cellular4G: Int = 6
-    }
-
-    /**
-     * Type of device from which the impression originated.
-     *
-     * [OpenRTB Section 5.21](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
-     */
-    public object DeviceType {
-        /** Interchangeable with Phone and Tablet */
-        public const val MobileTablet: Int = 1
-        public const val PersonalComputer: Int = 2
-        public const val ConnectedTv: Int = 3
-
-        /** Interchangeable with MobileTablet */
-        public const val Phone: Int = 4
-
-        /** Interchangeable with MobileTablet */
-        public const val Tablet: Int = 5
-        public const val ConnectedDevice: Int = 6
-        public const val SetTopBox: Int = 7
-    }
-}
+)
