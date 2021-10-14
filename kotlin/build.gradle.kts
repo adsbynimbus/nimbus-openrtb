@@ -14,7 +14,7 @@ plugins {
 
 android {
     buildToolsVersion = libs.versions.android.buildtools.get()
-    compileSdk = 30
+    compileSdk = 31
     defaultConfig {
         minSdk = 17
 
@@ -47,21 +47,17 @@ kotlin {
 
     cocoapods {
         framework {
-            baseName = "shared"
-            // Dynamic framework support
             isStatic = false
         }
     }
 
     ios {
         binaries.framework {
-            baseName = "shared"
             xcf.add(this)
         }
     }
     tvos {
         binaries.framework {
-            baseName = "shared"
             xcf.add(this)
         }
     }
@@ -101,6 +97,8 @@ tasks.withType<AbstractCopyTask>().configureEach {
 }
 
 tasks.withType<DokkaTask>().configureEach {
+    moduleName.set("nimbus-openrtb")
+
     dokkaSourceSets {
         matching { it.name in listOf("commonMain")}.configureEach {
             sourceLink {

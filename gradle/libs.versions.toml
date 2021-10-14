@@ -1,7 +1,7 @@
 [versions]
-android = "7.0.2"
+android = "7.0.3"
 android-buildtools = "31.0.0"
-dokka = "1.5.30"
+dokka = "1.5.31"
 junit = "5.7.2"
 kotlin = "1.5.31"
 kotlin-api = "1.4"
