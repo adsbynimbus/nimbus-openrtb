@@ -25,7 +25,6 @@ import kotlin.jvm.JvmField
  * @property instl  An integer flag marking this impression object as an interstitial.
  *                  1 = the ad is interstitial or full screen,
  *                  0 = not interstitial.
- * @property bidfloor Minimum bid for this impression expressed in CPM.
  * @property secure Flag to indicate if the impression requires secure HTTPS URL creative assets and
  *                  markup.
  *                  0 = non-secure
@@ -38,7 +37,8 @@ public class Impression(
     @JvmField @SerialName("video") public val video: Video? = null,
     @JvmField @SerialName("native") public val native: Native? = null,
     @JvmField @SerialName("instl") public val instl: Int = 0,
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 1f,
+    @Deprecated("This field is not used by Nimbus and will be removed in a future release")
+    @JvmField @SerialName("bidfloor") public val bidfloor: Float? = null,
     @JvmField @SerialName("secure") public val secure: Int = 1,
     @JvmField @SerialName("ext") public val ext: Extension,
 ) {

@@ -28,8 +28,7 @@ import kotlin.jvm.JvmField
  * @property api List of supported API frameworks for this impression. If an API is not explicitly
  *               listed, it is assumed not to be supported.
  * @property battr Set of creative attributes to block.
- * @property bidfloor Minimum bid for this native impression expressed in CPM. This value should be
- *                    equal to or higher than the value set on the Impression object.
+ * @property bidfloor Minimum bid for this native impression expressed in CPM.
  */
 @Serializable
 public class Native(
@@ -37,5 +36,5 @@ public class Native(
     @JvmField @SerialName("ver") public val ver: String = "",
     @JvmField @SerialName("api") public val api: IntArray = IntArray(0),
     @JvmField @SerialName("battr") public val battr: IntArray = IntArray(0),
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 1f,
+    @JvmField @SerialName("bidfloor") public val bidfloor: Float? = null,
 )

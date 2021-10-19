@@ -58,7 +58,7 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Video(
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 3f,
+    @JvmField @SerialName("bidfloor") public val bidfloor: Float? = null,
     @JvmField @SerialName("mimes") public val mimes: Array<String> = emptyArray(),
     @JvmField @SerialName("minduration") public val minduration: Int = 0,
     @JvmField @SerialName("maxduration") public val maxduration: Int = 60,

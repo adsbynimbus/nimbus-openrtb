@@ -21,9 +21,7 @@ import kotlin.jvm.JvmField
  *
  * [OpenRTB Section 3.2.6](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=19)
  *
- * @property bidfloor Minimum bid for this banner impression expressed in CPM. This value should be
- *                    equal to or higher than the value set on the Impression object. If this value
- *                    is omitted Nimbus will default to 2.0
+ * @property bidfloor Minimum bid for this banner impression expressed in CPM.
  * @property battr Set of creative attributes to block.
  * @property format Array of Format objects representing the banner sizes permitted.
  * @property w Exact width in device independent pixels (DIPS).
@@ -38,7 +36,7 @@ public class Banner(
     @JvmField @SerialName("w") public val w: Int,
     @JvmField @SerialName("h") public val h: Int,
     @JvmField @SerialName("format") public val format: Array<Format> = emptyArray(),
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 2f,
+    @JvmField @SerialName("bidfloor") public val bidfloor: Float? = null,
     @JvmField @SerialName("battr") public val battr: IntArray = IntArray(0),
     @JvmField @SerialName("pos") public val pos: Int = 0,
     @JvmField @SerialName("api") public val api: IntArray = IntArray(0),
