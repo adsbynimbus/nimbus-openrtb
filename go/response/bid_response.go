@@ -8,12 +8,15 @@ import (
 type Bid struct {
 	Type           string    `json:"type"`
 	AuctionID      string    `json:"auction_id"`
+	Adomain        []string  `json:"adomain,omitempty"`
 	BidInCents     int       `json:"bid_in_cents"`
 	BidRaw         float64   `json:"bid_raw"`
 	ContentType    string    `json:"content_type"`
+	Crid           string    `json:"crid,omitempty"`
 	Height         int       `json:"height,omitempty"`
 	Width          int       `json:"width,omitempty"`
 	IsInterstitial int       `json:"is_interstitial"`
+	IsMraid        int       `json:"is_mraid"`
 	Markup         string    `json:"markup"`
 	Network        string    `json:"network"`
 	Trackers       *Trackers `json:"trackers,omitempty"`
@@ -35,14 +38,25 @@ func (r *Bid) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 	case "auction_id":
 		return dec.String(&r.AuctionID)
 
+	case "adomain":
+		var aSlice = Strings{}
+		err := dec.Array(&aSlice)
+		if err == nil && len(aSlice) > 0 {
+			r.Adomain = []string(aSlice)
+		}
+		return err
+
 	case "bid_in_cents":
 		return dec.Int(&r.BidInCents)
 
 	case "bid_raw":
-		return dec.Int(&r.BidInCents)
+		return dec.Float(&r.BidRaw)
 
 	case "content_type":
 		return dec.String(&r.ContentType)
+
+	case "crid":
+		return dec.String(&r.Crid)
 
 	case "height":
 		return dec.Int(&r.Height)
@@ -52,6 +66,9 @@ func (r *Bid) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	case "is_interstitial":
 		return dec.Int(&r.IsInterstitial)
+
+	case "is_mraid":
+		return dec.Int(&r.IsMraid)
 
 	case "markup":
 		return dec.String(&r.Markup)
