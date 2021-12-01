@@ -30,6 +30,10 @@ android {
 kotlin {
     explicitApi()
 
+    jvmToolchain {
+        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
+    }
+
     // JVM based deployments in dependency order
     jvm {
         testRuns["test"].executionTask.configure {
