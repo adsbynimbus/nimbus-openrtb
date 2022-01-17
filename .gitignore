@@ -3,6 +3,7 @@ bin/
 gen/
 classes/
 build/
+.build/
 
 # Gradle
 .gradle
@@ -16,3 +17,6 @@ build/
 
 # Android
 local.properties
+
+# Cocoapods
+*.podspec
