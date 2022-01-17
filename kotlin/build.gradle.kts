@@ -23,14 +23,8 @@ android {
     compileSdk = 32
     defaultConfig {
         minSdk = 17
-
-        consumerProguardFiles("consumer-proguard-rules.pro")
     }
-    sourceSets.getByName("main") {
-        java.srcDirs("src/androidMain/kotlin")
-        manifest.srcFile("src/androidMain/AndroidManifest.xml")
-        res.srcDirs("src/androidMain/res")
-    }
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
 kotlin {
