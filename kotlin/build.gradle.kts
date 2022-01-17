@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotest)
     alias(libs.plugins.cocoapods)
     alias(libs.plugins.dokka)
     alias(libs.plugins.serialization)
@@ -34,14 +35,6 @@ kotlin {
         (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
     }
 
-    // JVM based deployments in dependency order
-    jvm {
-        testRuns["test"].executionTask.configure {
-            useJUnitPlatform {
-                includeEngines("spek2")
-            }
-        }
-    }
     android {
         publishLibraryVariants("release")
     }
@@ -80,19 +73,22 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
                 implementation(libs.bundles.test.common)
-                runtimeOnly(libs.spek.runtime)
-            }
-        }
-        val jvmTest by getting {
-            dependencies {
-                runtimeOnly(libs.spek.junit5runner)
             }
         }
         val androidMain by getting
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(libs.bundles.test.android)
+            }
+        }
     }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
 // Fixes an issue when creating the android sources jar
