@@ -6,25 +6,25 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotest)
     alias(libs.plugins.cocoapods)
     alias(libs.plugins.dokka)
     alias(libs.plugins.serialization)
     `maven-publish`
 }
 
+group = "com.adsbynimbus.openrtb"
+version = (System.getenv("TAG_NAME") ?: "0.0.1").split("/").last().let {
+    if (it.startsWith("v")) it.substring(1) else it
+}
+
 android {
     buildToolsVersion = libs.versions.android.buildtools.get()
-    compileSdk = 31
+    compileSdk = 32
     defaultConfig {
         minSdk = 17
-
-        consumerProguardFiles("consumer-proguard-rules.pro")
     }
-    sourceSets.getByName("main") {
-        java.srcDirs("src/androidMain/kotlin")
-        manifest.srcFile("src/androidMain/AndroidManifest.xml")
-        res.srcDirs("src/androidMain/res")
-    }
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
 kotlin {
@@ -34,14 +34,6 @@ kotlin {
         (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
     }
 
-    // JVM based deployments in dependency order
-    jvm {
-        testRuns["test"].executionTask.configure {
-            useJUnitPlatform {
-                includeEngines("spek2")
-            }
-        }
-    }
     android {
         publishLibraryVariants("release")
     }
@@ -50,12 +42,27 @@ kotlin {
     val xcf = XCFramework()
 
     cocoapods {
+        summary = "Nimbus OpenRTB API Module"
+        homepage = "https://www.github.com/timehop/nimbus-openrtb"
+        license = "MIT"
+        authors = "Ads By Nimbus"
+        ios.deploymentTarget = "10.0"
         framework {
-            isStatic = false
+            baseName = "NimbusOpenRTB"
         }
     }
 
-    ios {
+    iosX64 {
+        binaries.framework {
+            xcf.add(this)
+        }
+    }
+    iosArm64 {
+        binaries.framework {
+            xcf.add(this)
+        }
+    }
+    iosSimulatorArm64 {
         binaries.framework {
             xcf.add(this)
         }
@@ -80,19 +87,40 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
                 implementation(libs.bundles.test.common)
-                runtimeOnly(libs.spek.runtime)
-            }
-        }
-        val jvmTest by getting {
-            dependencies {
-                runtimeOnly(libs.spek.junit5runner)
             }
         }
         val androidMain by getting
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(libs.bundles.test.android)
+            }
+        }
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
+        val iosX64Test by getting
+        val iosArm64Test by getting
+        val iosSimulatorArm64Test by getting
+        val iosTest by creating {
+            dependsOn(commonTest)
+            iosX64Test.dependsOn(this)
+            iosArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
+        }
     }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
 // Fixes an issue when creating the android sources jar
