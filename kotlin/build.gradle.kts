@@ -20,7 +20,7 @@ version = (System.getenv("TAG_NAME") ?: "0.0.1").split("/").last().let {
 
 android {
     buildToolsVersion = libs.versions.android.buildtools.get()
-    compileSdk = 32
+    compileSdk = 31
     defaultConfig {
         minSdk = 17
     }
@@ -30,11 +30,10 @@ android {
 kotlin {
     explicitApi()
 
-    jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
-    }
-
     android {
+        compilations.all {
+            kotlinOptions.jvmTarget = "1.8"
+        }
         publishLibraryVariants("release")
     }
 
