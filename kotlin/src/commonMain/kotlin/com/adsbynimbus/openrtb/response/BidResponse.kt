@@ -37,12 +37,12 @@ public class BidResponse(
     @JvmField @SerialName("crid") public val crid: String? = null,
     @JvmField @SerialName("height") public val height: Int = 0,
     @JvmField @SerialName("width") public val width: Int = 0,
-    @JvmField @SerialName("is_interstitial") public val is_interstitial: Int = 0,
+    @JvmField @SerialName("is_interstitial") public val is_interstitial: Byte = 0,
     @JvmField @SerialName("markup") public val markup: String,
     @JvmField @SerialName("network") public val network: String = "",
     @JvmField @SerialName("trackers") public val trackers: Trackers = Trackers(),
     @JvmField @SerialName("placement_id") public val placement_id: String? = null,
-    @JvmField @SerialName("is_mraid") public val is_mraid: Int = 0,
+    @JvmField @SerialName("is_mraid") public val is_mraid: Byte = 0,
 ) {
     /**
      * Additional tracking urls

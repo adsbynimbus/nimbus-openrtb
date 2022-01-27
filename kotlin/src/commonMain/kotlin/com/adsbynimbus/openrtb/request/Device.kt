@@ -36,7 +36,7 @@ import kotlin.jvm.JvmField
  * @property ifa ID sanctioned for advertiser use in the clear (i.e., not hashed).
  */
 @Serializable
-public class Device(
+public data class Device(
     @JvmField @SerialName("ua") public val ua: String,
     @JvmField @SerialName("ifa") public val ifa: String,
     @JvmField @SerialName("make") public val make: String,
@@ -47,10 +47,10 @@ public class Device(
     @JvmField @SerialName("h") public val h: Int,
     @JvmField @SerialName("w") public val w: Int,
     @JvmField @SerialName("language") public val language: String,
-    @JvmField @SerialName("devicetype") public val devicetype: Int = 0,
-    @JvmField @SerialName("connectiontype") public val connectiontype: Int = 0,
-    @JvmField @SerialName("dnt") public val dnt: Int = 0,
-    @JvmField @SerialName("lmt") public val lmt: Int = 0,
+    @JvmField @SerialName("devicetype") public val devicetype: Byte = 0,
+    @JvmField @SerialName("connectiontype") public val connectiontype: Byte = 0,
+    @JvmField @SerialName("dnt") public val dnt: Byte = 0,
+    @JvmField @SerialName("lmt") public val lmt: Byte = 0,
     @JvmField @SerialName("geo") public val geo: Geo? = null,
     @JvmField @SerialName("ip") public val ip: String? = null,
     @JvmField @SerialName("carrier") public val carrier: String? = null,

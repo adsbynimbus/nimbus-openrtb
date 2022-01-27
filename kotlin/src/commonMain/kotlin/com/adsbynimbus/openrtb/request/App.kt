@@ -40,7 +40,7 @@ public class App(
     @JvmField @SerialName("cat") public val cat: Array<String> = emptyArray(),
     @JvmField @SerialName("sectioncat") public val sectioncat: Array<String> = emptyArray(),
     @JvmField @SerialName("pagecat") public val pagecat: Array<String> = emptyArray(),
-    @JvmField @SerialName("privacypolicy") public val privacypolicy: Int = 0,
-    @JvmField @SerialName("paid") public val paid: Int = 0,
+    @JvmField @SerialName("privacypolicy") public val privacypolicy: Byte = 0,
+    @JvmField @SerialName("paid") public val paid: Byte = 0,
     @JvmField @SerialName("publisher") public val publisher: Publisher = Publisher(name, domain, cat),
 )

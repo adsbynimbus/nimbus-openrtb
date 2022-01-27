@@ -62,23 +62,23 @@ public class Video(
     @JvmField @SerialName("mimes") public val mimes: Array<String> = emptyArray(),
     @JvmField @SerialName("minduration") public val minduration: Int = 0,
     @JvmField @SerialName("maxduration") public val maxduration: Int = 60,
-    @JvmField @SerialName("protocols") public val protocols: IntArray = IntArray(0),
+    @JvmField @SerialName("protocols") public val protocols: ByteArray = ByteArray(0),
     @JvmField @SerialName("w") public val w: Int = 0,
     @JvmField @SerialName("h") public val h: Int = 0,
     @JvmField @SerialName("startdelay") public val startdelay: Int = 0,
-    @JvmField @SerialName("placement") public val placement: Int = 0,
-    @JvmField @SerialName("linearity") public val linearity: Int = 0,
-    @JvmField @SerialName("skip") public val skip: Int = 0,
-    @JvmField @SerialName("delivery") public val delivery: IntArray = IntArray(0),
+    @JvmField @SerialName("placement") public val placement: Byte = 0,
+    @JvmField @SerialName("linearity") public val linearity: Byte = 0,
+    @JvmField @SerialName("skip") public val skip: Byte = 0,
+    @JvmField @SerialName("delivery") public val delivery: ByteArray = ByteArray(0),
     @JvmField @SerialName("skipmin") public val skipmin: Int = 0,
     @JvmField @SerialName("skipafter") public val skipafter: Int = 0,
     @JvmField @SerialName("minbitrate") public val minbitrate: Int = 0,
     @JvmField @SerialName("maxbitrate") public val maxbitrate: Int = 0,
-    @JvmField @SerialName("pos") public val pos: Int = 0,
-    @JvmField @SerialName("playbackmethod") public val playbackmethod: IntArray = IntArray(0),
-    @JvmField @SerialName("api") public val api: IntArray = IntArray(0),
+    @JvmField @SerialName("pos") public val pos: Byte = 0,
+    @JvmField @SerialName("playbackmethod") public val playbackmethod: ByteArray = ByteArray(0),
+    @JvmField @SerialName("api") public val api: ByteArray = ByteArray(0),
     @JvmField @SerialName("companionad") public val companionad: Array<Banner> = emptyArray(),
-    @JvmField @SerialName("companiontype") public val companiontype: IntArray = IntArray(0),
+    @JvmField @SerialName("companiontype") public val companiontype: ByteArray = ByteArray(0),
     @JvmField @SerialName("ext") public val ext: Extension = Extension(),
 ) {
     /**
@@ -88,6 +88,6 @@ public class Video(
      */
     @Serializable
     public class Extension(
-        @JvmField @SerialName("is_rewarded") public val is_rewarded: Int = 0,
+        @JvmField @SerialName("is_rewarded") public val is_rewarded: Byte = 0,
     )
 }

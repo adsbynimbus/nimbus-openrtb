@@ -1,7 +1,5 @@
 package com.adsbynimbus.openrtb.request
 
-import com.adsbynimbus.openrtb.enumerations.Api
-import com.adsbynimbus.openrtb.enumerations.Position
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
@@ -37,8 +35,8 @@ public class Banner(
     @JvmField @SerialName("h") public val h: Int,
     @JvmField @SerialName("format") public val format: Array<Format> = emptyArray(),
     @JvmField @SerialName("bidfloor") public val bidfloor: Float? = null,
-    @JvmField @SerialName("battr") public val battr: IntArray = IntArray(0),
-    @JvmField @SerialName("pos") public val pos: Int = 0,
-    @JvmField @SerialName("api") public val api: IntArray = IntArray(0),
-    @JvmField @SerialName("vcm") public val vcm: Int? = null,
+    @JvmField @SerialName("battr") public val battr: ByteArray = ByteArray(0),
+    @JvmField @SerialName("pos") public val pos: Byte = 0,
+    @JvmField @SerialName("api") public val api: ByteArray = ByteArray(0),
+    @JvmField @SerialName("vcm") public val vcm: Byte? = null,
 )

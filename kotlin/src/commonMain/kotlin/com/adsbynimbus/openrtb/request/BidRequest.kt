@@ -1,11 +1,8 @@
-@file:JvmName("OpenRTB")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
-import kotlin.jvm.JvmName
 
 /**
  * The top-level bid request object contains a globally unique bid request or auction ID.
@@ -66,13 +63,3 @@ public class BidRequest(
         @JvmField @SerialName("session_id") public val session_id: String,
     )
 }
-
-/**
- * Required header for all requests to Nimbus defining the OpenRTB version
- */
-public const val VERSION_HEADER: String = "X-Openrtb-Version"
-
-/**
- * The current supported OpenRTB version by this request object
- */
-public const val VERSION: String = "2.5"

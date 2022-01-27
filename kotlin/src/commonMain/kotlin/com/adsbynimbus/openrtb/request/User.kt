@@ -55,7 +55,7 @@ public class User(
     @Serializable
     public class Extension(
         @JvmField @SerialName("consent") public val consent: String = "",
-        @JvmField @SerialName("did_consent") public val did_consent: Int = 0,
+        @JvmField @SerialName("did_consent") public val did_consent: Byte = 0,
         @JvmField @SerialName("unity_buyeruid") public val unity_buyeruid: String = "",
     )
 }

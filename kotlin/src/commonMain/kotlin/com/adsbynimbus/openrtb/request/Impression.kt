@@ -36,10 +36,8 @@ public class Impression(
     @JvmField @SerialName("banner") public val banner: Banner? = null,
     @JvmField @SerialName("video") public val video: Video? = null,
     @JvmField @SerialName("native") public val native: Native? = null,
-    @JvmField @SerialName("instl") public val instl: Int = 0,
-    @Deprecated("This field is not used by Nimbus and will be removed in a future release")
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float? = null,
-    @JvmField @SerialName("secure") public val secure: Int = 1,
+    @JvmField @SerialName("instl") public val instl: Byte = 0,
+    @JvmField @SerialName("secure") public val secure: Byte = 1,
     @JvmField @SerialName("ext") public val ext: Extension,
 ) {
     /**
@@ -62,3 +60,5 @@ public class Impression(
         @JvmField @SerialName("facebook_test_ad_type") public var facebook_test_ad_type: String = "",
     )
 }
+
+

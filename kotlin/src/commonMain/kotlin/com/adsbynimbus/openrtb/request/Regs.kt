@@ -22,7 +22,7 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Regs(
-    @JvmField @SerialName("coppa") public val coppa: Int = 0,
+    @JvmField @SerialName("coppa") public val coppa: Byte = 0,
     @JvmField @SerialName("ext") public val ext: Extension = Extension(),
 ) {
     /**
@@ -46,7 +46,7 @@ public class Regs(
      */
     @Serializable
     public class Extension(
-        @JvmField @SerialName("gdpr") public val gdpr: Int = 0,
+        @JvmField @SerialName("gdpr") public val gdpr: Byte = 0,
         @JvmField @SerialName("us_privacy") public val us_privacy: String = ""
     )
 }

@@ -36,7 +36,7 @@ import kotlin.jvm.JvmField
 public class Geo(
     @JvmField @SerialName("lat") public val lat: Float? = null,
     @JvmField @SerialName("lon") public val lon: Float? = null,
-    @JvmField @SerialName("type") public val type: Int? = null,
+    @JvmField @SerialName("type") public val type: Byte? = null,
     @JvmField @SerialName("accuracy") public val accuracy: Int? = null,
     @JvmField @SerialName("country") public val country: String? = null,
     @JvmField @SerialName("city") public val city: String? = null,
