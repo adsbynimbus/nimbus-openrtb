@@ -31,11 +31,11 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class App(
-    @JvmField @SerialName("name") public val name: String,
-    @JvmField @SerialName("bundle") public val bundle: String,
-    @JvmField @SerialName("domain") public val domain: String,
-    @JvmField @SerialName("storeurl") public val storeurl: String,
-    @JvmField @SerialName("ver") public val ver: String,
+    @JvmField @SerialName("name") public val name: String = "",
+    @JvmField @SerialName("bundle") public val bundle: String = "",
+    @JvmField @SerialName("domain") public val domain: String = "",
+    @JvmField @SerialName("storeurl") public val storeurl: String = "",
+    @JvmField @SerialName("ver") public val ver: String = "",
     @JvmField @SerialName("keywords") public val keywords: String = "",
     @JvmField @SerialName("cat") public val cat: Array<String> = emptyArray(),
     @JvmField @SerialName("sectioncat") public val sectioncat: Array<String> = emptyArray(),

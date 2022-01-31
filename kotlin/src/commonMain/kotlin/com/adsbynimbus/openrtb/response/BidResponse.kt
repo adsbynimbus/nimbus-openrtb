@@ -7,9 +7,9 @@ import kotlin.jvm.JvmField
 /**
  * A winning bid response from Nimbus
  *
- * @property position The position from the request for this ad
  * @property type The type of creative returned. This maps to one of "static", "video", or "native"
  * @property auction_id This unique auction id. Represented as a GUID.
+ * @property position The position from the request for this ad.
  * @property bid_in_cents This winning auction's bid in cents.
  * @property bid_raw This winning auction's precise winning bid.
  * @property content_type The content type of this creative. "text/html" for static or a mime type
@@ -27,9 +27,9 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class BidResponse(
-    @JvmField @SerialName("position") public val position: String,
     @JvmField @SerialName("type") public val type: String,
     @JvmField @SerialName("auction_id") public val auction_id: String,
+    @JvmField @SerialName("position") public val position: String,
     @JvmField @SerialName("adomain") public val adomain: Array<String> = emptyArray(),
     @JvmField @SerialName("bid_in_cents") public val bid_in_cents: Int = 0,
     @JvmField @SerialName("bid_raw") public val bid_raw: Float = 0f,

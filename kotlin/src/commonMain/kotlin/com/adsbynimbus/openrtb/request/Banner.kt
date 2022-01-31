@@ -34,7 +34,7 @@ public class Banner(
     @JvmField @SerialName("w") public val w: Int,
     @JvmField @SerialName("h") public val h: Int,
     @JvmField @SerialName("format") public val format: Array<Format> = emptyArray(),
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float? = null,
+    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 0f,
     @JvmField @SerialName("battr") public val battr: ByteArray = ByteArray(0),
     @JvmField @SerialName("pos") public val pos: Byte = 0,
     @JvmField @SerialName("api") public val api: ByteArray = ByteArray(0),

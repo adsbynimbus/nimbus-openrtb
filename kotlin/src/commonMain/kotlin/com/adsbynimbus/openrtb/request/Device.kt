@@ -46,7 +46,7 @@ public data class Device(
     @JvmField @SerialName("osv") public val osv: String,
     @JvmField @SerialName("h") public val h: Int,
     @JvmField @SerialName("w") public val w: Int,
-    @JvmField @SerialName("language") public val language: String,
+    @JvmField @SerialName("language") public val language: String? = null,
     @JvmField @SerialName("devicetype") public val devicetype: Byte = 0,
     @JvmField @SerialName("connectiontype") public val connectiontype: Byte = 0,
     @JvmField @SerialName("dnt") public val dnt: Byte = 0,
