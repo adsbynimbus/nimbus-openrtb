@@ -44,7 +44,7 @@ public class BidRequest(
     @JvmField @SerialName("format") public val format: Format = Format(device.w, device.h),
     @JvmField @SerialName("user") public val user: User? = null,
     @JvmField @SerialName("app") public val app: App? = null,
-    @JvmField @SerialName("test") public val test: Int = 0,
+    @JvmField @SerialName("test") public val test: Byte = 0,
     @JvmField @SerialName("tmax") public val tmax: Int = 500,
     @JvmField @SerialName("regs") public val regs: Regs? = null,
     @JvmField @SerialName("source") public val source: Source? = null,
@@ -60,6 +60,6 @@ public class BidRequest(
      */
     @Serializable
     public class Extension(
-        @JvmField @SerialName("session_id") public val session_id: String,
+        @JvmField @SerialName("session_id") public var session_id: String,
     )
 }
