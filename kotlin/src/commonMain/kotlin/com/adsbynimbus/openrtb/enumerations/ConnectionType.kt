@@ -6,6 +6,7 @@ package com.adsbynimbus.openrtb.enumerations
  * [OpenRTB Section 5.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=56)
  */
 public object ConnectionType {
+    public const val UNKNOWN: Byte = 0
     public const val ETHERNET: Byte = 1
     public const val WIFI: Byte = 2
     public const val CELLULAR_UNKNOWN: Byte = 3
