@@ -55,7 +55,7 @@ public class Impression(
     @Serializable
     public class Extension(
         @JvmField @SerialName("position") public var position: String,
-        @JvmField @SerialName("aps") public var aps: Array<Map<String, List<String>>> = emptyArray(),
+        @JvmField @SerialName("aps") public var aps: Collection<Map<String, List<String>>> = emptyList(),
         @JvmField @SerialName("facebook_app_id") public var facebook_app_id: String = "",
         @JvmField @SerialName("facebook_test_ad_type") public var facebook_test_ad_type: String = "",
     )
