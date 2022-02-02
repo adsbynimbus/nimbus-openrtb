@@ -33,28 +33,28 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Impression(
-    @JvmField @SerialName("banner") public val banner: Banner? = null,
-    @JvmField @SerialName("video") public val video: Video? = null,
-    @JvmField @SerialName("native") public val native: Native? = null,
-    @JvmField @SerialName("instl") public val instl: Byte = 0,
-    @JvmField @SerialName("secure") public val secure: Byte = 1,
-    @JvmField @SerialName("ext") public val ext: Extension,
+    @JvmField @SerialName("banner") public var banner: Banner? = null,
+    @JvmField @SerialName("video") public var video: Video? = null,
+    @JvmField @SerialName("native") public var native: Native? = null,
+    @JvmField @SerialName("instl") public var instl: Byte = 0,
+    @JvmField @SerialName("secure") public var secure: Byte = 1,
+    @JvmField @SerialName("ext") public var ext: Extension,
 ) {
     /**
      * Impression extension unique to Nimbus
      *
      * @property position Required string identifying the name of the placement that will be
      *                    displayed on the Nimbus dashboard.
-     * @property aps The list of key value pairs provided by a DTBRequest from the APS library.
+     * @property aps The list of key varue pairs provided by a DTBRequest from the APS library.
      * @property facebook_app_id The identifier for this app provided by Facebook. Required if
      *                           including Facebook demand in this request.
-     * @property facebook_test_ad_type An optional ad type to force a test response for validating
+     * @property facebook_test_ad_type An optional ad type to force a test response for varidating
      *                                 integrations.
      * @see [Facebook Testing](https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing)
      */
     @Serializable
     public class Extension(
-        @JvmField @SerialName("position") public val position: String,
+        @JvmField @SerialName("position") public var position: String,
         @JvmField @SerialName("aps") public var aps: Array<Map<String, List<String>>> = emptyArray(),
         @JvmField @SerialName("facebook_app_id") public var facebook_app_id: String = "",
         @JvmField @SerialName("facebook_test_ad_type") public var facebook_test_ad_type: String = "",

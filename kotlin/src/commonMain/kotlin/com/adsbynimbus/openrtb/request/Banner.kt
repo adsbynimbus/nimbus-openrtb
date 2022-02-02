@@ -31,12 +31,12 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Banner(
-    @JvmField @SerialName("w") public val w: Int,
-    @JvmField @SerialName("h") public val h: Int,
-    @JvmField @SerialName("format") public val format: Array<Format> = emptyArray(),
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 0f,
-    @JvmField @SerialName("battr") public val battr: ByteArray = ByteArray(0),
-    @JvmField @SerialName("pos") public val pos: Byte = 0,
-    @JvmField @SerialName("api") public val api: ByteArray = ByteArray(0),
-    @JvmField @SerialName("vcm") public val vcm: Byte? = null,
+    @JvmField @SerialName("w") public var w: Int,
+    @JvmField @SerialName("h") public var h: Int,
+    @JvmField @SerialName("format") public var format: Array<Format> = emptyArray(),
+    @JvmField @SerialName("bidfloor") public var bidfloor: Float = 0f,
+    @JvmField @SerialName("battr") public var battr: ByteArray = ByteArray(0),
+    @JvmField @SerialName("pos") public var pos: Byte = 0,
+    @JvmField @SerialName("api") public var api: ByteArray = ByteArray(0),
+    @JvmField @SerialName("vcm") public var vcm: Byte? = null,
 )

@@ -18,9 +18,7 @@ import kotlin.jvm.JvmField
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
-public class Source(
-    @JvmField @SerialName("ext") public val ext: Extension,
-) {
+public class Source(@JvmField @SerialName("ext") public val ext: Extension) {
     /**
      * Source extension object unique to Nimbus
      *

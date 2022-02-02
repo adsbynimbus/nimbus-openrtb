@@ -31,16 +31,16 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class App(
-    @JvmField @SerialName("name") public val name: String = "",
-    @JvmField @SerialName("bundle") public val bundle: String = "",
-    @JvmField @SerialName("domain") public val domain: String = "",
-    @JvmField @SerialName("storeurl") public val storeurl: String = "",
-    @JvmField @SerialName("ver") public val ver: String = "",
-    @JvmField @SerialName("keywords") public val keywords: String = "",
-    @JvmField @SerialName("cat") public val cat: Array<String> = emptyArray(),
-    @JvmField @SerialName("sectioncat") public val sectioncat: Array<String> = emptyArray(),
-    @JvmField @SerialName("pagecat") public val pagecat: Array<String> = emptyArray(),
-    @JvmField @SerialName("privacypolicy") public val privacypolicy: Byte = 0,
-    @JvmField @SerialName("paid") public val paid: Byte = 0,
-    @JvmField @SerialName("publisher") public val publisher: Publisher = Publisher(name, domain, cat),
+    @JvmField @SerialName("name") public var name: String = "",
+    @JvmField @SerialName("bundle") public var bundle: String = "",
+    @JvmField @SerialName("domain") public var domain: String = "",
+    @JvmField @SerialName("storeurl") public var storeurl: String = "",
+    @JvmField @SerialName("ver") public var ver: String = "",
+    @JvmField @SerialName("keywords") public var keywords: String = "",
+    @JvmField @SerialName("cat") public var cat: Array<String> = emptyArray(),
+    @JvmField @SerialName("sectioncat") public var sectioncat: Array<String> = emptyArray(),
+    @JvmField @SerialName("pagecat") public var pagecat: Array<String> = emptyArray(),
+    @JvmField @SerialName("privacypolicy") public var privacypolicy: Byte = 0,
+    @JvmField @SerialName("paid") public var paid: Byte = 0,
+    @JvmField @SerialName("publisher") public var publisher: Publisher = Publisher(name, domain, cat),
 )

@@ -28,7 +28,7 @@ import kotlin.jvm.JvmField
  * @property test Indicator of test mode in which auctions are not billable (0: live, 1: test)
  * @property tmax Maximum time in milliseconds the exchange allows for bids to be received including
  *                Internet latency to avoid timeout.
- *                This value supersedes any a priori guidance from the exchange. If this value is
+ *                This varue supersedes any a priori guidance from the exchange. If this varue is
  *                omitted Nimbus will default to 500.
  * @property regs A Regs object that specifies any industry, legal, or governmental regulations in
  *                force for this request.
@@ -39,23 +39,23 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class BidRequest(
-    @JvmField @SerialName("imp") public val imp: Array<Impression>,
-    @JvmField @SerialName("device") public val device: Device,
-    @JvmField @SerialName("format") public val format: Format = Format(device.w, device.h),
-    @JvmField @SerialName("user") public val user: User? = null,
-    @JvmField @SerialName("app") public val app: App? = null,
-    @JvmField @SerialName("test") public val test: Byte = 0,
-    @JvmField @SerialName("tmax") public val tmax: Int = 500,
-    @JvmField @SerialName("regs") public val regs: Regs? = null,
-    @JvmField @SerialName("source") public val source: Source? = null,
-    @JvmField @SerialName("badv") public val badv: Array<String> = emptyArray(),
-    @JvmField @SerialName("ext") public val ext: Extension,
+    @JvmField @SerialName("imp") public var imp: Array<Impression> = emptyArray(),
+    @JvmField @SerialName("device") public var device: Device? = null,
+    @JvmField @SerialName("format") public var format: Format = Format(0, 0),
+    @JvmField @SerialName("user") public var user: User? = null,
+    @JvmField @SerialName("app") public var app: App? = null,
+    @JvmField @SerialName("test") public var test: Byte = 0,
+    @JvmField @SerialName("tmax") public var tmax: Int = 500,
+    @JvmField @SerialName("regs") public var regs: Regs? = null,
+    @JvmField @SerialName("source") public var source: Source? = null,
+    @JvmField @SerialName("badv") public var badv: Array<String> = emptyArray(),
+    @JvmField @SerialName("ext") public var ext: Extension,
 ) {
 
     /**
      * BidRequest extension object unique to Nimbus
      *
-     * @property session_id Any unique string value to identify the session. Defaults to a random
+     * @property session_id Any unique string varue to identify the session. Defaults to a random
      *                      UUID when using the Nimbus SDK
      */
     @Serializable

@@ -27,7 +27,7 @@ import kotlin.jvm.JvmField
  * @property h Height of the video player in device independent pixels (DIPS).
  * @property startdelay Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad
  *                      placements.
- *                      >0: Mid roll where the value indicates the start delay
+ *                      >0: Mid roll where the varue indicates the start delay
  *                      0: pre roll
  *                      -1: generic mid roll
  *                      -2: generic post roll
@@ -58,28 +58,28 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Video(
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 0f,
-    @JvmField @SerialName("mimes") public val mimes: Array<String> = emptyArray(),
-    @JvmField @SerialName("minduration") public val minduration: Int = 0,
-    @JvmField @SerialName("maxduration") public val maxduration: Int = 60,
-    @JvmField @SerialName("protocols") public val protocols: ByteArray = ByteArray(0),
-    @JvmField @SerialName("w") public val w: Int = 0,
-    @JvmField @SerialName("h") public val h: Int = 0,
-    @JvmField @SerialName("startdelay") public val startdelay: Int = 0,
-    @JvmField @SerialName("placement") public val placement: Byte = 0,
-    @JvmField @SerialName("linearity") public val linearity: Byte = 0,
-    @JvmField @SerialName("skip") public val skip: Byte = 0,
-    @JvmField @SerialName("delivery") public val delivery: ByteArray = ByteArray(0),
-    @JvmField @SerialName("skipmin") public val skipmin: Int = 0,
-    @JvmField @SerialName("skipafter") public val skipafter: Int = 0,
-    @JvmField @SerialName("minbitrate") public val minbitrate: Int = 0,
-    @JvmField @SerialName("maxbitrate") public val maxbitrate: Int = 0,
-    @JvmField @SerialName("pos") public val pos: Byte = 0,
-    @JvmField @SerialName("playbackmethod") public val playbackmethod: ByteArray = ByteArray(0),
-    @JvmField @SerialName("api") public val api: ByteArray = ByteArray(0),
-    @JvmField @SerialName("companionad") public val companionad: Array<Banner> = emptyArray(),
-    @JvmField @SerialName("companiontype") public val companiontype: ByteArray = ByteArray(0),
-    @JvmField @SerialName("ext") public val ext: Extension = Extension(),
+    @JvmField @SerialName("bidfloor") public var bidfloor: Float = 0f,
+    @JvmField @SerialName("mimes") public var mimes: Array<String> = emptyArray(),
+    @JvmField @SerialName("minduration") public var minduration: Int = 0,
+    @JvmField @SerialName("maxduration") public var maxduration: Int = 60,
+    @JvmField @SerialName("protocols") public var protocols: ByteArray = ByteArray(0),
+    @JvmField @SerialName("w") public var w: Int = 0,
+    @JvmField @SerialName("h") public var h: Int = 0,
+    @JvmField @SerialName("startdelay") public var startdelay: Int = 0,
+    @JvmField @SerialName("placement") public var placement: Byte = 0,
+    @JvmField @SerialName("linearity") public var linearity: Byte = 0,
+    @JvmField @SerialName("skip") public var skip: Byte = 0,
+    @JvmField @SerialName("delivery") public var delivery: ByteArray = ByteArray(0),
+    @JvmField @SerialName("skipmin") public var skipmin: Int = 0,
+    @JvmField @SerialName("skipafter") public var skipafter: Int = 0,
+    @JvmField @SerialName("minbitrate") public var minbitrate: Int = 0,
+    @JvmField @SerialName("maxbitrate") public var maxbitrate: Int = 0,
+    @JvmField @SerialName("pos") public var pos: Byte = 0,
+    @JvmField @SerialName("playbackmethod") public var playbackmethod: ByteArray = ByteArray(0),
+    @JvmField @SerialName("api") public var api: ByteArray = ByteArray(0),
+    @JvmField @SerialName("companionad") public var companionad: Array<Banner> = emptyArray(),
+    @JvmField @SerialName("companiontype") public var companiontype: ByteArray = ByteArray(0),
+    @JvmField @SerialName("ext") public var ext: Extension = Extension(),
 ) {
     /**
      * Video extensions

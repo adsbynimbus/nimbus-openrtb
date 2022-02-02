@@ -32,9 +32,9 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Native(
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float = 0f,
-    @JvmField @SerialName("request") public val request: String,
-    @JvmField @SerialName("ver") public val ver: String = "",
-    @JvmField @SerialName("api") public val api: ByteArray = ByteArray(0),
-    @JvmField @SerialName("battr") public val battr: ByteArray = ByteArray(0),
+    @JvmField @SerialName("bidfloor") public var bidfloor: Float = 0f,
+    @JvmField @SerialName("request") public var request: String,
+    @JvmField @SerialName("ver") public var ver: String = "",
+    @JvmField @SerialName("api") public var api: ByteArray = ByteArray(0),
+    @JvmField @SerialName("battr") public var battr: ByteArray = ByteArray(0),
 )
