@@ -28,7 +28,7 @@ import kotlin.jvm.JvmField
  * @property test Indicator of test mode in which auctions are not billable (0: live, 1: test)
  * @property tmax Maximum time in milliseconds the exchange allows for bids to be received including
  *                Internet latency to avoid timeout.
- *                This varue supersedes any a priori guidance from the exchange. If this varue is
+ *                This value supersedes any a priori guidance from the exchange. If this value is
  *                omitted Nimbus will default to 500.
  * @property regs A Regs object that specifies any industry, legal, or governmental regulations in
  *                force for this request.
@@ -53,7 +53,7 @@ public class BidRequest(
 ) {
 
     /**
-     * Any unique string varue to identify the session.
+     * Any unique string value to identify the session.
      *
      * Defaults to a random UUID when using the Nimbus SDK
      */

@@ -27,7 +27,7 @@ import kotlin.jvm.JvmField
  * @property h Height of the video player in device independent pixels (DIPS).
  * @property startdelay Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad
  *                      placements.
- *                      >0: Mid roll where the varue indicates the start delay
+ *                      >0: Mid roll where the value indicates the start delay
  *                      0: pre roll
  *                      -1: generic mid roll
  *                      -2: generic post roll
