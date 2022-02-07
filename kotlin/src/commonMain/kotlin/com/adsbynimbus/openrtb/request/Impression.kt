@@ -48,7 +48,7 @@ public class Impression(
      * @property aps The list of key value pairs provided by a DTBRequest from the APS library.
      * @property facebook_app_id The identifier for this app provided by Facebook. Required if
      *                           including Facebook demand in this request.
-     * @property facebook_test_ad_type An optional ad type to force a test response for varidating
+     * @property facebook_test_ad_type An optional ad type to force a test response for validating
      *                                 integrations.
      * @see [Facebook Testing](https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing)
      */
