@@ -22,19 +22,19 @@ import kotlin.jvm.JvmField
  *
  * [OpenRTB Section 3.2.9](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=23)
  *
+ * @property bidfloor Minimum bid for this native impression expressed in CPM.
  * @property request Request payload complying with the Native Ad Specification
  * @property ver Version of the Dynamic Native Ads API to which request complies. Highly recommended
  *               for efficient parsing.
  * @property api List of supported API frameworks for this impression. If an API is not explicitly
  *               listed, it is assumed not to be supported.
  * @property battr Set of creative attributes to block.
- * @property bidfloor Minimum bid for this native impression expressed in CPM.
  */
 @Serializable
 public class Native(
-    @JvmField @SerialName("request") public val request: String,
-    @JvmField @SerialName("ver") public val ver: String = "",
-    @JvmField @SerialName("api") public val api: IntArray = IntArray(0),
-    @JvmField @SerialName("battr") public val battr: IntArray = IntArray(0),
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float? = null,
+    @JvmField @SerialName("bidfloor") public var bidfloor: Float = 0f,
+    @JvmField @SerialName("request") public var request: String? = null,
+    @JvmField @SerialName("ver") public var ver: String? = null,
+    @JvmField @SerialName("api") public var api: ByteArray? = null,
+    @JvmField @SerialName("battr") public var battr: ByteArray? = null,
 )

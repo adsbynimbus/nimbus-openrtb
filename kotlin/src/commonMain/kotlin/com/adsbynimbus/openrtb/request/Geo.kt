@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
 
 /**
- * This object encapsulates valious methods for specifying a geographic location.
+ * This object encapsulates various methods for specifying a geographic location.
  *
  * When subordinate to a Device object, it indicates the location of the device which can also be
  * interpreted as the user’s current location. When subordinate to a User object, it indicates the
@@ -34,12 +34,12 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Geo(
-    @JvmField @SerialName("lat") public val lat: Float? = null,
-    @JvmField @SerialName("lon") public val lon: Float? = null,
-    @JvmField @SerialName("type") public val type: Int? = null,
-    @JvmField @SerialName("accuracy") public val accuracy: Int? = null,
-    @JvmField @SerialName("country") public val country: String? = null,
-    @JvmField @SerialName("city") public val city: String? = null,
-    @JvmField @SerialName("metro") public val metro: String? = null,
-    @JvmField @SerialName("state") public val state: String? = null,
+    @JvmField @SerialName("lat") public var lat: Float? = null,
+    @JvmField @SerialName("lon") public var lon: Float? = null,
+    @JvmField @SerialName("type") public var type: Byte? = null,
+    @JvmField @SerialName("accuracy") public var accuracy: Int? = null,
+    @JvmField @SerialName("country") public var country: String? = null,
+    @JvmField @SerialName("city") public var city: String? = null,
+    @JvmField @SerialName("metro") public var metro: String? = null,
+    @JvmField @SerialName("state") public var state: String? = null,
 )

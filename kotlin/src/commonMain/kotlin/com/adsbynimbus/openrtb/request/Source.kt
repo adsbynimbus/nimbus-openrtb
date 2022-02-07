@@ -19,17 +19,12 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Source(
-    @JvmField @SerialName("ext") public val ext: Extension,
+    @JvmField @SerialName("ext") public val ext: MutableMap<String, String> = mutableMapOf()
 ) {
-    /**
-     * Source extension object unique to Nimbus
-     *
-     * @property omidpn Partner name that identifies the OM SDK integration
-     * @property omidpv Current version of the OM SDK integration
-     */
-    @Serializable
-    public class Extension(
-        @JvmField @SerialName("omidpn") public val omidpn: String,
-        @JvmField @SerialName("omidpv") public val omidpv: String,
-    )
+
+    /** Partner name that identifies the OM SDK integration */
+    public var omidpn: String by ext
+
+    /** Current version of the OM SDK integration */
+    public var omidpv: String by ext
 }

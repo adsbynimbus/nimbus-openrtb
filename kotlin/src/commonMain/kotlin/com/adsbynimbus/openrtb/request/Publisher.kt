@@ -18,7 +18,7 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Publisher(
-    @JvmField @SerialName("name") public val name: String,
-    @JvmField @SerialName("domain") public val domain: String,
-    @JvmField @SerialName("cat") public val cat: Array<String> = emptyArray(),
+    @JvmField @SerialName("name") public var name: String? = null,
+    @JvmField @SerialName("domain") public var domain: String? = null,
+    @JvmField @SerialName("cat") public var cat: Array<String>? = null,
 )

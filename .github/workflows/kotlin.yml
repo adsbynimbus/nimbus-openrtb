@@ -20,7 +20,7 @@ jobs:
 
   build:
     name: Build, test, and optionally publish Android OpenRTB
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     env:
       TAG_NAME: ${{ github.ref }}
       ORG_GRADLE_PROJECT_awsAccessKey: ${{ secrets.AWS_ACCESS_KEY }}
@@ -51,7 +51,7 @@ jobs:
         run: echo "ndk.dir=$ANDROID_HOME/ndk-bundle" > local.properties
 
       - name: Build
-        run: ./gradlew build
+        run: ./gradlew test
 
       - name: Publish
         if: success() && github.event_name == 'release'

@@ -22,8 +22,8 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Regs(
-    @JvmField @SerialName("coppa") public val coppa: Int = 0,
-    @JvmField @SerialName("ext") public val ext: Extension = Extension(),
+    @JvmField @SerialName("coppa") public var coppa: Byte = 0,
+    @JvmField @SerialName("ext") public var ext: Extension = Extension(),
 ) {
     /**
      * Placeholder for exchange-specific extensions to OpenRTB.
@@ -46,7 +46,7 @@ public class Regs(
      */
     @Serializable
     public class Extension(
-        @JvmField @SerialName("gdpr") public val gdpr: Int = 0,
-        @JvmField @SerialName("us_privacy") public val us_privacy: String = ""
+        @JvmField @SerialName("gdpr") public var gdpr: Byte = 0,
+        @JvmField @SerialName("us_privacy") public var us_privacy: String? = null
     )
 }

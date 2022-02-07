@@ -58,36 +58,32 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Video(
-    @JvmField @SerialName("bidfloor") public val bidfloor: Float? = null,
-    @JvmField @SerialName("mimes") public val mimes: Array<String> = emptyArray(),
-    @JvmField @SerialName("minduration") public val minduration: Int = 0,
-    @JvmField @SerialName("maxduration") public val maxduration: Int = 60,
-    @JvmField @SerialName("protocols") public val protocols: IntArray = IntArray(0),
-    @JvmField @SerialName("w") public val w: Int = 0,
-    @JvmField @SerialName("h") public val h: Int = 0,
-    @JvmField @SerialName("startdelay") public val startdelay: Int = 0,
-    @JvmField @SerialName("placement") public val placement: Int = 0,
-    @JvmField @SerialName("linearity") public val linearity: Int = 0,
-    @JvmField @SerialName("skip") public val skip: Int = 0,
-    @JvmField @SerialName("delivery") public val delivery: IntArray = IntArray(0),
-    @JvmField @SerialName("skipmin") public val skipmin: Int = 0,
-    @JvmField @SerialName("skipafter") public val skipafter: Int = 0,
-    @JvmField @SerialName("minbitrate") public val minbitrate: Int = 0,
-    @JvmField @SerialName("maxbitrate") public val maxbitrate: Int = 0,
-    @JvmField @SerialName("pos") public val pos: Int = 0,
-    @JvmField @SerialName("playbackmethod") public val playbackmethod: IntArray = IntArray(0),
-    @JvmField @SerialName("api") public val api: IntArray = IntArray(0),
-    @JvmField @SerialName("companionad") public val companionad: Array<Banner> = emptyArray(),
-    @JvmField @SerialName("companiontype") public val companiontype: IntArray = IntArray(0),
-    @JvmField @SerialName("ext") public val ext: Extension = Extension(),
+    @JvmField @SerialName("bidfloor") public var bidfloor: Float = 0f,
+    @JvmField @SerialName("mimes") public var mimes: Array<String>? = null,
+    @JvmField @SerialName("minduration") public var minduration: Int = 0,
+    @JvmField @SerialName("maxduration") public var maxduration: Int = 60,
+    @JvmField @SerialName("protocols") public var protocols: ByteArray? = null,
+    @JvmField @SerialName("w") public var w: Int = 0,
+    @JvmField @SerialName("h") public var h: Int = 0,
+    @JvmField @SerialName("startdelay") public var startdelay: Int = 0,
+    @JvmField @SerialName("placement") public var placement: Byte = 0,
+    @JvmField @SerialName("linearity") public var linearity: Byte = 0,
+    @JvmField @SerialName("skip") public var skip: Byte = 0,
+    @JvmField @SerialName("delivery") public var delivery: ByteArray? = null,
+    @JvmField @SerialName("skipmin") public var skipmin: Int = 0,
+    @JvmField @SerialName("skipafter") public var skipafter: Int = 0,
+    @JvmField @SerialName("minbitrate") public var minbitrate: Int = 0,
+    @JvmField @SerialName("maxbitrate") public var maxbitrate: Int = 0,
+    @JvmField @SerialName("pos") public var pos: Byte = 0,
+    @JvmField @SerialName("playbackmethod") public var playbackmethod: ByteArray? = null,
+    @JvmField @SerialName("api") public var api: ByteArray? = null,
+    @JvmField @SerialName("companionad") public var companionad: Array<Banner>? = null,
+    @JvmField @SerialName("companiontype") public var companiontype: ByteArray? = null,
+    @JvmField @SerialName("ext") public var ext: MutableMap<String, Byte> = mutableMapOf(
+        "is_rewarded" to 0
+    ),
 ) {
-    /**
-     * Video extensions
-     *
-     * @property is_rewarded Indicates this video request is for a rewarded video
-     */
-    @Serializable
-    public class Extension(
-        @JvmField @SerialName("is_rewarded") public val is_rewarded: Int = 0,
-    )
+
+    /** Indicates this video request is for a rewarded video */
+    public var is_rewarded: Byte by ext
 }

@@ -1,11 +1,8 @@
-@file:JvmName("OpenRTB")
-
 package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
-import kotlin.jvm.JvmName
 
 /**
  * The top-level bid request object contains a globally unique bid request or auction ID.
@@ -42,37 +39,31 @@ import kotlin.jvm.JvmName
  */
 @Serializable
 public class BidRequest(
-    @JvmField @SerialName("imp") public val imp: Array<Impression>,
-    @JvmField @SerialName("device") public val device: Device,
-    @JvmField @SerialName("format") public val format: Format = Format(device.w, device.h),
-    @JvmField @SerialName("user") public val user: User? = null,
-    @JvmField @SerialName("app") public val app: App? = null,
-    @JvmField @SerialName("test") public val test: Int = 0,
-    @JvmField @SerialName("tmax") public val tmax: Int = 500,
-    @JvmField @SerialName("regs") public val regs: Regs? = null,
-    @JvmField @SerialName("source") public val source: Source? = null,
-    @JvmField @SerialName("badv") public val badv: Array<String> = emptyArray(),
-    @JvmField @SerialName("ext") public val ext: Extension,
+    @JvmField @SerialName("imp") public var imp: Array<Impression> = emptyArray(),
+    @JvmField @SerialName("device") public var device: Device? = null,
+    @JvmField @SerialName("format") public var format: Format = Format(0, 0),
+    @JvmField @SerialName("user") public var user: User? = null,
+    @JvmField @SerialName("app") public var app: App? = null,
+    @JvmField @SerialName("test") public var test: Byte = 0,
+    @JvmField @SerialName("tmax") public var tmax: Int = 500,
+    @JvmField @SerialName("regs") public var regs: Regs? = null,
+    @JvmField @SerialName("source") public var source: Source? = null,
+    @JvmField @SerialName("badv") public var badv: Array<String>? = null,
+    @JvmField @SerialName("ext") public val ext: MutableMap<String, String> = mutableMapOf(),
 ) {
 
     /**
-     * BidRequest extension object unique to Nimbus
+     * Any unique string value to identify the session.
      *
-     * @property session_id Any unique string value to identify the session. Defaults to a random
-     *                      UUID when using the Nimbus SDK
+     * Defaults to a random UUID when using the Nimbus SDK
      */
-    @Serializable
-    public class Extension(
-        @JvmField @SerialName("session_id") public val session_id: String,
-    )
+    public var session_id: String by ext
+
+    public companion object {
+        /** Required header for all requests to Nimbus defining the OpenRTB version */
+        public const val OPENRTB_HEADER: String = "x-openrtb-version"
+
+        /** The current supported OpenRTB version by this request object */
+        public const val OPENRTB_VERSION: String = "2.5"
+    }
 }
-
-/**
- * Required header for all requests to Nimbus defining the OpenRTB version
- */
-public const val VERSION_HEADER: String = "X-Openrtb-Version"
-
-/**
- * The current supported OpenRTB version by this request object
- */
-public const val VERSION: String = "2.5"

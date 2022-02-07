@@ -21,7 +21,7 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Data(
-    @JvmField @SerialName("id") public val id: String,
-    @JvmField @SerialName("name") public val name: String,
-    @JvmField @SerialName("segment") public val segment: Array<Segment> = emptyArray(),
+    @JvmField @SerialName("id") public var id: String,
+    @JvmField @SerialName("name") public var name: String,
+    @JvmField @SerialName("segment") public var segment: Array<Segment>? = null,
 )
