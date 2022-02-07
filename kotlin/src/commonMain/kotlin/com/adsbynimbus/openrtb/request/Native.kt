@@ -34,7 +34,7 @@ import kotlin.jvm.JvmField
 public class Native(
     @JvmField @SerialName("bidfloor") public var bidfloor: Float = 0f,
     @JvmField @SerialName("request") public var request: String,
-    @JvmField @SerialName("ver") public var ver: String = "",
-    @JvmField @SerialName("api") public var api: ByteArray = ByteArray(0),
-    @JvmField @SerialName("battr") public var battr: ByteArray = ByteArray(0),
+    @JvmField @SerialName("ver") public var ver: String? = null,
+    @JvmField @SerialName("api") public var api: ByteArray? = null,
+    @JvmField @SerialName("battr") public var battr: ByteArray? = null,
 )

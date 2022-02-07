@@ -1,6 +1,5 @@
 package com.adsbynimbus.openrtb.request
 
-import com.adsbynimbus.openrtb.enumerations.DeviceType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
@@ -42,7 +41,7 @@ public class Device(
     @JvmField @SerialName("ifa") public var ifa: String,
     @JvmField @SerialName("make") public val make: String,
     @JvmField @SerialName("model") public val model: String,
-    @JvmField @SerialName("hwv") public var hwv: String,
+    @JvmField @SerialName("hwv") public var hwv: String? = null,
     @JvmField @SerialName("os") public val os: String,
     @JvmField @SerialName("osv") public val osv: String,
     @JvmField @SerialName("h") public var h: Int,

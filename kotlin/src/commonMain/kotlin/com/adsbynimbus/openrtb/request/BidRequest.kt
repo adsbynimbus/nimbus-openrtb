@@ -48,7 +48,7 @@ public class BidRequest(
     @JvmField @SerialName("tmax") public var tmax: Int = 500,
     @JvmField @SerialName("regs") public var regs: Regs? = null,
     @JvmField @SerialName("source") public var source: Source? = null,
-    @JvmField @SerialName("badv") public var badv: Array<String> = emptyArray(),
+    @JvmField @SerialName("badv") public var badv: Array<String>? = null,
     @JvmField @SerialName("ext") public var ext: Extension,
 ) {
 
@@ -62,4 +62,12 @@ public class BidRequest(
     public class Extension(
         @JvmField @SerialName("session_id") public var session_id: String,
     )
+
+    public companion object {
+        /** Required header for all requests to Nimbus defining the OpenRTB version */
+        public const val OPENRTB_HEADER: String = "x-openrtb-version"
+
+        /** The current supported OpenRTB version by this request object */
+        public const val OPENRTB_VERSION: String = "2.5"
+    }
 }

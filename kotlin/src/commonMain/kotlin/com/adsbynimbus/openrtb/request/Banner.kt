@@ -33,10 +33,10 @@ import kotlin.jvm.JvmField
 public class Banner(
     @JvmField @SerialName("w") public var w: Int,
     @JvmField @SerialName("h") public var h: Int,
-    @JvmField @SerialName("format") public var format: Array<Format> = emptyArray(),
+    @JvmField @SerialName("format") public var format: Array<Format>? = null,
     @JvmField @SerialName("bidfloor") public var bidfloor: Float = 0f,
-    @JvmField @SerialName("battr") public var battr: ByteArray = ByteArray(0),
+    @JvmField @SerialName("battr") public var battr: ByteArray? = null,
     @JvmField @SerialName("pos") public var pos: Byte = 0,
-    @JvmField @SerialName("api") public var api: ByteArray = ByteArray(0),
+    @JvmField @SerialName("api") public var api: ByteArray? = null,
     @JvmField @SerialName("vcm") public var vcm: Byte? = null,
 )

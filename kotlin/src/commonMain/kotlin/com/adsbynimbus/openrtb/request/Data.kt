@@ -16,12 +16,12 @@ import kotlin.jvm.JvmField
  *
  * @property id Exchange-specific ID for the data provider.
  * @property name Exchange-specific name for the data provider.
- * @property segment Array of [Segment] objects that contain the actual data varues.
+ * @property segment Array of [Segment] objects that contain the actual data values.
  * @see [OpenRTB Section 3.2.22](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=31)
  */
 @Serializable
 public class Data(
     @JvmField @SerialName("id") public var id: String,
     @JvmField @SerialName("name") public var name: String,
-    @JvmField @SerialName("segment") public var segment: Array<Segment> = emptyArray(),
+    @JvmField @SerialName("segment") public var segment: Array<Segment>? = null,
 )

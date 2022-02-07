@@ -34,10 +34,10 @@ public class User(
     @JvmField @SerialName("age") public var age: Int = 0,
     @JvmField @SerialName("buyeruid") public var buyeruid: String = "",
     @JvmField @SerialName("yob") public var yob: Int = 0,
-    @JvmField @SerialName("gender") public var gender: String = "",
-    @JvmField @SerialName("keywords") public var keywords: String = "",
-    @JvmField @SerialName("custom_data") public var custom_data: String = "",
-    @JvmField @SerialName("data") public var data: Array<Data> = emptyArray(),
+    @JvmField @SerialName("gender") public var gender: String? = null,
+    @JvmField @SerialName("keywords") public var keywords: String? = null,
+    @JvmField @SerialName("custom_data") public var custom_data: String? = null,
+    @JvmField @SerialName("data") public var data: Array<Data>? = null,
     @JvmField @SerialName("ext") public var ext: Extension = Extension(),
 ) {
 
@@ -54,8 +54,8 @@ public class User(
      */
     @Serializable
     public class Extension(
-        @JvmField @SerialName("consent") public var consent: String = "",
-        @JvmField @SerialName("did_consent") public var did_consent: Byte = 0,
-        @JvmField @SerialName("unity_buyeruid") public var unity_buyeruid: String = "",
+        @JvmField @SerialName("consent") public var consent: String? = null,
+        @JvmField @SerialName("did_consent") public var did_consent: Byte? = null,
+        @JvmField @SerialName("unity_buyeruid") public var unity_buyeruid: String? = null,
     )
 }
