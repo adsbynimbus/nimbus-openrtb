@@ -17,6 +17,7 @@ const val testJson = """
   "is_mraid": 0,
   "markup": "test_markup",
   "network": "test_network",
+  "position": "test_position",
   "trackers": {
     "impression_trackers": [
       "https://test.adsbynimbus.com/impression_tracker/"
@@ -42,10 +43,9 @@ class BidResponseTest : StringSpec({
             markup shouldBe "test_markup"
             network shouldBe "test_network"
             placement_id shouldBe "123456789"
-            with(trackers) {
-                click_trackers shouldContain "https://test.adsbynimbus.com/click_tracker/"
-                impression_trackers shouldContain "https://test.adsbynimbus.com/impression_tracker/"
-            }
+            position shouldBe "test_position"
+            click_trackers?.shouldContain("https://test.adsbynimbus.com/click_tracker/")
+            impression_trackers?.shouldContain("https://test.adsbynimbus.com/impression_tracker/")
         }
     }
 })
