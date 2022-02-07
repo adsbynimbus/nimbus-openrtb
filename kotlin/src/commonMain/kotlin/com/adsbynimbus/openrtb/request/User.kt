@@ -32,13 +32,13 @@ import kotlin.jvm.JvmField
 @Serializable
 public class User(
     @JvmField @SerialName("age") public var age: Int = 0,
-    @JvmField @SerialName("buyeruid") public var buyeruid: String = "",
+    @JvmField @SerialName("buyeruid") public var buyeruid: String? = null,
     @JvmField @SerialName("yob") public var yob: Int = 0,
     @JvmField @SerialName("gender") public var gender: String? = null,
     @JvmField @SerialName("keywords") public var keywords: String? = null,
     @JvmField @SerialName("custom_data") public var custom_data: String? = null,
     @JvmField @SerialName("data") public var data: Array<Data>? = null,
-    @JvmField @SerialName("ext") public var ext: Extension = Extension(),
+    @JvmField @SerialName("ext") public var ext: Extension? = null,
 ) {
 
     /**

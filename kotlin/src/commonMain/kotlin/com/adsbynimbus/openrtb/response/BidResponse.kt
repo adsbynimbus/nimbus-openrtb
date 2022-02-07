@@ -29,7 +29,6 @@ import kotlin.jvm.JvmField
 public class BidResponse(
     @JvmField @SerialName("type") public val type: String,
     @JvmField @SerialName("auction_id") public val auction_id: String,
-    @JvmField @SerialName("position") public val position: String,
     @JvmField @SerialName("adomain") public val adomain: Array<String> = emptyArray(),
     @JvmField @SerialName("bid_in_cents") public val bid_in_cents: Int = 0,
     @JvmField @SerialName("bid_raw") public val bid_raw: Float = 0f,
@@ -40,20 +39,15 @@ public class BidResponse(
     @JvmField @SerialName("is_interstitial") public val is_interstitial: Byte = 0,
     @JvmField @SerialName("markup") public val markup: String,
     @JvmField @SerialName("network") public val network: String = "",
-    @JvmField @SerialName("trackers") public val trackers: Trackers = Trackers(),
     @JvmField @SerialName("placement_id") public val placement_id: String? = null,
     @JvmField @SerialName("is_mraid") public val is_mraid: Byte = 0,
+    @JvmField @SerialName("position") public val position: String,
+    @JvmField @SerialName("trackers") public val trackers: Map<String, Array<String>> = emptyMap(),
 ) {
-    /**
-     * Additional tracking urls
-     *
-     * @property impression_trackers Urls to fire a request to when an impression is registered
-     * @property click_trackers Urls to fire a request to when a click is registered
-     */
-    @Serializable
-    public class Trackers(
-        @JvmField @SerialName("impression_trackers") public val impression_trackers: Array<String> = emptyArray(),
-        @JvmField @SerialName("click_trackers") public val click_trackers: Array<String> = emptyArray(),
-    )
+
+    /** Urls to fire a request to when an impression is registered */
+    public val impression_trackers: Array<String>? by trackers
+    /** Urls to fire a request to when a click is registered */
+    public val click_trackers: Array<String>? by trackers
 }
 

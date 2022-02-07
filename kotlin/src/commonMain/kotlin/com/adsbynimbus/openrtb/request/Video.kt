@@ -79,15 +79,11 @@ public class Video(
     @JvmField @SerialName("api") public var api: ByteArray? = null,
     @JvmField @SerialName("companionad") public var companionad: Array<Banner>? = null,
     @JvmField @SerialName("companiontype") public var companiontype: ByteArray? = null,
-    @JvmField @SerialName("ext") public var ext: Extension = Extension(),
+    @JvmField @SerialName("ext") public var ext: MutableMap<String, Byte> = mutableMapOf(
+        "is_rewarded" to 0
+    ),
 ) {
-    /**
-     * Video extensions
-     *
-     * @property is_rewarded Indicates this video request is for a rewarded video
-     */
-    @Serializable
-    public class Extension(
-        @JvmField @SerialName("is_rewarded") public var is_rewarded: Byte = 0,
-    )
+
+    /** Indicates this video request is for a rewarded video */
+    public var is_rewarded: Byte by ext
 }

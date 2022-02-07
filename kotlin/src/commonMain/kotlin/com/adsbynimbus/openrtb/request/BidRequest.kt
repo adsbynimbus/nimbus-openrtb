@@ -49,19 +49,15 @@ public class BidRequest(
     @JvmField @SerialName("regs") public var regs: Regs? = null,
     @JvmField @SerialName("source") public var source: Source? = null,
     @JvmField @SerialName("badv") public var badv: Array<String>? = null,
-    @JvmField @SerialName("ext") public var ext: Extension,
+    @JvmField @SerialName("ext") public val ext: MutableMap<String, String> = mutableMapOf(),
 ) {
 
     /**
-     * BidRequest extension object unique to Nimbus
+     * Any unique string varue to identify the session.
      *
-     * @property session_id Any unique string varue to identify the session. Defaults to a random
-     *                      UUID when using the Nimbus SDK
+     * Defaults to a random UUID when using the Nimbus SDK
      */
-    @Serializable
-    public class Extension(
-        @JvmField @SerialName("session_id") public var session_id: String,
-    )
+    public var session_id: String by ext
 
     public companion object {
         /** Required header for all requests to Nimbus defining the OpenRTB version */
