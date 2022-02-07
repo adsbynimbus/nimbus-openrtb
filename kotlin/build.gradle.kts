@@ -122,16 +122,11 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-// Fixes an issue when creating the android sources jar
-tasks.withType<AbstractCopyTask>().configureEach {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
 tasks.withType<DokkaTask>().configureEach {
     moduleName.set("nimbus-openrtb")
 
     dokkaSourceSets {
-        matching { it.name in listOf("commonMain")}.configureEach {
+        named("commonMain") {
             sourceLink {
                 localDirectory.set(file("src/$name/kotlin"))
                 remoteUrl.set(uri("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin").toURL())
@@ -139,16 +134,6 @@ tasks.withType<DokkaTask>().configureEach {
             }
         }
     }
-}
-
-configurations.create("sourcesElements") {
-    isCanBeResolved = true
-    attributes {
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType.SOURCES))
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.DOCUMENTATION))
-    }
-    kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.forEach { outgoing.artifact(it) }
 }
 
 fun MavenPublication.replaceWith(other: MavenPublication) {
