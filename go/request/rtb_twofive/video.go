@@ -24,7 +24,7 @@ type Video struct {
 	Skip           int       `json:"skip"                     valid:"range(0|1),optional"`            // 0 no 1 yes
 	Delivery       []int     `json:"delivery,omitempty"       valid:"range(0|3),optional"`            // 0,1,2,3 -> Unknown, Professionally Produced, Prosumer, User Generated (UGC)
 	Pos            int       `json:"pos,omitempty"            valid:"range(0|7),optional"`            // 0,1,2,3,4,5,6,7 -> Unknown,Above the Fold,DEPRECATED - May or may not be initially visible depending on screen size/resolution.,Below the Fold,Header,Footer,Sidebar,Full Screen
-	API            []int     `json:"api,omitempty"            valid:"inintarr(1|2|3|4|5|6),optional"`
+	API            []int     `json:"api,omitempty"            valid:"inintarr(1|2|3|4|5|6|7),optional"`
 	MinBitRate     int       `json:"minbitrate,omitempty"     valid:"optional"`
 	MaxBitRate     int       `json:"maxbitrate,omitempty"     valid:"optional"`
 	Ext            *VideoExt `json:"ext"                      valid:"optional"`
