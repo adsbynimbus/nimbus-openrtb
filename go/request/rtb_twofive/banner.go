@@ -15,9 +15,9 @@ type Banner struct {
 	Format   []Format `json:"format,omitempty"   valid:"optional"`
 	W        int      `json:"w"                  valid:"required"`
 	H        int      `json:"h"                  valid:"required"`
-	API      []int    `json:"api,omitempty"      valid:"inintarr(1|2|3|4|5|6),optional"` // 3,5,6 -> mraid1, 2, and 3
-	Pos      int      `json:"pos,omitempty"      valid:"range(0|7),optional"`            // 0,1,2,3,4,5,6,7 -> Unknown, Above the Fold, DEPRECATED - May or may not be initially visible depending on screen size/resolution.,Below the Fold,Header,Footer,Sidebar,Full Screen
-	Vcm      int      `json:"vcm,omitempty"      valid:"optional"`                       // Relevant only for Banner objects used with a Video object (Section 3.2.7) in an array of companion ads. Indicates the  companion banner rendering mode relative to the associated video, where 0 = concurrent, 1 = end-card.
+	API      []int    `json:"api,omitempty"      valid:"inintarr(1|2|3|4|5|6|7),optional"` // 3,5,6 -> mraid1, 2, and 3
+	Pos      int      `json:"pos,omitempty"      valid:"range(0|7),optional"`              // 0,1,2,3,4,5,6,7 -> Unknown, Above the Fold, DEPRECATED - May or may not be initially visible depending on screen size/resolution.,Below the Fold,Header,Footer,Sidebar,Full Screen
+	Vcm      int      `json:"vcm,omitempty"      valid:"optional"`                         // Relevant only for Banner objects used with a Video object (Section 3.2.7) in an array of companion ads. Indicates the  companion banner rendering mode relative to the associated video, where 0 = concurrent, 1 = end-card.
 }
 
 // MarshalJSONObject implements MarshalerJSONObject
