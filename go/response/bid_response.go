@@ -21,6 +21,7 @@ type Bid struct {
 	Network        string    `json:"network"`
 	Trackers       *Trackers `json:"trackers,omitempty"`
 	PlacementID    string    `json:"placement_id,omitempty"`
+	Duration       int       `json:"duration,omitempty"`
 	Ext            *BidExt   `json:"ext,omitempty"`
 }
 
@@ -87,6 +88,9 @@ func (r *Bid) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	case "placement_id":
 		return dec.String(&r.PlacementID)
+
+	case "duration":
+		return dec.Int(&r.Duration)
 
 	case "ext":
 		var value = &BidExt{}
