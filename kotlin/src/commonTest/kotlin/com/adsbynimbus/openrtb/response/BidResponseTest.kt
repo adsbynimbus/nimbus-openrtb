@@ -26,7 +26,8 @@ const val testJson = """
       "https://test.adsbynimbus.com/click_tracker/"
     ]
   },
-  "placement_id": "123456789"
+  "placement_id": "123456789",
+  "duration": 15
 }
 """
 
@@ -44,8 +45,9 @@ class BidResponseTest : StringSpec({
             network shouldBe "test_network"
             placement_id shouldBe "123456789"
             position shouldBe "test_position"
-            click_trackers?.shouldContain("https://test.adsbynimbus.com/click_tracker/")
-            impression_trackers?.shouldContain("https://test.adsbynimbus.com/impression_tracker/")
+            click_trackers!!.shouldContain("https://test.adsbynimbus.com/click_tracker/")
+            impression_trackers!!.shouldContain("https://test.adsbynimbus.com/impression_tracker/")
+            duration shouldBe 15
         }
     }
 })

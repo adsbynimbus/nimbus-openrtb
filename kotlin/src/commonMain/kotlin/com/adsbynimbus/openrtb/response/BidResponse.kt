@@ -26,6 +26,7 @@ import kotlin.jvm.JvmField
  *                    creative markup
  * @property position The position from the request for this ad.
  * @property trackers Contains additional tracking urls for measurement.
+ * @property duration The duration in seconds or 0 if unknown or another ad type.
  */
 @Serializable
 public class BidResponse(
@@ -45,6 +46,7 @@ public class BidResponse(
     @JvmField @SerialName("is_mraid") public val is_mraid: Byte = 0,
     @JvmField @SerialName("position") public val position: String,
     @JvmField @SerialName("trackers") public val trackers: Map<String, Array<String>> = emptyMap(),
+    @JvmField @SerialName("duration") public val duration: Int = 0,
 ) {
 
     /** Urls to fire a request to when an impression is registered */
