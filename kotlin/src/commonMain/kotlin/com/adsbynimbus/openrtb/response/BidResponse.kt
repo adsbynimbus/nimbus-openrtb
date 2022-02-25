@@ -2,7 +2,9 @@ package com.adsbynimbus.openrtb.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import kotlin.jvm.JvmField
+import kotlin.jvm.JvmStatic
 
 /**
  * A winning bid response from Nimbus
@@ -53,5 +55,9 @@ public class BidResponse(
     public val impression_trackers: Array<String>? by trackers
     /** Urls to fire a request to when a click is registered */
     public val click_trackers: Array<String>? by trackers
-}
 
+    public companion object {
+        @JvmStatic
+        public fun fromJson(json: String): BidResponse = Json.decodeFromString(serializer(), json)
+    }
+}
