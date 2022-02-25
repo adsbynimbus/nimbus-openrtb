@@ -1,5 +1,5 @@
 [versions]
-android = "7.1.1"
+android = "7.0.3" # Do Not Update this until Kotlin Updated to 1.6.10
 android-buildtools = "32.0.0"
 dokka = "1.6.10"
 kotest = "5.1.0"
