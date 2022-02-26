@@ -1,8 +1,11 @@
 package com.adsbynimbus.openrtb.request
 
+import com.adsbynimbus.openrtb.response.BidResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import kotlin.jvm.JvmField
+import kotlin.jvm.JvmStatic
 
 /**
  * The top-level bid request object contains a globally unique bid request or auction ID.
@@ -65,5 +68,8 @@ public class BidRequest(
 
         /** The current supported OpenRTB version by this request object */
         public const val OPENRTB_VERSION: String = "2.5"
+
+        @JvmStatic
+        public fun BidRequest.toJson(): String = Json.encodeToString(serializer(), this)
     }
 }

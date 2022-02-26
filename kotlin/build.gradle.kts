@@ -1,5 +1,3 @@
-import groovy.util.Node
-import groovy.util.NodeList
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
@@ -74,7 +72,6 @@ kotlin {
     sourceSets {
         all {
             languageSettings {
-                apiVersion = libs.versions.kotlin.api.get()
                 optIn("kotlinx.serialization.ExperimentalSerializationApi")
                 progressiveMode = true
             }
@@ -136,44 +133,7 @@ tasks.withType<DokkaTask>().configureEach {
     }
 }
 
-fun MavenPublication.replaceWith(other: MavenPublication) {
-    lateinit var platformXml: XmlProvider
-    other.pom.withXml { platformXml = this }
-
-    pom.withXml {
-        val root: Node = asNode()
-        // Remove the original content and add the content from the platform POM:
-        root.children().toList().forEach { root.remove(it as Node) }
-        platformXml.asNode().children().forEach { root.append(it as Node) }
-
-        // Adjust the self artifact ID, as it should match the root module's coordinates:
-        ((root.get("artifactId") as NodeList)[0] as Node).setValue(artifactId)
-        // Set packaging to POM to indicate that there's no artifact:
-        ((root.get("packaging") as NodeList)[0] as Node).setValue("pom")
-
-        // Remove the original platform dependencies and add a single dependency on the platform module:
-        val dependencies = (root.get("dependencies") as NodeList)[0] as Node
-        dependencies.children().toList().forEach { dependencies.remove(it as Node) }
-        val singleDependency = dependencies.appendNode("dependency")
-        singleDependency.appendNode("groupId", other.groupId)
-        singleDependency.appendNode("artifactId", other.artifactId)
-        singleDependency.appendNode("version", other.version)
-        singleDependency.appendNode("scope", "compile")
-    }
-
-    tasks.matching { it.name == "generatePomFileForKotlinMultiplatformPublication"}.configureEach {
-        dependsOn(tasks["generatePomFileFor${other.name.capitalize()}Publication"])
-    }
-}
-
 publishing {
-    afterEvaluate {
-        publications {
-            named<MavenPublication>("kotlinMultiplatform") {
-                replaceWith(getByName<MavenPublication>("androidRelease"))
-            }
-        }
-    }
     repositories {
         maven {
             name = "aws"
