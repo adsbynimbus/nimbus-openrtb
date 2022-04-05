@@ -3,16 +3,16 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.android)
-    alias(libs.plugins.kotlin)
+    kotlin("multiplatform")
     alias(libs.plugins.kotest)
-    alias(libs.plugins.cocoapods)
+    kotlin("native.cocoapods")
     alias(libs.plugins.dokka)
-    alias(libs.plugins.serialization)
+    kotlin("plugin.serialization")
     `maven-publish`
 }
 
 group = "com.adsbynimbus.openrtb"
-version = (System.getenv("TAG_NAME") ?: "0.0.1").split("/").last().let {
+version = (System.getenv("GITHUB_REF") ?: "0.0.1").split("/").last().let {
     if (it.startsWith("v")) it.substring(1) else it
 }
 
