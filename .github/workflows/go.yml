@@ -22,12 +22,6 @@ jobs:
           go-version: 1.13
         id: go
 
-      - name: Debug
-        run: |
-            pwd
-            echo ${GOPATH}
-            echo ${GOROOT}
-
       - name: Check out code into the Go module directory
         uses: actions/checkout@v3
 
