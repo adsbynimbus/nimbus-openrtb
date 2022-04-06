@@ -14,13 +14,8 @@ jobs:
     - name: Set up Go 1.12
       uses: actions/setup-go@v3
       with:
-        go-version: 1.12
+        go-version: '1.12'
       id: go
-
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v3
-      with:
-        path: go/src/github.com/timehop/nimbus-openrtb
 
     - name: Get dependencies
       env:
@@ -34,6 +29,12 @@ jobs:
         if [ ! -f "/tmp/GeoLite2-City.mmdb.gz" ]; then
             wget -O /tmp/GeoLite2-City.mmdb.gz https://s3.amazonaws.com/timehop.uploads/oneoffs/GeoLite2-City.mmdb.gz
         fi
+        
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v3
+      with:
+        path: go/src/github.com/timehop/nimbus-openrtb
+        
     - name: Run Test
       env:
         LOAD_MAXMIND_FROM_FILE: "true"
