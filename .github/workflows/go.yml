@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.13
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: 1.13
         id: go
@@ -25,12 +25,10 @@ jobs:
             echo ${GOROOT}
 
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
-          path: home/runner/work/nimbus-openrtb/nimbus-openrtb
+        uses: actions/checkout@v3
 
       - name: Run Test
         run: go test ./... -race -cover -v -short
+        working-directory: ./go
         env:
           GOPATH: /home/runner/work/nimbus-openrtb/go
