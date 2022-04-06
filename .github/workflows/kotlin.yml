@@ -1,59 +1,59 @@
-name: Kotlin
-
-on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'kotlin/**'
-      - '.github/workflows/kotlin*'
-
-  push:
-    tags-ignore:
-      - '**'
-
-  release:
-    types: [published]
-
-jobs:
-
-  build:
-    name: Build, test, and optionally publish Android OpenRTB
-    runs-on: macos-latest
-    env:
-      ORG_GRADLE_PROJECT_awsAccessKey: ${{ secrets.AWS_ACCESS_KEY }}
-      ORG_GRADLE_PROJECT_awsSecretKey: ${{ secrets.AWS_SECRET_KEY }}
-      ORG_GRADLE_PROJECT_githubUsername: ${{ github.actor }}
-      ORG_GRADLE_PROJECT_githubPassword: ${{ github.token }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: 11
-          cache: 'gradle'
-
-      - name: Cache Kotlin packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.konan
-          key: ${{ runner.os }}-konan-${{ hashFiles('settings.gradle.kts') }}
-          restore-keys: |
-            ${{ runner.os }}-konan-${{ hashFiles('settings.gradle.kts') }}
-            ${{ runner.os }}-konan-
-
-      - name: Fix NDK Bug
-        run: echo "ndk.dir=$ANDROID_HOME/ndk-bundle" > local.properties
-
-      - name: Build
-        run: ./gradlew test
-
-      - name: Publish
-        if: success() && github.event_name == 'release'
-        run: ./gradlew publish
-
-      - name: Stop Gradle Daemon for Caching
-        run: ./gradlew --stop
+#name: Kotlin
+#
+#on:
+#  pull_request:
+#    branches:
+#      - main
+#    paths:
+#      - 'kotlin/**'
+#      - '.github/workflows/kotlin*'
+#
+#  push:
+#    tags-ignore:
+#      - '**'
+#
+#  release:
+#    types: [published]
+#
+#jobs:
+#
+#  build:
+#    name: Build, test, and optionally publish Android OpenRTB
+#    runs-on: macos-latest
+#    env:
+#      ORG_GRADLE_PROJECT_awsAccessKey: ${{ secrets.AWS_ACCESS_KEY }}
+#      ORG_GRADLE_PROJECT_awsSecretKey: ${{ secrets.AWS_SECRET_KEY }}
+#      ORG_GRADLE_PROJECT_githubUsername: ${{ github.actor }}
+#      ORG_GRADLE_PROJECT_githubPassword: ${{ github.token }}
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Setup Java
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin'
+#          java-version: 11
+#          cache: 'gradle'
+#
+#      - name: Cache Kotlin packages
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.konan
+#          key: ${{ runner.os }}-konan-${{ hashFiles('settings.gradle.kts') }}
+#          restore-keys: |
+#            ${{ runner.os }}-konan-${{ hashFiles('settings.gradle.kts') }}
+#            ${{ runner.os }}-konan-
+#
+#      - name: Fix NDK Bug
+#        run: echo "ndk.dir=$ANDROID_HOME/ndk-bundle" > local.properties
+#
+#      - name: Build
+#        run: ./gradlew test
+#
+#      - name: Publish
+#        if: success() && github.event_name == 'release'
+#        run: ./gradlew publish
+#
+#      - name: Stop Gradle Daemon for Caching
+#        run: ./gradlew --stop
