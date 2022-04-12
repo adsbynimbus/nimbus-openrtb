@@ -21,36 +21,36 @@ import kotlin.jvm.JvmStatic
  *
  * @property imp Array of impression objects representing the impressions offered.
  *               Only 1 impression object is supported.
+ *  @property app Details about the publisher’s app (i.e., non-browser applications).
  * @property device Details about the user’s device to which the impression will be delivered.
  * @property format A format object representing the width and height of the device.
  *                  This is not part of the spec, adding this here for convenience allows height and
  *                  width to be passed without the video/banner object to backwards support the GET
  * @property user Details about the human user of the device; the advertising audience.
- * @property app Details about the publisher’s app (i.e., non-browser applications).
  * @property test Indicator of test mode in which auctions are not billable (0: live, 1: test)
  * @property tmax Maximum time in milliseconds the exchange allows for bids to be received including
  *                Internet latency to avoid timeout.
  *                This value supersedes any a priori guidance from the exchange. If this value is
  *                omitted Nimbus will default to 500.
- * @property regs A Regs object that specifies any industry, legal, or governmental regulations in
- *                force for this request.
+ * @property badv Block list of advertisers by their domains (e.g., "ford.com").
  * @property source A Source object that provides data about the inventory source and which entity
  *                  makes the final decision.
- * @property badv Block list of advertisers by their domains (e.g., "ford.com").
+ * @property regs A Regs object that specifies any industry, legal, or governmental regulations in
+ *                force for this request.
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
 public class BidRequest(
     @JvmField @SerialName("imp") public var imp: Array<Impression> = emptyArray(),
+    @JvmField @SerialName("app") public var app: App? = null,
     @JvmField @SerialName("device") public var device: Device? = null,
     @JvmField @SerialName("format") public var format: Format = Format(0, 0),
     @JvmField @SerialName("user") public var user: User? = null,
-    @JvmField @SerialName("app") public var app: App? = null,
     @JvmField @SerialName("test") public var test: Byte = 0,
     @JvmField @SerialName("tmax") public var tmax: Int = 500,
-    @JvmField @SerialName("regs") public var regs: Regs? = null,
-    @JvmField @SerialName("source") public var source: Source? = null,
     @JvmField @SerialName("badv") public var badv: Array<String>? = null,
+    @JvmField @SerialName("source") public var source: Source? = null,
+    @JvmField @SerialName("regs") public var regs: Regs? = null,
     @JvmField @SerialName("ext") public val ext: MutableMap<String, String> = mutableMapOf(),
 ) {
 
@@ -68,12 +68,22 @@ public class BidRequest(
         /** The current supported OpenRTB version by this request object */
         public const val OPENRTB_VERSION: String = "2.5"
 
+        @JvmField
+        public val lenientSerializer: Json = Json {
+            coerceInputValues = true
+            explicitNulls = false
+            ignoreUnknownKeys = true
+            isLenient = true
+        }
+
         /** Encodes a BidRequest to a Json string using the built in serializer */
         @JvmStatic
-        public fun BidRequest.toJson(): String = Json.encodeToString(serializer(), this)
+        public fun BidRequest.toJson(jsonSerializer: Json = lenientSerializer): String =
+            jsonSerializer.encodeToString(serializer(), this)
 
         /** Decodes a BidRequest from a Json string using the built in serializer */
         @JvmStatic
-        public fun fromJson(json: String): BidRequest = Json.decodeFromString(serializer(), json)
+        public fun fromJson(json: String, jsonSerializer: Json = lenientSerializer): BidRequest =
+            jsonSerializer.decodeFromString(serializer(), json)
     }
 }
