@@ -18,11 +18,21 @@ public class Format(
     @JvmField @SerialName("h") public val h: Int,
 ) {
     public companion object {
+        /** 320 by 480 portrait interstitial */
         @JvmField public val INTERSTITIAL_PORT: Format = Format(320, 480)
+        /** 480 by 320 landscape interstitial */
         @JvmField public val INTERSTITIAL_LAND: Format = Format(480, 320)
+        /** 320 by 50 mobile banner */
         @JvmField public val BANNER_320_50: Format = Format(320, 50)
-        @JvmField public val LETTERBOX: Format = Format(300, 250)
+        /** 300 by 250 medium rectangle */
+        @JvmField public val BANNER_300_250: Format = Format(300, 250)
+        /** An alias for a 300 by 250 medium rectangle  */
+        @JvmField public val LETTERBOX: Format = BANNER_300_250
+        /** 300 by 600 half page */
         @JvmField public val HALF_SCREEN: Format = Format(300, 600)
+        /** 728 by 90 mobile banner */
         @JvmField public val LEADERBOARD: Format = Format(728, 90)
+        /** 300 by 250 medium rectangle  */
+        public inline val MREC: Format get() = BANNER_300_250
     }
 }
