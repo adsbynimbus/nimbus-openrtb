@@ -73,7 +73,6 @@ public class BidRequest(
             coerceInputValues = true
             explicitNulls = false
             ignoreUnknownKeys = true
-            isLenient = true
         }
 
         /** Encodes a BidRequest to a Json string using the built in serializer */

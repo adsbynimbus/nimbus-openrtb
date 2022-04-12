@@ -92,7 +92,12 @@ const val testJson = """
         "lmt":0,
         "ip":"255.255.255.0",
         "devicetype":1,
+        "make":"Google",
+        "model":"Pixel 6 Pro",
         "os":"android",
+        "osv":"12.0.0",
+        "h":480,
+        "w":320,
         "language":"en",
         "ifa":"00000000-0000-0000-0000-000000000000"
     },
