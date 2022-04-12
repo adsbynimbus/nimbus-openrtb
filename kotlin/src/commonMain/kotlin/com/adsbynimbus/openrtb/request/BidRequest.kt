@@ -1,6 +1,5 @@
 package com.adsbynimbus.openrtb.request
 
-import com.adsbynimbus.openrtb.response.BidResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -23,7 +22,7 @@ import kotlin.jvm.JvmStatic
  * @property imp Array of impression objects representing the impressions offered.
  *               Only 1 impression object is supported.
  * @property device Details about the user’s device to which the impression will be delivered.
- * @property format A [Format] object representing the width and height of the device.
+ * @property format A format object representing the width and height of the device.
  *                  This is not part of the spec, adding this here for convenience allows height and
  *                  width to be passed without the video/banner object to backwards support the GET
  * @property user Details about the human user of the device; the advertising audience.
@@ -37,7 +36,7 @@ import kotlin.jvm.JvmStatic
  *                force for this request.
  * @property source A Source object that provides data about the inventory source and which entity
  *                  makes the final decision.
- * @property badv   Block list of advertisers by their domains (e.g., "ford.com").
+ * @property badv Block list of advertisers by their domains (e.g., "ford.com").
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
@@ -69,7 +68,12 @@ public class BidRequest(
         /** The current supported OpenRTB version by this request object */
         public const val OPENRTB_VERSION: String = "2.5"
 
+        /** Encodes a BidRequest to a Json string using the built in serializer */
         @JvmStatic
         public fun BidRequest.toJson(): String = Json.encodeToString(serializer(), this)
+
+        /** Decodes a BidRequest from a Json string using the built in serializer */
+        @JvmStatic
+        public fun fromJson(json: String): BidRequest = Json.decodeFromString(serializer(), json)
     }
 }
