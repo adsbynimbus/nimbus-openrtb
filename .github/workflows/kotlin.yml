@@ -25,6 +25,9 @@ jobs:
       ORG_GRADLE_PROJECT_awsSecretKey: ${{ secrets.AWS_SECRET_KEY }}
       ORG_GRADLE_PROJECT_githubUsername: ${{ github.actor }}
       ORG_GRADLE_PROJECT_githubPassword: ${{ github.token }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
