@@ -57,6 +57,7 @@ public class BidResponse(
     public val click_trackers: Array<String>? by trackers
 
     public companion object {
+        /** Decodes a BidResponse from a Json string using the built in serializer */
         @JvmStatic
         public fun fromJson(json: String): BidResponse = Json.decodeFromString(serializer(), json)
     }
