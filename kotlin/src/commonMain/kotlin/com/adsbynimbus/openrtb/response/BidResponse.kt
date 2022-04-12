@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.response
 
+import com.adsbynimbus.openrtb.request.BidRequest
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -59,6 +60,9 @@ public class BidResponse(
     public companion object {
         /** Decodes a BidResponse from a Json string using the built in serializer */
         @JvmStatic
-        public fun fromJson(json: String): BidResponse = Json.decodeFromString(serializer(), json)
+        public fun fromJson(
+            json: String,
+            jsonSerializer: Json = BidRequest.lenientSerializer,
+        ): BidResponse = jsonSerializer.decodeFromString(serializer(), json)
     }
 }
