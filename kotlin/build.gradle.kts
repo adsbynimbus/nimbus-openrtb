@@ -21,6 +21,7 @@ android {
     compileSdk = 31
     defaultConfig {
         minSdk = 17
+        consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
     }
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
