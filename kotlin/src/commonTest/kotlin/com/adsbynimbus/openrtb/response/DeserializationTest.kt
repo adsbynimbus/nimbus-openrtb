@@ -1,6 +1,7 @@
 package com.adsbynimbus.openrtb.response
 
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
 
@@ -78,13 +79,11 @@ class DeserializationTest : StringSpec({
     }
 
     "BidResponse fromJson deserializes click_trackers" {
-        response.click_trackers!!
-            .shouldContain("https://test.adsbynimbus.com/click_tracker/")
+        "https://test.adsbynimbus.com/click_tracker/" shouldBeIn response.click_trackers
     }
 
     "BidResponse fromJson deserializes impression_trackers" {
-        response.impression_trackers!!
-            .shouldContain("https://test.adsbynimbus.com/impression_tracker/")
+        "https://test.adsbynimbus.com/impression_tracker/" shouldBeIn response.impression_trackers
     }
 
     "BidResponse fromJson deserializes the duration field" {
