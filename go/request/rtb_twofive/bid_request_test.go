@@ -253,6 +253,19 @@ func TestBidRequestMarshaling(t *testing.T) {
 					Age:    30,
 					YOB:    1991,
 					Gender: "male",
+					Ext: &UserExt{
+						EIDS: EIDS{
+							{
+								Source: "foobar.com",
+								UIDS: UIDS{
+									{
+										ID:  "foo-id",
+										Ext: &IdentityExt{RTIPartner: "foo-partner"},
+									},
+								},
+							},
+						},
+					},
 				},
 				Ext: RequestExt{
 					APIKey:    "3b117631-538d-4315-bc47-d4e8ce6527e5",
