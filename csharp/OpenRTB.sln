@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRTB", "OpenRTB\OpenRTB.csproj", "{26758B88-6DCA-4582-A817-2331A6C7940D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRTBTests", "OpenRTBTests\OpenRTBTests.csproj", "{175F9A70-807B-469B-8D3A-A65991FE9919}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26758B88-6DCA-4582-A817-2331A6C7940D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26758B88-6DCA-4582-A817-2331A6C7940D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26758B88-6DCA-4582-A817-2331A6C7940D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26758B88-6DCA-4582-A817-2331A6C7940D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{175F9A70-807B-469B-8D3A-A65991FE9919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{175F9A70-807B-469B-8D3A-A65991FE9919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{175F9A70-807B-469B-8D3A-A65991FE9919}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{175F9A70-807B-469B-8D3A-A65991FE9919}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
