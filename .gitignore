@@ -8,12 +8,12 @@ build/
 # Gradle
 .gradle
 
-# Windows
+# Windows / MacOS
 .DS_Store
 
-# Intellij / Android Studio
+# Intellij / Android Studio / Rider
 *.iml
-/.idea/*
+.idea/
 
 # Android
 local.properties
@@ -25,4 +25,11 @@ local.properties
 *.dll
 *.nupkg
 *.p7s
+obj/
 packages/
+
+# Rider
+*.user
+_ReSharper.Caches/
+
+
