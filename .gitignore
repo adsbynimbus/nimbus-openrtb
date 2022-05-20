@@ -20,3 +20,9 @@ local.properties
 
 # Cocoapods
 *.podspec
+
+# Nuget
+*.dll
+*.nupkg
+*.p7s
+packages/
