@@ -5,7 +5,7 @@ using NUnit.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace OpenRTBTests {
+namespace OpenRTB.Tests {
 	[SetUpFixture]
 	public class SetupTrace {
 		[OneTimeSetUp]
