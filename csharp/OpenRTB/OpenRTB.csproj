@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{26758B88-6DCA-4582-A817-2331A6C7940D}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>OpenRTB</RootNamespace>
+        <AssemblyName>OpenRTB</AssemblyName>
+        <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+          <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Enumerations\Api.cs" />
+        <Compile Include="Enumerations\CompanionTypes.cs" />
+        <Compile Include="Enumerations\ConnectionType.cs" />
+        <Compile Include="Enumerations\CreativeAttributes.cs" />
+        <Compile Include="Enumerations\DeliveryMethods.cs" />
+        <Compile Include="Enumerations\DeviceType.cs" />
+        <Compile Include="Enumerations\Linearity.cs" />
+        <Compile Include="Enumerations\LocationType.cs" />
+        <Compile Include="Enumerations\PlacementType.cs" />
+        <Compile Include="Enumerations\PlaybackMethods.cs" />
+        <Compile Include="Enumerations\Position.cs" />
+        <Compile Include="Enumerations\Protocols.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Request\App.cs" />
+        <Compile Include="Request\Banner.cs" />
+        <Compile Include="Request\Data.cs" />
+        <Compile Include="Request\Device.cs" />
+        <Compile Include="Request\Format.cs" />
+        <Compile Include="Request\Geo.cs" />
+        <Compile Include="Request\Imp.cs" />
+        <Compile Include="Request\Eid.cs" />
+        <Compile Include="Request\Publisher.cs" />
+        <Compile Include="Request\Regs.cs" />
+        <Compile Include="Request\BidRequest.cs" />
+        <Compile Include="Request\Segment.cs" />
+        <Compile Include="Request\Skadn.cs" />
+        <Compile Include="Request\Source.cs" />
+        <Compile Include="Request\User.cs" />
+        <Compile Include="Request\Video.cs" />
+        <Compile Include="Response\BidResponse.cs" />
+        <Compile Include="Response\SkadnResponse.cs" />
+        <Compile Include="Response\Trackers.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
