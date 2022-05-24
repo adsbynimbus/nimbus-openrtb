@@ -1,14 +1,14 @@
 using Newtonsoft.Json;
 
 namespace OpenRTB.Request {
-	public struct Publisher {
-		[JsonProperty("name", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Name { get; set; }
+    public class Publisher {
+        [JsonProperty("cat", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string[] Cat;
 
-		[JsonProperty("cat", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string[] Cat { get; set; }
+        [JsonProperty("domain", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Domain;
 
-		[JsonProperty("domain", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Domain { get; set; }
-	}
+        [JsonProperty("name", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Name;
+    }
 }

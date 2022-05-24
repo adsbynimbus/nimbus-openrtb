@@ -2,29 +2,29 @@ using Newtonsoft.Json;
 using OpenRTB.Enumerations;
 
 namespace OpenRTB.Request {
-	public struct Banner {
-		[JsonProperty("bidfloor", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public float BidFloor { set; get; }
+    public class Banner {
+        [JsonProperty("api", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Api[] Api;
 
-		[JsonProperty("battr", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public CreativeAttributes[] BAttr { set; get; }
+        [JsonProperty("format", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Format[] Format;
 
-		[JsonProperty("format", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Format[] Format { get; set; }
+        [JsonProperty("h", Required = Required.Always)]
+        public int? H;
 
-		[JsonProperty("w", Required = Required.Always)]
-		public int? W { get; set; }
+        [JsonProperty("pos", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Position Pos;
 
-		[JsonProperty("h", Required = Required.Always)]
-		public int? H { get; set; }
+        [JsonProperty("vcm", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int Vcm;
 
-		[JsonProperty("pos", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Position Pos { get; set; }
+        [JsonProperty("w", Required = Required.Always)]
+        public int? W;
 
-		[JsonProperty("api", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Api[] Api { get; set; }
+        [JsonProperty("bidfloor", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public float BidFloor;
 
-		[JsonProperty("vcm", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int Vcm { get; set; }
-	}
+        [JsonProperty("battr", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public CreativeAttributes[] BAttr;
+    }
 }

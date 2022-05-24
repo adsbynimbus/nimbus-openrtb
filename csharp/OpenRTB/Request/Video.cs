@@ -2,66 +2,66 @@ using Newtonsoft.Json;
 using OpenRTB.Enumerations;
 
 namespace OpenRTB.Request {
-	public struct Video {
-		[JsonProperty("bidfloor", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public float BidFloor { set; get; }
+    public class Video {
+        [JsonProperty("api", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Api[] Api;
 
-		[JsonProperty("companionad", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Banner[] CompanionAd { set; get; }
+        [JsonProperty("delivery", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public DeliveryMethods[] Delivery;
 
-		[JsonProperty("companiontype", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public CompanionTypes[] CompanionType { set; get; }
+        [JsonProperty("ext", NullValueHandling = NullValueHandling.Ignore)]
+        public VideoExt Ext;
 
-		[JsonProperty("mimes", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string[] Mimes { get; set; }
+        [JsonProperty("h", Required = Required.Always)]
+        public int? H;
 
-		[JsonProperty("minduration", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int MinDuration { get; set; }
+        [JsonProperty("linearity", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Linearity Linearity;
 
-		[JsonProperty("maxduration", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int MaxDuration { get; set; }
+        [JsonProperty("maxbitrate", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int MaxBitrate;
 
-		[JsonProperty("protocols", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Protocols[] Protocols { get; set; }
+        [JsonProperty("maxduration", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int MaxDuration;
 
-		[JsonProperty("w", Required = Required.Always)]
-		public int? W { get; set; }
+        [JsonProperty("mimes", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string[] Mimes;
 
-		[JsonProperty("h", Required = Required.Always)]
-		public int? H { get; set; }
+        [JsonProperty("minbitrate", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int MinBitrate;
 
-		[JsonProperty("startdelay")] public int StartDelay { get; set; }
+        [JsonProperty("minduration", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int MinDuration;
 
-		[JsonProperty("placement", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public PlacementType Placement { get; set; }
+        [JsonProperty("placement", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public PlacementType Placement;
 
-		[JsonProperty("linearity", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Linearity Linearity { get; set; }
+        [JsonProperty("playbackmethod", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public PlaybackMethods[] PlaybackMethod;
 
-		[JsonProperty("playbackmethod", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public PlaybackMethods[] PlaybackMethod { get; set; }
+        [JsonProperty("pos")] public Position Pos;
 
-		[JsonProperty("skip")] public int Skip { get; set; }
+        [JsonProperty("protocols", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Protocols[] Protocols;
 
-		[JsonProperty("delivery", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public DeliveryMethods[] Delivery { get; set; }
+        [JsonProperty("skip")] public int Skip;
 
-		[JsonProperty("pos")] public Position Pos { get; set; }
+        [JsonProperty("startdelay")] public int StartDelay;
 
-		[JsonProperty("api", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Api[] Api { get; set; }
+        [JsonProperty("w", Required = Required.Always)]
+        public int? W;
 
-		[JsonProperty("minbitrate", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int MinBitrate { get; set; }
+        [JsonProperty("bidfloor", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public float BidFloor;
 
-		[JsonProperty("maxbitrate", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int MaxBitrate { get; set; }
+        [JsonProperty("companionad", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Banner[] CompanionAd;
 
-		[JsonProperty("ext", NullValueHandling = NullValueHandling.Ignore)]
-		public VideoExt Ext { get; set; }
-	}
+        [JsonProperty("companiontype", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public CompanionTypes[] CompanionType;
+    }
 
-	public struct VideoExt {
-		[JsonProperty("is_rewarded")] public int IsRewarded { get; set; }
-	}
+    public class VideoExt {
+        [JsonProperty("is_rewarded")] public int IsRewarded;
+    }
 }

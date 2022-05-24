@@ -1,14 +1,14 @@
 using Newtonsoft.Json;
 
 namespace OpenRTB.Request {
-	public struct Skadn {
-		[JsonProperty("version", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Version { get; set; }
+    public class Skadn {
+        [JsonProperty("skadnetids", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string[] SkadnetIds;
 
-		[JsonProperty("sourceapp", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string SourceApp { get; set; }
+        [JsonProperty("sourceapp", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string SourceApp;
 
-		[JsonProperty("skadnetids", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string[] SkadnetIds { get; set; }
-	}
+        [JsonProperty("version", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Version;
+    }
 }

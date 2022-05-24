@@ -1,14 +1,14 @@
 using Newtonsoft.Json;
 
 namespace OpenRTB.Request {
-	public struct Data {
-		[JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Id { get; set; }
+    public class Data {
+        [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Id;
 
-		[JsonProperty("name", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Name { get; set; }
+        [JsonProperty("name", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Name;
 
-		[JsonProperty("segment", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Segment[] Segment { get; set; }
-	}
+        [JsonProperty("segment", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Segment[] Segment;
+    }
 }

@@ -1,16 +1,16 @@
 using Newtonsoft.Json;
 
 namespace OpenRTB.Request {
-	public struct Source {
-		[JsonProperty("ext", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public SourceExt Ext { get; set; }
-	}
+    public class Source {
+        [JsonProperty("ext", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public SourceExt Ext;
+    }
 
-	public struct SourceExt {
-		[JsonProperty("omidpn", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Omidpn { get; set; }
+    public class SourceExt {
+        [JsonProperty("omidpn", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Omidpn;
 
-		[JsonProperty("omidpv", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Omidpv { get; set; }
-	}
+        [JsonProperty("omidpv", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Omidpv;
+    }
 }
