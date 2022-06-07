@@ -21,8 +21,8 @@ jobs:
     name: Build, test, and optionally publish Android OpenRTB
     runs-on: macos-latest
     env:
-      ORG_GRADLE_PROJECT_awsAccessKey: ${{ secrets.AWS_ACCESS_KEY }}
-      ORG_GRADLE_PROJECT_awsSecretKey: ${{ secrets.AWS_SECRET_KEY }}
+      ORG_GRADLE_PROJECT_awsAccessKey: ${{ secrets.NIMBUS_MOBILE_AWS_ACCESS_KEY }}
+      ORG_GRADLE_PROJECT_awsSecretKey: ${{ secrets.NIMBUS_MOBILE_AWS_SECRET_KEY }}
       ORG_GRADLE_PROJECT_githubUsername: ${{ github.actor }}
       ORG_GRADLE_PROJECT_githubPassword: ${{ github.token }}
     concurrency:
