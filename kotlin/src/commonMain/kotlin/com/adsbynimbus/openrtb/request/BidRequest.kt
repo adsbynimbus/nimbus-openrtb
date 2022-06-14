@@ -29,7 +29,7 @@ public typealias Extension = JsonObject
  *
  * @property imp Array of impression objects representing the impressions offered.
  *               Only 1 impression object is supported.
- *  @property app Details about the publisher’s app (i.e., non-browser applications).
+ * @property app Details about the publisher’s app (i.e., non-browser applications).
  * @property device Details about the user’s device to which the impression will be delivered.
  * @property format A format object representing the width and height of the device.
  *                  This is not part of the spec, adding this here for convenience allows height and
