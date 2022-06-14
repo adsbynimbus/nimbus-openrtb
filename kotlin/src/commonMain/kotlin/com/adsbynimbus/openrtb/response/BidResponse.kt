@@ -3,7 +3,7 @@ package com.adsbynimbus.openrtb.response
 import com.adsbynimbus.openrtb.request.BidRequest
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.*
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -44,21 +44,14 @@ public class BidResponse(
     @JvmField @SerialName("height") public val height: Int = 0,
     @JvmField @SerialName("width") public val width: Int = 0,
     @JvmField @SerialName("is_interstitial") public val is_interstitial: Byte = 0,
-    @JvmField @SerialName("markup") public val markup: String,
+    @JvmField @SerialName("markup") public val markup: String = "",
     @JvmField @SerialName("network") public val network: String = "",
     @JvmField @SerialName("placement_id") public val placement_id: String? = null,
     @JvmField @SerialName("is_mraid") public val is_mraid: Byte = 0,
-    @JvmField @SerialName("position") public val position: String,
-    @JvmField @SerialName("trackers") public val trackers: Map<String, Array<String>> =
-        emptyMap<String, Array<String>>().withDefault { emptyArray() },
+    @JvmField @SerialName("position") public val position: String = "",
+    @JvmField @SerialName("trackers") public val trackers: Trackers = JsonObject(emptyMap()),
     @JvmField @SerialName("duration") public val duration: Int = 0,
 ) {
-
-    /** Urls to fire a request to when an impression is registered */
-    public val impression_trackers: Array<String> by trackers
-    /** Urls to fire a request to when a click is registered */
-    public val click_trackers: Array<String> by trackers
-
     public companion object {
         /** Decodes a BidResponse from a Json string using the built in serializer */
         @JvmStatic @JvmOverloads
@@ -67,4 +60,20 @@ public class BidResponse(
             jsonSerializer: Json = BidRequest.lenientSerializer,
         ): BidResponse = jsonSerializer.decodeFromString(serializer(), json)
     }
+
+    @Deprecated("Deprecated in favor of impression extension.", ReplaceWith("trackers.impression"))
+    public val impression_trackers: Array<String> = trackers.impression.toTypedArray()
+    @Deprecated("Deprecated in favor of click extension.", ReplaceWith("trackers.click"))
+    public val click_trackers: Array<String> = trackers.click.toTypedArray()
 }
+
+/** Type alias for the object containing trackers */
+public typealias Trackers = JsonObject
+
+/** Urls to fire a request to when a click is registered */
+public inline val Trackers.click: List<String>
+    get() = get("click_trackers")?.jsonArray?.map { it.jsonPrimitive.content } ?: emptyList()
+
+/** Urls to fire a request to when an impression is registered. */
+public inline val Trackers.impression: List<String>
+    get() = get("impression_trackers")?.jsonArray?.map { it.jsonPrimitive.content } ?: emptyList()
