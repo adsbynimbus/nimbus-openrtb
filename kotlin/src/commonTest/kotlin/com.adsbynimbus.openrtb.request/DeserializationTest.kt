@@ -4,6 +4,9 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 const val testJson = """
 {
@@ -100,7 +103,27 @@ const val testJson = """
         "ifa":"00000000-0000-0000-0000-000000000000"
     },
     "format":{"w":320,"h":480},
-    "user":{"age":3,"yob":2019,"gender":"male","ext":{"did_consent":1}},
+    "user":{
+        "age":3,
+        "yob":2019,
+        "gender":"male",
+        "ext":{
+            "did_consent":1,
+            "eids": [
+                {
+                    "source": "test_eid_source",
+                    "uids": [
+                        {
+                            "id": "test_id",
+                            "ext": {
+                                "rtiPartner": "testPartner"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
     "source":{"ext":{}},
     "regs":{
         "coppa":0,
@@ -151,5 +174,20 @@ class DeserializationTest : StringSpec({
     "BidResponse fromJson deserializes the ext object" {
         request.api_key shouldBe "12345678-4321-1234-0000-6c5b91b1eac6"
         request.session_id shouldBe "session1"
+    }
+
+    "BidResponse fromJson deserializes unknown and nested extensions" {
+        val eid = request.user?.ext?.get("eids")?.jsonArray.also {
+            it.shouldNotBeNull()
+            it.size shouldBe 1
+        }?.get(0)?.jsonObject!!
+
+        eid["source"]?.jsonPrimitive?.content shouldBe "test_eid_source"
+
+        val nestedObj = eid.jsonObject["uids"]!!.jsonArray[0].jsonObject.also {
+            it["id"]?.jsonPrimitive?.content shouldBe "test_id"
+        }["ext"]?.jsonObject!!
+
+        nestedObj["rtiPartner"]?.jsonPrimitive?.content shouldBe "testPartner"
     }
 })
