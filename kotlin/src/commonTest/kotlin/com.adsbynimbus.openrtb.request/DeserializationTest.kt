@@ -2,8 +2,6 @@ package com.adsbynimbus.openrtb.request
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldHaveSize
-import io.kotest.matchers.maps.shouldContain
-import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 
@@ -151,8 +149,7 @@ class DeserializationTest : StringSpec({
     }
 
     "BidResponse fromJson deserializes the ext object" {
-        request.ext.shouldNotBeEmpty()
-        request.ext.shouldContain("api_key", "12345678-4321-1234-0000-6c5b91b1eac6")
+        request.api_key shouldBe "12345678-4321-1234-0000-6c5b91b1eac6"
         request.session_id shouldBe "session1"
     }
 })

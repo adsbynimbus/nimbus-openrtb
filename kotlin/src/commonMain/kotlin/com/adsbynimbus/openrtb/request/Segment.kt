@@ -15,10 +15,12 @@ import kotlin.jvm.JvmField
  * @property id ID of the data segment specific to the data provider.
  * @property name Name of the data segment specific to the data provider.
  * @property value String representation of the data segment value.
+ * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
 public class Segment(
     @JvmField @SerialName("id") public val id: String,
     @JvmField @SerialName("name") public val name: String,
     @JvmField @SerialName("value") public val value: String,
+    @JvmField @SerialName("ext") public var ext: Extension? = null,
 )

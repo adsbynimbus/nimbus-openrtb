@@ -34,6 +34,7 @@ import kotlin.jvm.JvmField
  *                   should be published to bidders a priori.
  * @property connectiontype Network connection type.
  * @property ifa ID sanctioned for advertiser use in the clear (i.e., not hashed).
+ * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
 public class Device(
@@ -54,4 +55,5 @@ public class Device(
     @JvmField @SerialName("geo") public var geo: Geo? = null,
     @JvmField @SerialName("ip") public var ip: String? = null,
     @JvmField @SerialName("carrier") public var carrier: String? = null,
+    @JvmField @SerialName("ext") public var ext: Extension? = null,
 )

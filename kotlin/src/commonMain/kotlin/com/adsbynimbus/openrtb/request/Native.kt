@@ -29,6 +29,7 @@ import kotlin.jvm.JvmField
  * @property api List of supported API frameworks for this impression. If an API is not explicitly
  *               listed, it is assumed not to be supported.
  * @property battr Set of creative attributes to block.
+ * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
 public class Native(
@@ -37,4 +38,5 @@ public class Native(
     @JvmField @SerialName("ver") public var ver: String? = null,
     @JvmField @SerialName("api") public var api: ByteArray? = null,
     @JvmField @SerialName("battr") public var battr: ByteArray? = null,
+    @JvmField @SerialName("ext") public var ext: Extension? = null,
 )
