@@ -2,7 +2,6 @@ package com.adsbynimbus.openrtb.response
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldBeIn
-import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
 
 const val testJson = """
@@ -79,14 +78,22 @@ class DeserializationTest : StringSpec({
     }
 
     "BidResponse fromJson deserializes click_trackers" {
-        "https://test.adsbynimbus.com/click_tracker/" shouldBeIn response.click_trackers
+        "https://test.adsbynimbus.com/click_tracker/" shouldBeIn response.trackers.click
     }
 
     "BidResponse fromJson deserializes impression_trackers" {
-        "https://test.adsbynimbus.com/impression_tracker/" shouldBeIn response.impression_trackers
+        "https://test.adsbynimbus.com/impression_tracker/" shouldBeIn response.trackers.impression
     }
 
     "BidResponse fromJson deserializes the duration field" {
         response.duration shouldBe 15
+    }
+
+    "BidResponse maintains the deprecated field click_trackers" {
+        "https://test.adsbynimbus.com/click_tracker/" shouldBeIn response.click_trackers
+    }
+
+    "BidResponse maintains the deprecated field impression_trackers" {
+        "https://test.adsbynimbus.com/impression_tracker/" shouldBeIn response.impression_trackers
     }
 })

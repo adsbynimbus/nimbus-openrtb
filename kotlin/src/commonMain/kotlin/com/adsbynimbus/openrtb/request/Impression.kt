@@ -2,6 +2,7 @@ package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.*
 import kotlin.jvm.JvmField
 
 /**
@@ -29,7 +30,7 @@ import kotlin.jvm.JvmField
  *                  markup.
  *                  0 = non-secure
  *                  1 = secure
- * @property ext Placeholder for exchange-specific extensions to OpenRTB
+ * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
 public class Impression(
@@ -38,27 +39,62 @@ public class Impression(
     @JvmField @SerialName("native") public var native: Native? = null,
     @JvmField @SerialName("instl") public var instl: Byte = 0,
     @JvmField @SerialName("secure") public var secure: Byte = 1,
-    @JvmField @SerialName("ext") public var ext: Extension,
-) {
-    /**
-     * Impression extension unique to Nimbus
-     *
-     * @property position Required string identifying the name of the placement that will be
-     *                    displayed on the Nimbus dashboard.
-     * @property aps The list of key value pairs provided by a DTBRequest from the APS library.
-     * @property facebook_app_id The identifier for this app provided by Facebook. Required if
-     *                           including Facebook demand in this request.
-     * @property facebook_test_ad_type An optional ad type to force a test response for validating
-     *                                 integrations.
-     * @see [Facebook Testing](https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing)
-     */
-    @Serializable
-    public class Extension(
-        @JvmField @SerialName("position") public var position: String,
-        @JvmField @SerialName("aps") public var aps: Collection<Map<String, List<String>>> = emptyList(),
-        @JvmField @SerialName("facebook_app_id") public var facebook_app_id: String = "",
-        @JvmField @SerialName("facebook_test_ad_type") public var facebook_test_ad_type: String = "",
-    )
-}
+    @JvmField @SerialName("ext") public var ext: Extension? = null,
+)
 
+/** Type alias for the key value params provided by the APS SDK. */
+public typealias ApsParams = Map<String, List<String>>
 
+/** Extension for converting ApsParams to a serializable JsonObject. */
+public inline val ApsParams.jsonObject: JsonObject
+    get() = buildJsonObject {
+        forEach { kv -> putJsonArray(kv.key) { kv.value.forEach { param -> add(param) } } }
+    }
+
+/** Required name of the placement that will be displayed on the Nimbus dashboard. */
+public var Impression.position: String?
+    get() = ext?.get("position")?.jsonPrimitive?.contentOrNull
+    set(value) {
+        ext = buildJsonObject {
+            ext?.forEach { put(it.key, it.value) }
+            put("position", value)
+        }
+    }
+
+/** The list of key value pairs provided by a DTBRequest from the APS library. */
+public var Impression.aps: List<ApsParams>
+    get() = ext?.get("aps")?.jsonArray?.map { bids ->
+        bids.jsonObject.mapValues { params ->
+            params.value.jsonArray.map { value -> value.jsonPrimitive.content }
+        }
+    } ?: emptyList()
+    set(value) {
+        ext = buildJsonObject {
+            ext?.forEach { put(it.key, it.value) }
+            putJsonArray("aps") { value.map { it.jsonObject } }
+        }
+    }
+
+/** The Facebook provided app identifier if including Audience Network demand. */
+public var Impression.facebook_app_id: String?
+    get() = ext?.get("facebook_app_id")?.jsonPrimitive?.contentOrNull
+    set(value) {
+        ext = buildJsonObject {
+            ext?.forEach { put(it.key, it.value) }
+            put("facebook_app_id", value)
+        }
+    }
+
+/**
+ * An optional ad type to force a test response for validating integrations.
+ *
+ * @see [Facebook Testing](https://developers.facebook.com/docs/audience-network/overview/in-house-mediation/server-to-server/testing)
+ */
+public var Impression.facebook_test_ad_type: String?
+    get() = ext?.get("facebook_test_ad_type")?.jsonPrimitive?.contentOrNull
+    set(value) {
+        ext = buildJsonObject {
+            ext?.forEach { put(it.key, it.value) }
+            put("facebook_test_ad_type", value)
+        }
+    }
