@@ -71,6 +71,7 @@
         <Compile Include="Request\User.cs" />
         <Compile Include="Request\Video.cs" />
         <Compile Include="Response\BidResponse.cs" />
+        <Compile Include="Response\ErrResponse.cs" />
         <Compile Include="Response\SkadnResponse.cs" />
         <Compile Include="Response\Trackers.cs" />
     </ItemGroup>

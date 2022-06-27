@@ -1,36 +1,36 @@
 using Newtonsoft.Json;
 
 namespace OpenRTB.Request {
-	public struct App {
-		[JsonProperty("name", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Name { get; set; }
+    public class App {
+        [JsonProperty("bundle", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Bundle;
 
-		[JsonProperty("bundle", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Bundle { get; set; }
+        [JsonProperty("cat", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string[] Cat;
 
-		[JsonProperty("domain", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Domain { get; set; }
+        [JsonProperty("domain", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Domain;
 
-		[JsonProperty("storeurl", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string StoreUrl { get; set; }
+        [JsonProperty("name", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Name;
 
-		[JsonProperty("cat", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string[] Cat { get; set; }
+        [JsonProperty("pagecat", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string[] PageCat;
 
-		[JsonProperty("sectioncat", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string[] SectionCat { get; set; }
+        [JsonProperty("paid")] public int Paid;
 
-		[JsonProperty("pagecat", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string[] PageCat { get; set; }
+        [JsonProperty("privacypolicy")] public int PrivacyPolicy;
 
-		[JsonProperty("ver", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Ver { get; set; }
+        [JsonProperty("publisher", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Publisher Publisher;
 
-		[JsonProperty("privacypolicy")] public int PrivacyPolicy { get; set; }
+        [JsonProperty("sectioncat", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string[] SectionCat;
 
-		[JsonProperty("paid")] public int Paid { get; set; }
+        [JsonProperty("storeurl", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string StoreUrl;
 
-		[JsonProperty("publisher", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Publisher Publisher { get; set; }
-	}
+        [JsonProperty("ver", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Ver;
+    }
 }

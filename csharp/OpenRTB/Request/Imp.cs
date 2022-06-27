@@ -1,30 +1,30 @@
 using Newtonsoft.Json;
 
 namespace OpenRTB.Request {
-	public struct Imp {
-		[JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string Id { get; set; }
+    public class Imp {
+        [JsonProperty("banner", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Banner Banner;
 
-		[JsonProperty("banner", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Banner Banner { get; set; }
+        [JsonProperty("ext", Required = Required.Always)]
+        public ImpExt Ext;
 
-		[JsonProperty("video", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Video Video { get; set; }
+        [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string Id;
 
-		[JsonProperty("instl")] public int Instl { get; set; }
+        [JsonProperty("instl")] public int Instl;
 
-		[JsonProperty("secure", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int Secure { get; set; }
+        [JsonProperty("secure", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int Secure;
 
-		[JsonProperty("ext", Required = Required.Always)]
-		public ImpExt Ext { get; set; }
-	}
+        [JsonProperty("video", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Video Video;
+    }
 
-	public struct ImpExt {
-		[JsonProperty("position", Required = Required.Always)]
-		public string Position { get; set; }
+    public class ImpExt {
+        [JsonProperty("position", Required = Required.Always)]
+        public string Position;
 
-		[JsonProperty("skadn", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public Skadn Skadn { get; set; }
-	}
+        [JsonProperty("skadn", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Skadn Skadn;
+    }
 }

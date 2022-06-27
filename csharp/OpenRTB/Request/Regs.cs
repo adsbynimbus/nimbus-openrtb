@@ -1,18 +1,18 @@
 using Newtonsoft.Json;
 
 namespace OpenRTB.Request {
-	public struct Regs {
-		[JsonProperty("coppa")] public int Coppa { get; set; }
+    public class Regs {
+        [JsonProperty("coppa")] public int Coppa;
 
-		[JsonProperty("ext", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public RegExt Ext { get; set; }
-	}
+        [JsonProperty("ext", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public RegExt Ext;
+    }
 
-	public struct RegExt {
-		[JsonProperty("gdpr", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int Gdpr { get; set; }
+    public class RegExt {
+        [JsonProperty("gdpr", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int Gdpr;
 
-		[JsonProperty("us_privacy", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public string UsPrivacy { get; set; }
-	}
+        [JsonProperty("us_privacy", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string UsPrivacy;
+    }
 }

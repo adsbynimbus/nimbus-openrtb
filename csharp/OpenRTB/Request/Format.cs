@@ -1,11 +1,11 @@
 using Newtonsoft.Json;
 
 namespace OpenRTB.Request {
-	public struct Format {
-		[JsonProperty("w", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int W { get; set; }
+    public class Format {
+        [JsonProperty("h", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int H;
 
-		[JsonProperty("h", DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public int H { get; set; }
-	}
+        [JsonProperty("w", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int W;
+    }
 }
