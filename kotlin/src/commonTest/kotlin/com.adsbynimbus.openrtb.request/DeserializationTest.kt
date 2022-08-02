@@ -102,7 +102,38 @@ const val testJson = """
         "ifa":"00000000-0000-0000-0000-000000000000"
     },
     "format":{"w":320,"h":480},
-    "user":{"age":3,"yob":2019,"gender":"male","ext":{"did_consent":1}},
+    "user":{
+        "age":3,
+        "yob":2019,
+        "gender":"male",
+        "ext":{
+            "did_consent":1,
+            "eids": [
+                {
+                    "source": "vendor1.com",
+                    "uids": [
+                        {
+                            "id": "XY1000bIVBVah9ium-sZ3ykhPiXQbEcUpn4GjCtxrrw2BRDGM",
+                            "ext": {
+                                "rtiPartner": "idl"
+                            }
+                         }
+                    ]
+                },
+                {
+                    "source": "adserver.org",
+                    "uids": [
+                        {
+                            "id": "6bca7f6b-a98a-46c0-be05-6020f7604598",
+                            "ext": {
+                                "rtiPartner": "TDID"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
     "source":{"ext":{}},
     "regs":{
         "coppa":0,
@@ -154,5 +185,19 @@ class DeserializationTest : StringSpec({
         request.ext.shouldNotBeEmpty()
         request.ext.shouldContain("api_key", "12345678-4321-1234-0000-6c5b91b1eac6")
         request.session_id shouldBe "session1"
+    }
+
+    "BidResponse fromJson deserialized EIDS" {
+        request.user?.ext?.eids.shouldNotBeNull()
+        request.user?.ext?.eids?.run {
+            size shouldBe 2
+            val eid1 = first { it.source == "vendor1.com"}.uids.first()
+            eid1.id shouldBe "XY1000bIVBVah9ium-sZ3ykhPiXQbEcUpn4GjCtxrrw2BRDGM"
+            eid1.ext.shouldContain("rtiPartner", "idl")
+
+            val eid2 = first { it.source == "adserver.org" }.uids.first()
+            eid2.id shouldBe "6bca7f6b-a98a-46c0-be05-6020f7604598"
+            eid2.ext.shouldContain("rtiPartner", "TDID")
+        }
     }
 })

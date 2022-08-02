@@ -51,11 +51,20 @@ public class User(
      *                          in the auction. Token is initialized when UnityAds is initialized
      *                          and the token and campaign is refreshed after the ad playback has
      *                          started.
+     * @property eids Collection of external user ids
      */
     @Serializable
     public class Extension(
         @JvmField @SerialName("consent") public var consent: String? = null,
         @JvmField @SerialName("did_consent") public var did_consent: Byte? = null,
         @JvmField @SerialName("unity_buyeruid") public var unity_buyeruid: String? = null,
+        @JvmField @SerialName("eids") public var eids: Set<EID>? = null
     )
 }
+
+/** An External User Id */
+@Serializable
+public class EID(
+    @JvmField @SerialName("source") public var source: String,
+    @JvmField @SerialName("uids") public var uids: Set<Segment>,
+)

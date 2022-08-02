@@ -4,6 +4,7 @@ package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonNames
 import kotlin.jvm.JvmField
 
 /**
@@ -23,5 +24,5 @@ import kotlin.jvm.JvmField
 public class Data(
     @JvmField @SerialName("id") public var id: String? = null,
     @JvmField @SerialName("name") public var name: String? = null,
-    @JvmField @SerialName("segment") public var segment: Collection<Segment>? = null,
+    @JvmField @SerialName("segment") public var segment: Set<Segment>? = null,
 )
