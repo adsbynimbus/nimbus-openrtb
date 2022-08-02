@@ -2,7 +2,6 @@ package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.*
 import kotlin.jvm.JvmField
 
 /**
@@ -45,49 +44,18 @@ public class User(
     /**
      * User extension object used by Nimbus
      *
-     * @property consent
-     * @property did_consent
-     * @property unity_buyeruid
+     * @property consent Publisher provided GDPR consent string
+     * @property did_consent 1 if the user has consented to data tracking, 0 if the user has opted
+     *                       out of data tracking.
+     * @property unity_buyeruid String token provided by the Unity Ads SDK to include Unity demand
+     *                          in the auction. Token is initialized when UnityAds is initialized
+     *                          and the token and campaign is refreshed after the ad playback has
+     *                          started.
      */
-   /* @Serializable
+    @Serializable
     public class Extension(
         @JvmField @SerialName("consent") public var consent: String? = null,
         @JvmField @SerialName("did_consent") public var did_consent: Byte? = null,
         @JvmField @SerialName("unity_buyeruid") public var unity_buyeruid: String? = null,
-    ) */
+    )
 }
-
-/** Publisher provided GDPR consent string */
-public var User.consent: String?
-    get() = ext?.get("consent")?.jsonPrimitive?.contentOrNull
-    set(value) {
-        ext = buildJsonObject {
-            ext?.forEach { put(it.key, it.value) }
-            put("consent", value)
-        }
-    }
-
-/** 1 if the user has consented to data tracking, 0 if the user has opted out of data tracking.*/
-public var User.did_consent: Byte?
-    get() = ext?.get("did_consent")?.jsonPrimitive?.intOrNull?.toByte()
-    set(value) {
-        ext = buildJsonObject {
-            ext?.forEach { put(it.key, it.value) }
-            put("did_consent", value)
-        }
-    }
-
-/**
- * String token provided by the Unity Ads SDK to include Unity demand in the auction.
- *
- * Token is initialized when UnityAds is initialized and the token and campaign is refreshed after
- * the ad playback has started.
- */
-public var User.unity_buyeruid: String?
-    get() = ext?.get("unity_buyeruid")?.jsonPrimitive?.contentOrNull
-    set(value) {
-        ext = buildJsonObject {
-            ext?.forEach { put(it.key, it.value) }
-            put("unity_buyeruid", value)
-        }
-    }

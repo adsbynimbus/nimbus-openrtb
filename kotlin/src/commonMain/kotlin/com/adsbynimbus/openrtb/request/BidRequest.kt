@@ -2,17 +2,10 @@ package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.Json
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
-
-/**
- * Type alias for the ext field present on all OpenRTB objects.
- *
- * Extensions defined by Nimbus are implemented as extension properties on the [JsonObject].
- */
-public typealias Extension = JsonObject
 
 /**
  * The top-level bid request object contains a globally unique bid request or auction ID.
@@ -29,7 +22,7 @@ public typealias Extension = JsonObject
  *
  * @property imp Array of impression objects representing the impressions offered.
  *               Only 1 impression object is supported.
- * @property app Details about the publisher’s app (i.e., non-browser applications).
+ *  @property app Details about the publisher’s app (i.e., non-browser applications).
  * @property device Details about the user’s device to which the impression will be delivered.
  * @property format A format object representing the width and height of the device.
  *                  This is not part of the spec, adding this here for convenience allows height and
@@ -59,8 +52,16 @@ public class BidRequest(
     @JvmField @SerialName("badv") public var badv: Array<String>? = null,
     @JvmField @SerialName("source") public var source: Source? = null,
     @JvmField @SerialName("regs") public var regs: Regs? = null,
-    @JvmField @SerialName("ext") public var ext: Extension? = null,
+    @JvmField @SerialName("ext") public val ext: MutableMap<String, String> = mutableMapOf(),
 ) {
+
+    /**
+     * Any unique string value to identify the session.
+     *
+     * Defaults to a random UUID when using the Nimbus SDK
+     */
+    public var session_id: String by ext
+
     public companion object {
         /** Required header for all requests to Nimbus defining the OpenRTB version */
         public const val OPENRTB_HEADER: String = "x-openrtb-version"
@@ -86,25 +87,3 @@ public class BidRequest(
             jsonSerializer.decodeFromString(serializer(), json)
     }
 }
-
-/** The API key used to authenticate with Nimbus. */
-public var BidRequest.api_key: String?
-    get() = ext?.get("api_key")?.jsonPrimitive?.contentOrNull
-    set(value) {
-        ext = buildJsonObject {
-            ext?.forEach { put(it.key, it.value) }
-            put("api_key", value)
-        }
-    }
-
-/** Any unique string value to identify the session; when used in the Nimbus SDK will be a UUID */
-public var BidRequest.session_id: String?
-    get() = ext?.get("session_id")?.jsonPrimitive?.contentOrNull
-    set(value) {
-        ext = buildJsonObject {
-            ext?.forEach { put(it.key, it.value) }
-            put("session_id", value)
-        }
-    }
-
-

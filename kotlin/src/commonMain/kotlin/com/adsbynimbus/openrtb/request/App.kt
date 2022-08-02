@@ -28,7 +28,6 @@ import kotlin.jvm.JvmField
  * @property privacypolicy Indicates if the app has a privacy policy. (0 = No, 1 = Yes)
  * @property paid Indicates if the app is free or paid. (0 = Free, 1 = Paid)
  * @property publisher Details about the publisher of the app.
- * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
 public class App(
@@ -44,5 +43,4 @@ public class App(
     @JvmField @SerialName("privacypolicy") public var privacypolicy: Byte? = null,
     @JvmField @SerialName("paid") public var paid: Byte? = null,
     @JvmField @SerialName("publisher") public var publisher: Publisher? = null,
-    @JvmField @SerialName("ext") public var ext: Extension? = null,
 )

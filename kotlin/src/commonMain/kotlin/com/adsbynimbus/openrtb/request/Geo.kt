@@ -29,7 +29,6 @@ import kotlin.jvm.JvmField
  * @property city City using United Nations Code for Trade &amp; Transport Locations.
  * @property metro Google metro code; similar to but not exactly Nielsen DMAs.
  * @property state 2-letter state code.
- * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  * @see [United Nations Location Codes](http://www.unece.org/cefact/locode/service/location.htm)
  * @see [Google Metro codes](code.google.com/apis/adwords/docs/appendix/metrocodes.html)
  */
@@ -43,5 +42,4 @@ public class Geo(
     @JvmField @SerialName("city") public var city: String? = null,
     @JvmField @SerialName("metro") public var metro: String? = null,
     @JvmField @SerialName("state") public var state: String? = null,
-    @JvmField @SerialName("ext") public var ext: Extension? = null,
 )

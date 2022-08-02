@@ -2,10 +2,6 @@ package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.contentOrNull
-import kotlinx.serialization.json.jsonPrimitive
-import kotlinx.serialization.json.put
 import kotlin.jvm.JvmField
 
 /**
@@ -22,24 +18,13 @@ import kotlin.jvm.JvmField
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
-public class Source(@JvmField @SerialName("ext") public var ext: Extension? = null)
+public class Source(
+    @JvmField @SerialName("ext") public val ext: MutableMap<String, String> = mutableMapOf()
+) {
 
-/** Partner name that identifies the OM SDK integration. */
-public var Source.omidpn: String?
-    get() = ext?.get("omidpn")?.jsonPrimitive?.contentOrNull
-    set(value) {
-        ext = buildJsonObject {
-            ext?.forEach { put(it.key, it.value) }
-            put("omidpn", value)
-        }
-    }
+    /** Partner name that identifies the OM SDK integration */
+    public var omidpn: String by ext
 
-/** Current version of the OM SDK integration. */
-public var Source.omidpv: String?
-    get() = ext?.get("omidpv")?.jsonPrimitive?.contentOrNull
-    set(value) {
-        ext = buildJsonObject {
-            ext?.forEach { put(it.key, it.value) }
-            put("omidpv", value)
-        }
-    }
+    /** Current version of the OM SDK integration */
+    public var omidpv: String by ext
+}
