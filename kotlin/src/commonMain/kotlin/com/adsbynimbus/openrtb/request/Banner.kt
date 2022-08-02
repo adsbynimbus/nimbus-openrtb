@@ -28,7 +28,6 @@ import kotlin.jvm.JvmField
  * @property api Set of supported Api frameworks for this banner impression. If an Api is not
  *               explicitly listed, it is assumed not to be supported.
  * @property vcm The type of companion ad if used in a Video object. (0 - Concurrent, 1 - End Card)
- * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
 public class Banner(
@@ -40,5 +39,4 @@ public class Banner(
     @JvmField @SerialName("pos") public var pos: Byte = 0,
     @JvmField @SerialName("api") public var api: ByteArray? = null,
     @JvmField @SerialName("vcm") public var vcm: Byte? = null,
-    @JvmField @SerialName("ext") public var ext: Extension? = null,
 )

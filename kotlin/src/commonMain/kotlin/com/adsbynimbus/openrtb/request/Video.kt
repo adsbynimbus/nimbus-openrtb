@@ -2,7 +2,6 @@ package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.*
 import kotlin.jvm.JvmField
 
 /**
@@ -80,15 +79,11 @@ public class Video(
     @JvmField @SerialName("api") public var api: ByteArray? = null,
     @JvmField @SerialName("companionad") public var companionad: Array<Banner>? = null,
     @JvmField @SerialName("companiontype") public var companiontype: ByteArray? = null,
-    @JvmField @SerialName("ext") public var ext: Extension? = null,
-)
+    @JvmField @SerialName("ext") public var ext: MutableMap<String, Byte> = mutableMapOf(
+        "is_rewarded" to 0
+    ),
+) {
 
-/** Indicates this video request is for a rewarded video. */
-public var Video.is_rewarded: Byte
-    get() = ext?.get("is_rewarded")?.jsonPrimitive?.int?.toByte() ?: 0
-    set(value) {
-        ext = buildJsonObject {
-            ext?.forEach { put(it.key, it.value) }
-            put("is_rewarded", value)
-        }
-    }
+    /** Indicates this video request is for a rewarded video */
+    public var is_rewarded: Byte by ext
+}

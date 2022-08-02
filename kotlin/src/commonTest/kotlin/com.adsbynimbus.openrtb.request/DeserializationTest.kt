@@ -2,11 +2,10 @@ package com.adsbynimbus.openrtb.request
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.maps.shouldContain
+import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
 
 const val testJson = """
 {
@@ -111,12 +110,23 @@ const val testJson = """
             "did_consent":1,
             "eids": [
                 {
-                    "source": "test_eid_source",
+                    "source": "vendor1.com",
                     "uids": [
                         {
-                            "id": "test_id",
+                            "id": "XY1000bIVBVah9ium-sZ3ykhPiXQbEcUpn4GjCtxrrw2BRDGM",
                             "ext": {
-                                "rtiPartner": "testPartner"
+                                "rtiPartner": "idl"
+                            }
+                         }
+                    ]
+                },
+                {
+                    "source": "adserver.org",
+                    "uids": [
+                        {
+                            "id": "6bca7f6b-a98a-46c0-be05-6020f7604598",
+                            "ext": {
+                                "rtiPartner": "TDID"
                             }
                         }
                     ]
@@ -172,22 +182,22 @@ class DeserializationTest : StringSpec({
     }
 
     "BidResponse fromJson deserializes the ext object" {
-        request.api_key shouldBe "12345678-4321-1234-0000-6c5b91b1eac6"
+        request.ext.shouldNotBeEmpty()
+        request.ext.shouldContain("api_key", "12345678-4321-1234-0000-6c5b91b1eac6")
         request.session_id shouldBe "session1"
     }
 
-    "BidResponse fromJson deserializes unknown and nested extensions" {
-        val eid = request.user?.ext?.get("eids")?.jsonArray.also {
-            it.shouldNotBeNull()
-            it.size shouldBe 1
-        }?.get(0)?.jsonObject!!
+    "BidResponse fromJson deserialized EIDS" {
+        request.user?.ext?.eids.shouldNotBeNull()
+        request.user?.ext?.eids?.run {
+            size shouldBe 2
+            val eid1 = first { it.source == "vendor1.com"}.uids.first()
+            eid1.id shouldBe "XY1000bIVBVah9ium-sZ3ykhPiXQbEcUpn4GjCtxrrw2BRDGM"
+            eid1.ext.shouldContain("rtiPartner", "idl")
 
-        eid["source"]?.jsonPrimitive?.content shouldBe "test_eid_source"
-
-        val nestedObj = eid.jsonObject["uids"]!!.jsonArray[0].jsonObject.also {
-            it["id"]?.jsonPrimitive?.content shouldBe "test_id"
-        }["ext"]?.jsonObject!!
-
-        nestedObj["rtiPartner"]?.jsonPrimitive?.content shouldBe "testPartner"
+            val eid2 = first { it.source == "adserver.org" }.uids.first()
+            eid2.id shouldBe "6bca7f6b-a98a-46c0-be05-6020f7604598"
+            eid2.ext.shouldContain("rtiPartner", "TDID")
+        }
     }
 })
