@@ -18,7 +18,7 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Segment(
-    @JvmField @SerialName("id") public val id: String,
-    @JvmField @SerialName("name") public val name: String,
-    @JvmField @SerialName("value") public val value: String,
+    @JvmField @SerialName("id") public val id: String? = null,
+    @JvmField @SerialName("name") public val name: String? = null,
+    @JvmField @SerialName("value") public val value: String? = null,
 )

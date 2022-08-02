@@ -46,7 +46,7 @@ public class Regs(
      */
     @Serializable
     public class Extension(
-        @JvmField @SerialName("gdpr") public var gdpr: Byte = 0,
+        @JvmField @SerialName("gdpr") public var gdpr: Byte? = null,
         @JvmField @SerialName("us_privacy") public var us_privacy: String? = null
     )
 }
