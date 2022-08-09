@@ -1,15 +1,16 @@
-@file:Suppress("DSL_SCOPE_VIOLATION")
+@file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
 
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.android)
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotest)
-    kotlin("native.cocoapods")
+    alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.dokka)
-    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.serialization)
     `maven-publish`
 }
 
@@ -32,9 +33,6 @@ kotlin {
     explicitApi()
 
     android {
-        compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
-        }
         publishLibraryVariants("release")
     }
 
@@ -74,7 +72,11 @@ kotlin {
     }
     sourceSets {
         configureEach {
-            languageSettings.optIn("kotlinx.serialization.ExperimentalSerializationApi")
+            languageSettings {
+                apiVersion = "1.5"
+                languageVersion = "1.5"
+                optIn("kotlinx.serialization.ExperimentalSerializationApi")
+            }
         }
         val commonMain by getting {
             dependencies {
@@ -120,6 +122,7 @@ tasks.withType<Test> {
 }
 
 tasks.withType<DokkaTask>().configureEach {
+    notCompatibleWithConfigurationCache("Dokka does not support it yet")
     moduleName.set("nimbus-openrtb")
 
     dokkaSourceSets {
