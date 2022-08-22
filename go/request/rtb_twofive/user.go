@@ -17,10 +17,9 @@ type User struct {
 	Ext        *UserExt `json:"ext"                   valid:"optional"`
 }
 
-// UserExt being used for GDPR
+// UserExt Nimbus and IAB extensions
 type UserExt struct {
-	Consent          string `json:"consent,omitempty"           valid:"base64rawstring,optional"` // if a publisher has their own cpm they can supply thier own GDPR consent string
-	DidConsent       int    `json:"did_consent,omitempty"       valid:"range(0|1),optional"`      // Allows a publisher to let Nimbus know thier user has consent to thier data use policy for ads
+	Consent          string `json:"consent,omitempty"           valid:"-"` // publisher provided GDPR TCF string
 	UnityBuyerUID    string `json:"unity_buyeruid,omitempty"    valid:"-"`
 	FacebookBuyerUID string `json:"facebook_buyeruid,omitempty" valid:"-"`
 	VungleBuyerUID   string `json:"vungle_buyeruid,omitempty"   valid:"-"` // buyer id that is generated from the unity sdk and passed to nimbus in the rtb request
@@ -93,7 +92,6 @@ func (u *User) NKeys() int { return 0 }
 // MarshalJSONObject implements MarshalerJSONObject
 func (e *UserExt) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.StringKeyOmitEmpty("consent", e.Consent)
-	enc.IntKeyOmitEmpty("did_consent", e.DidConsent)
 	enc.StringKeyOmitEmpty("unity_buyeruid", e.UnityBuyerUID)
 	enc.StringKeyOmitEmpty("facebook_buyeruid", e.FacebookBuyerUID)
 	enc.StringKeyOmitEmpty("vungle_buyeruid", e.VungleBuyerUID)
@@ -112,9 +110,6 @@ func (e *UserExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	case "consent":
 		return dec.String(&e.Consent)
-
-	case "did_consent":
-		return dec.Int(&e.DidConsent)
 
 	case "unity_buyeruid":
 		return dec.String(&e.UnityBuyerUID)
