@@ -19,10 +19,12 @@ type User struct {
 
 // UserExt being used for GDPR
 type UserExt struct {
-	Consent       string `json:"consent,omitempty"        valid:"base64rawstring,optional"` // if a publisher has their own cpm they can supply thier own GDPR consent string
-	DidConsent    int    `json:"did_consent,omitempty"    valid:"range(0|1),optional"`      // Allows a publisher to let Nimbus know thier user has consent to thier data use policy for ads
-	UnityBuyerUID string `json:"unity_buyeruid,omitempty" valid:"-"`                        // buyer id that is generated from the unity sdk and passed to nimbus in the rtb request
-	EIDS          EIDS   `json:"eids,omitempty"           valid:"-"`
+	Consent          string `json:"consent,omitempty"           valid:"base64rawstring,optional"` // if a publisher has their own cpm they can supply thier own GDPR consent string
+	DidConsent       int    `json:"did_consent,omitempty"       valid:"range(0|1),optional"`      // Allows a publisher to let Nimbus know thier user has consent to thier data use policy for ads
+	UnityBuyerUID    string `json:"unity_buyeruid,omitempty"    valid:"-"`
+	FacebookBuyerUID string `json:"facebook_buyeruid,omitempty" valid:"-"`
+	VungleBuyerUID   string `json:"vungle_buyeruid,omitempty"   valid:"-"` // buyer id that is generated from the unity sdk and passed to nimbus in the rtb request
+	EIDS             EIDS   `json:"eids,omitempty"              valid:"-"`
 }
 
 // MarshalJSONObject implements MarshalerJSONObject
@@ -93,6 +95,8 @@ func (e *UserExt) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.StringKeyOmitEmpty("consent", e.Consent)
 	enc.IntKeyOmitEmpty("did_consent", e.DidConsent)
 	enc.StringKeyOmitEmpty("unity_buyeruid", e.UnityBuyerUID)
+	enc.StringKeyOmitEmpty("facebook_buyeruid", e.FacebookBuyerUID)
+	enc.StringKeyOmitEmpty("vungle_buyeruid", e.VungleBuyerUID)
 	enc.ArrayKeyOmitEmpty("eids", e.EIDS)
 }
 
@@ -114,6 +118,12 @@ func (e *UserExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	case "unity_buyeruid":
 		return dec.String(&e.UnityBuyerUID)
+
+	case "facebook_buyeruid":
+		return dec.String(&e.FacebookBuyerUID)
+
+	case "vungle_buyeruid":
+		return dec.String(&e.VungleBuyerUID)
 
 	case "eids":
 		var aSlice = EIDS{}
