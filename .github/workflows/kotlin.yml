@@ -19,6 +19,7 @@ on:
 jobs:
 
   build:
+    name: Build Kotlin Multiplatform
     runs-on: macos-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
@@ -36,10 +37,20 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
+      - name: Cache Kotlin packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-konan-${{ hashFiles('**/*.versions.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-${{ hashFiles('**/*.versions.toml') }}
+            ${{ runner.os }}-konan-
+
       - name: Test
-        run: ./gradlew build --no-daemon
+        run: ./gradlew test publishToMavenLocal --no-daemon
 
   publish:
+    name: Publish Kotlin Multiplatform
     if: github.repository == 'timehop/nimbus-openrtb' && github.event_name == 'release'
     runs-on: macos-latest
     needs: build
@@ -63,6 +74,15 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
+
+      - name: Cache Kotlin packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-konan-${{ hashFiles('**/*.versions.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-${{ hashFiles('**/*.versions.toml') }}
+            ${{ runner.os }}-konan-
 
       - name: Publish
         run: ./gradlew publish --no-daemon
