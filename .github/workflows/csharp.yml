@@ -24,13 +24,13 @@ jobs:
         uses: actions/setup-dotnet@v2
 
       - name: Install dependencies
-        run: dotnet restore
-        working-directory: ./csharp
+        run: dotnet restore --configfile OpenRTB.Tests/packages.config
+        working-directory: csharp
 
       - name: Build
         run: dotnet build --configuration Release --no-restore
-        working-directory: ./csharp
+        working-directory: csharp
 
       - name: Run Test
         run: dotnet test --no-restore --verbosity normal
-        working-directory: ./csharp
+        working-directory: csharp
