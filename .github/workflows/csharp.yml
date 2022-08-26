@@ -23,14 +23,17 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v2
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.config') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+
       - name: Install dependencies
         run: nuget restore
         working-directory: csharp
 
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
-        working-directory: csharp
-
       - name: Run Test
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test --no-restore
         working-directory: csharp
