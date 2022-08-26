@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-dotnet@v2
 
       - name: Install dependencies
-        run: dotnet restore --configfile OpenRTB.Tests/packages.config
+        run: nuget restore
         working-directory: csharp
 
       - name: Build
