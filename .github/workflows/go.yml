@@ -28,6 +28,6 @@ jobs:
 
       - name: Run Test
         run: go test ./... -race -cover -v -short
-        working-directory: ./go
+        working-directory: go
         env:
           GOPATH: /home/runner/work/nimbus-openrtb/go
