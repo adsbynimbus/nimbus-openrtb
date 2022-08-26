@@ -142,12 +142,12 @@ publishing {
             setUrl("s3://adsbynimbus-public/android/sdks")
             credentials(AwsCredentials::class)
         }
-        System.getenv("GITHUB_REPOSITORY")?.let {
+        providers.environmentVariable("GITHUB_REPOSITORY").map {
             maven {
                 name = "github"
                 url = uri("https://maven.pkg.github.com/$it")
                 credentials(PasswordCredentials::class)
             }
-        }
+        }.orNull
     }
 }
