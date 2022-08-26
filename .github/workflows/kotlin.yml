@@ -2,15 +2,16 @@ name: Kotlin
 
 on:
   pull_request:
-    branches:
-      - main
     paths:
       - 'kotlin/**'
       - '.github/workflows/kotlin*'
 
   push:
-    tags-ignore:
-      - '**'
+    branches:
+      - main
+    paths:
+      - 'kotlin/**'
+      - '.github/workflows/kotlin*'
 
   release:
     types: [published]
@@ -18,8 +19,30 @@ on:
 jobs:
 
   build:
-    name: Build, test, and optionally publish Android OpenRTB
     runs-on: macos-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Test
+        run: ./gradlew build --no-daemon
+
+  publish:
+    if: github.repository == 'timehop/nimbus-openrtb' && github.event_name == 'release'
+    runs-on: macos-latest
+    needs: build
     env:
       ORG_GRADLE_PROJECT_awsAccessKey: ${{ secrets.NIMBUS_MOBILE_AWS_ACCESS_KEY }}
       ORG_GRADLE_PROJECT_awsSecretKey: ${{ secrets.NIMBUS_MOBILE_AWS_SECRET_KEY }}
@@ -37,26 +60,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 11
-          cache: 'gradle'
 
-      - name: Cache Kotlin packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.konan
-          key: ${{ runner.os }}-konan-${{ hashFiles('settings.gradle.kts') }}
-          restore-keys: |
-            ${{ runner.os }}-konan-${{ hashFiles('settings.gradle.kts') }}
-            ${{ runner.os }}-konan-
-
-      - name: Fix NDK Bug
-        run: echo "ndk.dir=$ANDROID_HOME/ndk-bundle" > local.properties
-
-      - name: Build
-        run: ./gradlew test
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
 
       - name: Publish
-        if: success() && github.event_name == 'release'
-        run: ./gradlew publish
-
-      - name: Stop Gradle Daemon for Caching
-        run: ./gradlew --stop
+        run: ./gradlew publish --no-daemon
