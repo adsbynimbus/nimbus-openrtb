@@ -15,12 +15,22 @@ on:
 jobs:
   tests:
     name: Running CSharp Tests
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+
+      - name: Install dependencies
+        run: dotnet restore
+        working-directory: ./csharp
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+        working-directory: ./csharp
+
       - name: Run Test
-        run: |
-          dotnet test OpenRTB.Tests.csproj
-        working-directory: ./csharp/OpenRTB.Tests
+        run: dotnet test --no-restore --verbosity normal
+        working-directory: ./csharp
