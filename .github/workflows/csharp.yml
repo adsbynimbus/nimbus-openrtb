@@ -3,9 +3,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'csharp/**'
+      - '.github/workflows/csharp*'
   pull_request:
-    branches:
-      - main
     paths:
       - 'csharp/**'
       - '.github/workflows/csharp*'
@@ -14,12 +15,25 @@ on:
 jobs:
   tests:
     name: Running CSharp Tests
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.config') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+
+      - name: Install dependencies
+        run: nuget restore
+        working-directory: csharp
+
       - name: Run Test
-        run: |
-          dotnet test OpenRTB.Tests.csproj
-        working-directory: ./csharp/OpenRTB.Tests
+        run: dotnet test --no-restore --filter TestCategory!=Serialization
+        working-directory: csharp

@@ -3,9 +3,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'go/**'
+      - '.github/workflows/go*'
   pull_request:
-    branches:
-      - main
     paths:
       - 'go/**'
       - '.github/workflows/go*'
@@ -27,6 +28,6 @@ jobs:
 
       - name: Run Test
         run: go test ./... -race -cover -v -short
-        working-directory: ./go
+        working-directory: go
         env:
           GOPATH: /home/runner/work/nimbus-openrtb/go
