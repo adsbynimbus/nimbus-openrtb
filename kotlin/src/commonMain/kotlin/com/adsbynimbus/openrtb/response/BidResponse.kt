@@ -49,15 +49,14 @@ public class BidResponse(
     @JvmField @SerialName("placement_id") public val placement_id: String? = null,
     @JvmField @SerialName("is_mraid") public val is_mraid: Byte = 0,
     @JvmField @SerialName("position") public val position: String,
-    @JvmField @SerialName("trackers") public val trackers: Map<String, Array<String>> =
-        emptyMap<String, Array<String>>().withDefault { emptyArray() },
+    @JvmField @SerialName("trackers") public val trackers: Map<String, Array<String>> = emptyMap(),
     @JvmField @SerialName("duration") public val duration: Int = 0,
 ) {
 
     /** Urls to fire a request to when an impression is registered */
-    public val impression_trackers: Array<String> by trackers
+    public val impression_trackers: Array<String>? by trackers
     /** Urls to fire a request to when a click is registered */
-    public val click_trackers: Array<String> by trackers
+    public val click_trackers: Array<String>? by trackers
 
     public companion object {
         /** Decodes a BidResponse from a Json string using the built in serializer */
