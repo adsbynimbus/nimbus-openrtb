@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -270,7 +271,10 @@ namespace OpenRTB.Tests {
                             MinDuration = 15,
                             MaxDuration = 60,
                             H = 1080,
-                            W = 1920
+                            W = 1920,
+                            Ext = new VideoExt {
+                                IsRewarded = 0,
+                            }
                         },
                         Instl = 1,
                         Secure = 1,
@@ -287,7 +291,7 @@ namespace OpenRTB.Tests {
             Assert.IsTrue(JToken.DeepEquals(json1, json2));
         }
 
-        [Test, Category("Serialization")]
+        [Test, Category("Deserialization")]
         public void TestBidRequestDeserialization() {
             const string expected =
                 "{\"imp\":[{\"banner\":{\"bidfloor\":2.0,\"battr\":[1,2],\"format\":[{\"w\":1080,\"h\":1920},{\"w\":300,\"h\":600}],\"w\":320,\"h\":480,\"pos\":7},\"video\":{\"bidfloor\":3.0,\"mimes\":[\"foo\",\"bar\"],\"minduration\":15,\"maxduration\":60,\"w\":1920,\"h\":1080,\"startdelay\":0,\"skip\":0,\"pos\":7,\"minbitrate\":1,\"maxbitrate\":200000,\"ext\":{\"is_rewarded\":0}},\"instl\":1,\"secure\":1,\"ext\":{\"position\":\"App Open\"}}],\"app\":{\"name\":\"foo\",\"bundle\":\"com.foo\",\"domain\":\"foo.com\",\"storeurl\":\"https://play.google.com/store/apps/details?id=com.foo\",\"cat\":[\"IAB14\",\"IAB1\",\"IAB9\",\"IAB12\",\"IAB16\",\"IAB17\",\"IAB18\",\"IAB20\"],\"privacypolicy\":0,\"paid\":0,\"publisher\":{\"name\":\"foo\",\"cat\":[\"IAB14\",\"IAB1\",\"IAB9\",\"IAB12\",\"IAB16\",\"IAB17\",\"IAB18\",\"IAB20\"],\"domain\":\"foo.com\"}},\"device\":{\"ua\":\"Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Mobile Safari/537.36\",\"dnt\":0,\"lmt\":0,\"ip\":\"71.125.59.151\",\"devicetype\":4,\"make\":\"Pixel 2 XL\",\"model\":\"Samsung\",\"os\":\"android\",\"osv\":\"4.2.4\",\"language\":\"en\",\"connectiontype\":2,\"ifa\":\"13579176-e94e-4e6e-96ae-572b787af21c\"},\"format\":{\"w\":1080,\"h\":1920},\"user\":{\"age\":30,\"yob\":1991,\"gender\":\"male\"},\"test\":0,\"ext\":{\"api_key\":\"3b117631-538d-4315-bc47-d4e8ce6527e5\",\"session_id\":\"fab5d528-5ac9-4082-a1ff-968a7f8fefc4\"}}";
@@ -360,7 +364,10 @@ namespace OpenRTB.Tests {
                             MinDuration = 15,
                             MaxDuration = 60,
                             H = 1080,
-                            W = 1920
+                            W = 1920,
+                            Ext = new VideoExt {
+                                IsRewarded = 0,
+                            }
                         },
                         Instl = 1,
                         Secure = 1,
@@ -376,6 +383,7 @@ namespace OpenRTB.Tests {
             var jsonStringWant = JsonConvert.SerializeObject(bidRequestWant);
             var json1 = JObject.Parse(jsonStringGot);
             var json2 = JObject.Parse(jsonStringWant);
+            
             Assert.IsTrue(JToken.DeepEquals(json1, json2));
         }
     }

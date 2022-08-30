@@ -31,8 +31,6 @@ namespace OpenRTB.Request {
         [JsonProperty("consent", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Consent;
 
-        [JsonProperty("did_consent")] public int DidConsent;
-
         [JsonProperty("eids", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Eid[] Eids;
     }

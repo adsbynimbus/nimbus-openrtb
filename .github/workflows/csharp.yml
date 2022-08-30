@@ -35,5 +35,5 @@ jobs:
         working-directory: csharp
 
       - name: Run Test
-        run: dotnet test --no-restore --filter TestCategory!=Serialization
+        run: dotnet test --no-restore
         working-directory: csharp
