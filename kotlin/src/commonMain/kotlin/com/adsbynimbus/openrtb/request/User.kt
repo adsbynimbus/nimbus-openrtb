@@ -45,20 +45,22 @@ public class User(
      * User extension object used by Nimbus
      *
      * @property consent Publisher provided GDPR consent string
-     * @property did_consent 1 if the user has consented to data tracking, 0 if the user has opted
-     *                       out of data tracking.
+     * @property facebook_buyeruid String token provided by the Facebook Audience Network to include FAN demand in
+     *                             the auction.
      * @property unity_buyeruid String token provided by the Unity Ads SDK to include Unity demand
      *                          in the auction. Token is initialized when UnityAds is initialized
      *                          and the token and campaign is refreshed after the ad playback has
      *                          started.
+     * @property vungle_buyeruid String token provided by the Vungle SDK to include Vungle in the auction.
      * @property eids Collection of external user ids
      */
     @Serializable
     public class Extension(
         @JvmField @SerialName("consent") public var consent: String? = null,
-        @JvmField @SerialName("did_consent") public var did_consent: Byte? = null,
+        @JvmField @SerialName("facebook_buyeruid") public var facebook_buyeruid: String? = null,
         @JvmField @SerialName("unity_buyeruid") public var unity_buyeruid: String? = null,
-        @JvmField @SerialName("eids") public var eids: Set<EID>? = null
+        @JvmField @SerialName("vungle_buyeruid") public var vungle_buyeruid: String? = null,
+        @JvmField @SerialName("eids") public var eids: Set<EID>? = null,
     )
 }
 
