@@ -16,11 +16,6 @@ plugins {
 val androidOnly = providers.gradleProperty("android.injected.attribution.file.location")
     .map { it.contains("android") }.getOrElse(false)
 
-group = "com.adsbynimbus.openrtb"
-version = (System.getenv("GITHUB_REF") ?: "0.0.1").split("/").last().let {
-    if (it.startsWith("v")) it.substring(1) else it
-}
-
 android {
     buildToolsVersion = libs.versions.android.buildtools.get()
     compileSdk = 31
@@ -149,12 +144,12 @@ publishing {
             setUrl("s3://adsbynimbus-public/android/sdks")
             credentials(AwsCredentials::class)
         }
-        providers.environmentVariable("GITHUB_REPOSITORY").map {
+        providers.environmentVariable("GITHUB_REPOSITORY").orNull?.let {
             maven {
                 name = "github"
                 url = uri("https://maven.pkg.github.com/$it")
                 credentials(PasswordCredentials::class)
             }
-        }.orNull
+        }
     }
 }
