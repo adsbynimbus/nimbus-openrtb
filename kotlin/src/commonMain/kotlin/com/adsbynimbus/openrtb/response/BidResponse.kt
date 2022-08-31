@@ -5,7 +5,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlin.jvm.JvmField
-import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
@@ -60,10 +59,17 @@ public class BidResponse(
 
     public companion object {
         /** Decodes a BidResponse from a Json string using the built in serializer */
-        @JvmStatic @JvmOverloads
+        @JvmStatic
         public fun fromJson(
             json: String,
             jsonSerializer: Json = BidRequest.lenientSerializer,
         ): BidResponse = jsonSerializer.decodeFromString(serializer(), json)
+
+        /** Encodes a BidResponse to a Json string using the built in serializer */
+        @JvmStatic
+        public fun toJson(
+            response: BidResponse,
+            jsonSerializer: Json = BidRequest.lenientSerializer,
+        ): String = jsonSerializer.encodeToString(serializer(), response)
     }
 }
