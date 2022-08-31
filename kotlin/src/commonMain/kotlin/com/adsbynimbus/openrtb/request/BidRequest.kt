@@ -77,12 +77,12 @@ public class BidRequest(
         }
 
         /** Encodes a BidRequest to a Json string using the built in serializer */
-        @JvmStatic @JvmOverloads
+        @JvmStatic
         public fun BidRequest.toJson(jsonSerializer: Json = lenientSerializer): String =
             jsonSerializer.encodeToString(serializer(), this)
 
         /** Decodes a BidRequest from a Json string using the built in serializer */
-        @JvmStatic @JvmOverloads
+        @JvmStatic
         public fun fromJson(json: String, jsonSerializer: Json = lenientSerializer): BidRequest =
             jsonSerializer.decodeFromString(serializer(), json)
     }
