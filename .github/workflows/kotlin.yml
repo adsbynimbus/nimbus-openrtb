@@ -51,11 +51,12 @@ jobs:
 
       - name: Set Version from Tag Name
         id: tag_name
+        if: github.event_name == 'release'
         run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\/v/}
 
       - name: Test
         env:
-          ORG_GRADLE_PROJECT_version: ${{ steps.tag_name.outputs.VERSION }}
+          ORG_GRADLE_PROJECT_version: ${{ steps.tag_name.outputs.VERSION || '0.0.1' }}
         run: ./gradlew test publishToMavenLocal
 
       - name: Publish
