@@ -13,8 +13,8 @@ plugins {
     `maven-publish`
 }
 
-val androidOnly = providers.gradleProperty("android.injected.attribution.file.location")
-    .map { it.contains("android") }.getOrElse(false)
+val androidOnly: Boolean = providers.gradleProperty("android.injected.invoked.from.ide")
+    .map { it.toBoolean() }.getOrElse(false)
 
 android {
     buildToolsVersion = libs.versions.android.buildtools.get()
@@ -33,7 +33,7 @@ kotlin {
         publishLibraryVariants("release")
     }
 
-    // Apple deployments in rough dependency order
+    /* Apple deployments in rough dependency order */
     if (!androidOnly) {
         val xcf = XCFramework()
 
