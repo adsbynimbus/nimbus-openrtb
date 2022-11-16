@@ -10,10 +10,14 @@ type Regs struct {
 	Ext   *RegsExt `json:"ext"   valid:"optional"`
 }
 
-// RegsExt being used for GDPR & CCPA as US Privacy
+// RegsExt being used for GDPR, CCPA as US Privacy, and any regulations via the Global Privacy Platform (GPP)
+// string. The relevant regulations are specified within the GPP string and GPP Section ID (SID) list.
+// GPPSIDs is a comma-separated list of GPP Section IDs.
 type RegsExt struct {
 	GDPR      int    `json:"gdpr" valid:"range(0|1),optional"`
 	USPrivacy string `json:"us_privacy,omitempty" valid:"optional"`
+	GPP       string `json:"gpp,omitempty" valid:"optional"`
+	GPPSIDs   string `json:"gpp_sid,omitempty" valid:"optional"`
 }
 
 // MarshalJSONObject implements MarshalerJSONObject
@@ -53,6 +57,8 @@ func (r *Regs) NKeys() int { return 0 }
 func (e *RegsExt) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.IntKey("gdpr", e.GDPR)
 	enc.StringKeyOmitEmpty("us_privacy", e.USPrivacy)
+	enc.StringKeyOmitEmpty("gpp", e.GPP)
+	enc.StringKeyOmitEmpty("gpp_sid", e.GPPSIDs)
 }
 
 // IsNil checks if instance is nil
@@ -68,6 +74,10 @@ func (e *RegsExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 		return dec.Int(&e.GDPR)
 	case "us_privacy":
 		return dec.String(&e.USPrivacy)
+	case "gpp":
+		return dec.String(&e.GPP)
+	case "gpp_sid":
+		return dec.String(&e.GPPSIDs)
 	}
 	return nil
 }

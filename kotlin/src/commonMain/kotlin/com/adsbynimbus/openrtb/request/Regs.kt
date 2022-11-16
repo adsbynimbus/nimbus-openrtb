@@ -42,11 +42,15 @@ public class Regs(
      *                      If the user does not fall within a US Privacy jurisdiction, hyphens
      *                      should be used in the last three positions, generating this privacy
      *                      string: "1---"
+     * @property gpp Global Privacy Platform (GPP) string that can be set to transmit privacy, consent, and consumer choice signals for relevant regulations.
+     * @property gpp_sids GPP Section IDs representing the regulations relevant to the request.
      * @see [US Privacy String Format](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md.us-privacy-string-format)
      */
     @Serializable
     public class Extension(
         @JvmField @SerialName("gdpr") public var gdpr: Byte? = null,
-        @JvmField @SerialName("us_privacy") public var us_privacy: String? = null
+        @JvmField @SerialName("us_privacy") public var us_privacy: String? = null,
+        @JvmField @SerialName("gpp") public var gpp: String? = null,
+        @JvmField @SerialName("gpp_sid") public var gpp_sids: String? = null,
     )
 }

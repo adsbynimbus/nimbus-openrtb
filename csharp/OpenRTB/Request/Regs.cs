@@ -14,5 +14,11 @@ namespace OpenRTB.Request {
 
         [JsonProperty("us_privacy", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string UsPrivacy;
+
+        [JsonProperty("gpp")]
+        public string GPP;
+
+        [JsonProperty("gpp_sid")]
+        public string GPPSIDs;
     }
 }
