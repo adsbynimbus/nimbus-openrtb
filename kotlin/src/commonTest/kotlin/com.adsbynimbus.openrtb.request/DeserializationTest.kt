@@ -137,7 +137,12 @@ const val testJson = """
     "source":{"ext":{}},
     "regs":{
         "coppa":0,
-        "ext":{"gdpr":0,"us_privacy":"1YNN"}
+        "ext":{
+            "gdpr":0,
+            "us_privacy":"1YNN",
+            "gpp": "DBABMA~CPXxRfAPXxRfAAfKABENB-CgAAAAAAAAAAYgAAAAAAAA",
+            "gpp_sid": "2"
+        }
     },
     "ext":{"api_key":"12345678-4321-1234-0000-6c5b91b1eac6","session_id":"session1"}
 }
@@ -179,6 +184,14 @@ class DeserializationTest : StringSpec({
 
     "BidResponse fromJson deserializes the regs object" {
         request.regs.shouldNotBeNull()
+    }
+
+    "BidResponse fromJson deserializes the regs ext object" {
+        request.regs?.ext.shouldNotBeNull()
+        request.regs?.ext?.gdpr shouldBe 0
+        request.regs?.ext?.us_privacy shouldBe "1YNN"
+        request.regs?.ext?.gpp shouldBe "DBABMA~CPXxRfAPXxRfAAfKABENB-CgAAAAAAAAAAYgAAAAAAAA"
+        request.regs?.ext?.gpp_sids shouldBe "2"
     }
 
     "BidResponse fromJson deserializes the ext object" {

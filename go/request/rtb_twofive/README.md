@@ -1113,9 +1113,13 @@ UnmarshalJSONObject implements gojay's UnmarshalerJSONObject
 type RegsExt struct {
     GDPR      int    `json:"gdpr" valid:"range(0|1),optional"`
     USPrivacy string `json:"us_privacy,omitempty" valid:"optional"`
+    GPP       string `json:"gpp,omitempty" valid:"optional"`
+	GPPSIDs   string `json:"gpp_sid,omitempty" valid:"optional"`
 }
 ```
-RegsExt being used for GDPR & CCPA as US Privacy
+RegsExt being used for GDPR, CCPA as US Privacy, and any regulations via the Global Privacy Platform (GPP)
+string. The relevant regulations are specified within the GPP string and GPP Section ID (SID) list.
+GPPSIDs is a comma-separated list of GPP Section IDs.
 
 
 
