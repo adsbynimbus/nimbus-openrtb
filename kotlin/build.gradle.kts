@@ -18,9 +18,9 @@ val androidOnly: Boolean = providers.gradleProperty("android.injected.invoked.fr
 
 android {
     buildToolsVersion = libs.versions.android.buildtools.get()
-    compileSdk = 31
+    compileSdk = 32
     defaultConfig {
-        minSdk = 17
+        minSdk = 19
         consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
     }
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
