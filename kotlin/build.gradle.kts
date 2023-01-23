@@ -42,7 +42,7 @@ kotlin {
             homepage = "https://www.github.com/timehop/nimbus-openrtb"
             license = "MIT"
             authors = "Ads By Nimbus"
-            ios.deploymentTarget = "10.0"
+            ios.deploymentTarget = "12.0"
             framework {
                 baseName = "NimbusOpenRTB"
             }
@@ -72,8 +72,8 @@ kotlin {
     sourceSets {
         configureEach {
             languageSettings {
-                apiVersion = "1.5"
-                languageVersion = "1.5"
+                apiVersion = "1.6"
+                languageVersion = "1.6"
                 optIn("kotlinx.serialization.ExperimentalSerializationApi")
             }
         }
