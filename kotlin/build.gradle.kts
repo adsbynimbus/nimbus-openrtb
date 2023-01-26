@@ -1,6 +1,7 @@
 @file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
 
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode.DISABLE
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -45,6 +46,8 @@ kotlin {
             ios.deploymentTarget = "12.0"
             framework {
                 baseName = "NimbusOpenRTB"
+                embedBitcode = DISABLE
+                isStatic = false
             }
         }
 
