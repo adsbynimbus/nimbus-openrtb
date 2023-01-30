@@ -67,6 +67,10 @@ public class User(
 /** An External User Id */
 @Serializable
 public class EID(
-    @JvmField @SerialName("source") public var source: String,
+    @JvmField @SerialName("source") public val source: String,
     @JvmField @SerialName("uids") public var uids: Set<Segment>,
-)
+) {
+    override fun equals(other: Any?): Boolean = other is EID && other.source == source
+
+    override fun hashCode(): Int  = source.hashCode()
+}
