@@ -85,5 +85,7 @@ public class Video(
 ) {
 
     /** Indicates this video request is for a rewarded video */
-    public var is_rewarded: Byte by ext
+    public inline var is_rewarded: Byte
+        get() = ext["is_rewarded"] ?: 0
+        set(value) { ext["is_rewarded"] = value }
 }

@@ -19,12 +19,16 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Source(
-    @JvmField @SerialName("ext") public val ext: MutableMap<String, String> = mutableMapOf()
+    @SerialName("ext") public val ext: MutableMap<String, String> = mutableMapOf()
 ) {
 
     /** Partner name that identifies the OM SDK integration */
-    public var omidpn: String by ext
+    public inline var omidpn: String
+        get() = ext["omidpn"] ?: ""
+        set(value) { ext["omidpn"] = value }
 
     /** Current version of the OM SDK integration */
-    public var omidpv: String by ext
+    public inline var omidpv: String
+        get() = ext["omidpv"] ?: ""
+        set(value) { ext["omidpv"] = value }
 }

@@ -60,7 +60,9 @@ public class BidRequest(
      *
      * Defaults to a random UUID when using the Nimbus SDK
      */
-    public var session_id: String by ext
+    public inline var session_id: String
+        get() = ext["session_id"] ?: ""
+        set(value) { ext["session_id"] = value }
 
     public companion object {
         /** Required header for all requests to Nimbus defining the OpenRTB version */
