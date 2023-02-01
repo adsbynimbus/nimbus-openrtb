@@ -1,6 +1,7 @@
 @file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
 
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode.DISABLE
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -13,14 +14,14 @@ plugins {
     `maven-publish`
 }
 
-val androidOnly = providers.gradleProperty("android.injected.attribution.file.location")
-    .map { it.contains("android") }.getOrElse(false)
+val androidOnly: Boolean = providers.gradleProperty("android.injected.invoked.from.ide")
+    .map { it.toBoolean() }.getOrElse(false)
 
 android {
     buildToolsVersion = libs.versions.android.buildtools.get()
-    compileSdk = 31
+    compileSdk = 32
     defaultConfig {
-        minSdk = 17
+        minSdk = 19
         consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
     }
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -33,7 +34,7 @@ kotlin {
         publishLibraryVariants("release")
     }
 
-    // Apple deployments in rough dependency order
+    /* Apple deployments in rough dependency order */
     if (!androidOnly) {
         val xcf = XCFramework()
 
@@ -42,9 +43,11 @@ kotlin {
             homepage = "https://www.github.com/timehop/nimbus-openrtb"
             license = "MIT"
             authors = "Ads By Nimbus"
-            ios.deploymentTarget = "10.0"
+            ios.deploymentTarget = "12.0"
             framework {
                 baseName = "NimbusOpenRTB"
+                embedBitcode = DISABLE
+                isStatic = false
             }
         }
 
@@ -72,8 +75,8 @@ kotlin {
     sourceSets {
         configureEach {
             languageSettings {
-                apiVersion = "1.5"
-                languageVersion = "1.5"
+                apiVersion = "1.6"
+                languageVersion = "1.6"
                 optIn("kotlinx.serialization.ExperimentalSerializationApi")
             }
         }

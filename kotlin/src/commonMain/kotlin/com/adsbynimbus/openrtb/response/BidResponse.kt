@@ -52,11 +52,10 @@ public class BidResponse(
     @JvmField @SerialName("trackers") public val trackers: Map<String, Array<String>> = emptyMap(),
     @JvmField @SerialName("duration") public val duration: Int = 0,
 ) {
-
     /** Urls to fire a request to when an impression is registered */
-    public val impression_trackers: Array<String>? by trackers
+    public val impression_trackers: Array<String>? get() = trackers["impression_trackers"]
     /** Urls to fire a request to when a click is registered */
-    public val click_trackers: Array<String>? by trackers
+    public val click_trackers: Array<String>? get() = trackers["click_trackers"]
 
     public companion object {
         /** Decodes a BidResponse from a Json string using the built in serializer */
