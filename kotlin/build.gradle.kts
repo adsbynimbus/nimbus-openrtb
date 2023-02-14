@@ -36,8 +36,6 @@ kotlin {
 
     /* Apple deployments in rough dependency order */
     if (!androidOnly) {
-        val xcf = XCFramework()
-
         cocoapods {
             summary = "Nimbus OpenRTB API Module"
             homepage = "https://www.github.com/timehop/nimbus-openrtb"
@@ -51,26 +49,10 @@ kotlin {
             }
         }
 
-        iosX64 {
-            binaries.framework {
-                xcf.add(this)
-            }
-        }
-        iosArm64 {
-            binaries.framework {
-                xcf.add(this)
-            }
-        }
-        iosSimulatorArm64 {
-            binaries.framework {
-                xcf.add(this)
-            }
-        }
-        tvos {
-            binaries.framework {
-                xcf.add(this)
-            }
-        }
+        iosX64()
+        iosArm64()
+        iosSimulatorArm64()
+        tvos()
     }
     sourceSets {
         configureEach {
