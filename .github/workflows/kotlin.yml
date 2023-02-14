@@ -3,15 +3,17 @@ name: Kotlin
 on:
   pull_request:
     paths:
-      - 'kotlin/**'
       - '.github/workflows/kotlin*'
+      - 'gradle/**'
+      - 'kotlin/**'
 
   push:
     branches:
       - main
     paths:
-      - 'kotlin/**'
       - '.github/workflows/kotlin*'
+      - 'gradle/**'
+      - 'kotlin/**'
 
   release:
     types: [published]
