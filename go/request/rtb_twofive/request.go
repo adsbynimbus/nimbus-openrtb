@@ -25,7 +25,7 @@ type Request struct {
 	Bcat   []string   `json:"bcat,omitempty"    valid:"optional"`
 	BAdv   []string   `json:"badv,omitempty"    valid:"optional"`
 	BApp   []string   `json:"bapp,omitempty"    valid:"optional"`
-	Source Source     `json:"source,omitempty"  valid:"optional"`
+	Source *Source    `json:"source,omitempty"  valid:"optional"`
 	Regs   Regs       `json:"regs,omitempty"    valid:"optional"`
 	Ext    RequestExt `json:"ext,omitempty"     valid:"required"`
 }
@@ -57,7 +57,7 @@ func (r *Request) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.ArrayKeyOmitEmpty("badv", bAdvSlice)
 	var bAppSlice = Strings(r.BApp)
 	enc.ArrayKeyOmitEmpty("bapp", bAppSlice)
-	enc.ObjectKey("source", &r.Source)
+	enc.ObjectKeyOmitEmpty("source", r.Source)
 	enc.ObjectKeyOmitEmpty("regs", &r.Regs)
 	enc.ObjectKeyOmitEmpty("ext", &r.Ext)
 }
@@ -155,9 +155,11 @@ func (r *Request) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 		return err
 
 	case "source":
-
-		err := dec.Object(&r.Source)
-
+		var source Source
+		err := dec.Object(&source)
+		if err == nil {
+			r.Source = &source
+		}
 		return err
 
 	case "regs":
