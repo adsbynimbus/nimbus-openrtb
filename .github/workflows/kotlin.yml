@@ -29,6 +29,10 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
+    permissions:
+      contents: read
+      id-token: write
+      packages: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -51,20 +55,25 @@ jobs:
             ${{ runner.os }}-konan-${{ hashFiles('**/*.versions.toml') }}
             ${{ runner.os }}-konan-
 
-      - name: Set Version from Tag Name
+      - name: Set Version to Tag Name
         id: tag_name
         if: github.event_name == 'release'
-        run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\/v/}
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
 
       - name: Test
         env:
           ORG_GRADLE_PROJECT_version: ${{ steps.tag_name.outputs.VERSION || '0.0.1' }}
         run: ./gradlew test publishToMavenLocal
 
+      - name: Configure AWS Credentials
+        if: github.repository == 'timehop/nimbus-openrtb' && github.event_name == 'release'
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE }}
+          aws-region: us-east-1
+
       - name: Publish
         if: github.repository == 'timehop/nimbus-openrtb' && github.event_name == 'release'
         env:
           ORG_GRADLE_PROJECT_version: ${{ steps.tag_name.outputs.VERSION }}
-          ORG_GRADLE_PROJECT_awsAccessKey: ${{ secrets.NIMBUS_MOBILE_AWS_ACCESS_KEY }}
-          ORG_GRADLE_PROJECT_awsSecretKey: ${{ secrets.NIMBUS_MOBILE_AWS_SECRET_KEY }}
         run: ./gradlew publish

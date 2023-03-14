@@ -25,6 +25,7 @@ android {
         consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
     }
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    namespace = "com.adsbynimbus.openrtb"
 }
 
 kotlin {
