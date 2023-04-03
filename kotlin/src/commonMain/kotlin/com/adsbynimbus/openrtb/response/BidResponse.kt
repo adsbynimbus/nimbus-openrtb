@@ -31,6 +31,7 @@ import kotlin.jvm.JvmStatic
  * @property position The position from the request for this ad.
  * @property trackers Contains additional tracking urls for measurement.
  * @property duration The duration in seconds or 0 if unknown or another ad type.
+ * @property external_notifications Contains urls used to notify external services.
  */
 @Serializable
 public class BidResponse(
