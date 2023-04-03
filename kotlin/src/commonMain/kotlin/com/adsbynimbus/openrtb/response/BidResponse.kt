@@ -58,9 +58,9 @@ public class BidResponse(
     public val impression_trackers: Array<String>? get() = trackers["impression_trackers"]
     /** Urls to fire a request to when a click is registered */
     public val click_trackers: Array<String>? get() = trackers["click_trackers"]
-    /** Url to fire a request to when an there's an auction win */
+    /** Url to fire a request to when this bid wins an auction */
     public val win_response: String? get() = external_notifications["win_response"]
-    /** Url to fire a request to when an there's an auction loss */
+    /** Url to fire a request to when this bid loses an auction */
     public val loss_response: String? get() = external_notifications["loss_response"]
 
     public companion object {
