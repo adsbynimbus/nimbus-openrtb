@@ -128,7 +128,9 @@ publishing {
         maven {
             name = "aws"
             setUrl("s3://adsbynimbus-public/android/sdks")
-            credentials(AwsCredentials::class)
+            authentication {
+                create<AwsImAuthentication>("awsIm")
+            }
         }
         providers.environmentVariable("GITHUB_REPOSITORY").orNull?.let {
             maven {
