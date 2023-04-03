@@ -32,7 +32,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-      packages: read
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
