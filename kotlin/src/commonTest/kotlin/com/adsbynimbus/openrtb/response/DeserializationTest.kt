@@ -25,7 +25,8 @@ const val testJson = """
     ]
   },
   "placement_id": "123456789",
-  "duration": 15
+  "duration": 15,
+  "exp": 30
 }
 """
 
@@ -86,6 +87,10 @@ class DeserializationTest : StringSpec({
     }
 
     "BidResponse fromJson deserializes the duration field" {
+        response.duration shouldBe 15
+    }
+
+    "BidResponse fromJson deserializes the exp field" {
         response.duration shouldBe 15
     }
 })
