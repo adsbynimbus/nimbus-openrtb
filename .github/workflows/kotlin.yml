@@ -58,7 +58,7 @@ jobs:
       - name: Set Version to Tag Name
         id: tag_name
         if: github.event_name == 'release'
-        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_OUTPUT
 
       - name: Test
         env:

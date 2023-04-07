@@ -31,6 +31,7 @@ import kotlin.jvm.JvmStatic
  * @property position The position from the request for this ad.
  * @property trackers Contains additional tracking urls for measurement.
  * @property duration The duration in seconds or 0 if unknown or another ad type.
+ * @property exp Number of seconds a bidder can wait before rendering the impression.
  * @property external_notifications Contains urls used to notify external services.
  */
 @Serializable
@@ -52,6 +53,7 @@ public class BidResponse(
     @JvmField @SerialName("position") public val position: String,
     @JvmField @SerialName("trackers") public val trackers: Map<String, Array<String>> = emptyMap(),
     @JvmField @SerialName("duration") public val duration: Int = 0,
+    @JvmField @SerialName("exp") public val exp: Int = -1,
     @JvmField @SerialName("external_notifications") public val external_notifications: Map<String, String> = emptyMap(),
 ) {
     /** Urls to fire a request to when an impression is registered */
