@@ -1,8 +1,11 @@
 package com.adsbynimbus.openrtb.response
 
+import io.kotest.assertions.fail
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldStartWith
 
 const val testJson = """
 {
@@ -26,7 +29,11 @@ const val testJson = """
   },
   "placement_id": "123456789",
   "duration": 15,
-  "exp": 30
+  "exp": 30,
+  "external_notifications": {
+    "win_response": "https://test.adsbynimbus.com/win_response/",
+    "loss_response": "https://test.adsbynimbus.com/loss_response/auctionPrice=[AUCTION_PRICE]&auctionMinToWin=[AUCTION_MIN_TO_WIN]&winningSource=[WINNING_SOURCE]"
+  }
 }
 """
 
@@ -92,5 +99,16 @@ class DeserializationTest : StringSpec({
 
     "BidResponse fromJson deserializes the exp field" {
         response.duration shouldBe 15
+    }
+
+    "BidResponse fromJson deserializes win urls" {
+        response.win_response shouldBe "https://test.adsbynimbus.com/win_response/"
+    }
+
+    "BidResponse fromJson deserializes loss urls" {
+        response.loss_response shouldStartWith "https://test.adsbynimbus.com/loss_response/"
+        response.loss_response shouldContain "auctionPrice=[AUCTION_PRICE]"
+        response.loss_response shouldContain "auctionMinToWin=[AUCTION_MIN_TO_WIN]"
+        response.loss_response shouldContain "winningSource=[WINNING_SOURCE]"
     }
 })
