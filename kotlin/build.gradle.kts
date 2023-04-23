@@ -1,4 +1,5 @@
-@file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
+@file:OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
+@file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage", "UNUSED_VARIABLE")
 
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode.DISABLE
@@ -19,7 +20,7 @@ val androidOnly: Boolean = providers.gradleProperty("android.injected.invoked.fr
 
 android {
     buildToolsVersion = libs.versions.android.buildtools.get()
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         minSdk = 19
         consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
@@ -30,8 +31,14 @@ android {
 
 kotlin {
     explicitApi()
+    targetHierarchy.default()
 
     android {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
         publishLibraryVariants("release")
     }
 
@@ -42,15 +49,13 @@ kotlin {
             homepage = "https://www.github.com/timehop/nimbus-openrtb"
             license = "MIT"
             authors = "Ads By Nimbus"
-            ios.deploymentTarget = "12.0"
+            ios.deploymentTarget = "13.0"
             framework {
                 baseName = "NimbusOpenRTB"
-                embedBitcode = DISABLE
                 isStatic = false
             }
         }
 
-        iosX64()
         iosArm64()
         iosSimulatorArm64()
         tvos()
@@ -76,29 +81,9 @@ kotlin {
             }
         }
         val androidMain by getting
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(libs.bundles.test.android)
-            }
-        }
-        if (!androidOnly) {
-            val iosX64Main by getting
-            val iosArm64Main by getting
-            val iosSimulatorArm64Main by getting
-            val iosMain by creating {
-                dependsOn(commonMain)
-                iosX64Main.dependsOn(this)
-                iosArm64Main.dependsOn(this)
-                iosSimulatorArm64Main.dependsOn(this)
-            }
-            val iosX64Test by getting
-            val iosArm64Test by getting
-            val iosSimulatorArm64Test by getting
-            val iosTest by creating {
-                dependsOn(commonTest)
-                iosX64Test.dependsOn(this)
-                iosArm64Test.dependsOn(this)
-                iosSimulatorArm64Test.dependsOn(this)
             }
         }
     }
