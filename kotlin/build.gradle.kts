@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotest)
-    alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlin.serialization)
     `maven-publish`
@@ -44,18 +43,6 @@ kotlin {
 
     /* Apple deployments in rough dependency order */
     if (!androidOnly) {
-        cocoapods {
-            summary = "Nimbus OpenRTB API Module"
-            homepage = "https://www.github.com/timehop/nimbus-openrtb"
-            license = "MIT"
-            authors = "Ads By Nimbus"
-            ios.deploymentTarget = "13.0"
-            framework {
-                baseName = "NimbusOpenRTB"
-                isStatic = false
-            }
-        }
-
         iosArm64()
         iosSimulatorArm64()
         tvos()
