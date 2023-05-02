@@ -29,6 +29,7 @@ import kotlin.jvm.JvmField
  * @property osv Device operating system version (e.g., "10", "9", "8.1", "8").
  * @property h Physical height of the screen in pixels.
  * @property w Physical width of the screen in pixels.
+ * @property pxratio The ratio of physical pixels to device independent pixels.
  * @property language Browser language using ISO-639-1-alpha-2
  * @property carrier Carrier or ISP (e.g., "Verizon") using exchange curated string names which
  *                   should be published to bidders a priori.
@@ -46,6 +47,7 @@ public class Device(
     @JvmField @SerialName("osv") public val osv: String,
     @JvmField @SerialName("h") public var h: Int,
     @JvmField @SerialName("w") public var w: Int,
+    @JvmField @SerialName("pxratio") public var pxratio: Float? = null,
     @JvmField @SerialName("language") public var language: String? = null,
     @JvmField @SerialName("devicetype") public val devicetype: Byte = 0,
     @JvmField @SerialName("connectiontype") public var connectiontype: Byte = 0,
