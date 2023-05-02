@@ -98,6 +98,7 @@ const val testJson = """
         "osv":"12.0.0",
         "h":480,
         "w":320,
+        "pxratio":"4.0",
         "language":"en",
         "ifa":"00000000-0000-0000-0000-000000000000"
     },
@@ -166,6 +167,7 @@ class DeserializationTest : StringSpec({
             ua shouldBe "test-ua-string"
             ip shouldBe "255.255.255.0"
             ifa shouldBe "00000000-0000-0000-0000-000000000000"
+            pxratio shouldBe 4.0
         }
     }
 
