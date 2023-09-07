@@ -17,4 +17,10 @@ public object Protocols {
 
     /** Vast 3.0 Wrapper */
     public const val VAST_3_WRAPPER: Byte = 6
+
+    /** Vast 4.0 */
+    public const val VAST_4: Byte = 7
+
+    /** Vast 4.0 Wrapper */
+    public const val VAST_4_WRAPPER: Byte = 8
 }
