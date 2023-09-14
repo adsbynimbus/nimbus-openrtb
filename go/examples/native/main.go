@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/timehop/nimbus-openrtb/go/native-builder/oneone"
-	"github.com/timehop/nimbus-openrtb/go/native-builder/oneone/request"
-	twofive "github.com/timehop/nimbus-openrtb/go/request/rtb_twofive"
+	"github.com/adsbynimbus/nimbus-openrtb/go/native-builder/oneone"
+	"github.com/adsbynimbus/nimbus-openrtb/go/native-builder/oneone/request"
+	twofive "github.com/adsbynimbus/nimbus-openrtb/go/request/rtb_twofive"
 )
 
 func main() {

@@ -88,7 +88,7 @@ tasks.withType<DokkaTask>().configureEach {
         named("commonMain") {
             sourceLink {
                 localDirectory.set(file("src/$name/kotlin"))
-                remoteUrl.set(uri("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin").toURL())
+                remoteUrl.set(uri("https://github.com/adsbynimbus/nimbus-openrtb/kotlin/src/$name/kotlin").toURL())
                 remoteLineSuffix.set("#L")
             }
         }

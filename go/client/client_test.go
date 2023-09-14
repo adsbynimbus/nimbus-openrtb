@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	twofive "github.com/timehop/nimbus-openrtb/go/request/rtb_twofive"
+	twofive "github.com/adsbynimbus/nimbus-openrtb/go/request/rtb_twofive"
 )
 
 type testRequest struct {

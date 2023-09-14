@@ -1,4 +1,4 @@
-module github.com/timehop/nimbus-openrtb/go
+module github.com/adsbynimbus/nimbus-openrtb/go
 
 go 1.13
 
