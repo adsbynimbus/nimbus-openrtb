@@ -1,9 +1,9 @@
 package oneone
 
 import (
+	"github.com/adsbynimbus/nimbus-openrtb/go/internal/pool"
+	"github.com/adsbynimbus/nimbus-openrtb/go/native-builder/oneone/request"
 	"github.com/francoispqt/gojay"
-	"github.com/timehop/nimbus-openrtb/go/internal/pool"
-	"github.com/timehop/nimbus-openrtb/go/native-builder/oneone/request"
 )
 
 // BuildDefaultImageNative creatives a Native RTB Request string 1.1

@@ -1,7 +1,7 @@
 
 
 # client
-`import "github.com/timehop/nimbus-openrtb/go/client"`
+`import "github.com/adsbynimbus/nimbus-openrtb/go/client"`
 
 * [Overview](#pkg-overview)
 * [Index](#pkg-index)
@@ -23,7 +23,7 @@
 
 
 #### <a name="pkg-files">Package files</a>
-[client.go](/src/github.com/timehop/nimbus-openrtb/go/client/client.go) [encode.go](/src/github.com/timehop/nimbus-openrtb/go/client/encode.go) [validate-request.go](/src/github.com/timehop/nimbus-openrtb/go/client/validate-request.go) 
+[client.go](/src/github.com/adsbynimbus/nimbus-openrtb/go/client/client.go) [encode.go](/src/github.com/adsbynimbus/nimbus-openrtb/go/client/encode.go) [validate-request.go](/src/github.com/adsbynimbus/nimbus-openrtb/go/client/validate-request.go) 
 
 
 
