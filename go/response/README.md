@@ -1,7 +1,7 @@
 
 
 # response
-`import "github.com/timehop/nimbus-openrtb/go/response"`
+`import "github.com/adsbynimbus/nimbus-openrtb/go/response"`
 
 * [Overview](#pkg-overview)
 * [Index](#pkg-index)
@@ -22,7 +22,7 @@
 
 
 #### <a name="pkg-files">Package files</a>
-[bid_response.go](/src/github.com/timehop/nimbus-openrtb/go/response/bid_response.go) [primitives.go](/src/github.com/timehop/nimbus-openrtb/go/response/primitives.go) 
+[bid_response.go](/src/github.com/adsbynimbus/nimbus-openrtb/go/response/bid_response.go) [primitives.go](/src/github.com/adsbynimbus/nimbus-openrtb/go/response/primitives.go) 
 
 
 

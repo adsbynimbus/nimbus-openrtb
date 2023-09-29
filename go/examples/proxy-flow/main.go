@@ -13,10 +13,10 @@ import (
 	"net/http/httptest"
 	"time"
 
-	"github.com/timehop/nimbus-openrtb/go/client"
-	"github.com/timehop/nimbus-openrtb/go/decode"
-	twofive "github.com/timehop/nimbus-openrtb/go/request/rtb_twofive"
-	"github.com/timehop/nimbus-openrtb/go/response"
+	"github.com/adsbynimbus/nimbus-openrtb/go/client"
+	"github.com/adsbynimbus/nimbus-openrtb/go/decode"
+	twofive "github.com/adsbynimbus/nimbus-openrtb/go/request/rtb_twofive"
+	"github.com/adsbynimbus/nimbus-openrtb/go/response"
 )
 
 func main() {

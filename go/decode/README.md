@@ -1,7 +1,7 @@
 
 
 # decode
-`import "github.com/timehop/nimbus-openrtb/go/decode"`
+`import "github.com/adsbynimbus/nimbus-openrtb/go/decode"`
 
 * [Overview](#pkg-overview)
 * [Index](#pkg-index)
@@ -16,7 +16,7 @@
 
 
 #### <a name="pkg-files">Package files</a>
-[request.go](/src/github.com/timehop/nimbus-openrtb/go/decode/request.go) [response.go](/src/github.com/timehop/nimbus-openrtb/go/decode/response.go) 
+[request.go](/src/github.com/adsbynimbus/nimbus-openrtb/go/decode/request.go) [response.go](/src/github.com/adsbynimbus/nimbus-openrtb/go/decode/response.go) 
 
 
 
