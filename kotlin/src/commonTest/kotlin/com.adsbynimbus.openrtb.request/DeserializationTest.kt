@@ -1,7 +1,11 @@
 package com.adsbynimbus.openrtb.request
 
+import com.adsbynimbus.openrtb.enumerations.ImageType
+import com.adsbynimbus.openrtb.enumerations.TitleLength
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.collections.shouldContainInOrder
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.collections.shouldNotContainInOrder
 import io.kotest.matchers.maps.shouldContain
 import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -61,7 +65,41 @@ const val testJson = """
         "native":{
             "bidfloor":1,
             "request":"{\"assets\":[{\"id\":1,\"img\":{\"hmin\":250,\"type\":3,\"wmin\":300,\"mimes\":[\"image/jpeg\",\"image/png\",\"image/gif\"]},\"title\":{\"len\":140},\"data\":{\"type\":2,\"len\":140},\"required\":1}],\"plcmttype\":1,\"plcmtcnt\":1,\"required\":1,\"ver\":\"1.1\"}",
-            "ver":"1.1"
+            "ver":"1.1",
+            "ext": {
+                "nimbus_native": {
+                    "ver": "1.2",
+                    "plcmttype": 1,
+                    "context": 1,
+                    "contextsubtype": 11,
+                     "assets": [
+                      {
+                        "id": 1,
+                        "required": 1,
+                        "title": {
+                          "len": 140
+                        }
+                      },
+                      {
+                        "id": 2,
+                        "img": {
+                          "h": 250,
+                          "type": 3,
+                          "w": 300
+                        },
+                        "required": 1
+                      },
+                      {
+                        "data": {
+                          "len": 140,
+                          "type": 2
+                        },
+                        "id": 3,
+                        "required": 1
+                      }
+                    ]
+                }
+            }
         },
         "instl":1,
         "bidfloor":1,
@@ -213,6 +251,15 @@ class DeserializationTest : StringSpec({
             val eid2 = first { it.source == "adserver.org" }.uids.first()
             eid2.id shouldBe "6bca7f6b-a98a-46c0-be05-6020f7604598"
             eid2.ext.shouldContain("rtiPartner", "TDID")
+        }
+    }
+
+    "BidResponse fromJson deserialized native extension" {
+        request.imp[0].native?.ext?.nimbusNative?.run {
+            assets shouldHaveSize 3
+            context shouldBe 1
+            contextsubtype shouldBe 11
+            plcmttype shouldBe 1
         }
     }
 })
