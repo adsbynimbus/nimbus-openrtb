@@ -1,7 +1,5 @@
 package com.adsbynimbus.openrtb.request
 
-import com.adsbynimbus.openrtb.enumerations.DataType
-import com.adsbynimbus.openrtb.enumerations.TitleLength
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
@@ -47,64 +45,3 @@ public class Asset (
         @JvmField @SerialName("len") public var len: Int,
     )
 }
-
-private inline val Boolean.apiValue : Byte
-    get() = if (this) 1 else 0
-public fun Asset.Companion.title(
-    id: Int,
-    required: Boolean,
-    length: Int
-): Asset = Asset(
-        id,
-        required.apiValue,
-        title = Asset.TitleObject(
-            length = length
-        )
-    )
-
-public fun Asset.Companion.image(
-    id: Int,
-    required: Boolean,
-    type: Byte,
-    format: Format
-) : Asset = Asset(
-    id,
-    required.apiValue,
-    img = Asset.ImageObject(
-        type = type,
-        h = format.h,
-        w = format.w
-    )
-)
-
-public fun Asset.Companion.video(
-    id: Int,
-    required: Boolean,
-    mimes: Array<String>? = null,
-    minduration: Int = 1,
-    maxduration: Int = 60,
-    protocols: ByteArray? = null,
-) : Asset = Asset(
-    id,
-    required.apiValue,
-    video = Asset.VideoObject(
-            mimes,
-            minduration,
-            maxduration,
-            protocols
-    )
-)
-
-public fun Asset.Companion.data(
-    id: Int,
-    required: Boolean,
-    type: Byte = DataType.DESC,
-    length: Int = TitleLength.LONG
-) : Asset = Asset(
-    id,
-    required.apiValue,
-    data = Asset.DataObject(
-        type = type,
-        len = length
-    )
-)
