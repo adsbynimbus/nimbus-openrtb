@@ -1,5 +1,8 @@
 package com.adsbynimbus.openrtb.request
 
+import com.adsbynimbus.openrtb.enumerations.NativeAdContext
+import com.adsbynimbus.openrtb.enumerations.NativeAdContextSubType
+import com.adsbynimbus.openrtb.enumerations.PlacementType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
@@ -37,4 +40,19 @@ public class Native(
     @JvmField @SerialName("ver") public var ver: String? = null,
     @JvmField @SerialName("api") public var api: ByteArray? = null,
     @JvmField @SerialName("battr") public var battr: ByteArray? = null,
+    @JvmField @SerialName("ext") public var ext: Extension? = null
+)
+
+@Serializable
+public class Extension(
+    @JvmField @SerialName("nimbus_native") public var nimbusNative : NimbusNative? = null
+)
+
+@Serializable
+public class NimbusNative(
+    @JvmField @SerialName("ver") public var ver: String = "1.2",
+    @JvmField @SerialName("plcmttype") public var plcmttype: Byte?,
+    @JvmField @SerialName("context") public var context: Byte?,
+    @JvmField @SerialName("contextsubtype") public var contextsubtype: Byte?,
+    @JvmField @SerialName("assets") public var assets: List<Asset>,
 )
