@@ -81,7 +81,7 @@ public fun Asset.Companion.video(
     id: Int,
     required: Boolean,
     mimes: Array<String>? = null,
-    minduration: Int = 0,
+    minduration: Int = 1,
     maxduration: Int = 60,
     protocols: ByteArray? = null,
 ) : Asset = Asset(
