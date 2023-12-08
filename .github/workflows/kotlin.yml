@@ -66,14 +66,14 @@ jobs:
         run: ./gradlew test publishToMavenLocal
 
       - name: Configure AWS Credentials
-        if: github.repository == 'timehop/nimbus-openrtb' && github.event_name == 'release'
+        if: github.repository == 'adsbynimbus/nimbus-openrtb' && github.event_name == 'release'
         uses: aws-actions/configure-aws-credentials@v1-node16
         with:
           role-to-assume: ${{ vars.AWS_ROLE }}
           aws-region: us-east-1
 
       - name: Publish
-        if: github.repository == 'timehop/nimbus-openrtb' && github.event_name == 'release'
+        if: github.repository == 'adsbynimbus/nimbus-openrtb' && github.event_name == 'release'
         env:
           ORG_GRADLE_PROJECT_version: ${{ steps.tag_name.outputs.VERSION }}
         run: ./gradlew publish
