@@ -12,7 +12,6 @@ import (
 )
 
 func TestValidateBidRequest(t *testing.T) {
-
 	tests := []struct {
 		name    string
 		Request Request
@@ -265,6 +264,12 @@ func TestBidRequestMarshaling(t *testing.T) {
 								},
 							},
 						},
+						MobileFuseData: MobileFuseData{
+							"foo":  "bar",
+							"foo1": "bar1",
+							"foo2": "bar2",
+							"foo3": "bar3",
+						},
 					},
 				},
 				Ext: RequestExt{
@@ -341,8 +346,9 @@ func TestBidRequestMarshaling(t *testing.T) {
 			if err != nil {
 				t.Fatalf("gojay.Marshal failed %v", err)
 			}
-			gojayJSON := b.Bytes()
-
+			// forces the go std lib to sort the keys for byte comparison
+			regJSON, _ = jsonRemarshal(regJSON)
+			gojayJSON, _ := jsonRemarshal(b.Bytes())
 			if !cmp.Equal(regJSON, gojayJSON) {
 				t.Errorf("TestBidRequestMarshalling()\ndiff\n %+v", cmp.Diff(string(regJSON), string(gojayJSON)))
 			}
@@ -351,7 +357,7 @@ func TestBidRequestMarshaling(t *testing.T) {
 }
 
 func TestBidRequestUnmarshaling(t *testing.T) {
-	bidRequest := []byte(`{"app":{"bundle":"com.foo","cat":["IAB14","IAB1","IAB9","IAB12","IAB16","IAB17","IAB18","IAB20"],"domain":"https://foobar.com","name":"Timehop","paid":0,"privacypolicy":1,"publisher":{"cat":["IAB14","IAB1","IAB9","IAB12","IAB16","IAB17","IAB18","IAB20"],"domain":"https://foobar.com","name":"Bar"},"storeurl":"https://play.google.com/store/apps/details?id=com.foo","ver":"4.2.4"},"device":{"connectiontype":6,"devicetype":1,"dnt":0,"geo":{"city":"New York","country":"USA","lat":40.7089,"lon":-74.0012,"type":2},"ifa":"13579176-e94e-4e6e-96ae-572b787af21c","ip":"71.125.59.151","language":"en","lmt":0,"make":"Pixel 2 XL","model":"Samsung","os":"android","osv":"4.2.4","ua":"Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Mobile Safari/537.36"},"ext":{"api_key":"mykey","platformid":"foobar","session_id":"1"},"imp":[{"banner":{"battr":[1,2],"format":[{"h":1,"w":2},{"h":3,"w":4},{"h":5,"w":6}],"h":480,"pos":7,"w":320},"bidfloor":0,"ext":{"aps":[{"amzn_b":["1"],"amzn_h":["3"],"amzn_vid":["2"],"amznp":["4"],"amznrdr":["5"],"amznslots":["6"],"dc":["7"]},{"amzn_b":["1"],"amzn_h":["3"],"amzn_vid":["2"],"amznp":["4"],"amznrdr":["5"],"amznslots":["6"],"dc":["7"]}],"facebook_app_id":"foobar","facebook_test_ad_type":"IMG_16_9_APP_INSTALL","position":"test","viewability":100},"id":"th_unique_id","instl":0,"secure":1,"video":{"api":[2,3],"maxbitrate":200000,"maxduration":20000,"mimes":["foo","bar"],"minbitrate":1,"minduration":100,"pos":1,"skip":0,"startdelay":0}}],"regs":{"coppa":0,"ext":{"gdpr":1}},"source":{"ext":{"omidpn":"foo","omidpv":"bar"}},"user":{"ext":{"age":30,"consent":"i said yes","did_consent":1},"gender":"male","yob":1991}}`)
+	bidRequest := []byte(`{"app":{"bundle":"com.foo","cat":["IAB14","IAB1","IAB9","IAB12","IAB16","IAB17","IAB18","IAB20"],"domain":"https://foobar.com","name":"Timehop","paid":0,"privacypolicy":1,"publisher":{"cat":["IAB14","IAB1","IAB9","IAB12","IAB16","IAB17","IAB18","IAB20"],"domain":"https://foobar.com","name":"Bar"},"storeurl":"https://play.google.com/store/apps/details?id=com.foo","ver":"4.2.4"},"device":{"connectiontype":6,"devicetype":1,"dnt":0,"geo":{"city":"New York","country":"USA","lat":40.7089,"lon":-74.0012,"type":2},"ifa":"13579176-e94e-4e6e-96ae-572b787af21c","ip":"71.125.59.151","language":"en","lmt":0,"make":"Pixel 2 XL","model":"Samsung","os":"android","osv":"4.2.4","ua":"Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Mobile Safari/537.36"},"ext":{"api_key":"mykey","platformid":"foobar","session_id":"1"},"imp":[{"banner":{"battr":[1,2],"format":[{"h":1,"w":2},{"h":3,"w":4},{"h":5,"w":6}],"h":480,"pos":7,"w":320},"bidfloor":0,"ext":{"aps":[{"amzn_b":["1"],"amzn_h":["3"],"amzn_vid":["2"],"amznp":["4"],"amznrdr":["5"],"amznslots":["6"],"dc":["7"]},{"amzn_b":["1"],"amzn_h":["3"],"amzn_vid":["2"],"amznp":["4"],"amznrdr":["5"],"amznslots":["6"],"dc":["7"]}],"facebook_app_id":"foobar","facebook_test_ad_type":"IMG_16_9_APP_INSTALL","position":"test","viewability":100},"id":"th_unique_id","instl":0,"secure":1,"video":{"api":[2,3],"maxbitrate":200000,"maxduration":20000,"mimes":["foo","bar"],"minbitrate":1,"minduration":100,"pos":1,"skip":0,"startdelay":0}}],"regs":{"coppa":0,"ext":{"gdpr":1}},"source":{"ext":{"omidpn":"foo","omidpv":"bar"}},"user":{"ext":{"age":30,"consent":"i said yes","did_consent":1,"mfx_buyerdata":{"foo":"bar","foo1":"bar1","foo2":"bar2","foo3":"bar3"}},"gender":"male","yob":1991}}`)
 
 	tests := []struct {
 		name       string
@@ -580,4 +586,13 @@ func structTypes(v reflect.Value, m map[reflect.Type]struct{}) {
 			structTypes(v.Field(i), m)
 		}
 	}
+}
+
+func jsonRemarshal(bytes []byte) ([]byte, error) {
+	var ifce interface{}
+	err := json.Unmarshal(bytes, &ifce)
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(ifce)
 }

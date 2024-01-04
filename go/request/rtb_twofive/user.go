@@ -19,11 +19,12 @@ type User struct {
 
 // UserExt Nimbus and IAB extensions
 type UserExt struct {
-	Consent          string `json:"consent,omitempty"           valid:"-"` // publisher provided GDPR TCF string
-	UnityBuyerUID    string `json:"unity_buyeruid,omitempty"    valid:"-"`
-	FacebookBuyerUID string `json:"facebook_buyeruid,omitempty" valid:"-"`
-	VungleBuyerUID   string `json:"vungle_buyeruid,omitempty"   valid:"-"` // buyer id that is generated from the unity sdk and passed to nimbus in the rtb request
-	EIDS             EIDS   `json:"eids,omitempty"              valid:"-"`
+	Consent          string         `json:"consent,omitempty"           valid:"-"` // publisher provided GDPR TCF string
+	UnityBuyerUID    string         `json:"unity_buyeruid,omitempty"    valid:"-"`
+	FacebookBuyerUID string         `json:"facebook_buyeruid,omitempty" valid:"-"`
+	VungleBuyerUID   string         `json:"vungle_buyeruid,omitempty"   valid:"-"` // buyer id that is generated from the unity sdk and passed to nimbus in the rtb request
+	MobileFuseData   MobileFuseData `json:"mfx_buyerdata,omitempty"     valid:"-"`
+	EIDS             EIDS           `json:"eids,omitempty"              valid:"-"`
 }
 
 // MarshalJSONObject implements MarshalerJSONObject
@@ -95,6 +96,7 @@ func (e *UserExt) MarshalJSONObject(enc *gojay.Encoder) {
 	enc.StringKeyOmitEmpty("unity_buyeruid", e.UnityBuyerUID)
 	enc.StringKeyOmitEmpty("facebook_buyeruid", e.FacebookBuyerUID)
 	enc.StringKeyOmitEmpty("vungle_buyeruid", e.VungleBuyerUID)
+	enc.ObjectKeyOmitEmpty("mfx_buyerdata", &e.MobileFuseData)
 	enc.ArrayKeyOmitEmpty("eids", e.EIDS)
 }
 
@@ -119,6 +121,9 @@ func (e *UserExt) UnmarshalJSONObject(dec *gojay.Decoder, k string) error {
 
 	case "vungle_buyeruid":
 		return dec.String(&e.VungleBuyerUID)
+
+	case "mfx_buyerdata":
+		return dec.Object(&e.MobileFuseData)
 
 	case "eids":
 		var aSlice = EIDS{}
