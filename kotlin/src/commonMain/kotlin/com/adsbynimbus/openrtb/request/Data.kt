@@ -4,7 +4,6 @@ package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonNames
 import kotlin.jvm.JvmField
 
 /**

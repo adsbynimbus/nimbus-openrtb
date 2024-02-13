@@ -1,11 +1,7 @@
 package com.adsbynimbus.openrtb.request
 
-import com.adsbynimbus.openrtb.enumerations.ImageType
-import com.adsbynimbus.openrtb.enumerations.TitleLength
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.collections.shouldContainInOrder
 import io.kotest.matchers.collections.shouldHaveSize
-import io.kotest.matchers.collections.shouldNotContainInOrder
 import io.kotest.matchers.maps.shouldContain
 import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
