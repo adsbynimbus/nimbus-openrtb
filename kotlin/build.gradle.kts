@@ -1,9 +1,4 @@
-@file:OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
-@file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage", "UNUSED_VARIABLE")
-
 import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode.DISABLE
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.android)
@@ -24,15 +19,14 @@ android {
         minSdk = 21
         consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
     }
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     namespace = "com.adsbynimbus.openrtb"
 }
 
 kotlin {
     explicitApi()
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
@@ -45,7 +39,6 @@ kotlin {
     if (!androidOnly) {
         iosArm64()
         iosSimulatorArm64()
-        tvos()
     }
     sourceSets {
         configureEach {
@@ -55,19 +48,12 @@ kotlin {
                 optIn("kotlinx.serialization.ExperimentalSerializationApi")
             }
         }
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.serialization.json)
-            }
+        commonMain.dependencies {
+            implementation(libs.serialization.json)
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-                implementation(libs.bundles.test.common)
-            }
+        commonTest.dependencies {
+            implementation(libs.bundles.test.common)
         }
-        val androidMain by getting
         val androidUnitTest by getting {
             dependencies {
                 implementation(libs.bundles.test.android)
@@ -81,15 +67,14 @@ tasks.withType<Test> {
 }
 
 tasks.withType<DokkaTask>().configureEach {
-    notCompatibleWithConfigurationCache("Dokka does not support it yet")
-    moduleName.set("nimbus-openrtb")
+    moduleName = "nimbus-openrtb"
 
     dokkaSourceSets {
         named("commonMain") {
             sourceLink {
-                localDirectory.set(file("src/$name/kotlin"))
-                remoteUrl.set(uri("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin").toURL())
-                remoteLineSuffix.set("#L")
+                localDirectory = layout.projectDirectory.file("src/$name/kotlin").asFile
+                remoteUrl = uri("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin").toURL()
+                remoteLineSuffix = "#L"
             }
         }
     }
@@ -97,17 +82,15 @@ tasks.withType<DokkaTask>().configureEach {
 
 publishing {
     repositories {
-        maven {
+        maven("s3://adsbynimbus-public/android/sdks") {
             name = "aws"
-            setUrl("s3://adsbynimbus-public/android/sdks")
             authentication {
                 create<AwsImAuthentication>("awsIm")
             }
         }
         providers.environmentVariable("GITHUB_REPOSITORY").orNull?.let {
-            maven {
+            maven("https://maven.pkg.github.com/$it") {
                 name = "github"
-                url = uri("https://maven.pkg.github.com/$it")
                 credentials(PasswordCredentials::class)
             }
         }
