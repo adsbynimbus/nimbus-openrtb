@@ -2,7 +2,6 @@ package com.adsbynimbus.openrtb.request
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmField
 
 /**
  * This object describes the nature and behavior of the entity that is the source of the bid request
