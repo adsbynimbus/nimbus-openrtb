@@ -81,6 +81,6 @@ public class EID(
 @Serializable
 public class UID(
     @JvmField @SerialName("id") public var id: String,
-    @JvmField @SerialName("atype") public var atype: Int? = null,
+    @JvmField @SerialName("atype") public var atype: Int = 0,
     @JvmField @SerialName("ext") public var ext: Map<String, String> = mutableMapOf()
 )
