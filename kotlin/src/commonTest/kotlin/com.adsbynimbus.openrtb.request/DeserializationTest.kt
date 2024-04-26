@@ -160,6 +160,7 @@ const val testJson = """
                     "uids": [
                         {
                             "id": "6bca7f6b-a98a-46c0-be05-6020f7604598",
+                            "atype": 1,
                             "ext": {
                                 "rtiPartner": "TDID"
                             }
@@ -246,6 +247,7 @@ class DeserializationTest : StringSpec({
 
             val eid2 = first { it.source == "adserver.org" }.uids.first()
             eid2.id shouldBe "6bca7f6b-a98a-46c0-be05-6020f7604598"
+            eid2.atype shouldBe 1
             eid2.ext.shouldContain("rtiPartner", "TDID")
         }
     }
