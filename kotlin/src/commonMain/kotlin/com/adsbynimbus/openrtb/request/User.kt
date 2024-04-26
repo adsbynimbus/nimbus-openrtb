@@ -70,9 +70,17 @@ public class User(
 @Serializable
 public class EID(
     @JvmField @SerialName("source") public val source: String,
-    @JvmField @SerialName("uids") public var uids: Set<Segment>,
+    @JvmField @SerialName("uids") public var uids: Set<UID>,
 ) {
     override fun equals(other: Any?): Boolean = other is EID && other.source == source
 
     override fun hashCode(): Int  = source.hashCode()
 }
+
+/** Object representing the extended ID UID */
+@Serializable
+public class UID(
+    @JvmField @SerialName("id") public var id: String,
+    @JvmField @SerialName("atype") public var atype: Int = 0,
+    @JvmField @SerialName("ext") public var ext: Map<String, String> = mutableMapOf()
+)
