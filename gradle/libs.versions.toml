@@ -1,5 +1,5 @@
 [versions]
-android = "8.3.2"
+android = "8.5.1"
 android-buildtools = "34.0.0"
 dokka = "1.9.10"
 kotest = "5.8.0"
