@@ -106,17 +106,17 @@ class DeserializationTest : StringSpec({
     }
 
     "BidResponse fromJson deserializes use_new_renderer" {
-        response.ext.useNewRenderer shouldBe false
+        response.ext.use_new_renderer shouldBe false
         BidResponse.fromJson(testJson("""
             ,"ext": {
                 "use_new_renderer": true
             }
-        """.trimIndent())).ext.useNewRenderer shouldBe true
+        """.trimIndent())).ext.use_new_renderer shouldBe true
         BidResponse.fromJson(testJson("""
             ,"ext": {
                 "use_new_renderer": false
             }
-        """.trimIndent())).ext.useNewRenderer shouldBe false
+        """.trimIndent())).ext.use_new_renderer shouldBe false
     }
 
     "BidResponse fromJson deserializes loss urls" {

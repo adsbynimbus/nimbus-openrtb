@@ -84,6 +84,6 @@ public class BidResponse(
 
     @Serializable
     public class Extension(
-        @JvmField @SerialName("use_new_renderer") public val useNewRenderer: Boolean = false,
+        @JvmField @SerialName("use_new_renderer") public val use_new_renderer: Boolean = false,
     )
 }
