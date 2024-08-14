@@ -69,7 +69,7 @@ public class BidResponse(
     public val loss_response: String? get() = external_notifications["loss_response"]
 
     public val useNewRenderer: Boolean
-        get() = ((ext as? JsonObject)?.get("useNewRenderer") as? JsonPrimitive)?.booleanOrNull ?: false
+        get() = ((ext as? JsonObject)?.get("use_new_renderer") as? JsonPrimitive)?.booleanOrNull ?: false
 
     public companion object {
         /** Decodes a BidResponse from a Json string using the built in serializer */

@@ -34,7 +34,7 @@ const val testJson = """
     "loss_response": "https://test.adsbynimbus.com/loss_response/auctionPrice=[AUCTION_PRICE]&auctionMinToWin=[AUCTION_MIN_TO_WIN]&winningSource=[WINNING_SOURCE]"
   },
   "ext": {
-    "useNewRenderer": true
+    "use_new_renderer": true
   }
 }
 """
