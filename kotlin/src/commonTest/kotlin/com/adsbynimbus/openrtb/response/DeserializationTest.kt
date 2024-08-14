@@ -32,6 +32,9 @@ const val testJson = """
   "external_notifications": {
     "win_response": "https://test.adsbynimbus.com/win_response/",
     "loss_response": "https://test.adsbynimbus.com/loss_response/auctionPrice=[AUCTION_PRICE]&auctionMinToWin=[AUCTION_MIN_TO_WIN]&winningSource=[WINNING_SOURCE]"
+  },
+  "ext": {
+    "useNewRenderer": true
   }
 }
 """
@@ -102,6 +105,10 @@ class DeserializationTest : StringSpec({
 
     "BidResponse fromJson deserializes win urls" {
         response.win_response shouldBe "https://test.adsbynimbus.com/win_response/"
+    }
+
+    "BidResponse fromJson deserializes use_new_renderer" {
+        response.useNewRenderer shouldBe true
     }
 
     "BidResponse fromJson deserializes loss urls" {
