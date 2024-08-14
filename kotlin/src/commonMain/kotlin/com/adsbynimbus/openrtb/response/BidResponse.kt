@@ -82,6 +82,11 @@ public class BidResponse(
         ): String = jsonSerializer.encodeToString(serializer(), response)
     }
 
+    /**
+     * BidResponse Extension object from Nimbus
+     *
+     * @property use_new_renderer Set to false if Nimbus has determined the creative should be rendered using IMA SDK
+     */
     @Serializable
     public class Extension(
         @JvmField @SerialName("use_new_renderer") public val use_new_renderer: Boolean = false,
