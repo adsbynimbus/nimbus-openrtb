@@ -55,7 +55,7 @@ public class BidResponse(
     @JvmField @SerialName("duration") public val duration: Int = 0,
     @JvmField @SerialName("exp") public val exp: Int = -1,
     @JvmField @SerialName("external_notifications") public val external_notifications: Map<String, String> = emptyMap(),
-    @JvmField @SerialName("ext") public val ext: Map<String, String> = emptyMap(),
+    @JvmField @SerialName("ext") public val ext: Extension = Extension(),
 ) {
     /** Urls to fire a request to when an impression is registered */
     public val impression_trackers: Array<String>? get() = trackers["impression_trackers"]
@@ -65,9 +65,6 @@ public class BidResponse(
     public val win_response: String? get() = external_notifications["win_response"]
     /** Url to fire a request to when this bid loses an auction */
     public val loss_response: String? get() = external_notifications["loss_response"]
-
-    public val useNewRenderer: Boolean
-        get() = ext["use_new_renderer"].toBoolean()
 
     public companion object {
         /** Decodes a BidResponse from a Json string using the built in serializer */
@@ -84,4 +81,14 @@ public class BidResponse(
             jsonSerializer: Json = BidRequest.lenientSerializer,
         ): String = jsonSerializer.encodeToString(serializer(), response)
     }
+
+    /**
+     * BidResponse Extension object from Nimbus
+     *
+     * @property use_new_renderer Set to false if Nimbus has determined the creative should be rendered using IMA SDK
+     */
+    @Serializable
+    public class Extension(
+        @JvmField @SerialName("use_new_renderer") public val use_new_renderer: Boolean = false,
+    )
 }

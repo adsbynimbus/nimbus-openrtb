@@ -6,7 +6,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldStartWith
 
-const val testJson = """
+private fun testJson(ext: String = "") = """
 {
   "type": "native",
   "auction_id": "d07668d6-35ba-4870-a3cd-02b18fec1a12",
@@ -33,12 +33,13 @@ const val testJson = """
     "win_response": "https://test.adsbynimbus.com/win_response/",
     "loss_response": "https://test.adsbynimbus.com/loss_response/auctionPrice=[AUCTION_PRICE]&auctionMinToWin=[AUCTION_MIN_TO_WIN]&winningSource=[WINNING_SOURCE]"
   }
+  $ext
 }
 """
 
 class DeserializationTest : StringSpec({
 
-    val response = BidResponse.fromJson(testJson)
+    val response = BidResponse.fromJson(testJson())
 
     "BidResponse fromJson deserializes the type field" {
         response.type shouldBe "native"
@@ -102,6 +103,20 @@ class DeserializationTest : StringSpec({
 
     "BidResponse fromJson deserializes win urls" {
         response.win_response shouldBe "https://test.adsbynimbus.com/win_response/"
+    }
+
+    "BidResponse fromJson deserializes use_new_renderer" {
+        response.ext.use_new_renderer shouldBe false
+        BidResponse.fromJson(testJson("""
+            ,"ext": {
+                "use_new_renderer": true
+            }
+        """.trimIndent())).ext.use_new_renderer shouldBe true
+        BidResponse.fromJson(testJson("""
+            ,"ext": {
+                "use_new_renderer": false
+            }
+        """.trimIndent())).ext.use_new_renderer shouldBe false
     }
 
     "BidResponse fromJson deserializes loss urls" {
