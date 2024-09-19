@@ -58,7 +58,7 @@ public class User(
     @Serializable
     public class Extension(
         @JvmField @SerialName("consent") public var consent: String? = null,
-        @JvmField @SerialName("admob_gde_signals") public var admobGdeSignals: String? = null,
+        @JvmField @SerialName("admob_gde_signals") public var admob_gde_signals: String? = null,
         @JvmField @SerialName("facebook_buyeruid") public var facebook_buyeruid: String? = null,
         @JvmField @SerialName("unity_buyeruid") public var unity_buyeruid: String? = null,
         @JvmField @SerialName("vungle_buyeruid") public var vungle_buyeruid: String? = null,
