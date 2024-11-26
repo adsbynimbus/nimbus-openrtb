@@ -1,35 +1,52 @@
 # Standard
 bin/
-gen/
-classes/
 build/
+captures/
+classes/
+gen/
+schemas/
 .build/
+.externalNativeBuild/
+.gradle/
+.kotlin/
+.navigation/
+*.aab
+*.aar
+*.apk
+*.framework
+*.generated.swift
+*.hmap
+*.ipa
+*.keystore
+*.log
+*.xcframework
+*.zip
 
-# Gradle
-.gradle
-
-# Windows / MacOS
+# OS
 .DS_Store
 
-# Intellij / Android Studio / Rider
-*.iml
+# Intellij / Android Studio / Rider / Fleet
+.fleet/
 .idea/
-
-# Android
+.vscode/
+*Caches/
+xcuserdata/
+*.iml
+*.user
+*.xcworkspace
 local.properties
 
-# Cocoapods
-*.podspec
-
 # Nuget
+obj/
+packages/
 *.dll
 *.nupkg
 *.p7s
-obj/
-packages/
 
-# Rider
-*.user
-_ReSharper.Caches/
+# Cocoapods
+Pods/
+Podfile.lock
 
-
+# Swift Package Manager
+Packages/
+Package.resolved
