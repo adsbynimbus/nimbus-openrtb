@@ -1,4 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
     alias(libs.plugins.android)
@@ -9,11 +10,8 @@ plugins {
     `maven-publish`
 }
 
-val androidOnly: Boolean = providers.gradleProperty("android.injected.invoked.from.ide")
-    .map { it.toBoolean() }.getOrElse(false)
-
 android {
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 21
         consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
@@ -23,27 +21,24 @@ android {
 
 kotlin {
     explicitApi()
-    applyDefaultHierarchyTemplate()
 
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
+        compilations.configureEach {
+            compileTaskProvider.configure {
+                compilerOptions.jvmTarget = JvmTarget.JVM_1_8
             }
         }
         publishLibraryVariants("release")
     }
 
-    /* Apple deployments in rough dependency order */
-    if (!androidOnly) {
-        iosArm64()
-        iosSimulatorArm64()
-    }
+    iosArm64()
+    iosSimulatorArm64()
+
     sourceSets {
         configureEach {
             languageSettings {
-                apiVersion = "1.6"
-                languageVersion = "1.6"
+                apiVersion = KotlinVersion.KOTLIN_1_7.version
+                languageVersion = KotlinVersion.KOTLIN_1_7.version
                 optIn("kotlinx.serialization.ExperimentalSerializationApi")
             }
         }
@@ -53,10 +48,8 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.bundles.test.common)
         }
-        val androidUnitTest by getting {
-            dependencies {
-                implementation(libs.bundles.test.android)
-            }
+        androidUnitTest.dependencies {
+            implementation(libs.bundles.test.android)
         }
     }
 }
