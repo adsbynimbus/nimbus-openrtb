@@ -13,7 +13,6 @@ val androidOnly: Boolean = providers.gradleProperty("android.injected.invoked.fr
     .map { it.toBoolean() }.getOrElse(false)
 
 android {
-    buildToolsVersion = libs.versions.android.buildtools.get()
     compileSdk = 34
     defaultConfig {
         minSdk = 21
