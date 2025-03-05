@@ -1,8 +1,8 @@
 [versions]
-android = "8.8.0"
+android = "8.7.2"
 dokka = "1.9.20"
 kotest = "6.0.0.M1"
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 serialization = { require = "[1.4, 2.0[", prefer = "1.8.0" }
 
 [plugins]
