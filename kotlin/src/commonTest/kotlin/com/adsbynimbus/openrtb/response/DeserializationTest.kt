@@ -106,7 +106,8 @@ class DeserializationTest : StringSpec({
     }
 
     "BidResponse fromJson deserializes use_new_renderer" {
-        response.ext.use_new_renderer shouldBe false
+        // if missing, default is true
+        response.ext.use_new_renderer shouldBe true
         BidResponse.fromJson(testJson("""
             ,"ext": {
                 "use_new_renderer": true
