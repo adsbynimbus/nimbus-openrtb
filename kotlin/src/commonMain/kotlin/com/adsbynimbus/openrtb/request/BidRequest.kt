@@ -38,6 +38,7 @@ import kotlin.jvm.JvmStatic
  *                  makes the final decision.
  * @property regs A Regs object that specifies any industry, legal, or governmental regulations in
  *                force for this request.
+ * @property customSignals Custom signals for this request
  * @property ext Placeholder for exchange-specific extensions to OpenRTB.
  */
 @Serializable
@@ -52,6 +53,7 @@ public class BidRequest(
     @JvmField @SerialName("badv") public var badv: Array<String>? = null,
     @JvmField @SerialName("source") public var source: Source? = null,
     @JvmField @SerialName("regs") public var regs: Regs? = null,
+    @JvmField @SerialName("custom_signals") public var customSignals: Signals? = null,
     @JvmField @SerialName("ext") public val ext: MutableMap<String, String> = mutableMapOf(),
 ) {
 
