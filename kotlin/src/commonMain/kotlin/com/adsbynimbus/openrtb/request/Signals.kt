@@ -10,13 +10,16 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class Signals(
-    @JvmField @SerialName("session") public val session: MutableMap<String, String> = mutableMapOf(),
-) {
-    public inline var depth: Int
-        get() = session["depth"]?.toIntOrNull() ?: 0
-        set(value) { session["depth"] = value.coerceAtLeast(0).toString() }
+    @JvmField @SerialName("session") public var session: Session = Session(),
+)
 
-    public inline var duration: Int
-        get() = session["duration"]?.toIntOrNull() ?: 0
-        set(value) { session["duration"] = value.coerceAtLeast(0).toString() }
-}
+/**
+ * Session related signals as used by Nimbus
+ * @property depth Depth of the request
+ * @property duration represents the duration in seconds since this session has started
+ */
+@Serializable
+public class Session(
+    @JvmField @SerialName("depth") public var depth: Int = 0,
+    @JvmField @SerialName("duration") public var duration: Long = 0,
+)
