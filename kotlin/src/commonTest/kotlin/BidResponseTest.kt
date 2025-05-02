@@ -1,5 +1,6 @@
-package com.adsbynimbus.openrtb.response
+package com.adsbynimbus.openrtb
 
+import com.adsbynimbus.openrtb.response.BidResponse
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
@@ -37,9 +38,13 @@ private fun testJson(ext: String = "") = """
 }
 """
 
-class DeserializationTest : StringSpec({
+class BidResponseTest : StringSpec({
 
-    val response = BidResponse.fromJson(testJson())
+    lateinit var response: BidResponse
+
+    beforeTest {
+        response = BidResponse.fromJson(testJson())
+    }
 
     "BidResponse fromJson deserializes the type field" {
         response.type shouldBe "native"
@@ -113,7 +118,8 @@ class DeserializationTest : StringSpec({
                 "use_new_renderer": true
             }
         """.trimIndent())).ext.use_new_renderer shouldBe true
-        BidResponse.fromJson(testJson("""
+        BidResponse.fromJson(
+            testJson("""
             ,"ext": {
                 "use_new_renderer": false
             }
