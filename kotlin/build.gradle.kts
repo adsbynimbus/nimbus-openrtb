@@ -25,7 +25,10 @@ kotlin {
     androidTarget {
         compilations.configureEach {
             compileTaskProvider.configure {
-                compilerOptions.jvmTarget = JvmTarget.JVM_1_8
+                compilerOptions {
+                    freeCompilerArgs.add("-Xjvm-default=all-compatibility")
+                    jvmTarget = JvmTarget.JVM_1_8
+                }
             }
         }
         publishLibraryVariants("release")
