@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/kotlin*'
-      - 'gradle/**'
+      - '**/gradle/**'
       - 'kotlin/**'
 
   push:
@@ -12,7 +12,7 @@ on:
       - main
     paths:
       - '.github/workflows/kotlin*'
-      - 'gradle/**'
+      - '**/gradle/**'
       - 'kotlin/**'
 
   release:
@@ -62,8 +62,10 @@ jobs:
 
       - name: Test
         env:
-          ORG_GRADLE_PROJECT_version: ${{ steps.tag_name.outputs.VERSION || '0.0.1' }}
-        run: ./gradlew test publishToMavenLocal
+          ORG_GRADLE_PROJECT_version: ${{ steps.tag_name.outputs.VERSION || 'development' }}
+        run: |
+          ./gradlew test publishToMavenLocal
+          ./gradlew test -p integration-tests
 
       - name: Configure AWS Credentials
         if: github.repository == 'adsbynimbus/nimbus-openrtb' && github.event_name == 'release'
