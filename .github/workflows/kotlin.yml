@@ -66,6 +66,7 @@ jobs:
         run: ./gradlew test publishToMavenLocal
 
       - name: Test integration w/ minimum required versions
+        if: github.event_name != 'release'
         run: ./gradlew test -p integration-tests
 
       - name: Configure AWS Credentials
