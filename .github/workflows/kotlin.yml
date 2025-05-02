@@ -63,9 +63,10 @@ jobs:
       - name: Test
         env:
           ORG_GRADLE_PROJECT_version: ${{ steps.tag_name.outputs.VERSION || 'development' }}
-        run: |
-          ./gradlew test publishToMavenLocal
-          ./gradlew test -p integration-tests
+        run: ./gradlew test publishToMavenLocal
+
+      - name: Test integration w/ minimum required versions
+        run: ./gradlew test -p integration-tests
 
       - name: Configure AWS Credentials
         if: github.repository == 'adsbynimbus/nimbus-openrtb' && github.event_name == 'release'
