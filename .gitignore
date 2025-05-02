@@ -48,5 +48,6 @@ Pods/
 Podfile.lock
 
 # Swift Package Manager
+.swiftpm/
 Packages/
 Package.resolved
