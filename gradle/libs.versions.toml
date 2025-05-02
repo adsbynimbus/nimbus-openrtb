@@ -3,7 +3,7 @@ android = "8.9.2"
 dokka = "1.9.20"
 kotest = "6.0.0.M3"
 kotlin = "2.1.0"
-serialization = { require = "[1.4, )", prefer = "1.8.1" }
+serialization = { require = "[1.5.1, )", prefer = "1.7.3" }
 
 [plugins]
 android = { id = "com.android.library", version.ref = "android" }
