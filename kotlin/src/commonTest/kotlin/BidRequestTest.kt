@@ -1,5 +1,6 @@
-package com.adsbynimbus.openrtb.request
+package com.adsbynimbus.openrtb
 
+import com.adsbynimbus.openrtb.request.BidRequest
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.maps.shouldContain
@@ -184,19 +185,23 @@ const val testJson = """
 }
 """
 
-class DeserializationTest : StringSpec({
+class BidRequestTest : StringSpec({
 
-    val request = BidRequest.fromJson(testJson)
+    lateinit var request: BidRequest
 
-    "BidResponse fromJson deserializes the impression array" {
+    beforeTest {
+        request = BidRequest.fromJson(testJson)
+    }
+
+    "BidRequest fromJson deserializes the impression array" {
         request.imp shouldHaveSize 1
     }
 
-    "BidResponse fromJson deserializes the app object" {
+    "BidRequest fromJson deserializes the app object" {
         request.app.shouldNotBeNull()
     }
 
-    "BidResponse fromJson deserializes the device object" {
+    "BidRequest fromJson deserializes the device object" {
         request.device.shouldNotBeNull()
         request.device?.run {
             ua shouldBe "test-ua-string"
@@ -206,24 +211,24 @@ class DeserializationTest : StringSpec({
         }
     }
 
-    "BidResponse fromJson deserializes the format object" {
+    "BidRequest fromJson deserializes the format object" {
         request.format.w shouldBe 320
         request.format.h shouldBe 480
     }
 
-    "BidResponse fromJson deserializes the user object" {
+    "BidRequest fromJson deserializes the user object" {
         request.user.shouldNotBeNull()
     }
 
-    "BidResponse fromJson deserializes the source object" {
+    "BidRequest fromJson deserializes the source object" {
         request.source.shouldNotBeNull()
     }
 
-    "BidResponse fromJson deserializes the regs object" {
+    "BidRequest fromJson deserializes the regs object" {
         request.regs.shouldNotBeNull()
     }
 
-    "BidResponse fromJson deserializes the regs ext object" {
+    "BidRequest fromJson deserializes the regs ext object" {
         request.regs?.ext.shouldNotBeNull()
         request.regs?.ext?.gdpr shouldBe 0
         request.regs?.ext?.us_privacy shouldBe "1YNN"
@@ -231,13 +236,13 @@ class DeserializationTest : StringSpec({
         request.regs?.ext?.gpp_sids shouldBe "2"
     }
 
-    "BidResponse fromJson deserializes the ext object" {
+    "BidRequest fromJson deserializes the ext object" {
         request.ext.shouldNotBeEmpty()
         request.ext.shouldContain("api_key", "12345678-4321-1234-0000-6c5b91b1eac6")
         request.session_id shouldBe "session1"
     }
 
-    "BidResponse fromJson deserialized EIDS" {
+    "BidRequest fromJson deserialized EIDS" {
         request.user?.ext?.eids.shouldNotBeNull()
         request.user?.ext?.eids?.run {
             size shouldBe 2
@@ -252,7 +257,7 @@ class DeserializationTest : StringSpec({
         }
     }
 
-    "BidResponse fromJson deserialized native extension" {
+    "BidRequest fromJson deserialized native extension" {
         request.imp[0].native?.ext?.nimbusNative?.run {
             assets shouldHaveSize 3
             context shouldBe 1

@@ -2,8 +2,8 @@
 android = "8.9.2"
 dokka = "1.9.20"
 kotest = "6.0.0.M3"
-kotlin = "2.1.0"
-serialization = { require = "[1.4, 2.0[", prefer = "1.8.1" }
+kotlin = "2.1.20"
+serialization = { require = "[1.5.1, )", prefer = "1.7.3" }
 
 [plugins]
 android = { id = "com.android.library", version.ref = "android" }
@@ -20,5 +20,4 @@ serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-jso
 
 [bundles]
 test-android = [ "kotest-runner" ]
-
 test-common = [ "kotest-assertions", "kotest-engine" ]

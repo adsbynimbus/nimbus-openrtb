@@ -11,7 +11,7 @@ plugins {
 }
 
 android {
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
         consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
@@ -37,8 +37,8 @@ kotlin {
     sourceSets {
         configureEach {
             languageSettings {
-                apiVersion = KotlinVersion.KOTLIN_1_7.version
-                languageVersion = KotlinVersion.KOTLIN_1_7.version
+                apiVersion = KotlinVersion.KOTLIN_1_9.version
+                languageVersion = KotlinVersion.KOTLIN_1_9.version
                 optIn("kotlinx.serialization.ExperimentalSerializationApi")
             }
         }

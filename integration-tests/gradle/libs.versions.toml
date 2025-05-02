@@ -1,0 +1,27 @@
+[versions]
+#noinspection AndroidGradlePluginVersion
+android = "8.2.2"
+#noinspection NewerVersionAvailable
+kotest = "5.8.0"
+#noinspection NewerVersionAvailable
+kotlin = "1.9.22"
+#noinspection NewerVersionAvailable
+serialization = "1.5.1"
+
+[plugins]
+android = { id = "com.android.library", version.ref = "android" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+[libraries]
+kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest" }
+kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+openrtb = { module = "com.adsbynimbus.openrtb:kotlin-android", version = "development" }
+serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+
+[bundles]
+test = [
+    "kotest-assertions",
+    "kotest-engine",
+    "kotest-runner",
+]
