@@ -4,7 +4,7 @@ android = "8.2.2"
 #noinspection NewerVersionAvailable
 kotest = "5.8.0"
 #noinspection NewerVersionAvailable
-kotlin = "1.9.22"
+kotlin = "1.8.22"
 #noinspection NewerVersionAvailable
 serialization = "1.5.1"
 

@@ -1,5 +1,6 @@
 import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.kotlin.gradle.dsl.*
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
     alias(libs.plugins.android)
@@ -37,7 +38,7 @@ kotlin {
     sourceSets {
         configureEach {
             languageSettings {
-                apiVersion = KotlinVersion.KOTLIN_1_9.version
+                apiVersion = KotlinVersion.KOTLIN_1_8.version
                 languageVersion = KotlinVersion.KOTLIN_1_9.version
                 optIn("kotlinx.serialization.ExperimentalSerializationApi")
             }
