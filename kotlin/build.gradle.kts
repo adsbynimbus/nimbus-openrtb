@@ -39,7 +39,7 @@ kotlin {
         configureEach {
             languageSettings {
                 apiVersion = KotlinVersion.KOTLIN_1_8.version
-                languageVersion = KotlinVersion.KOTLIN_1_9.version
+                languageVersion = KotlinVersion.KOTLIN_1_8.version
                 optIn("kotlinx.serialization.ExperimentalSerializationApi")
             }
         }
