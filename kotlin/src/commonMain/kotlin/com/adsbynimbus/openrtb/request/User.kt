@@ -54,6 +54,7 @@ public class User(
      * @property vungle_buyeruid String token provided by the Vungle SDK to include Vungle in the auction.
      * @property mfx_buyerdata Map<String, String> provided by MobileFuse SDK to include MobileFuse in the auction.
      * @property mintegral_sdk Map<String, String> containing buyeruid and sdkv strings to include Mintegral in the auction.
+     * @property moloco_buyeruid String token provided by Moloco SDK to include Moloco in the auction.
      * @property eids Collection of external user ids
      */
     @Serializable
@@ -66,6 +67,7 @@ public class User(
         @JvmField @SerialName("eids") public var eids: Set<EID>? = null,
         @JvmField @SerialName("mfx_buyerdata") public var mfx_buyerdata: Map<String, String>? = null,
         @JvmField @SerialName("mintegral_sdk") public var mintegral_sdk: Map<String, String>? = null,
+        @JvmField @SerialName("moloco_buyeruid") public var moloco_buyeruid: String? = null,
     )
 }
 
