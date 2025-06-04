@@ -2,6 +2,8 @@
 #noinspection AndroidGradlePluginVersion
 android = "8.2.2"
 #noinspection NewerVersionAvailable
+desugaring = "2.0.3"
+#noinspection NewerVersionAvailable
 kotest = "5.8.0"
 #noinspection NewerVersionAvailable
 kotlin = "1.9.22"
@@ -13,6 +15,7 @@ android = { id = "com.android.library", version.ref = "android" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 [libraries]
+desguaring = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugaring" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 kotest-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest" }
 kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
