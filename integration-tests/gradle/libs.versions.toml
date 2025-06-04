@@ -1,6 +1,6 @@
 [versions]
 #noinspection AndroidGradlePluginVersion
-android = "8.2.2"
+android = "7.4.2"
 #noinspection NewerVersionAvailable
 desugaring = "2.0.3"
 #noinspection NewerVersionAvailable
