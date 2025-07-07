@@ -14,8 +14,9 @@ pluginManagement {
     }
 }
 
-val androidGradleOverride = with(providers) {
-    gradleProperty("android.studio.version").flatMap { gradleProperty("android.gradle") }
+// Allows Android Gradle Plugin override if build is started from Android Studio or CI
+val androidGradleOverride = providers.gradleProperty("android.gradle").filter {
+    providers.systemProperty("idea.vendor.name").orNull != "JetBrains"
 }
 
 dependencyResolutionManagement {
@@ -30,7 +31,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
     versionCatalogs.configureEach {
-          if (androidGradleOverride.isPresent) version("android", androidGradleOverride.get())
+        if (androidGradleOverride.isPresent) version("android", androidGradleOverride.get())
     }
 }
 
