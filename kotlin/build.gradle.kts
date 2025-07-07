@@ -1,6 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
     alias(libs.plugins.android)
@@ -23,6 +22,12 @@ android {
 kotlin {
     explicitApi()
 
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_1_8
+        languageVersion = KotlinVersion.KOTLIN_1_8
+        optIn = listOf("kotlinx.serialization.ExperimentalSerializationApi")
+    }
+
     androidTarget {
         compilations.configureEach {
             compileTaskProvider.configure {
@@ -36,13 +41,6 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        configureEach {
-            languageSettings {
-                apiVersion = KotlinVersion.KOTLIN_1_8.version
-                languageVersion = KotlinVersion.KOTLIN_1_8.version
-                optIn("kotlinx.serialization.ExperimentalSerializationApi")
-            }
-        }
         commonMain.dependencies {
             implementation(libs.serialization.json)
         }
