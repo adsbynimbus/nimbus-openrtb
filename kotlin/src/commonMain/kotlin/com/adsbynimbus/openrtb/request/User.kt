@@ -19,7 +19,7 @@ import kotlin.jvm.JvmField
  * @property age Age of the user
  * @property buyeruid Buyer-specific ID for the user as mapped by the exchange for the buyer.
  *                    Set to Facebook bidder token if integrating Facebook demand.
- * @property yob Year of birth as a 4-digit integer. Deprecate, use age instead.
+ * @property yob Year of birth as a 4-digit integer. Deprecated, use age instead.
  * @property gender The gender of this user. If omitted it is assumed to be unknown.
  *                  "male" = male
  *                  "female" = female.
