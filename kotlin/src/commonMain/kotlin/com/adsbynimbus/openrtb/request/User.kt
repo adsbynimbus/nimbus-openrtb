@@ -17,7 +17,7 @@ import kotlin.jvm.JvmField
  * @property age Age of the user
  * @property buyeruid Buyer-specific ID for the user as mapped by the exchange for the buyer.
  *                    Set to Facebook bidder token if integrating Facebook demand.
- * @property yob Year of birth as a 4-digit integer
+ * @property yob Year of birth as a 4-digit integer. Deprecated, use age instead.
  * @property gender The gender of this user. If omitted it is assumed to be unknown.
  *                  "male" = male
  *                  "female" = female.
@@ -33,7 +33,7 @@ import kotlin.jvm.JvmField
 public class User(
     @JvmField @SerialName("age") public var age: Int = 0,
     @JvmField @SerialName("buyeruid") public var buyeruid: String? = null,
-    @JvmField @SerialName("yob") public var yob: Int = 0,
+    @Deprecated("use User.age instead") @JvmField @SerialName("yob") public var yob: Int = 0,
     @JvmField @SerialName("gender") public var gender: String? = null,
     @JvmField @SerialName("keywords") public var keywords: String? = null,
     @JvmField @SerialName("custom_data") public var custom_data: String? = null,
