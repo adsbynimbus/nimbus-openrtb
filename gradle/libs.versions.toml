@@ -1,6 +1,6 @@
 [versions]
 android = "8.10.1"
-dokka = "1.9.20"
+dokka = "2.0.0"
 kotest = "6.0.0.M3"
 kotlin = "2.1.21"
 serialization = { require = "[1.5.1, )", prefer = "1.7.3" }

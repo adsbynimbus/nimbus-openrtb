@@ -1,4 +1,3 @@
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
@@ -14,7 +13,7 @@ android {
     compileSdk = 36
     defaultConfig {
         minSdk = 21
-        consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
+        consumerProguardFile(layout.projectDirectory.file("src/androidMain/consumer-proguard-rules.pro"))
     }
     namespace = "com.adsbynimbus.openrtb"
 }
@@ -57,15 +56,15 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-tasks.withType<DokkaTask>().configureEach {
+dokka {
     moduleName = "nimbus-openrtb"
-
+    dokkaGeneratorIsolation = ClassLoaderIsolation()
     dokkaSourceSets {
         named("commonMain") {
             sourceLink {
-                localDirectory = layout.projectDirectory.file("src/$name/kotlin").asFile
-                remoteUrl = uri("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin").toURL()
+                localDirectory = layout.projectDirectory.dir("src/$name/kotlin")
                 remoteLineSuffix = "#L"
+                remoteUrl("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin")
             }
         }
     }
