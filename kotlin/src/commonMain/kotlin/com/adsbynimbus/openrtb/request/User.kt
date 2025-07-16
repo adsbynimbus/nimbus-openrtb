@@ -1,7 +1,5 @@
 package com.adsbynimbus.openrtb.request
 
-import kotlinx.serialization.EncodeDefault
-import kotlinx.serialization.EncodeDefault.Mode.NEVER
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
@@ -33,10 +31,10 @@ import kotlin.jvm.JvmField
  */
 @Serializable
 public class User(
-    @JvmField @SerialName("age") @EncodeDefault(NEVER) public var age: Int = 0,
+    @JvmField @SerialName("age") public var age: Int = 0,
     @JvmField @SerialName("buyeruid") public var buyeruid: String? = null,
     @Deprecated("use User.age instead") @JvmField @SerialName("yob") public var yob: Int = 0,
-    @JvmField @SerialName("gender") @EncodeDefault(NEVER) public var gender: String? = null,
+    @JvmField @SerialName("gender") public var gender: String? = null,
     @JvmField @SerialName("keywords") public var keywords: String? = null,
     @JvmField @SerialName("custom_data") public var custom_data: String? = null,
     @JvmField @SerialName("data") public var data: Array<Data>? = null,
