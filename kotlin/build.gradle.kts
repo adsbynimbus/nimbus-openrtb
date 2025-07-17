@@ -1,6 +1,4 @@
-import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.jetbrains.kotlin.gradle.dsl.*
 
 plugins {
     alias(libs.plugins.android)
@@ -15,13 +13,19 @@ android {
     compileSdk = 36
     defaultConfig {
         minSdk = 21
-        consumerProguardFile("src/androidMain/consumer-proguard-rules.pro")
+        consumerProguardFile(layout.projectDirectory.file("src/androidMain/consumer-proguard-rules.pro"))
     }
     namespace = "com.adsbynimbus.openrtb"
 }
 
 kotlin {
     explicitApi()
+
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_1_8
+        languageVersion = KotlinVersion.KOTLIN_1_8
+        optIn = listOf("kotlinx.serialization.ExperimentalSerializationApi")
+    }
 
     androidTarget {
         compilations.configureEach {
@@ -36,13 +40,6 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        configureEach {
-            languageSettings {
-                apiVersion = KotlinVersion.KOTLIN_1_8.version
-                languageVersion = KotlinVersion.KOTLIN_1_8.version
-                optIn("kotlinx.serialization.ExperimentalSerializationApi")
-            }
-        }
         commonMain.dependencies {
             implementation(libs.serialization.json)
         }
@@ -59,15 +56,15 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-tasks.withType<DokkaTask>().configureEach {
+dokka {
     moduleName = "nimbus-openrtb"
-
+    dokkaGeneratorIsolation = ClassLoaderIsolation()
     dokkaSourceSets {
         named("commonMain") {
             sourceLink {
-                localDirectory = layout.projectDirectory.file("src/$name/kotlin").asFile
-                remoteUrl = uri("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin").toURL()
+                localDirectory = layout.projectDirectory.dir("src/$name/kotlin")
                 remoteLineSuffix = "#L"
+                remoteUrl("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin")
             }
         }
     }

@@ -40,20 +40,19 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: 17
+          distribution: 'zulu'
+          java-version: 21
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
 
       - name: Cache Kotlin packages
         uses: actions/cache@v4
         with:
           path: ~/.konan
           key: ${{ runner.os }}-konan-${{ hashFiles('**/*.versions.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-konan-${{ hashFiles('**/*.versions.toml') }}
-            ${{ runner.os }}-konan-
 
       - name: Set Version to Tag Name
         id: tag_name
@@ -81,3 +80,10 @@ jobs:
         env:
           ORG_GRADLE_PROJECT_version: ${{ steps.tag_name.outputs.VERSION }}
         run: ./gradlew publish
+
+      - name: Upload build reports
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: build-reports
+          path: '**/build/reports/'
