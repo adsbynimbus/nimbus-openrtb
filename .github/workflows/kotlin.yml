@@ -53,9 +53,6 @@ jobs:
         with:
           path: ~/.konan
           key: ${{ runner.os }}-konan-${{ hashFiles('**/*.versions.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-konan-${{ hashFiles('**/*.versions.toml') }}
-            ${{ runner.os }}-konan-
 
       - name: Set Version to Tag Name
         id: tag_name
