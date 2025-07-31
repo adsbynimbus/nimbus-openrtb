@@ -62,6 +62,7 @@ public class User(
         @JvmField @SerialName("consent") public var consent: String? = null,
         @JvmField @SerialName("admob_gde_signals") public var admob_gde_signals: String? = null,
         @JvmField @SerialName("facebook_buyeruid") public var facebook_buyeruid: String? = null,
+        @JvmField @SerialName("inmobi_sdk_buyeruid") public var inmobi_sdk_buyeruid: String? = null,
         @JvmField @SerialName("unity_buyeruid") public var unity_buyeruid: String? = null,
         @JvmField @SerialName("vungle_buyeruid") public var vungle_buyeruid: String? = null,
         @JvmField @SerialName("eids") public var eids: Set<EID>? = null,
