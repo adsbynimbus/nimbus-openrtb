@@ -1,16 +1,18 @@
 [versions]
 android = "8.10.1"
 dokka = "2.0.0"
-kotest = "6.0.0.M3"
-kotlin = "2.1.21"
+kotest = "6.0.0.M8"
+kotlin = "2.2.0"
+ksp = "2.2.0-2.0.2"
 serialization = { require = "[1.5.1, )", prefer = "1.7.3" }
 
 [plugins]
 android = { id = "com.android.library", version.ref = "android" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
+kotest = { id = "io.kotest", version.ref = "kotest" }
 
 [libraries]
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }

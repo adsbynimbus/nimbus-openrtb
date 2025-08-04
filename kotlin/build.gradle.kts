@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotest)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlin.serialization)
     `maven-publish`
