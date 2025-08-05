@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotest)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlin.serialization)
     `maven-publish`
@@ -64,7 +65,10 @@ dokka {
             sourceLink {
                 localDirectory = layout.projectDirectory.dir("src/$name/kotlin")
                 remoteLineSuffix = "#L"
-                remoteUrl("https://github.com/timehop/nimbus-openrtb/kotlin/src/$name/kotlin")
+                remoteUrl(providers.gradleProperty("version")
+                    .map { if (it == "development") "main" else "v$it" }
+                    .map { "https://github.com/adsbynimbus/nimbus-openrtb/tree/$it/kotlin/src/$name/kotlin" }
+                )
             }
         }
     }
