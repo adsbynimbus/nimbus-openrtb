@@ -47,6 +47,7 @@ public class User(
      * @property consent Publisher provided GDPR consent string
      * @property facebook_buyeruid String token provided by the Facebook Audience Network to include FAN demand in
      *                             the auction.
+     * @property inmobi_buyeruid String token provided by InMobi SDK to include InMobi demand in the auction.
      * @property unity_buyeruid String token provided by the Unity Ads SDK to include Unity demand
      *                          in the auction. Token is initialized when UnityAds is initialized
      *                          and the token and campaign is refreshed after the ad playback has
@@ -62,6 +63,7 @@ public class User(
         @JvmField @SerialName("consent") public var consent: String? = null,
         @JvmField @SerialName("admob_gde_signals") public var admob_gde_signals: String? = null,
         @JvmField @SerialName("facebook_buyeruid") public var facebook_buyeruid: String? = null,
+        @JvmField @SerialName("inmobi_buyeruid") public var inmobi_buyeruid: String? = null,
         @JvmField @SerialName("unity_buyeruid") public var unity_buyeruid: String? = null,
         @JvmField @SerialName("vungle_buyeruid") public var vungle_buyeruid: String? = null,
         @JvmField @SerialName("eids") public var eids: Set<EID>? = null,
