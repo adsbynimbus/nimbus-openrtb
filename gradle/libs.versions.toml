@@ -1,9 +1,9 @@
 [versions]
-android = "8.11.1"
+android = "8.12.3"
 dokka = "2.0.0"
-kotest = "6.0.0.M8"
-kotlin = "2.2.0"
-ksp = "2.2.0-2.0.2"
+kotest = "6.0.3"
+kotlin = "2.2.20"
+ksp = "2.2.20-2.0.3"
 serialization = { require = "[1.5.1, )", prefer = "1.7.3" }
 
 [plugins]
