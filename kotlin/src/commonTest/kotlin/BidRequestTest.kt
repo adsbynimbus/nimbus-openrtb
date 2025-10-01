@@ -105,7 +105,7 @@ const val testJson = """
         "ext":{
             "facebook_app_id":"test_facebook_app_id",
             "position":"5",
-            "adUnit":5,
+            "adunit":5,
             "skadn":null
         }
     }],
@@ -214,7 +214,7 @@ class BidRequestTest : StringSpec({
     }
 
     "BidRequest fromJson deserializes AdUnitType" {
-        request.imp[0].ext.adUnitType shouldBe AdUnitType.Dynamic
+        request.imp[0].ext.adUnitType shouldBe AdUnitType.DYNAMIC
     }
 
     "BidRequest fromJson deserializes the format object" {

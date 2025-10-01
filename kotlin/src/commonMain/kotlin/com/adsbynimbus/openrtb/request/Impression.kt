@@ -1,6 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
-import com.adsbynimbus.openrtb.enumerations.AdUnitType
+import com.adsbynimbus.openrtb.enumerations.AdUnitType.UNKNOWN
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
@@ -58,10 +58,8 @@ public class Impression(
     public class Extension(
         @JvmField @SerialName("position") public var position: String,
         @JvmField @SerialName("aps") public var aps: Set<Map<String, List<String>>> = emptySet(),
-        @JvmField @SerialName("adUnit") public var adUnitType: AdUnitType = AdUnitType.Unknown,
+        @JvmField @SerialName("adunit") public var adUnitType: Byte = UNKNOWN,
         @JvmField @SerialName("facebook_app_id") public var facebook_app_id: String? = null,
         @JvmField @SerialName("facebook_test_ad_type") public var facebook_test_ad_type: String? = null,
     )
 }
-
-
