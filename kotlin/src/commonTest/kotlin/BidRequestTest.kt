@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb
 
+import com.adsbynimbus.openrtb.enumerations.AdUnitType
 import com.adsbynimbus.openrtb.request.BidRequest
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldHaveSize
@@ -104,6 +105,7 @@ const val testJson = """
         "ext":{
             "facebook_app_id":"test_facebook_app_id",
             "position":"5",
+            "adunit":5,
             "skadn":null
         }
     }],
@@ -209,6 +211,10 @@ class BidRequestTest : StringSpec({
             ifa shouldBe "00000000-0000-0000-0000-000000000000"
             pxratio shouldBe 4.0
         }
+    }
+
+    "BidRequest fromJson deserializes AdUnitType" {
+        request.imp[0].ext.adUnitType shouldBe AdUnitType.DYNAMIC
     }
 
     "BidRequest fromJson deserializes the format object" {
