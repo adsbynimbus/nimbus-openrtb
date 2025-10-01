@@ -1,5 +1,6 @@
 package com.adsbynimbus.openrtb.request
 
+import com.adsbynimbus.openrtb.enumerations.AdUnitType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmField
@@ -46,6 +47,7 @@ public class Impression(
      * @property position Required string identifying the name of the placement that will be
      *                    displayed on the Nimbus dashboard.
      * @property aps The list of key value pairs provided by a DTBRequest from the APS library.
+     * @property adUnitType The type of ad unit being auctioned.
      * @property facebook_app_id The identifier for this app provided by Facebook. Required if
      *                           including Facebook demand in this request.
      * @property facebook_test_ad_type An optional ad type to force a test response for validating
@@ -56,6 +58,7 @@ public class Impression(
     public class Extension(
         @JvmField @SerialName("position") public var position: String,
         @JvmField @SerialName("aps") public var aps: Set<Map<String, List<String>>> = emptySet(),
+        @JvmField @SerialName("adUnit") public var adUnitType: AdUnitType = AdUnitType.Unknown,
         @JvmField @SerialName("facebook_app_id") public var facebook_app_id: String? = null,
         @JvmField @SerialName("facebook_test_ad_type") public var facebook_test_ad_type: String? = null,
     )
