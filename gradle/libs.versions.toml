@@ -1,9 +1,9 @@
 [versions]
 android = "8.12.3"
-dokka = "2.1.0-Beta"
-kotest = "6.0.3"
-kotlin = "2.2.20"
-ksp = "2.2.20-2.0.3"
+dokka = "2.1.0"
+kotest = "6.0.5"
+kotlin = "2.2.21"
+ksp = "2.3.2"
 serialization = { require = "[1.5.1, )", prefer = "1.7.3" }
 
 [plugins]
