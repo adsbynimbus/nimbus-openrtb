@@ -28,6 +28,7 @@ import kotlin.jvm.JvmField
  * @property privacypolicy Indicates if the app has a privacy policy. (0 = No, 1 = Yes)
  * @property paid Indicates if the app is free or paid. (0 = Free, 1 = Paid)
  * @property publisher Details about the publisher of the app.
+ * @property content Details about the content within the app.
  */
 @Serializable
 public class App(
@@ -43,4 +44,21 @@ public class App(
     @JvmField @SerialName("privacypolicy") public var privacypolicy: Byte? = null,
     @JvmField @SerialName("paid") public var paid: Byte? = null,
     @JvmField @SerialName("publisher") public var publisher: Publisher? = null,
+    @JvmField @SerialName("content") public var content: AppContent? = null,
+)
+
+/**
+ * This object describes the content in which the impression will appear, which may be syndicated or nonsyndicated content.
+ * This object may be useful when syndicated content contains impressions and does
+ * not necessarily match the publisher’s general content. The exchange might or might not have
+ * knowledge of the page where the content is running, as a result of the syndication method. For
+ * example might be a video impression embedded in an iframe on an unknown web property or device.
+ *
+ * [OpenRTB Section 3.2.16](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26)
+ *
+ * @property url string representing URL of the content, for buy-side contextualization or review.
+*/
+@Serializable
+public class AppContent(
+    @JvmField @SerialName("url") public var url: String? = null,
 )
