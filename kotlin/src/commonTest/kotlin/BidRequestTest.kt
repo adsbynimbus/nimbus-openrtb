@@ -121,6 +121,9 @@ const val testJson = """
         "publisher":{
             "name":"Adsbynimbus",
             "domain":"https://adsbynimbus.com"
+        },
+        "content":{
+            "url":"https://www.adsbynimbus.com/content-url"
         }
     },
     "device":{
@@ -201,6 +204,7 @@ class BidRequestTest : StringSpec({
 
     "BidRequest fromJson deserializes the app object" {
         request.app.shouldNotBeNull()
+        request.app!!.content!!.url shouldBe "https://www.adsbynimbus.com/content-url"
     }
 
     "BidRequest fromJson deserializes the device object" {
