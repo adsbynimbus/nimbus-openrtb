@@ -44,7 +44,7 @@ public class App(
     @JvmField @SerialName("privacypolicy") public var privacypolicy: Byte? = null,
     @JvmField @SerialName("paid") public var paid: Byte? = null,
     @JvmField @SerialName("publisher") public var publisher: Publisher? = null,
-    @JvmField @SerialName("content") public var content: AppContent? = null,
+    @JvmField @SerialName("content") public var content: Content? = null,
 )
 
 /**
@@ -59,6 +59,6 @@ public class App(
  * @property url string representing URL of the content, for buy-side contextualization or review.
 */
 @Serializable
-public class AppContent(
-    @JvmField @SerialName("url") public var url: String? = null,
+public class Content(
+    @JvmField @SerialName("url") public var url: String = "",
 )
